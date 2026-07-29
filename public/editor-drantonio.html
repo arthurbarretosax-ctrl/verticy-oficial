@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editor Dr. Antônio · Verticy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/verticy.css?v=3" />
+  <style>
+    .ed-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+    .ed-nav button { padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: var(--muted, #8892a6); font-size: 13px; cursor: pointer; transition: all .2s; }
+    .ed-nav button.active { background: var(--brand, #7c5cff); border-color: transparent; color: #fff; }
+    .ed-section { display: none; }
+    .ed-section.active { display: block; }
+    .ed-repeat { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,.02); }
+    .ed-repeat-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .ed-repeat-head strong { font-size: 13px; }
+    .textarea-sm { min-height: 70px; }
+
+    /* Upload widget */
+    .ed-img { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; margin-bottom: 14px; background: rgba(255,255,255,.02); }
+    .ed-img-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+    .ed-img-head label { font-size: 13px; font-weight: 500; color: #cfd3df; }
+    .ed-img-hint { font-size: 11px; color: var(--muted, #8892a6); letter-spacing: 0.02em; }
+    .ed-img-row { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: start; }
+    .ed-img-thumb { width: 96px; height: 96px; border-radius: 10px; border: 1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.3) center/cover no-repeat; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #4a4f5c; font-size: 22px; }
+    .ed-img-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ed-img-actions { display: flex; flex-direction: column; gap: 8px; }
+    .ed-img-actions .row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ed-img input[type="file"] { display: none; }
+    .ed-img .btn-file { position: relative; overflow: hidden; }
+    .ed-img .btn-file.uploading { opacity: 0.6; pointer-events: none; }
+    .ed-img .input-sm { padding: 8px 10px; font-size: 12px; }
+    .ed-img .variant { margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,.08); }
+    .ed-img .variant .ed-img-head label { font-size: 12px; color: var(--muted, #8892a6); }
+
+    /* Color pickers */
+    .ed-color { display: grid; grid-template-columns: 56px 1fr 110px; gap: 12px; align-items: center; padding: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(255,255,255,.02); margin-bottom: 10px; }
+    .ed-color input[type="color"] { width: 56px; height: 40px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: transparent; padding: 2px; cursor: pointer; }
+    .ed-color .meta { display: flex; flex-direction: column; gap: 2px; }
+    .ed-color .meta strong { font-size: 13px; color: #dfe3ec; font-weight: 500; }
+    .ed-color .meta small { font-size: 11px; color: var(--muted, #8892a6); }
+    .ed-color input[type="text"] { padding: 8px 10px; font-size: 12px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .ed-color-reset { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="editor-shell">
+    <header class="editor-toolbar">
+      <a href="/painel.html" class="brand" style="font-size:15px"><span class="brand-mark"></span><span>Editor · Dentista Premium</span></a>
+      <div class="flex gap-2 items-center">
+        <span class="tag" id="save-state">Tudo salvo</span>
+        <a class="btn btn-ghost btn-sm" id="preview-link" target="_blank" rel="noopener">Ver site</a>
+        <button class="btn btn-primary btn-sm" id="save-btn">Salvar</button>
+      </div>
+    </header>
+
+    <div class="editor-main">
+      <aside class="editor-panel">
+        <div class="ed-nav" id="ed-nav"></div>
+        <div id="ed-body"></div>
+      </aside>
+      <main class="editor-preview">
+        <div class="device-mockup">
+          <div class="device-notch"></div>
+          <iframe id="live-preview-frame" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast, uploadSiteImage } from "/assets/js/verticy.js";
+    import { DRANTONIO_DEFAULTS } from "/assets/js/drantonio-defaults.js";
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+    if (!profile?.onboarding_completed) window.location.replace("/onboarding.html");
+
+    document.getElementById("preview-link").href = `${window.location.origin}/${profile.username}`;
+    const livePreviewFrame = document.getElementById("live-preview-frame");
+    if (livePreviewFrame) livePreviewFrame.src = "/drantonio_raw.html";
+
+    const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
+    if (!site) { toast("Site não encontrado", "error"); throw new Error("no site"); }
+    if (site.template_id !== "drantonio") {
+      window.location.replace("/editor.html");
+      throw new Error("wrong template");
+    }
+
+    function merge(base, add) {
+      if (Array.isArray(base)) return add !== undefined ? add : base;
+      if (typeof base === "object" && base !== null) {
+        const out = { ...base };
+        for (const k of Object.keys(base)) if (add && add[k] !== undefined) out[k] = merge(base[k], add[k]);
+        if (add) for (const k of Object.keys(add)) if (!(k in base)) out[k] = add[k];
+        return out;
+      }
+      return add !== undefined ? add : base;
+    }
+    let content = merge(DRANTONIO_DEFAULTS, site.content || {});
+
+    const saveState = document.getElementById("save-state");
+    let dirty = false;
+    const markDirty = () => { 
+      dirty = true; saveState.textContent = "Alterações pendentes"; saveState.className = "tag"; 
+      if (livePreviewFrame && livePreviewFrame.contentWindow) {
+        livePreviewFrame.contentWindow.postMessage({ type: "LIVE_PREVIEW", content }, "*");
+      }
+    };
+    const markClean = () => { dirty = false; saveState.textContent = "Tudo salvo"; saveState.className = "tag success"; };
+
+    const SECTIONS = [
+  { id: "hero", label: "Capa" },
+  { id: "about", label: "Sobre" },
+  { id: "manifesto", label: "Manifesto" },
+  { id: "contact", label: "Contato" }
+];
+
+
+    const nav = document.getElementById("ed-nav");
+    SECTIONS.forEach((s, i) => {
+      const b = document.createElement("button");
+      b.textContent = s.label;
+      b.dataset.tab = s.id;
+      if (i === 0) b.classList.add("active");
+      b.addEventListener("click", () => showTab(s.id));
+      nav.appendChild(b);
+    });
+
+    const body = document.getElementById("ed-body");
+    function esc(s) { return String(s ?? "").replace(/"/g, "&quot;"); }
+    function txt(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c])); }
+
+    function field(label, key, val, opts = {}) {
+      const t = opts.type || "text";
+      if (t === "textarea") {
+        return `<div class="field"><label>${label}</label><textarea class="textarea ${opts.small ? "textarea-sm" : ""}" data-key="${key}">${txt(val)}</textarea></div>`;
+      }
+      if (t === "checkbox") {
+        return `<div class="field"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" data-key="${key}" ${val ? "checked" : ""}/> ${label}</label></div>`;
+      }
+      return `<div class="field"><label>${label}</label><input class="input" type="${t}" data-key="${key}" value="${esc(val)}" /></div>`;
+    }
+
+    function imgField(label, key, val, hint = "") {
+      const id = "f" + Math.random().toString(36).substr(2,9);
+      const bg = val ? `background-image:url('${esc(val)}')` : "";
+      return `
+        <div class="ed-img">
+          <div class="ed-img-head"><label>${label}</label>${hint ? `<span class="ed-img-hint">${hint}</span>` : ""}</div>
+          <div class="ed-img-row">
+            <div class="ed-img-thumb" id="thumb_${id}" style="${bg}">${!val ? "IMG" : ""}</div>
+            <div class="ed-img-actions">
+              <input type="file" accept="image/*" id="${id}" data-key="${key}" />
+              <div class="row">
+                <button class="btn btn-ghost btn-sm btn-file" onclick="document.getElementById('${id}').click()">Substituir</button>
+                <button class="btn btn-ghost btn-sm" onclick="document.getElementById('${id}').value='';document.querySelector('#${id}[data-key]').dispatchEvent(new Event('change'))">Remover</button>
+              </div>
+              <input class="input input-sm" type="text" placeholder="Ou cole a URL" data-key="${key}" value="${esc(val)}" />
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderHero() {
+      const h = content.hero || {};
+      return `
+        <div class="block-label">Capa</div>
+        ${field("Label Superior", "hero.top_label", h.top_label)}
+        ${field("Título - Parte 1", "hero.title_1", h.title_1)}
+        ${field("Título - Parte 2", "hero.title_2", h.title_2)}
+        ${field("Título - Parte 3", "hero.title_3", h.title_3)}
+        ${field("Subtítulo", "hero.subtitle", h.subtitle, { type: "textarea" })}
+        ${field("Botão CTA", "hero.cta_label", h.cta_label)}
+        ${field("Link Botão", "hero.cta_href", h.cta_href)}
+        ${imgField("Imagem Fundo", "hero.bg_image", h.bg_image)}
+      `;
+    }
+    function renderAbout() {
+      const a = content.about || {};
+      return `
+        <div class="block-label">Sobre</div>
+        ${field("Título - Parte 1", "about.title_1", a.title_1)}
+        ${field("Título - Parte 2", "about.title_2", a.title_2)}
+        ${imgField("Foto Principal", "about.image_1", a.image_1)}
+        ${imgField("Foto Ação", "about.image_2", a.image_2)}
+      `;
+    }
+    function renderManifesto() {
+      const m = content.manifesto || {};
+      return `
+        <div class="block-label">Manifesto</div>
+        ${field("Linha 1", "manifesto.line_1", m.line_1, { type: "textarea" })}
+        ${field("Linha 2", "manifesto.line_2", m.line_2, { type: "textarea" })}
+        ${field("Linha 3", "manifesto.line_3", m.line_3, { type: "textarea" })}
+        ${field("Linha 4", "manifesto.line_4", m.line_4, { type: "textarea" })}
+      `;
+    }
+    function renderContact() {
+      const c = content.contact || {};
+      return `
+        <div class="block-label">Contato</div>
+        ${field("WhatsApp", "contact.whatsapp", c.whatsapp)}
+        ${field("Email", "contact.email", c.email)}
+        ${field("Instagram", "contact.instagram", c.instagram)}
+      `;
+    }
+    const renderers = { hero: renderHero, about: renderAbout, manifesto: renderManifesto, contact: renderContact };
+
+    function showTab(id) {
+      document.querySelectorAll(".ed-nav button").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
+      body.innerHTML = renderers[id]();
+
+      body.querySelectorAll("input[data-key], textarea[data-key]").forEach(el => {
+        el.addEventListener("input", (e) => {
+          let val = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+          setPath(e.target.dataset.key, val);
+          if (e.target.type === "text" && e.target.placeholder === "Ou cole a URL") {
+            const thumb = e.target.closest(".ed-img").querySelector(".ed-img-thumb");
+            if (val) { thumb.style.backgroundImage = `url('${esc(val)}')`; thumb.textContent = ""; }
+            else { thumb.style.backgroundImage = "none"; thumb.textContent = "IMG"; }
+          }
+          markDirty();
+        });
+        
+        if(el.type === "file") {
+            el.addEventListener("change", async (e) => {
+                const file = e.target.files[0];
+                if(file) {
+                    const btn = e.target.closest('.ed-img').querySelector('.btn-file');
+                    btn.classList.add('uploading');
+                    btn.textContent = 'Enviando...';
+                    try {
+                        const url = await uploadSiteImage(session.user.id, file);
+                        setPath(e.target.dataset.key, url);
+                        const txt = e.target.closest('.ed-img').querySelector('input[type="text"]');
+                        txt.value = url;
+                        const thumb = e.target.closest('.ed-img').querySelector('.ed-img-thumb');
+                        thumb.style.backgroundImage = `url('${url}')`;
+                        thumb.textContent = '';
+                        markDirty();
+                    } catch(err) {
+                        toast("Erro no upload", "error");
+                        console.error(err);
+                    } finally {
+                        btn.classList.remove('uploading');
+                        btn.textContent = 'Substituir';
+                    }
+                }
+            });
+        }
+      });
+
+showTab("theme");
+        });
+      }
+      if (id === "about") {
+        addBtn("#add-para", () => content.about.paragraphs.push(""));
+        remBtn("data-remove-para", "about.paragraphs");
+      }
+      if (id === "diferenciais") {
+        addBtn("#add-dif", () => content.diferenciais.items.push({ icon: "ph-check", title: "Novo diferencial" }));
+        remBtn("data-remove-dif", "diferenciais.items");
+      }
+      if (id === "services") {
+        addBtn("#add-svc", () => content.services.items.push({ title: "Novo procedimento", icon: "ph-sparkle", image_url: "" }));
+        remBtn("data-remove-svc", "services.items");
+      }
+      if (id === "especialistas") {
+        addBtn("#add-tag", () => content.especialistas.tags.push("Nova especialidade"));
+        remBtn("data-remove-tag", "especialistas.tags");
+      }
+      if (id === "resultados") {
+        addBtn("#add-res", () => content.resultados.items.push({ before_url: "", after_url: "" }));
+        remBtn("data-remove-res", "resultados.items");
+      }
+      if (id === "testimonials") {
+        addBtn("#add-tst", () => content.testimonials.items.push({ quote: "", name: "", role: "Paciente" }));
+        remBtn("data-remove-tst", "testimonials.items");
+      }
+      if (id === "faq") {
+        addBtn("#add-faq", () => content.faq.items.push({ q: "Nova pergunta", a: "Resposta" }));
+        remBtn("data-remove-faq", "faq.items");
+      }
+      if (id === "consultorio") {
+        addBtn("#add-cons", () => content.consultorio.images.push(""));
+        remBtn("data-remove-cons", "consultorio.images");
+      }
+      if (id === "instagram") {
+        addBtn("#add-ig", () => content.instagram.images.push(""));
+        remBtn("data-remove-ig", "instagram.images");
+      }
+      if (id === "contact") {
+        addBtn("#add-addr", () => content.contact.address_lines.push(""));
+        remBtn("data-remove-addr", "contact.address_lines");
+        addBtn("#add-hours", () => content.contact.hours_lines.push(""));
+        remBtn("data-remove-hours", "contact.hours_lines");
+      }
+    }
+
+    showTab("theme");
+
+    async function save() {
+      const btn = document.getElementById("save-btn");
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+      const { error } = await supabase.from("sites").update({ content, published: true }).eq("user_id", session.user.id);
+      btn.disabled = false; btn.textContent = "Salvar";
+      if (error) { toast(error.message, "error"); return; }
+      markClean(); toast("Salvo", "success");
+    }
+    document.getElementById("save-btn").addEventListener("click", save);
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); save(); }
+    });
+    window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+    markClean();
+  </script>
+</body>
+</html>

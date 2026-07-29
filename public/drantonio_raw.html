@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dr. Antônio | Alta Performance e Precisão em Dor</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deep: '#030303',
+                        surface: '#0A0A0A',
+                        cement: '#4A4A4A',
+                        ice: '#F5F5F7',
+                        accent: '#E65C00',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        tighter: '-.04em',
+                        tight: '-.02em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base & Resets */
+        :root { --bg-color: #030303; }
+        
+        html, body {
+            background-color: var(--bg-color);
+            color: #F5F5F7;
+            overflow-x: hidden;
+            overscroll-behavior-y: none;
+        }
+
+        ::selection { background: #E65C00; color: #fff; }
+        ::-webkit-scrollbar { display: none; }
+        -ms-overflow-style: none; scrollbar-width: none;
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+        /* Custom Cursor (Apenas Desktop) */
+        @media (pointer: fine) {
+            body { cursor: none; }
+            .cursor-dot, .cursor-outline {
+                position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+                border-radius: 50%; z-index: 9999; pointer-events: none;
+            }
+            .cursor-dot { width: 6px; height: 6px; background-color: #F5F5F7; }
+            .cursor-outline {
+                width: 36px; height: 36px; border: 1px solid rgba(245, 245, 247, 0.4);
+                transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            }
+            body:hover .cursor-outline.hovered {
+                width: 50px; height: 50px; background-color: rgba(245, 245, 247, 0.05);
+                border-color: transparent; backdrop-filter: blur(4px);
+            }
+        }
+        @media (pointer: coarse) { .cursor-dot, .cursor-outline { display: none !important; } }
+
+        /* Noise Textura */
+        .noise-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9998; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .reveal-text-line { overflow: hidden; }
+        .reveal-text-line > div { transform: translateY(110%); }
+
+        .highlight-text {
+            color: rgba(245, 245, 247, 0.15);
+            background-clip: text; -webkit-background-clip: text;
+            background-image: linear-gradient(to right, #F5F5F7 50%, rgba(245, 245, 247, 0.15) 50%);
+            background-size: 200% 100%; background-position: 100% 0;
+        }
+
+        /* Util para imagens de fundo com parallax (oculta o overflow do container) */
+        .img-container { overflow: hidden; position: relative; }
+        .img-parallax { width: 100%; height: 120%; object-fit: cover; position: absolute; top: -10%; left: 0; }
+    </style>
+</head>
+<body class="selection:bg-accent selection:text-white">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="noise-bg"></div>
+
+    <main>
+        <!-- 1. HERO (Focado no Doutor e Visual) -->
+        <section class="relative min-h-[100svh] w-full flex flex-col justify-end pb-12 md:pb-20 px-6 md:px-12 lg:px-24 overflow-hidden">
+            <!-- Imagem Cinematográfica Hero -->
+            <div class="absolute inset-0 z-0 bg-surface">
+                <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=2000&auto=format&fit=crop" 
+                     class="w-full h-full object-cover opacity-[0.4] mix-blend-luminosity scale-105" id="hero-img" alt="Procedimento Médico">
+                <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/60 to-transparent z-10"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-deep via-transparent to-transparent z-10"></div>
+            </div>
+
+            <div class="relative z-20 w-full max-w-[1400px] mx-auto hero-content mt-32 md:mt-0">
+                <div class="mb-8 md:mb-12">
+                    <span class="reveal-fade text-accent uppercase tracking-[0.3em] text-xs md:text-sm mb-6 block font-medium" id="bind-hero-top_label">
+                        Dr. Antônio | Especialista em Dor
+                    </span>
+                    <h1 class="font-display text-[12vw] md:text-8xl lg:text-[8rem] font-medium tracking-tighter leading-[0.9] text-ice mb-6 md:mb-8">
+                        <div class="reveal-text-line"><div id="bind-hero-title_1">Precisão</div></div>
+                        <div class="reveal-text-line"><div id="bind-hero-title_2">para tratar</div></div>
+                        <div class="reveal-text-line"><div class="text-accent italic pr-4" id="bind-hero-title_3">a dor.</div></div>
+                    </h1>
+                </div>
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 md:gap-16 pt-8 md:pt-12 border-t border-white/10">
+                    <p class="font-sans text-base md:text-xl text-gray-300 max-w-xl font-light leading-relaxed reveal-fade" id="bind-hero-subtitle">
+                        Cuidado médico individualizado em Ortopedia, Medicina Regenerativa e Medicina Intervencionista da Dor. Estratégia para recuperar seu movimento e qualidade de vida.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto reveal-fade">
+                        <a href="#" class="interactive-elem w-full sm:w-auto px-8 py-4 bg-ice text-deep font-medium rounded-full text-center hover:scale-[1.02] transition-transform duration-300" id="bind-hero-cta_label">
+                            Agendar Avaliação
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SOBRE O MÉDICO (Autoridade Antecipada & Layout Visual Premium) -->
+        <section class="py-24 md:py-40 px-6 md:px-12 lg:px-24 bg-deep relative overflow-hidden">
+            <div class="max-w-[1400px] mx-auto">
+                <div class="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+                    
+                    <!-- Composição Fotográfica (Duas imagens) -->
+                    <div class="w-full lg:w-1/2 relative h-[60vh] md:h-[80vh] fade-up group">
+                        <!-- Imagem Principal (Retrato) -->
+                        <div class="absolute inset-0 w-full md:w-5/6 h-full img-container rounded-2xl md:rounded-[2rem] z-10 border border-white/5">
+                            <img id="bind-about-img1" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1000&auto=format&fit=crop" 
+                                 class="img-parallax filter grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Dr. Antônio">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-8 left-8">
+                                <h3 class="font-display text-3xl text-white">Dr. Antônio</h3>
+                                <p class="text-accent tracking-widest text-sm uppercase mt-2">CRM-RJ 52.85356-9</p>
+                            </div>
+                        </div>
+                        <!-- Imagem Secundária (Ação/Procedimento) sobreposta -->
+                        <div class="hidden md:block absolute bottom-12 -right-12 w-2/3 h-2/3 img-container rounded-2xl z-20 border-4 border-deep shadow-2xl shadow-black">
+                            <img id="bind-about-img2" src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800&auto=format&fit=crop" 
+                                 class="img-parallax filter grayscale-[0.5]" alt="Procedimento em ação">
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo / Diferenciais -->
+                    <div class="w-full lg:w-1/2 space-y-12 fade-up">
+                        <h2 class="font-display text-4xl md:text-6xl font-medium tracking-tighter text-ice leading-[1.1]">
+                            <span id="bind-about-title_1">Ciência, Rigor &</span> <br><span class="text-gray-500 italic" id="bind-about-title_2">Quase 20 anos de experiência.</span>
+                        </h2>
+                        
+                        <div class="space-y-10 border-l border-white/10 pl-6 md:pl-10">
+                            <div class="relative">
+                                <div class="absolute w-2 h-2 bg-accent rounded-full -left-[45px] top-2"></div>
+                                <span class="text-ice font-display text-xl mb-3 block">Base & Alto Risco</span>
+                                <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed">
+                                    Graduado desde 2008. Uma trajetória forjada na exigência do <strong>Corpo de Bombeiros</strong> e na excelência da residência médica. Situações críticas moldaram uma tomada de decisão rápida e precisão absoluta.
+                                </p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute w-2 h-2 bg-white/30 rounded-full -left-[45px] top-2"></div>
+                                <span class="text-ice font-display text-xl mb-3 block">Aperfeiçoamento Contínuo</span>
+                                <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed">
+                                    Formação sólida na <strong>PUC-Rio</strong>. Imersão profunda em Medicina Regenerativa, Laser, Ondas de Choque e Radiofrequência. A busca constante pelas tecnologias mais eficazes do mundo.
+                                </p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute w-2 h-2 bg-white/30 rounded-full -left-[45px] top-2"></div>
+                                <span class="text-ice font-display text-xl mb-3 block">O Método Atual</span>
+                                <p class="text-gray-400 font-light text-base md:text-lg leading-relaxed">
+                                    Integração de Medicina Endocanabinoide e USG Musculoesquelético. Tecnologias de ponta aplicadas com um olhar <strong>profundamente humanizado</strong> para entender a origem da sua dor.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MANIFESTO (Com Fundo Visual Suave) -->
+        <section class="relative bg-surface py-32 md:py-48 px-6 md:px-12 lg:px-24 overflow-hidden border-y border-white/5">
+            <!-- Imagem abstrata/anatomia de fundo -->
+            <div class="absolute inset-0 z-0 opacity-20 img-container">
+                <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=2000&auto=format&fit=crop" class="img-parallax filter blur-sm mix-blend-screen" alt="Anatomia">
+                <div class="absolute inset-0 bg-surface/80"></div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto relative z-10">
+                <p class="font-display text-3xl md:text-5xl lg:text-7xl font-medium tracking-tighter leading-[1.2] md:leading-[1.1]">
+                    <span class="highlight-text block mb-6 md:mb-8" id="bind-manifesto-line_1">A dor pode limitar muito mais do que o movimento.</span>
+                    <span class="highlight-text block mb-6 md:mb-8" id="bind-manifesto-line_2">Muitas pessoas convivem anos tentando tratar apenas os sintomas genéricos.</span>
+                    <span class="highlight-text block mb-6 md:mb-8" id="bind-manifesto-line_3">O primeiro passo é entender a origem exata do seu problema.</span>
+                    <span class="highlight-text block text-ice" id="bind-manifesto-line_4">Você não precisa aceitar a dor como rotina.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-surface py-16 md:py-24 px-6 md:px-12 lg:px-24 border-t border-white/5">
+            <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-cement font-light text-sm">
+                
+                <div class="lg:col-span-2 space-y-4">
+                    <h3 class="font-display text-2xl text-ice tracking-tighter mb-4">DR. ANTÔNIO<span class="text-accent">.</span></h3>
+                    <p>Especialista em Dor • CRM-RJ 52.85356-9 | RQE 26596</p>
+                    <p class="max-w-md text-xs leading-relaxed opacity-50 mt-6">
+                        Este site possui caráter informativo. Diagnósticos, tratamentos e indicações dependem de avaliação médica presencial.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-ice font-medium mb-6 uppercase tracking-widest text-xs">Atendimento</h4>
+                    <ul class="space-y-3">
+                        <li>O2 Clinic, Sala 708</li>
+                        <li>Campos dos Goytacazes, RJ</li>
+                        <li><a href="#" class="hover:text-ice transition-colors interactive-elem" id="bind-contact-whatsapp">(22) 99830-1919</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-ice font-medium mb-6 uppercase tracking-widest text-xs">Conexão</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-ice transition-colors interactive-elem" id="bind-contact-instagram">Instagram @CasalDaDor</a></li>
+                        <li><a href="#" class="hover:text-ice transition-colors interactive-elem" id="bind-contact-email">WhatsApp Direto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+        // 1. Lenis Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        if(!isTouch) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+        }
+
+        // 2. Custom Cursor
+        if (!isTouch) {
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            const interactives = document.querySelectorAll('.interactive-elem, button, a');
+
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                gsap.to(cursorOutline, { x: posX, y: posY, duration: 0.15, ease: "power2.out" });
+            });
+
+            interactives.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+            });
+        }
+
+        // 3. Animações Iniciais
+        const heroTl = gsap.timeline();
+        heroTl.to('#hero-img', { scale: 1, opacity: 0.6, duration: 2.5, ease: "power2.out" }, 0)
+              .from('.reveal-text-line > div', { y: '110%', duration: 1.2, stagger: 0.15, ease: "power4.out" }, 0.2)
+              .from('.reveal-fade', { opacity: 0, y: 20, duration: 1, stagger: 0.2, ease: "power2.out" }, 1);
+
+        // 4. Efeito de Scroll no Texto (Manifesto)
+        gsap.utils.toArray('.highlight-text').forEach((text) => {
+            gsap.to(text, {
+                backgroundPositionX: '0%',
+                ease: "none",
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 85%",
+                    end: "top 35%",
+                    scrub: 0.5,
+                }
+            });
+        });
+
+        // 5. Fade Up Geral
+        gsap.utils.toArray('.fade-up').forEach(elem => {
+            gsap.from(elem, {
+                y: 40,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%",
+                }
+            });
+        });
+
+        // 6. Efeito Parallax Interno nas Imagens (Dá o tom fotográfico premium)
+        if(!isTouch) {
+            gsap.utils.toArray('.img-container').forEach(container => {
+                const img = container.querySelector('.img-parallax');
+                if(img) {
+                    gsap.to(img, {
+                        y: '20%',
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: container,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: true
+                        }
+                    });
+                }
+            });
+        }
+        
+        window.addEventListener("message", (event) => {
+          if (event.data && event.data.type === "LIVE_PREVIEW") {
+            const data = event.data.content;
+            if(data.hero) {
+              if(document.getElementById('bind-hero-top_label')) document.getElementById('bind-hero-top_label').innerText = data.hero.top_label;
+              if(document.getElementById('bind-hero-title_1')) document.getElementById('bind-hero-title_1').innerText = data.hero.title_1;
+              if(document.getElementById('bind-hero-title_2')) document.getElementById('bind-hero-title_2').innerText = data.hero.title_2;
+              if(document.getElementById('bind-hero-title_3')) document.getElementById('bind-hero-title_3').innerText = data.hero.title_3;
+              if(document.getElementById('bind-hero-subtitle')) document.getElementById('bind-hero-subtitle').innerText = data.hero.subtitle;
+              if(document.getElementById('bind-hero-cta_label')) document.getElementById('bind-hero-cta_label').innerText = data.hero.cta_label;
+              if(document.getElementById('hero-img') && data.hero.bg_image) document.getElementById('hero-img').src = data.hero.bg_image;
+            }
+            if(data.about) {
+              if(document.getElementById('bind-about-title_1')) document.getElementById('bind-about-title_1').innerText = data.about.title_1;
+              if(document.getElementById('bind-about-title_2')) document.getElementById('bind-about-title_2').innerText = data.about.title_2;
+              if(document.getElementById('bind-about-img1')) document.getElementById('bind-about-img1').src = data.about.image_1;
+              if(document.getElementById('bind-about-img2')) document.getElementById('bind-about-img2').src = data.about.image_2;
+            }
+            if(data.manifesto) {
+              if(document.getElementById('bind-manifesto-line_1')) document.getElementById('bind-manifesto-line_1').innerText = data.manifesto.line_1;
+              if(document.getElementById('bind-manifesto-line_2')) document.getElementById('bind-manifesto-line_2').innerText = data.manifesto.line_2;
+              if(document.getElementById('bind-manifesto-line_3')) document.getElementById('bind-manifesto-line_3').innerText = data.manifesto.line_3;
+              if(document.getElementById('bind-manifesto-line_4')) document.getElementById('bind-manifesto-line_4').innerText = data.manifesto.line_4;
+            }
+            if(data.contact) {
+              if(document.getElementById('bind-contact-whatsapp')) document.getElementById('bind-contact-whatsapp').innerText = data.contact.whatsapp;
+              if(document.getElementById('bind-contact-instagram')) document.getElementById('bind-contact-instagram').innerText = data.contact.instagram;
+              if(document.getElementById('bind-contact-email')) document.getElementById('bind-contact-email').innerText = data.contact.email;
+            }
+          }
+        });
+
+    </script>
+</body>
+</html>
