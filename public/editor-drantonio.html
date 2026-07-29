@@ -47,7 +47,7 @@
 <body>
   <div class="editor-shell">
     <header class="editor-toolbar">
-      <a href="/painel.html" class="brand" style="font-size:15px"><span class="brand-mark"></span><span>Editor · Dentista Premium</span></a>
+      <a href="/painel.html" class="brand" style="font-size:15px"><span class="brand-mark"></span><span>Editor · Dr. Antônio</span></a>
       <div class="flex gap-2 items-center">
         <span class="tag" id="save-state">Tudo salvo</span>
         <a class="btn btn-ghost btn-sm" id="preview-link" target="_blank" rel="noopener">Ver site</a>
@@ -252,55 +252,9 @@
             });
         }
       });
-
-showTab("theme");
-        });
-      }
-      if (id === "about") {
-        addBtn("#add-para", () => content.about.paragraphs.push(""));
-        remBtn("data-remove-para", "about.paragraphs");
-      }
-      if (id === "diferenciais") {
-        addBtn("#add-dif", () => content.diferenciais.items.push({ icon: "ph-check", title: "Novo diferencial" }));
-        remBtn("data-remove-dif", "diferenciais.items");
-      }
-      if (id === "services") {
-        addBtn("#add-svc", () => content.services.items.push({ title: "Novo procedimento", icon: "ph-sparkle", image_url: "" }));
-        remBtn("data-remove-svc", "services.items");
-      }
-      if (id === "especialistas") {
-        addBtn("#add-tag", () => content.especialistas.tags.push("Nova especialidade"));
-        remBtn("data-remove-tag", "especialistas.tags");
-      }
-      if (id === "resultados") {
-        addBtn("#add-res", () => content.resultados.items.push({ before_url: "", after_url: "" }));
-        remBtn("data-remove-res", "resultados.items");
-      }
-      if (id === "testimonials") {
-        addBtn("#add-tst", () => content.testimonials.items.push({ quote: "", name: "", role: "Paciente" }));
-        remBtn("data-remove-tst", "testimonials.items");
-      }
-      if (id === "faq") {
-        addBtn("#add-faq", () => content.faq.items.push({ q: "Nova pergunta", a: "Resposta" }));
-        remBtn("data-remove-faq", "faq.items");
-      }
-      if (id === "consultorio") {
-        addBtn("#add-cons", () => content.consultorio.images.push(""));
-        remBtn("data-remove-cons", "consultorio.images");
-      }
-      if (id === "instagram") {
-        addBtn("#add-ig", () => content.instagram.images.push(""));
-        remBtn("data-remove-ig", "instagram.images");
-      }
-      if (id === "contact") {
-        addBtn("#add-addr", () => content.contact.address_lines.push(""));
-        remBtn("data-remove-addr", "contact.address_lines");
-        addBtn("#add-hours", () => content.contact.hours_lines.push(""));
-        remBtn("data-remove-hours", "contact.hours_lines");
-      }
     }
 
-    showTab("theme");
+    showTab("hero");
 
     async function save() {
       const btn = document.getElementById("save-btn");
