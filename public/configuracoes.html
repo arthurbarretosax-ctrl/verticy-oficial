@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agenda · Verticy</title>
+  <title>Configurações · Verticy</title>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" href="/assets/css/dashboard.css?v=3" />
   <style>
@@ -65,7 +65,7 @@
         <a href="/painel.html" class="nav-item">
           <div class="nav-item-left"><i class="ph ph-house"></i><span>Painel</span></div>
         </a>
-        <a href="agenda.html" class="nav-item active">
+        <a href="agenda.html" class="nav-item">
           <div class="nav-item-left"><i class="ph ph-calendar-blank"></i><span>Agenda</span></div>
           <span class="badge-new">Novo</span>
         </a>
@@ -92,7 +92,7 @@
         <a href="loja.html" class="nav-item">
           <div class="nav-item-left"><i class="ph ph-shopping-bag"></i><span>Loja</span></div>
         </a>
-        <a href="/configuracoes.html" class="nav-item">
+        <a href="/configuracoes.html" class="nav-item active">
           <div class="nav-item-left"><i class="ph ph-gear"></i><span>Configurações</span></div>
         </a>
       </nav>
@@ -110,11 +110,37 @@
     </aside>
 
     <main class="main-content" style="overflow-y: auto;">
-      <div class="settings-layout" style="text-align: center; margin-top: 100px;">
-        <div style="font-size: 48px; color: var(--brand-color); margin-bottom: 24px;"><i class="ph ph-hammer"></i></div>
-        <h1 style="font-size: 32px; font-weight: 600; color: #fff; margin-bottom: 12px;">Agenda</h1>
-        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 32px;">Gerencie seus horários e compromissos.<br>Esta página está em construção e estará disponível em breve!</p>
-        <a href="/painel.html" class="btn btn-primary" style="background: var(--brand-color); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none;">Voltar ao Painel</a>
+      <div class="settings-layout">
+        <div class="settings-header">
+          <h1>Configurações da Conta</h1>
+          <p>Gerencie seu perfil, preferências e plano de assinatura.</p>
+        </div>
+
+        <div class="settings-card">
+          <h3><i class="ph ph-user"></i> Meu Perfil</h3>
+          <div class="form-group">
+            <label>Nome Completo</label>
+            <input type="text" id="input-name" placeholder="Seu nome completo" />
+          </div>
+          <div class="form-group">
+            <label>E-mail da Conta</label>
+            <input type="email" id="input-email" disabled />
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">O e-mail não pode ser alterado por aqui. Contate o suporte se precisar.</p>
+          </div>
+          <button class="btn-save" id="btn-save-profile">Salvar Alterações</button>
+        </div>
+
+        <div class="settings-card">
+          <h3><i class="ph ph-diamond"></i> Plano & Assinatura</h3>
+          <div class="plan-box">
+            <div class="plan-info">
+              <h4 id="plan-name-display">Plano Essencial</h4>
+              <p>Você tem acesso a todos os recursos básicos.</p>
+            </div>
+            <button class="btn btn-primary" onclick="alert('Em breve! O upgrade estará disponível na próxima atualização.')" style="background: var(--brand-color); color: #fff; padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-weight: 500;">Fazer Upgrade</button>
+          </div>
+        </div>
+        
       </div>
     </main>
     

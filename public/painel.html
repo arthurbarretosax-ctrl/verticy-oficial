@@ -9,7 +9,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+  <link rel="stylesheet" href="/assets/css/dashboard.css?v=3" />
 </head>
 <body>
 
@@ -158,47 +158,45 @@
               </div>
             </a>
             
-            <div class="action-box">
+            <a href="/configuracoes.html" class="action-box">
               <div class="action-icon"><i class="ph ph-gear"></i></div>
               <div>
                 <h4>Configurações</h4>
                 <p>SEO, metas, domínio e muito mais</p>
               </div>
-            </div>
+            </a>
             
-            <div class="action-box">
+            <button class="action-box text-left w-full" id="btn-share-site" style="text-align: left; width: 100%;">
               <div class="action-icon"><i class="ph ph-share-network"></i></div>
               <div>
                 <h4>Compartilhar</h4>
                 <p>Divulgue seu site nas redes sociais</p>
               </div>
-            </div>
+            </button>
             
-            <div class="action-box">
+            <a href="/leads.html" class="action-box">
               <div class="action-icon"><i class="ph ph-users"></i></div>
-              <div class="badge-new action-box-badge">Novo</div>
               <div>
                 <h4>Leads</h4>
                 <p>Veja seus contatos e mensagens</p>
               </div>
-            </div>
+            </a>
             
-            <div class="action-box">
+            <a href="/analytics.html" class="action-box">
               <div class="action-icon"><i class="ph ph-chart-bar"></i></div>
-              <div class="badge-new action-box-badge">Novo</div>
               <div>
                 <h4>Analytics</h4>
                 <p>Acompanhe visitas, cliques e conversões</p>
               </div>
-            </div>
+            </a>
             
-            <div class="action-box">
+            <button class="action-box text-left w-full" id="btn-duplicate-site" style="text-align: left; width: 100%;">
               <div class="action-icon"><i class="ph ph-copy"></i></div>
               <div>
                 <h4>Duplicar site</h4>
                 <p>Crie uma cópia do seu site atual</p>
               </div>
-            </div>
+            </button>
 
           </div>
         </div>
@@ -360,6 +358,23 @@
       window.location.replace("/");
     });
 
+    document.getElementById("btn-share-site").addEventListener("click", async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: 'Meu site', url: fullPublicUrl });
+        } catch (err) { console.log(err); }
+      } else {
+        await navigator.clipboard.writeText(fullPublicUrl);
+        toast("Link copiado para compartilhar!", "success");
+      }
+    });
+
+    document.getElementById("btn-duplicate-site").addEventListener("click", async () => {
+      if (window.confirm("Deseja criar uma cópia exata do seu site atual em um novo link? (Em breve)")) {
+        toast("Função de duplicação estará disponível no próximo update!", "success");
+      }
+    });
+
     /* -------- Templates -------- */
     const grid = document.getElementById("templates-grid");
     
@@ -380,6 +395,10 @@
           <div class="tpl-info">
             <h4>${t.name}</h4>
             <p>${t.desc}</p>
+            <div class="tpl-actions">
+              <button class="tpl-btn-preview" onclick="window.open('https://${t.id}.verticy.site', '_blank')">Visualizar</button>
+              <button class="tpl-btn-choose" data-action="choose">${active ? 'Template Atual' : 'Escolher'}</button>
+            </div>
           </div>
         `;
         grid.appendChild(card);
@@ -397,6 +416,9 @@
     });
 
     grid.addEventListener("click", async (e) => {
+      const chooseBtn = e.target.closest(".tpl-btn-choose");
+      if (!chooseBtn) return;
+      
       const card = e.target.closest(".tpl-card");
       if (!card) return;
       const tpl = card.dataset.tpl;
@@ -406,7 +428,9 @@
       const confirmMsg = `Trocar para "${tplLabel}"? O conteúdo será substituído por dados de exemplo do novo template.`;
       if (!window.confirm(confirmMsg)) return;
 
-      card.style.opacity = "0.5";
+      chooseBtn.textContent = "Aplicando...";
+      chooseBtn.style.opacity = "0.7";
+      card.style.opacity = "0.7";
       let newContent = site?.content || {};
       if (tpl === "dentista01") {
         newContent = { ...DENTISTA01_DEFAULTS, branding: { ...DENTISTA01_DEFAULTS.branding, name: profile.full_name || DENTISTA01_DEFAULTS.branding.name } };
