@@ -35,7 +35,10 @@
         </div>
         <div class="field">
           <label for="si-password">Senha</label>
-          <input class="input" type="password" id="si-password" required autocomplete="current-password" minlength="6" />
+          <div style="position: relative;">
+            <input class="input" type="password" id="si-password" required autocomplete="current-password" minlength="6" style="padding-right: 40px;" />
+            <button type="button" class="btn-toggle-pass" data-target="si-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;"><i class="ph ph-eye"></i></button>
+          </div>
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit">
           <span class="btn-label">Entrar</span>
@@ -58,7 +61,10 @@
         </div>
         <div class="field">
           <label for="su-password">Crie uma senha</label>
-          <input class="input" type="password" id="su-password" required minlength="6" autocomplete="new-password" />
+          <div style="position: relative;">
+            <input class="input" type="password" id="su-password" required minlength="6" autocomplete="new-password" style="padding-right: 40px;" />
+            <button type="button" class="btn-toggle-pass" data-target="su-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;"><i class="ph ph-eye"></i></button>
+          </div>
           <span class="help">Mínimo 6 caracteres.</span>
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit">
@@ -149,6 +155,21 @@
       });
       if (error) toast(error.message, "error");
       else toast("Enviamos o link de redefinição.", "success");
+    });
+
+    // Toggle password visibility
+    document.querySelectorAll(".btn-toggle-pass").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const input = document.getElementById(btn.dataset.target);
+        const icon = btn.querySelector("i");
+        if (input.type === "password") {
+          input.type = "text";
+          icon.className = "ph ph-eye-slash";
+        } else {
+          input.type = "password";
+          icon.className = "ph ph-eye";
+        }
+      });
     });
   </script>
 </body>
