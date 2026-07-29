@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Templates · Verticy</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="/assets/css/dashboard.css?v=5" />
+  <style>
+    .templates-page-layout { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+    .templates-header { margin-bottom: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .templates-header h1 { font-size: 28px; font-weight: 600; color: #fff; }
+    .templates-header p { color: var(--text-muted); font-size: 15px; margin-top: 4px; }
+    
+    .templates-controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+    
+    .search-bar { 
+      position: relative; width: 100%; max-width: 320px; 
+    }
+    .search-bar i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 18px; }
+    .search-bar input {
+      width: 100%; padding: 12px 16px 12px 42px; border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border-light);
+      color: #fff; font-size: 15px; transition: all 0.2s;
+    }
+    .search-bar input:focus { border-color: var(--brand-color); outline: none; background: rgba(255,255,255,0.05); }
+    
+    .templates-filters { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; flex: 1; scrollbar-width: none; }
+    .templates-filters::-webkit-scrollbar { display: none; }
+    
+    .filter-btn {
+      padding: 8px 16px; border-radius: 99px; font-size: 13px; font-weight: 500;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border-light); color: var(--text-muted);
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .filter-btn:hover { background: rgba(255,255,255,0.1); color: var(--text-base); }
+    .filter-btn.active { background: var(--brand-color); border-color: var(--brand-color); color: #fff; }
+    
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .empty-state i { font-size: 48px; margin-bottom: 16px; color: var(--border-light); }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">V</div>
+        <div class="logo-text">Verticy</div>
+      </div>
+      
+      <nav class="nav-menu">
+        <a href="/painel.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-house"></i><span>Painel</span></div>
+        </a>
+        <a href="agenda.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-calendar-blank"></i><span>Agenda</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="meus-sites.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-browser"></i><span>Meus Sites</span></div>
+        </a>
+        <a href=\"/templates.html\" class=\"nav-item active\">
+          <div class=\"nav-item-left\"><i class=\"ph ph-layout\"></i><span>Templates</span></div>
+        </a>
+        <a href="dominios.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-globe"></i><span>Domínios</span></div>
+        </a>
+        <a href="analytics.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-chart-line-up"></i><span>Analytics</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="leads.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-users"></i><span>Leads</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="faturamento.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-credit-card"></i><span>Faturamento</span></div>
+        </a>
+        <a href="loja.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-shopping-bag"></i><span>Loja</span></div>
+        </a>
+        <a href="/configuracoes.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-gear"></i><span>Configurações</span></div>
+        </a>
+      </nav>
+
+      <div class="user-profile" id="signout">
+        <div class="user-profile-left">
+          <div class="user-avatar" id="avatar">...</div>
+          <div class="user-details">
+            <span class="user-name" id="profile-name">...</span>
+            <span class="user-email" id="profile-email">...</span>
+          </div>
+        </div>
+        <i class="ph ph-caret-down" style="color: var(--text-muted);"></i>
+      </div>
+    </aside>
+
+    <main class="main-content" style="overflow-y: auto;">
+      <div class="templates-page-layout">
+        
+        <div class="templates-header">
+          <div>
+            <h1>Catálogo de Templates</h1>
+            <p>Escolha o design perfeito para o seu site. Você poderá personalizá-lo depois.</p>
+          </div>
+        </div>
+        
+        <div class="templates-controls">
+          <div class="templates-filters" id="filters-container">
+            <button class="filter-btn active" data-cat="all">Todos</button>
+            <button class="filter-btn" data-cat="saude">Saúde & Bem-estar</button>
+            <button class="filter-btn" data-cat="beleza">Beleza</button>
+            <button class="filter-btn" data-cat="imoveis">Imóveis & Arq.</button>
+            <button class="filter-btn" data-cat="negocios">Negócios</button>
+            <button class="filter-btn" data-cat="advocacia">Advocacia</button>
+            <button class="filter-btn" data-cat="alimentacao">Alimentação</button>
+            <button class="filter-btn" data-cat="eventos">Eventos</button>
+            <button class="filter-btn" data-cat="fitness">Fitness</button>
+            <button class="filter-btn" data-cat="creators">Creators</button>
+          </div>
+          
+          <div class="search-bar">
+            <i class="ph ph-magnifying-glass"></i>
+            <input type="text" id="search-input" placeholder="Buscar template..." />
+          </div>
+        </div>
+
+        <div class="templates-carousel" id="templates-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+          <!-- renderizados pelo JS -->
+        </div>
+        
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast, initials, TEMPLATES, DENTISTA01_DEFAULTS, CONTABILIDADE01_DEFAULTS, PETSHOP01_DEFAULTS, BUFFET01_DEFAULTS, PSICOLOGO01_DEFAULTS, MAQUIADORA01_DEFAULTS, BARBEARIA01_DEFAULTS, RESTAURANTE01_DEFAULTS, PERSONAL01_DEFAULTS, CORRETOR01_DEFAULTS, ARQUITETO01_DEFAULTS, ADVOGADO01_DEFAULTS, MEDICO01_DEFAULTS, CONFEITARIA01_DEFAULTS, CREATOR01_DEFAULTS } from "/assets/js/verticy.js";
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+
+    if (!profile?.onboarding_completed) { window.location.replace("/onboarding.html"); }
+
+    document.getElementById("avatar").textContent = initials(profile.full_name || "Você");
+    document.getElementById("profile-name").textContent = profile.full_name || "Você";
+    document.getElementById("profile-email").textContent = session.user.email;
+
+    document.getElementById("signout").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.replace("/");
+    });
+
+    const { data: site } = await supabase.from('sites').select('*').eq('user_id', session.user.id).single();
+    let currentTpl = site?.template_id || "aurora";
+
+    const grid = document.getElementById("templates-grid");
+    const searchInput = document.getElementById("search-input");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    
+    let activeCat = "all";
+    let searchQuery = "";
+
+    function renderTemplates() {
+      grid.innerHTML = "";
+      
+      const filtered = TEMPLATES.filter(t => {
+        const matchCat = activeCat === "all" || t.cat === activeCat;
+        const matchSearch = t.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            t.desc.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchCat && matchSearch;
+      });
+      
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <i class="ph ph-magnifying-glass-minus"></i>
+            <h3>Nenhum template encontrado</h3>
+            <p>Tente buscar com outros termos ou limpe os filtros.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(t => {
+        const active = (t.id === currentTpl);
+        const card = document.createElement("div");
+        card.className = `tpl-card ${active ? "active" : ""}`;
+        card.dataset.tpl = t.id;
+        
+        const badgeClass = active ? " active-badge" : (t.badge === "Essencial" ? " free" : "");
+        
+        card.innerHTML = `
+          <div class="tpl-img-box">
+            <span class="tpl-badge${badgeClass}">${active ? 'Em uso' : t.badge}</span>
+            <img src="${t.img}" alt="${t.name}" loading="lazy" />
+          </div>
+          <div class="tpl-info">
+            <h4>${t.name}</h4>
+            <p>${t.desc}</p>
+            <div class="tpl-actions">
+              <button class="tpl-btn-preview" onclick="window.open('https://${t.id}.verticy.site', '_blank')">Visualizar</button>
+              <button class="tpl-btn-choose" data-action="choose">${active ? 'Template Atual' : 'Escolher'}</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Inicializar
+    renderTemplates();
+
+    // Filtros por Categoria
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat;
+        renderTemplates();
+      });
+    });
+    
+    // Filtro por Busca
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderTemplates();
+    });
+
+    // Troca de Template
+    grid.addEventListener("click", async (e) => {
+      const chooseBtn = e.target.closest(".tpl-btn-choose");
+      if (!chooseBtn) return;
+      
+      const card = e.target.closest(".tpl-card");
+      if (!card) return;
+      const tpl = card.dataset.tpl;
+      if (tpl === currentTpl) return;
+      
+      const tplLabel = TEMPLATES.find(x => x.id === tpl)?.name;
+      const confirmMsg = `Trocar para "${tplLabel}"? O conteúdo será substituído por dados de exemplo do novo template.`;
+      if (!window.confirm(confirmMsg)) return;
+
+      chooseBtn.textContent = "Aplicando...";
+      chooseBtn.style.opacity = "0.7";
+      card.style.opacity = "0.7";
+      
+      let newContent = site?.content || {};
+      
+      if (tpl === "dentista01") newContent = { ...DENTISTA01_DEFAULTS, branding: { ...DENTISTA01_DEFAULTS.branding, name: profile.full_name || DENTISTA01_DEFAULTS.branding.name } };
+      else if (tpl === "contabilidade01") newContent = { ...CONTABILIDADE01_DEFAULTS, branding: { ...CONTABILIDADE01_DEFAULTS.branding, name: profile.full_name || CONTABILIDADE01_DEFAULTS.branding.name } };
+      else if (tpl === "petshop01") newContent = { ...PETSHOP01_DEFAULTS, branding: { ...PETSHOP01_DEFAULTS.branding, name: profile.full_name || PETSHOP01_DEFAULTS.branding.name } };
+      else if (tpl === "buffet01") newContent = { ...BUFFET01_DEFAULTS, branding: { ...BUFFET01_DEFAULTS.branding, name: profile.full_name || BUFFET01_DEFAULTS.branding.name } };
+      else if (tpl === "psicologo01") newContent = { ...PSICOLOGO01_DEFAULTS, branding: { ...PSICOLOGO01_DEFAULTS.branding, name: profile.full_name || PSICOLOGO01_DEFAULTS.branding.name } };
+      else if (tpl === "maquiadora01") newContent = { ...MAQUIADORA01_DEFAULTS, branding: { ...MAQUIADORA01_DEFAULTS.branding, name: profile.full_name || MAQUIADORA01_DEFAULTS.branding.name } };
+      else if (tpl === "barbearia01") newContent = { ...BARBEARIA01_DEFAULTS, branding: { ...BARBEARIA01_DEFAULTS.branding, name: profile.full_name || BARBEARIA01_DEFAULTS.branding.name } };
+      else if (tpl === "restaurante01") newContent = { ...RESTAURANTE01_DEFAULTS, branding: { ...RESTAURANTE01_DEFAULTS.branding, name: profile.full_name || RESTAURANTE01_DEFAULTS.branding.name } };
+      else if (tpl === "personal01") newContent = { ...PERSONAL01_DEFAULTS, branding: { ...PERSONAL01_DEFAULTS.branding, name: profile.full_name || PERSONAL01_DEFAULTS.branding.name } };
+      else if (tpl === "corretor01") newContent = { ...CORRETOR01_DEFAULTS, branding: { ...CORRETOR01_DEFAULTS.branding, name: profile.full_name || CORRETOR01_DEFAULTS.branding.name } };
+      else if (tpl === "arquiteto01") newContent = { ...ARQUITETO01_DEFAULTS, branding: { ...ARQUITETO01_DEFAULTS.branding, name: profile.full_name || ARQUITETO01_DEFAULTS.branding.name } };
+      else if (tpl === "advogado01") newContent = { ...ADVOGADO01_DEFAULTS, branding: { ...ADVOGADO01_DEFAULTS.branding, name: profile.full_name || ADVOGADO01_DEFAULTS.branding.name } };
+      else if (tpl === "medico01") newContent = { ...MEDICO01_DEFAULTS, branding: { ...MEDICO01_DEFAULTS.branding, name: profile.full_name || MEDICO01_DEFAULTS.branding.name } };
+      else if (tpl === "confeitaria01") newContent = { ...CONFEITARIA01_DEFAULTS, branding: { ...CONFEITARIA01_DEFAULTS.branding, name: profile.full_name || CONFEITARIA01_DEFAULTS.branding.name } };
+      else if (tpl === "creator01") newContent = { ...CREATOR01_DEFAULTS, branding: { ...CREATOR01_DEFAULTS.branding, name: profile.full_name || CREATOR01_DEFAULTS.branding.name } };
+
+      const { error } = await supabase.from('sites').update({ template_id: tpl, content: newContent }).eq('id', site.id);
+      if (error) {
+        toast("Erro ao trocar template: " + error.message, "error");
+        chooseBtn.textContent = "Escolher";
+        chooseBtn.style.opacity = "1";
+        card.style.opacity = "1";
+      } else {
+        toast("Template aplicado com sucesso!", "success");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      }
+    });
+
+  </script>
+</body>
+</html>

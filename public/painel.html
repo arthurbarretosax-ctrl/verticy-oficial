@@ -33,8 +33,8 @@
         <a href="meus-sites.html" class="nav-item">
           <div class="nav-item-left"><i class="ph ph-browser"></i><span>Meus Sites</span></div>
         </a>
-        <a href="/painel.html" class="nav-item">
-          <div class="nav-item-left"><i class="ph ph-layout"></i><span>Templates</span></div>
+        <a href=\"/templates.html\" class=\"nav-item\">
+          <div class=\"nav-item-left\"><i class=\"ph ph-layout\"></i><span>Templates</span></div>
         </a>
         <a href="dominios.html" class="nav-item">
           <div class="nav-item-left"><i class="ph ph-globe"></i><span>Domínios</span></div>
@@ -202,47 +202,13 @@
         </div>
       </div>
 
-      <!-- Templates -->
-      <div class="templates-section">
-        <div class="templates-header">
-          <div class="templates-header-left">
-            <h3>Escolha um modelo</h3>
-            <p>Trocar o template preserva seus dados quando possível.</p>
-          </div>
-        </div>
-        
-        <div class="templates-categories" id="templates-categories" style="display:flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 8px;">
-          <button class="cat-btn active" data-cat="all">Todos</button>
-          <button class="cat-btn" data-cat="saude">Saúde & Estética</button>
-          <button class="cat-btn" data-cat="beleza">Beleza</button>
-          <button class="cat-btn" data-cat="alimentacao">Alimentação</button>
-          <button class="cat-btn" data-cat="servicos">Serviços</button>
-          <button class="cat-btn" data-cat="advocacia">Advocacia</button>
-          <button class="cat-btn" data-cat="creators">Creators</button>
-          <button class="cat-btn" data-cat="imoveis">Imóveis</button>
-          <button class="cat-btn" data-cat="eventos">Eventos</button>
-          <button class="cat-btn" data-cat="fitness">Fitness</button>
-          <button class="cat-btn" data-cat="automotivo">Automotivo</button>
-          <button class="cat-btn" data-cat="sugestoes">Sugestões (Abertos)</button>
-        </div>
-        
-        <style>
-          .templates-categories::-webkit-scrollbar { display: none; }
-          .cat-btn { padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--text-muted); font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
-          .cat-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
-          .cat-btn.active { background: var(--brand); border-color: var(--brand); color: #fff; }
-        </style>
-        
-        <div class="templates-carousel" id="templates-grid">
-          <!-- Injetado via JS -->
-        </div>
-      </div>
+      
 
     </main>
   </div>
 
   <script type="module">
-    import { supabase, requireProfile, toast, initials } from "/assets/js/verticy.js";
+    import { supabase, requireProfile, toast, initials, TEMPLATES } from "/assets/js/verticy.js";
     import { DENTISTA01_DEFAULTS } from "/assets/js/dentista01-defaults.js";
     import { CONFEITARIA01_DEFAULTS } from "/assets/js/confeitaria01-defaults.js";
     import { CREATOR01_DEFAULTS } from "/assets/js/creator01-defaults.js";
@@ -284,24 +250,7 @@
     const isPub = !!site?.published;
     const currentTpl = site?.template_id || "aurora";
 
-    const TEMPLATES = [
-      { id: "contabilidade01", cat: "negocios", name: "Contabilidade", desc: "Escritórios, finanças e consultoria", badge: "Premium", img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" },
-      { id: "buffet01", cat: "eventos", name: "Buffet & Eventos", desc: "Buffets, festas e casamentos", badge: "Premium", img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800" },
-      { id: "petshop01", cat: "saude", name: "Petshop & Clínica", desc: "Veterinários, banho e tosa", badge: "Premium", img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800" },
-      { id: "maquiadora01", cat: "beleza", name: "Estúdio de Beleza", desc: "Maquiadoras, salões e estética", badge: "Premium", img: "https://images.unsplash.com/photo-1512496015851-a1cfb38ba1c3?auto=format&fit=crop&q=80&w=800" },
-      { id: "psicologo01", cat: "saude", name: "Psicologia & Terapia", desc: "Psicólogos, terapeutas e bem-estar", badge: "Premium", img: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=800" },
-      { id: "barbearia01", cat: "beleza", name: "Barbearia Clássica", desc: "Barbearias, salões e estética", badge: "Premium", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" },
-      { id: "restaurante01", cat: "alimentacao", name: "Osteria & Restaurante", desc: "Restaurantes, pizzarias e bistrôs", badge: "Premium", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" },
-      { id: "personal01", cat: "fitness", name: "Personal Trainer Elite", desc: "Consultoria fitness e treinos", badge: "Premium", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800" },
-      { id: "corretor01", cat: "imoveis", name: "Corretor Premium", desc: "Imóveis de alto padrão e luxo", badge: "Premium", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" },
-      { id: "arquiteto01", cat: "imoveis", name: "Arquitetura Premium", desc: "Escritórios e design de interiores", badge: "Premium", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800" },
-      { id: "advogado01", cat: "advocacia", name: "Advocacia Humanizada", desc: "Direito de Família e Sucessões", badge: "Premium", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800" },
-      { id: "dentista01", cat: "saude", name: "Dentista Premium", desc: "Estética e clínicas", badge: "Premium", img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" },
-      { id: "medico01", cat: "saude", name: "Clínica Médica", desc: "Médicos e especialistas", badge: "Premium", img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800" },
-      { id: "confeitaria01", cat: "alimentacao", name: "Confeitaria Doce", desc: "Doces e bolos", badge: "Premium", img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=800" },
-      { id: "creator01", cat: "creators", name: "Creator Portfolio", desc: "Mídia kit e links", badge: "Premium", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=800" },
-      { id: "aurora", cat: "sugestoes", name: "Aurora", desc: "Minimalista e elegante", badge: "Essencial", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" }
-    ];
+    
     
     const activeTemplateInfo = TEMPLATES.find(t => t.id === currentTpl) || TEMPLATES[0];
 
@@ -375,125 +324,7 @@
       }
     });
 
-    /* -------- Templates -------- */
-    const grid = document.getElementById("templates-grid");
     
-    function renderTemplates(filterCat = "all") {
-      grid.innerHTML = "";
-      TEMPLATES.forEach((t) => {
-        if (filterCat !== "all" && t.cat !== filterCat) return;
-        const active = t.id === currentTpl;
-        const card = document.createElement("div");
-        card.className = "tpl-card" + (active ? " active" : "");
-        card.dataset.tpl = t.id;
-        const badgeClass = t.badge === "Premium" ? "" : " free";
-        card.innerHTML = `
-          <div class="tpl-img-box">
-            <span class="tpl-badge${badgeClass}">${t.badge}</span>
-            <img src="${t.img}" alt="${t.name}" loading="lazy" />
-          </div>
-          <div class="tpl-info">
-            <h4>${t.name}</h4>
-            <p>${t.desc}</p>
-            <div class="tpl-actions">
-              <button class="tpl-btn-preview" onclick="window.open('https://${t.id}.verticy.site', '_blank')">Visualizar</button>
-              <button class="tpl-btn-choose" data-action="choose">${active ? 'Template Atual' : 'Escolher'}</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-    
-    renderTemplates("all");
-
-    document.querySelectorAll(".cat-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderTemplates(btn.dataset.cat);
-      });
-    });
-
-    grid.addEventListener("click", async (e) => {
-      const chooseBtn = e.target.closest(".tpl-btn-choose");
-      if (!chooseBtn) return;
-      
-      const card = e.target.closest(".tpl-card");
-      if (!card) return;
-      const tpl = card.dataset.tpl;
-      if (tpl === currentTpl) return;
-      
-      const tplLabel = TEMPLATES.find(x => x.id === tpl)?.name;
-      const confirmMsg = `Trocar para "${tplLabel}"? O conteúdo será substituído por dados de exemplo do novo template.`;
-      if (!window.confirm(confirmMsg)) return;
-
-      chooseBtn.textContent = "Aplicando...";
-      chooseBtn.style.opacity = "0.7";
-      card.style.opacity = "0.7";
-      let newContent = site?.content || {};
-      if (tpl === "dentista01") {
-        newContent = { ...DENTISTA01_DEFAULTS, branding: { ...DENTISTA01_DEFAULTS.branding, name: profile.full_name || DENTISTA01_DEFAULTS.branding.name } };
-      } else if (tpl === "medico01") {
-        newContent = { ...MEDICO01_DEFAULTS, branding: { ...MEDICO01_DEFAULTS.branding, name: profile.full_name || MEDICO01_DEFAULTS.branding.name } };
-      } else if (tpl === "arquiteto01") {
-        newContent = { ...ARQUITETO01_DEFAULTS, branding: { ...ARQUITETO01_DEFAULTS.branding, name: profile.full_name || ARQUITETO01_DEFAULTS.branding.name } };
-      } else if (tpl === "corretor01") {
-        newContent = { ...CORRETOR01_DEFAULTS, branding: { ...CORRETOR01_DEFAULTS.branding, name: profile.full_name || CORRETOR01_DEFAULTS.branding.name } };
-      } else if (tpl === "personal01") {
-        newContent = { ...PERSONAL01_DEFAULTS, branding: { ...PERSONAL01_DEFAULTS.branding, name: profile.full_name || PERSONAL01_DEFAULTS.branding.name } };
-      } else if (tpl === "restaurante01") {
-        newContent = { ...RESTAURANTE01_DEFAULTS, branding: { ...RESTAURANTE01_DEFAULTS.branding, name: profile.full_name || RESTAURANTE01_DEFAULTS.branding.name } };
-      } else if (tpl === "barbearia01") {
-        newContent = { ...BARBEARIA01_DEFAULTS, branding: { ...BARBEARIA01_DEFAULTS.branding, name: profile.full_name || BARBEARIA01_DEFAULTS.branding.name } };
-      } else if (tpl === "psicologo01") {
-        newContent = { ...PSICOLOGO01_DEFAULTS, branding: { ...PSICOLOGO01_DEFAULTS.branding, name: profile.full_name || PSICOLOGO01_DEFAULTS.branding.name } };
-      } else if (tpl === "maquiadora01") {
-        newContent = { ...MAQUIADORA01_DEFAULTS, branding: { ...MAQUIADORA01_DEFAULTS.branding, name: profile.full_name || MAQUIADORA01_DEFAULTS.branding.name } };
-      } else if (tpl === "petshop01") {
-        newContent = { ...PETSHOP01_DEFAULTS, branding: { ...PETSHOP01_DEFAULTS.branding, name: profile.full_name || PETSHOP01_DEFAULTS.branding.name } };
-      } else if (tpl === "buffet01") {
-        newContent = { ...BUFFET01_DEFAULTS, branding: { ...BUFFET01_DEFAULTS.branding, name: profile.full_name || BUFFET01_DEFAULTS.branding.name } };
-      } else if (tpl === "contabilidade01") {
-        newContent = { ...CONTABILIDADE01_DEFAULTS, branding: { ...CONTABILIDADE01_DEFAULTS.branding, name: profile.full_name || CONTABILIDADE01_DEFAULTS.branding.name } };
-      } else if (tpl === "confeitaria01") {
-        newContent = { ...CONFEITARIA01_DEFAULTS, branding: { ...CONFEITARIA01_DEFAULTS.branding, name: profile.full_name || CONFEITARIA01_DEFAULTS.branding.name } };
-      } else if (tpl === "creator01") {
-        newContent = { ...CREATOR01_DEFAULTS, hero: { ...CREATOR01_DEFAULTS.hero, badge: profile.full_name || CREATOR01_DEFAULTS.hero.badge } };
-      } else if (tpl === "advogado01") {
-        newContent = { ...ADVOGADO01_DEFAULTS, branding: { ...ADVOGADO01_DEFAULTS.branding, name: profile.full_name || ADVOGADO01_DEFAULTS.branding.name } };
-      } else if (tpl === "aurora") {
-        newContent = {
-          hero: { title: `Olá, sou ${profile.full_name || "profissional"}.`, subtitle: "Bem-vindo ao meu site.", cta_label: "Fale comigo", cta_href: "#contact" },
-          about: { title: "Sobre", body: "Conte um pouco sobre você e sua história." },
-          services: { title: "O que ofereço", items: [{ title: "Serviço 1", desc: "Descrição breve." }] },
-          contact: { whatsapp: "", instagram: "", email: session.user.email || "" },
-        };
-      }
-      const { error } = await supabase.from("sites").update({ template_id: tpl, content: newContent }).eq("user_id", session.user.id);
-      if (error) { card.style.opacity = "1"; toast(error.message, "error"); return; }
-      
-      let editorHref = "/editor.html";
-      if (tpl === "dentista01") editorHref = "/editor-dentista01.html";
-      if (tpl === "confeitaria01") editorHref = "/editor-confeitaria01.html";
-      if (tpl === "creator01") editorHref = "/editor-creator01.html";
-      if (tpl === "advogado01") editorHref = "/editor-advogado01.html";
-      if (tpl === "medico01") editorHref = "/editor-medico01.html";
-      if (tpl === "arquiteto01") editorHref = "/editor-arquiteto01.html";
-      if (tpl === "corretor01") editorHref = "/editor-corretor01.html";
-      if (tpl === "personal01") editorHref = "/editor-personal01.html";
-      if (tpl === "restaurante01") editorHref = "/editor-restaurante01.html";
-      if (tpl === "barbearia01") editorHref = "/editor-barbearia01.html";
-      if (tpl === "psicologo01") editorHref = "/editor-psicologo01.html";
-      if (tpl === "maquiadora01") editorHref = "/editor-maquiadora01.html";
-      if (tpl === "petshop01") editorHref = "/editor-petshop01.html";
-      if (tpl === "buffet01") editorHref = "/editor-buffet01.html";
-      if (tpl === "contabilidade01") editorHref = "/editor-contabilidade01.html";
-      
-      toast(`Template "${tplLabel}" ativado! Redirecionando...`, "success");
-      setTimeout(() => window.location.assign(editorHref), 800);
-    });
-
   </script>
 </body>
 </html>
