@@ -97,6 +97,7 @@ export function initReveal() {
 }
 
 export const TEMPLATES = [
+  { id: "drantonio", cat: "saude", name: "Dr. Antônio", desc: "Site exclusivo Dr Antônio", badge: "Premium", img: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=800" },
   { id: "contabilidade01", cat: "negocios", name: "Contabilidade", desc: "Escritórios, finanças e consultoria", badge: "Premium", img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" },
   { id: "buffet01", cat: "eventos", name: "Buffet & Eventos", desc: "Buffets, festas e casamentos", badge: "Premium", img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800" },
   { id: "petshop01", cat: "saude", name: "Petshop & Clínica", desc: "Veterinários, banho e tosa", badge: "Premium", img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800" },
@@ -114,3 +115,4 @@ export const TEMPLATES = [
   { id: "creator01", cat: "creators", name: "Creator Portfolio", desc: "Mídia kit e links", badge: "Premium", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=800" },
   { id: "aurora", cat: "sugestoes", name: "Aurora", desc: "Minimalista e elegante", badge: "Essencial", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" }
 ];
+export { DRANTONIO_DEFAULTS } from "./drantonio-defaults.js";
