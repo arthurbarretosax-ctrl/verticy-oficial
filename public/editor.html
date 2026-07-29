@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Editor · Verticy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/verticy.css" />
+</head>
+<body>
+  <div class="editor-shell">
+    <header class="editor-toolbar">
+      <a href="/painel.html" class="brand" style="font-size:15px"><span class="brand-mark"></span><span>Verticy Editor</span></a>
+      <div class="flex gap-2 items-center">
+        <span class="tag" id="save-state">Tudo salvo</span>
+        <a class="btn btn-ghost btn-sm" id="preview-link" target="_blank" rel="noopener">Ver site</a>
+        <button class="btn btn-primary btn-sm" id="save-btn">Salvar</button>
+      </div>
+    </header>
+
+    <div class="editor-main">
+      <section class="editor-canvas">
+        <div style="max-width:720px;margin:0 auto">
+          <div class="block" data-block="hero">
+            <div class="block-label">Hero</div>
+            <div class="h-1" data-bind="hero.title">—</div>
+            <div class="lead mt-2" data-bind="hero.subtitle">—</div>
+            <div class="mt-4"><span class="btn btn-primary btn-sm" data-bind="hero.cta_label">—</span></div>
+          </div>
+
+          <div class="block" data-block="about">
+            <div class="block-label">Sobre</div>
+            <div class="h-2" data-bind="about.title">—</div>
+            <p class="muted mt-2" data-bind="about.body">—</p>
+          </div>
+
+          <div class="block" data-block="services">
+            <div class="block-label">Serviços</div>
+            <div class="h-2" data-bind="services.title">—</div>
+            <div id="services-preview" class="grid grid-2 mt-4"></div>
+          </div>
+
+          <div class="block" data-block="contact">
+            <div class="block-label">Contato</div>
+            <div class="flex gap-3 mt-2" id="contact-preview" style="flex-wrap:wrap"></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="editor-panel">
+        <div id="panel-empty">
+          <span class="eyebrow"><span class="dot"></span> Editor</span>
+          <h2 class="h-3 mt-4">Selecione um bloco</h2>
+          <p class="muted mt-2" style="font-size:14px">Clique em qualquer bloco à esquerda para editar seu conteúdo. Nada de HTML — apenas texto e imagens.</p>
+        </div>
+
+        <div id="panel-hero" class="hidden">
+          <div class="block-label">Bloco Hero</div>
+          <div class="field"><label>Título</label><input class="input" data-field="hero.title" /></div>
+          <div class="field"><label>Subtítulo</label><input class="input" data-field="hero.subtitle" /></div>
+          <div class="field"><label>Texto do botão</label><input class="input" data-field="hero.cta_label" /></div>
+          <div class="field"><label>Link do botão</label><input class="input" data-field="hero.cta_href" placeholder="#contact ou https://..." /></div>
+        </div>
+
+        <div id="panel-about" class="hidden">
+          <div class="block-label">Bloco Sobre</div>
+          <div class="field"><label>Título</label><input class="input" data-field="about.title" /></div>
+          <div class="field"><label>Texto</label><textarea class="textarea" data-field="about.body"></textarea></div>
+        </div>
+
+        <div id="panel-services" class="hidden">
+          <div class="block-label">Bloco Serviços</div>
+          <div class="field"><label>Título</label><input class="input" data-field="services.title" /></div>
+          <div id="services-editor"></div>
+          <button class="btn btn-ghost btn-sm btn-block mt-2" id="add-service">+ Adicionar serviço</button>
+        </div>
+
+        <div id="panel-contact" class="hidden">
+          <div class="block-label">Bloco Contato</div>
+          <div class="field"><label>WhatsApp</label><input class="input" data-field="contact.whatsapp" placeholder="+55 11 98888-7777" /></div>
+          <div class="field"><label>Instagram</label><input class="input" data-field="contact.instagram" placeholder="@usuario" /></div>
+          <div class="field"><label>E-mail</label><input class="input" type="email" data-field="contact.email" /></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast } from "/assets/js/verticy.js";
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+    if (!profile?.onboarding_completed) { window.location.replace("/onboarding.html"); }
+
+    document.getElementById("preview-link").href = `${window.location.origin}/${profile.username}`;
+
+    const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
+    let content = site?.content || {};
+    // Ensure shape
+    content.hero ||= { title: "", subtitle: "", cta_label: "", cta_href: "#contact" };
+    content.about ||= { title: "Sobre", body: "" };
+    content.services ||= { title: "O que ofereço", items: [] };
+    content.contact ||= { whatsapp: "", instagram: "", email: "" };
+
+    const saveState = document.getElementById("save-state");
+    let dirty = false;
+    function markDirty() { dirty = true; saveState.textContent = "Alterações pendentes"; saveState.className = "tag"; }
+    function markClean() { dirty = false; saveState.textContent = "Tudo salvo"; saveState.className = "tag success"; }
+
+    /* ---- render ---- */
+    function getPath(path) {
+      return path.split(".").reduce((o, k) => (o ? o[k] : undefined), content);
+    }
+    function setPath(path, val) {
+      const keys = path.split(".");
+      let o = content;
+      for (let i = 0; i < keys.length - 1; i++) { o[keys[i]] ||= {}; o = o[keys[i]]; }
+      o[keys[keys.length - 1]] = val;
+    }
+    function renderPreview() {
+      document.querySelectorAll("[data-bind]").forEach((el) => {
+        el.textContent = getPath(el.dataset.bind) || el.textContent;
+      });
+      // services preview
+      const sp = document.getElementById("services-preview");
+      sp.innerHTML = "";
+      (content.services.items || []).forEach((it) => {
+        const c = document.createElement("div");
+        c.className = "card";
+        c.innerHTML = `<div class="h-3">${escapeHtml(it.title || "")}</div><p class="muted mt-2" style="font-size:14px">${escapeHtml(it.desc || "")}</p>`;
+        sp.appendChild(c);
+      });
+      // contact preview
+      const cp = document.getElementById("contact-preview");
+      cp.innerHTML = "";
+      const c = content.contact;
+      if (c.whatsapp) cp.innerHTML += `<span class="tag brand">WhatsApp · ${escapeHtml(c.whatsapp)}</span>`;
+      if (c.instagram) cp.innerHTML += `<span class="tag">Instagram · ${escapeHtml(c.instagram)}</span>`;
+      if (c.email) cp.innerHTML += `<span class="tag">${escapeHtml(c.email)}</span>`;
+    }
+    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]); }
+
+    /* ---- panels ---- */
+    const panels = ["hero", "about", "services", "contact"];
+    document.querySelectorAll(".block").forEach((b) => {
+      b.addEventListener("click", () => {
+        document.querySelectorAll(".block").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        showPanel(b.dataset.block);
+      });
+    });
+    function showPanel(name) {
+      document.getElementById("panel-empty").classList.add("hidden");
+      panels.forEach((p) => document.getElementById("panel-" + p).classList.toggle("hidden", p !== name));
+      // hydrate inputs
+      document.querySelectorAll(`#panel-${name} [data-field]`).forEach((inp) => { inp.value = getPath(inp.dataset.field) || ""; });
+      if (name === "services") renderServicesEditor();
+    }
+
+    document.addEventListener("input", (e) => {
+      const inp = e.target.closest("[data-field]");
+      if (!inp) return;
+      setPath(inp.dataset.field, inp.value);
+      renderPreview(); markDirty();
+    });
+
+    /* services list editor */
+    function renderServicesEditor() {
+      const host = document.getElementById("services-editor");
+      host.innerHTML = "";
+      (content.services.items || []).forEach((it, i) => {
+        const row = document.createElement("div");
+        row.className = "card"; row.style.padding = "16px"; row.style.marginBottom = "10px";
+        row.innerHTML = `
+          <div class="field" style="margin-bottom:8px"><label>Título</label><input class="input" value="${escapeHtml(it.title || "")}" data-svc="${i}" data-key="title" /></div>
+          <div class="field" style="margin-bottom:8px"><label>Descrição</label><textarea class="textarea" data-svc="${i}" data-key="desc">${escapeHtml(it.desc || "")}</textarea></div>
+          <button class="btn btn-ghost btn-sm" data-remove="${i}">Remover</button>
+        `;
+        host.appendChild(row);
+      });
+      host.querySelectorAll("[data-svc]").forEach((inp) => inp.addEventListener("input", () => {
+        const i = Number(inp.dataset.svc);
+        content.services.items[i][inp.dataset.key] = inp.value;
+        renderPreview(); markDirty();
+      }));
+      host.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => {
+        content.services.items.splice(Number(b.dataset.remove), 1);
+        renderServicesEditor(); renderPreview(); markDirty();
+      }));
+    }
+    document.getElementById("add-service").addEventListener("click", () => {
+      content.services.items ||= [];
+      content.services.items.push({ title: "Novo serviço", desc: "Descrição" });
+      renderServicesEditor(); renderPreview(); markDirty();
+    });
+
+    /* save */
+    async function save() {
+      const btn = document.getElementById("save-btn");
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+      const { error } = await supabase.from("sites").update({ content, published: true }).eq("user_id", session.user.id);
+      btn.disabled = false; btn.textContent = "Salvar";
+      if (error) { toast(error.message, "error"); return; }
+      markClean(); toast("Salvo", "success");
+    }
+    document.getElementById("save-btn").addEventListener("click", save);
+    // Cmd/Ctrl+S
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); save(); }
+    });
+    window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+    renderPreview();
+    markClean();
+  </script>
+</body>
+</html>

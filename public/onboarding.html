@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vamos começar · Verticy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/verticy.css" />
+</head>
+<body>
+  <div class="mesh-bg"></div>
+
+  <main class="auth-shell">
+    <div class="auth-card" style="max-width:520px">
+      <div class="step-dots">
+        <span class="active" data-dot="1"></span>
+        <span data-dot="2"></span>
+        <span data-dot="3"></span>
+        <span data-dot="4"></span>
+      </div>
+
+      <!-- Step 1 -->
+      <section data-step="1">
+        <h1 class="h-2">Qual sua profissão?</h1>
+        <p class="lead" style="font-size:14px">Isso ajuda a recomendar os melhores templates para você.</p>
+        <div class="field mt-6">
+          <input class="input" id="profession" placeholder="Ex: Dentista, Advogada, Fotógrafo, Barbeiro..." />
+        </div>
+        <button class="btn btn-primary btn-lg btn-block mt-4" data-next="2">Continuar</button>
+      </section>
+
+      <!-- Step 2 -->
+      <section data-step="2" class="hidden">
+        <h1 class="h-2">Qual seu principal objetivo?</h1>
+        <p class="lead" style="font-size:14px">Escolha o que mais importa agora.</p>
+        <div class="choice-grid mt-4" data-choose="goal">
+          <button class="choice" data-value="whatsapp"><div class="choice-title">Receber WhatsApp</div><div class="choice-desc">Botão em destaque</div></button>
+          <button class="choice" data-value="booking"><div class="choice-title">Agendamento</div><div class="choice-desc">Marcar horários</div></button>
+          <button class="choice" data-value="portfolio"><div class="choice-title">Portfólio</div><div class="choice-desc">Mostrar trabalhos</div></button>
+          <button class="choice" data-value="products"><div class="choice-title">Produtos</div><div class="choice-desc">Catálogo online</div></button>
+          <button class="choice" data-value="events"><div class="choice-title">Eventos</div><div class="choice-desc">Datas e ingressos</div></button>
+          <button class="choice" data-value="leads"><div class="choice-title">Captar clientes</div><div class="choice-desc">Gerar leads</div></button>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button class="btn btn-ghost btn-block" data-back="1">Voltar</button>
+          <button class="btn btn-primary btn-block" data-next="3" disabled>Continuar</button>
+        </div>
+      </section>
+
+      <!-- Step 3 -->
+      <section data-step="3" class="hidden">
+        <h1 class="h-2">Qual estilo você prefere?</h1>
+        <p class="lead" style="font-size:14px">Vamos usar isso para curar seus templates.</p>
+        <div class="choice-grid mt-4" data-choose="style">
+          <button class="choice" data-value="premium"><div class="choice-title">Premium</div><div class="choice-desc">Luxo & sofisticação</div></button>
+          <button class="choice" data-value="minimal"><div class="choice-title">Minimalista</div><div class="choice-desc">Menos é mais</div></button>
+          <button class="choice" data-value="dark"><div class="choice-title">Escuro</div><div class="choice-desc">Tecnológico</div></button>
+          <button class="choice" data-value="elegant"><div class="choice-title">Elegante</div><div class="choice-desc">Refinado</div></button>
+          <button class="choice" data-value="colorful"><div class="choice-title">Colorido</div><div class="choice-desc">Vibrante</div></button>
+          <button class="choice" data-value="modern"><div class="choice-title">Moderno</div><div class="choice-desc">Contemporâneo</div></button>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button class="btn btn-ghost btn-block" data-back="2">Voltar</button>
+          <button class="btn btn-primary btn-block" data-next="4" disabled>Continuar</button>
+        </div>
+      </section>
+
+      <!-- Step 4 -->
+      <section data-step="4" class="hidden">
+        <h1 class="h-2">Escolha seu endereço</h1>
+        <p class="lead" style="font-size:14px">Seu site será publicado em <strong>verticy.site/</strong><span id="live-user" class="brand-text">seunome</span></p>
+        <div class="field mt-6">
+          <label for="username">Nome de usuário</label>
+          <input class="input" id="username" placeholder="joaosilva" pattern="[a-z0-9][a-z0-9_-]{2,29}" required />
+          <span class="help">3-30 caracteres. Minúsculas, números, - e _.</span>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button class="btn btn-ghost btn-block" data-back="3">Voltar</button>
+          <button class="btn btn-primary btn-block" id="finish">Finalizar</button>
+        </div>
+        <div class="error-msg" id="ob-error"></div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module">
+    import { supabase, requireSession, toast } from "/assets/js/verticy.js";
+
+    const session = await requireSession();
+    if (!session) throw new Error("no session");
+
+    const state = { profession: "", goal: "", style: "", username: "" };
+    const dots = document.querySelectorAll("[data-dot]");
+    const steps = document.querySelectorAll("[data-step]");
+
+    function goto(n) {
+      steps.forEach((s) => s.classList.toggle("hidden", s.dataset.step !== String(n)));
+      dots.forEach((d) => d.classList.toggle("active", Number(d.dataset.dot) <= n));
+    }
+
+    document.querySelectorAll("[data-next]").forEach((b) => b.addEventListener("click", () => {
+      if (b.dataset.next === "2") {
+        state.profession = document.getElementById("profession").value.trim();
+        if (!state.profession) { toast("Conte sua profissão.", "error"); return; }
+      }
+      goto(Number(b.dataset.next));
+    }));
+    document.querySelectorAll("[data-back]").forEach((b) => b.addEventListener("click", () => goto(Number(b.dataset.back))));
+
+    document.querySelectorAll("[data-choose]").forEach((wrap) => {
+      wrap.addEventListener("click", (e) => {
+        const btn = e.target.closest(".choice"); if (!btn) return;
+        wrap.querySelectorAll(".choice").forEach((c) => c.classList.remove("selected"));
+        btn.classList.add("selected");
+        state[wrap.dataset.choose] = btn.dataset.value;
+        wrap.parentElement.querySelector("[data-next]").disabled = false;
+      });
+    });
+
+    const userInput = document.getElementById("username");
+    const liveUser = document.getElementById("live-user");
+    userInput.addEventListener("input", () => {
+      const v = userInput.value.toLowerCase().replace(/[^a-z0-9_-]/g, "");
+      userInput.value = v;
+      liveUser.textContent = v || "seunome";
+    });
+
+    document.getElementById("finish").addEventListener("click", async () => {
+      const err = document.getElementById("ob-error"); err.textContent = "";
+      state.username = userInput.value.trim();
+      if (!/^[a-z0-9][a-z0-9_-]{2,29}$/.test(state.username)) {
+        err.textContent = "Nome de usuário inválido."; return;
+      }
+
+      const { data: taken } = await supabase
+        .from("profiles").select("id").eq("username", state.username).maybeSingle();
+      if (taken && taken.id !== session.user.id) {
+        err.textContent = "Este nome já está em uso."; return;
+      }
+
+      const { error: e1 } = await supabase.from("profiles").upsert({
+        id: session.user.id,
+        username: state.username,
+        profession: state.profession,
+        goal: state.goal,
+        style_preference: state.style,
+        onboarding_completed: true,
+      });
+      if (e1) { err.textContent = e1.message; return; }
+
+      // Ensure a site row exists
+      const { data: existing } = await supabase.from("sites").select("id").eq("user_id", session.user.id).maybeSingle();
+      if (!existing) {
+        const starterContent = {
+          hero: {
+            title: `Olá, sou ${state.profession || "profissional"}.`,
+            subtitle: "Bem-vindo ao meu site.",
+            cta_label: "Fale comigo",
+            cta_href: "#contact",
+          },
+          about: { title: "Sobre", body: "Conte um pouco sobre você e sua história." },
+          services: { title: "O que ofereço", items: [
+            { title: "Serviço 1", desc: "Descrição breve." },
+            { title: "Serviço 2", desc: "Descrição breve." },
+          ]},
+          contact: { whatsapp: "", instagram: "", email: session.user.email || "" },
+        };
+        await supabase.from("sites").insert({
+          user_id: session.user.id,
+          template_id: "aurora",
+          content: starterContent,
+          published: false,
+        });
+      }
+
+      toast("Tudo pronto!", "success");
+      setTimeout(() => window.location.replace("/painel.html"), 500);
+    });
+  </script>
+</body>
+</html>

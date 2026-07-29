@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel · Verticy</title>
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">V</div>
+        <div class="logo-text">Verticy</div>
+      </div>
+      
+      <nav class="nav-menu">
+        <a href="painel.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-house"></i><span>Painel</span></div>
+        </a>
+        <a href="#" class="nav-item active">
+          <div class="nav-item-left"><i class="ph ph-calendar-blank"></i><span>Agenda</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-browser"></i><span>Meus Sites</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-layout"></i><span>Templates</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-globe"></i><span>Domínios</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-chart-line-up"></i><span>Analytics</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-users"></i><span>Leads</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-credit-card"></i><span>Faturamento</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-shopping-bag"></i><span>Loja</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-gear"></i><span>Configurações</span></div>
+        </a>
+      </nav>
+
+      <div class="user-profile" id="signout">
+        <div class="user-profile-left">
+          <div class="user-avatar" id="avatar">AB</div>
+          <div class="user-details">
+            <span class="user-name" id="profile-name">Arthur Barreto</span>
+            <span class="user-email" id="profile-email">arthur@email.com</span>
+          </div>
+        </div>
+        <i class="ph ph-caret-down" style="color: var(--text-muted);"></i>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <div>
+          <h1 class="greeting-title">Olá, <span id="greet-name">Arthur</span> 👋</h1>
+          <p class="greeting-subtitle">Aqui você gerencia seu microsite Verticy.</p>
+        </div>
+        <div class="top-actions">
+          <div class="plan-badge">
+            <i class="ph ph-diamond"></i> <span id="plan-tag">Plano Essencial</span>
+          </div>
+          <button class="icon-btn">
+            <i class="ph ph-bell"></i>
+            <span class="notification-dot">3</span>
+          </button>
+          <button class="icon-btn"><i class="ph ph-gear"></i></button>
+          <div style="width: 1px; height: 24px; background: var(--border-light); margin: 0 8px;"></div>
+          <a class="btn btn-ghost" id="preview-link" target="_blank" rel="noopener">Ver site <i class="ph ph-arrow-square-out"></i></a>
+          <a class="btn btn-primary" id="editor-link" href="/editor.html"><i class="ph ph-pencil-simple"></i> Editar site</a>
+        </div>
+      </header>
+
+      <!-- Agenda Dashboard -->
+      <div style="background: var(--surface); padding: 24px; border-radius: 16px; border: 1px solid var(--border); margin-top: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 500; color: #fff;">Meus Agendamentos</h2>
+            <p style="color: var(--text-muted); font-size: 0.875rem;">Gerencie seus clientes e horários</p>
+          </div>
+          <button class="btn btn-ghost" id="config-agenda-btn"><i class="ph ph-gear"></i> Configurar Expediente</button>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr; gap: 16px;" id="agenda-list">
+          <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+            Carregando agendamentos...
+          </div>
+        </div>
+      </div>
+      
+      <!-- Agenda Config Modal -->
+      <div id="agenda-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: center; justify-content: center;">
+        <div style="background: var(--surface); width: 100%; max-width: 500px; border-radius: 16px; border: 1px solid var(--border); padding: 24px;">
+          <h3 style="color: #fff; margin-bottom: 16px;">Configurar Expediente</h3>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 24px;">Defina os dias e horários que você atende.</p>
+          
+          <div id="days-config" style="display: grid; gap: 12px; margin-bottom: 24px;">
+            <!-- Rendered by JS -->
+          </div>
+          
+          <div style="display: flex; justify-content: flex-end; gap: 12px;">
+            <button class="btn btn-ghost" id="close-agenda-modal">Cancelar</button>
+            <button class="btn btn-primary" id="save-agenda-config">Salvar configurações</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast, initials } from "/assets/js/verticy.js";
+    import { DENTISTA01_DEFAULTS } from "/assets/js/dentista01-defaults.js";
+    import { CONFEITARIA01_DEFAULTS } from "/assets/js/confeitaria01-defaults.js";
+    import { CREATOR01_DEFAULTS } from "/assets/js/creator01-defaults.js";
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+
+    if (!profile?.onboarding_completed) { window.location.replace("/onboarding.html"); }
+
+    const fullName = profile.full_name || "Você";
+    const firstName = fullName.split(" ")[0];
+    
+    document.getElementById("avatar").textContent = initials(fullName);
+    document.getElementById("profile-name").textContent = fullName;
+    document.getElementById("profile-email").textContent = session.user.email;
+    document.getElementById("greet-name").textContent = firstName;
+    document.getElementById("plan-tag").textContent = `Plano ${profile.plan?.[0]?.toUpperCase() + profile.plan?.slice(1) || "Essencial"}`;
+
+    // Mock de Agendamentos (até o DB estar pronto)
+    const mockAppointments = [
+      { id: 1, name: "Maria Silva", whatsapp: "11999999999", service: "Avaliação Geral", date: "2026-07-28", time: "09:00", status: "confirmed" },
+      { id: 2, name: "João Pedro", whatsapp: "11988888888", service: "Limpeza (Profilaxia)", date: "2026-07-28", time: "10:30", status: "confirmed" },
+      { id: 3, name: "Ana Clara", whatsapp: "11977777777", service: "Clareamento a Laser", date: "2026-07-28", time: "14:00", status: "confirmed" }
+    ];
+
+    const list = document.getElementById("agenda-list");
+    list.innerHTML = mockAppointments.map(a => `
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <div style="background: var(--brand); color: #fff; border-radius: 8px; width: 48px; height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; line-height: 1;">
+            <span style="font-size: 14px;">${a.time}</span>
+          </div>
+          <div>
+            <h4 style="color: #fff; font-size: 16px; margin: 0 0 4px 0;">${a.name}</h4>
+            <p style="color: var(--text-muted); font-size: 13px; margin: 0;">${a.service}</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="https://wa.me/55${a.whatsapp}" target="_blank" class="btn btn-ghost" style="color: #25D366; border-color: rgba(37, 211, 102, 0.2);"><i class="ph ph-whatsapp-logo"></i> Mensagem</a>
+          <button class="btn btn-ghost" style="color: var(--text-muted);"><i class="ph ph-x"></i> Cancelar</button>
+        </div>
+      </div>
+    `).join("");
+
+    // Modal de Config
+    const modal = document.getElementById("agenda-modal");
+    const configBtn = document.getElementById("config-agenda-btn");
+    const closeBtn = document.getElementById("close-agenda-modal");
+    
+    configBtn.addEventListener("click", () => modal.style.display = "flex");
+    closeBtn.addEventListener("click", () => modal.style.display = "none");
+
+    const days = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+    const daysConfig = document.getElementById("days-config");
+    daysConfig.innerHTML = days.map((d, i) => `
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 8px;">
+        <label style="display: flex; align-items: center; gap: 8px; color: #fff; cursor: pointer;">
+          <input type="checkbox" ${i > 0 && i < 6 ? "checked" : ""} /> ${d}
+        </label>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <input type="time" value="09:00" style="background: var(--bg); border: 1px solid var(--border); color: #fff; padding: 4px 8px; border-radius: 6px;" />
+          <span style="color: var(--text-muted);">até</span>
+          <input type="time" value="18:00" style="background: var(--bg); border: 1px solid var(--border); color: #fff; padding: 4px 8px; border-radius: 6px;" />
+        </div>
+      </div>
+    `).join("");
+
+    document.getElementById("save-agenda-config").addEventListener("click", () => {
+      toast("Configurações salvas (mock)", "success");
+      modal.style.display = "none";
+    });
+
+    document.getElementById("signout").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.replace("/entrar.html");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel · Verticy</title>
+  
+  <!-- Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">V</div>
+        <div class="logo-text">Verticy</div>
+      </div>
+      
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active">
+          <div class="nav-item-left"><i class="ph ph-house"></i><span>Painel</span></div>
+        </a>
+        <a href="agenda.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-calendar-blank"></i><span>Agenda</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-browser"></i><span>Meus Sites</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-layout"></i><span>Templates</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-globe"></i><span>Domínios</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-chart-line-up"></i><span>Analytics</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-users"></i><span>Leads</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-credit-card"></i><span>Faturamento</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-shopping-bag"></i><span>Loja</span></div>
+        </a>
+        <a href="#" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-gear"></i><span>Configurações</span></div>
+        </a>
+      </nav>
+
+      <div class="user-profile" id="signout">
+        <div class="user-profile-left">
+          <div class="user-avatar" id="avatar">AB</div>
+          <div class="user-details">
+            <span class="user-name" id="profile-name">Arthur Barreto</span>
+            <span class="user-email" id="profile-email">arthur@email.com</span>
+          </div>
+        </div>
+        <i class="ph ph-caret-down" style="color: var(--text-muted);"></i>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <div>
+          <h1 class="greeting-title">Olá, <span id="greet-name">Arthur</span> 👋</h1>
+          <p class="greeting-subtitle">Aqui você gerencia seu microsite Verticy.</p>
+        </div>
+        <div class="top-actions">
+          <div class="plan-badge">
+            <i class="ph ph-diamond"></i> <span id="plan-tag">Plano Essencial</span>
+          </div>
+          <button class="icon-btn">
+            <i class="ph ph-bell"></i>
+            <span class="notification-dot">3</span>
+          </button>
+          <button class="icon-btn"><i class="ph ph-gear"></i></button>
+          <div style="width: 1px; height: 24px; background: var(--border-light); margin: 0 8px;"></div>
+          <a class="btn btn-ghost" id="preview-link" target="_blank" rel="noopener">Ver site <i class="ph ph-arrow-square-out"></i></a>
+          <a class="btn btn-primary" id="editor-link" href="/editor.html"><i class="ph ph-pencil-simple"></i> Editar site</a>
+        </div>
+      </header>
+
+      <!-- Status Grid -->
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-card-header"><i class="ph ph-globe"></i> Endereço público</div>
+          <div class="status-card-value">
+            <span id="stat-url" style="font-size: 15px;">verticy.site/dra-amanda</span>
+            <button class="copy-btn" id="copy-url"><i class="ph ph-copy"></i></button>
+          </div>
+          <div class="status-card-footer">
+            <span class="badge-pill success">Ativo</span>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-header"><i class="ph ph-check-circle"></i> Status</div>
+          <div class="status-card-value" style="color: var(--status-green);" id="stat-status-text">Publicado</div>
+          <div class="status-card-footer" id="stat-status-desc">Seu site está online</div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-header"><i class="ph ph-layout"></i> Template</div>
+          <div class="status-card-value" id="stat-template">Dentista Premium</div>
+          <div class="status-card-footer">
+            <span class="badge-pill premium" id="stat-template-badge">Premium</span>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <div class="status-card-header"><i class="ph ph-clock"></i> Última atualização</div>
+          <div class="status-card-value" id="stat-updated">24/07/2026 às 14:32</div>
+          <div class="status-card-footer">há 2 horas</div>
+        </div>
+      </div>
+
+      <!-- Middle Layout (Preview + Actions) -->
+      <div class="middle-layout">
+        <!-- Preview -->
+        <div class="section-card">
+          <div class="preview-header">
+            <span class="preview-title">Prévia do seu site</span>
+            <span class="badge-pill success" style="background: transparent; border: 1px solid var(--status-green);"><i class="ph ph-record" style="font-size: 10px;"></i> Ao vivo</span>
+          </div>
+          <div class="preview-frame-container">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" alt="Preview" id="preview-img" />
+            <a class="btn btn-ghost preview-overlay-btn" id="overlay-preview-link" target="_blank" rel="noopener">Abrir site <i class="ph ph-arrow-square-out"></i></a>
+          </div>
+          <div class="dots-indicator">
+            <span class="active"></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div>
+          <h3 class="actions-header">Ações rápidas</h3>
+          <div class="actions-grid">
+            
+            <a href="/editor.html" class="action-box" id="action-editor">
+              <div class="action-icon"><i class="ph ph-pencil-simple"></i></div>
+              <div>
+                <h4>Editar conteúdo</h4>
+                <p>Personalize textos, imagens e cores</p>
+              </div>
+            </a>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-gear"></i></div>
+              <div>
+                <h4>Configurações</h4>
+                <p>SEO, metas, domínio e muito mais</p>
+              </div>
+            </div>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-share-network"></i></div>
+              <div>
+                <h4>Compartilhar</h4>
+                <p>Divulgue seu site nas redes sociais</p>
+              </div>
+            </div>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-users"></i></div>
+              <div class="badge-new action-box-badge">Novo</div>
+              <div>
+                <h4>Leads</h4>
+                <p>Veja seus contatos e mensagens</p>
+              </div>
+            </div>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-chart-bar"></i></div>
+              <div class="badge-new action-box-badge">Novo</div>
+              <div>
+                <h4>Analytics</h4>
+                <p>Acompanhe visitas, cliques e conversões</p>
+              </div>
+            </div>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-copy"></i></div>
+              <div>
+                <h4>Duplicar site</h4>
+                <p>Crie uma cópia do seu site atual</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Templates -->
+      <div class="templates-section">
+        <div class="templates-header">
+          <div class="templates-header-left">
+            <h3>Escolha um modelo</h3>
+            <p>Trocar o template preserva seus dados quando possível.</p>
+          </div>
+        </div>
+        
+        <div class="templates-categories" id="templates-categories" style="display:flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 8px;">
+          <button class="cat-btn active" data-cat="all">Todos</button>
+          <button class="cat-btn" data-cat="saude">Saúde & Estética</button>
+          <button class="cat-btn" data-cat="beleza">Beleza</button>
+          <button class="cat-btn" data-cat="alimentacao">Alimentação</button>
+          <button class="cat-btn" data-cat="servicos">Serviços</button>
+          <button class="cat-btn" data-cat="advocacia">Advocacia</button>
+          <button class="cat-btn" data-cat="creators">Creators</button>
+          <button class="cat-btn" data-cat="imoveis">Imóveis</button>
+          <button class="cat-btn" data-cat="eventos">Eventos</button>
+          <button class="cat-btn" data-cat="fitness">Fitness</button>
+          <button class="cat-btn" data-cat="automotivo">Automotivo</button>
+          <button class="cat-btn" data-cat="sugestoes">Sugestões (Abertos)</button>
+        </div>
+        
+        <style>
+          .templates-categories::-webkit-scrollbar { display: none; }
+          .cat-btn { padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--text-muted); font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+          .cat-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+          .cat-btn.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+        </style>
+        
+        <div class="templates-carousel" id="templates-grid">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast, initials } from "/assets/js/verticy.js";
+    import { DENTISTA01_DEFAULTS } from "/assets/js/dentista01-defaults.js";
+    import { CONFEITARIA01_DEFAULTS } from "/assets/js/confeitaria01-defaults.js";
+    import { CREATOR01_DEFAULTS } from "/assets/js/creator01-defaults.js";
+    import { ADVOGADO01_DEFAULTS } from "/assets/js/advogado01-defaults.js";
+    import { MEDICO01_DEFAULTS } from "/assets/js/medico01-defaults.js";
+    import { ARQUITETO01_DEFAULTS } from "/assets/js/arquiteto01-defaults.js";
+    import { CORRETOR01_DEFAULTS } from "/assets/js/corretor01-defaults.js";
+    import { PERSONAL01_DEFAULTS } from "/assets/js/personal01-defaults.js";
+    import { RESTAURANTE01_DEFAULTS } from "/assets/js/restaurante01-defaults.js";
+    import { BARBEARIA01_DEFAULTS } from "/assets/js/barbearia01-defaults.js";
+    import { PSICOLOGO01_DEFAULTS } from "/assets/js/psicologo01-defaults.js";
+    import { MAQUIADORA01_DEFAULTS } from "/assets/js/maquiadora01-defaults.js";
+    import { PETSHOP01_DEFAULTS } from "/assets/js/petshop01-defaults.js";
+    import { BUFFET01_DEFAULTS } from "/assets/js/buffet01-defaults.js";
+    import { CONTABILIDADE01_DEFAULTS } from "/assets/js/contabilidade01-defaults.js";
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+
+    if (!profile?.onboarding_completed) { window.location.replace("/onboarding.html"); }
+
+    const fullName = profile.full_name || "Você";
+    const firstName = fullName.split(" ")[0];
+    
+    document.getElementById("avatar").textContent = initials(fullName);
+    document.getElementById("profile-name").textContent = fullName;
+    document.getElementById("profile-email").textContent = session.user.email;
+    document.getElementById("greet-name").textContent = firstName;
+    document.getElementById("plan-tag").textContent = `Plano ${profile.plan?.[0]?.toUpperCase() + profile.plan?.slice(1) || "Essencial"}`;
+
+    const publicUrl = `${window.location.host}/${profile.username}`;
+    const fullPublicUrl = `${window.location.origin}/${profile.username}`;
+    document.getElementById("stat-url").textContent = publicUrl;
+    document.getElementById("preview-link").href = fullPublicUrl;
+    document.getElementById("overlay-preview-link").href = fullPublicUrl;
+
+    const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
+    const isPub = !!site?.published;
+    const currentTpl = site?.template_id || "aurora";
+
+    const TEMPLATES = [
+      { id: "contabilidade01", cat: "negocios", name: "Contabilidade", desc: "Escritórios, finanças e consultoria", badge: "Premium", img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" },
+      { id: "buffet01", cat: "eventos", name: "Buffet & Eventos", desc: "Buffets, festas e casamentos", badge: "Premium", img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800" },
+      { id: "petshop01", cat: "saude", name: "Petshop & Clínica", desc: "Veterinários, banho e tosa", badge: "Premium", img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800" },
+      { id: "maquiadora01", cat: "beleza", name: "Estúdio de Beleza", desc: "Maquiadoras, salões e estética", badge: "Premium", img: "https://images.unsplash.com/photo-1512496015851-a1cfb38ba1c3?auto=format&fit=crop&q=80&w=800" },
+      { id: "psicologo01", cat: "saude", name: "Psicologia & Terapia", desc: "Psicólogos, terapeutas e bem-estar", badge: "Premium", img: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=800" },
+      { id: "barbearia01", cat: "beleza", name: "Barbearia Clássica", desc: "Barbearias, salões e estética", badge: "Premium", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" },
+      { id: "restaurante01", cat: "alimentacao", name: "Osteria & Restaurante", desc: "Restaurantes, pizzarias e bistrôs", badge: "Premium", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" },
+      { id: "personal01", cat: "fitness", name: "Personal Trainer Elite", desc: "Consultoria fitness e treinos", badge: "Premium", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800" },
+      { id: "corretor01", cat: "imoveis", name: "Corretor Premium", desc: "Imóveis de alto padrão e luxo", badge: "Premium", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" },
+      { id: "arquiteto01", cat: "imoveis", name: "Arquitetura Premium", desc: "Escritórios e design de interiores", badge: "Premium", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800" },
+      { id: "advogado01", cat: "advocacia", name: "Advocacia Humanizada", desc: "Direito de Família e Sucessões", badge: "Premium", img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800" },
+      { id: "dentista01", cat: "saude", name: "Dentista Premium", desc: "Estética e clínicas", badge: "Premium", img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" },
+      { id: "medico01", cat: "saude", name: "Clínica Médica", desc: "Médicos e especialistas", badge: "Premium", img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800" },
+      { id: "confeitaria01", cat: "alimentacao", name: "Confeitaria Doce", desc: "Doces e bolos", badge: "Premium", img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=800" },
+      { id: "creator01", cat: "creators", name: "Creator Portfolio", desc: "Mídia kit e links", badge: "Premium", img: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=800" },
+      { id: "aurora", cat: "sugestoes", name: "Aurora", desc: "Minimalista e elegante", badge: "Essencial", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" }
+    ];
+    
+    const activeTemplateInfo = TEMPLATES.find(t => t.id === currentTpl) || TEMPLATES[0];
+
+    const statusText = document.getElementById("stat-status-text");
+    const statusDesc = document.getElementById("stat-status-desc");
+    if (isPub) {
+      statusText.textContent = "Publicado";
+      statusText.style.color = "var(--status-green)";
+      statusDesc.textContent = "Seu site está online";
+    } else {
+      statusText.textContent = "Rascunho";
+      statusText.style.color = "var(--status-purple)";
+      statusDesc.textContent = "Apenas você pode ver";
+    }
+    
+    document.getElementById("stat-template").textContent = activeTemplateInfo.name;
+    document.getElementById("stat-template-badge").textContent = activeTemplateInfo.badge;
+    document.getElementById("stat-template-badge").className = "badge-pill " + (activeTemplateInfo.badge === "Premium" ? "premium" : "success");
+    document.getElementById("preview-img").src = activeTemplateInfo.img;
+    
+    if (site?.updated_at) {
+      const date = new Date(site.updated_at);
+      document.getElementById("stat-updated").textContent = date.toLocaleDateString("pt-BR") + " às " + date.toLocaleTimeString("pt-BR", {hour: '2-digit', minute:'2-digit'});
+    } else {
+      document.getElementById("stat-updated").textContent = "Nunca";
+    }
+
+    let editorHref = "/editor.html";
+    if (currentTpl === "dentista01") editorHref = "/editor-dentista01.html";
+    if (currentTpl === "confeitaria01") editorHref = "/editor-confeitaria01.html";
+    if (currentTpl === "creator01") editorHref = "/editor-creator01.html";
+    if (currentTpl === "advogado01") editorHref = "/editor-advogado01.html";
+    if (currentTpl === "medico01") editorHref = "/editor-medico01.html";
+    if (currentTpl === "arquiteto01") editorHref = "/editor-arquiteto01.html";
+    if (currentTpl === "corretor01") editorHref = "/editor-corretor01.html";
+    if (currentTpl === "personal01") editorHref = "/editor-personal01.html";
+    if (currentTpl === "restaurante01") editorHref = "/editor-restaurante01.html";
+    if (currentTpl === "barbearia01") editorHref = "/editor-barbearia01.html";
+    if (currentTpl === "psicologo01") editorHref = "/editor-psicologo01.html";
+    if (currentTpl === "maquiadora01") editorHref = "/editor-maquiadora01.html";
+    if (currentTpl === "petshop01") editorHref = "/editor-petshop01.html";
+    if (currentTpl === "buffet01") editorHref = "/editor-buffet01.html";
+    if (currentTpl === "contabilidade01") editorHref = "/editor-contabilidade01.html";
+    document.getElementById("editor-link").href = editorHref;
+    document.getElementById("action-editor").href = editorHref;
+
+    document.getElementById("copy-url").addEventListener("click", async () => {
+      await navigator.clipboard.writeText(fullPublicUrl);
+      toast("Link copiado para a área de transferência!", "success");
+    });
+
+    document.getElementById("signout").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.replace("/");
+    });
+
+    /* -------- Templates -------- */
+    const grid = document.getElementById("templates-grid");
+    
+    function renderTemplates(filterCat = "all") {
+      grid.innerHTML = "";
+      TEMPLATES.forEach((t) => {
+        if (filterCat !== "all" && t.cat !== filterCat) return;
+        const active = t.id === currentTpl;
+        const card = document.createElement("div");
+        card.className = "tpl-card" + (active ? " active" : "");
+        card.dataset.tpl = t.id;
+        const badgeClass = t.badge === "Premium" ? "" : " free";
+        card.innerHTML = `
+          <div class="tpl-img-box">
+            <span class="tpl-badge${badgeClass}">${t.badge}</span>
+            <img src="${t.img}" alt="${t.name}" loading="lazy" />
+          </div>
+          <div class="tpl-info">
+            <h4>${t.name}</h4>
+            <p>${t.desc}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    
+    renderTemplates("all");
+
+    document.querySelectorAll(".cat-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderTemplates(btn.dataset.cat);
+      });
+    });
+
+    grid.addEventListener("click", async (e) => {
+      const card = e.target.closest(".tpl-card");
+      if (!card) return;
+      const tpl = card.dataset.tpl;
+      if (tpl === currentTpl) return;
+      
+      const tplLabel = TEMPLATES.find(x => x.id === tpl)?.name;
+      const confirmMsg = `Trocar para "${tplLabel}"? O conteúdo será substituído por dados de exemplo do novo template.`;
+      if (!window.confirm(confirmMsg)) return;
+
+      card.style.opacity = "0.5";
+      let newContent = site?.content || {};
+      if (tpl === "dentista01") {
+        newContent = { ...DENTISTA01_DEFAULTS, branding: { ...DENTISTA01_DEFAULTS.branding, name: profile.full_name || DENTISTA01_DEFAULTS.branding.name } };
+      } else if (tpl === "medico01") {
+        newContent = { ...MEDICO01_DEFAULTS, branding: { ...MEDICO01_DEFAULTS.branding, name: profile.full_name || MEDICO01_DEFAULTS.branding.name } };
+      } else if (tpl === "arquiteto01") {
+        newContent = { ...ARQUITETO01_DEFAULTS, branding: { ...ARQUITETO01_DEFAULTS.branding, name: profile.full_name || ARQUITETO01_DEFAULTS.branding.name } };
+      } else if (tpl === "corretor01") {
+        newContent = { ...CORRETOR01_DEFAULTS, branding: { ...CORRETOR01_DEFAULTS.branding, name: profile.full_name || CORRETOR01_DEFAULTS.branding.name } };
+      } else if (tpl === "personal01") {
+        newContent = { ...PERSONAL01_DEFAULTS, branding: { ...PERSONAL01_DEFAULTS.branding, name: profile.full_name || PERSONAL01_DEFAULTS.branding.name } };
+      } else if (tpl === "restaurante01") {
+        newContent = { ...RESTAURANTE01_DEFAULTS, branding: { ...RESTAURANTE01_DEFAULTS.branding, name: profile.full_name || RESTAURANTE01_DEFAULTS.branding.name } };
+      } else if (tpl === "barbearia01") {
+        newContent = { ...BARBEARIA01_DEFAULTS, branding: { ...BARBEARIA01_DEFAULTS.branding, name: profile.full_name || BARBEARIA01_DEFAULTS.branding.name } };
+      } else if (tpl === "psicologo01") {
+        newContent = { ...PSICOLOGO01_DEFAULTS, branding: { ...PSICOLOGO01_DEFAULTS.branding, name: profile.full_name || PSICOLOGO01_DEFAULTS.branding.name } };
+      } else if (tpl === "maquiadora01") {
+        newContent = { ...MAQUIADORA01_DEFAULTS, branding: { ...MAQUIADORA01_DEFAULTS.branding, name: profile.full_name || MAQUIADORA01_DEFAULTS.branding.name } };
+      } else if (tpl === "petshop01") {
+        newContent = { ...PETSHOP01_DEFAULTS, branding: { ...PETSHOP01_DEFAULTS.branding, name: profile.full_name || PETSHOP01_DEFAULTS.branding.name } };
+      } else if (tpl === "buffet01") {
+        newContent = { ...BUFFET01_DEFAULTS, branding: { ...BUFFET01_DEFAULTS.branding, name: profile.full_name || BUFFET01_DEFAULTS.branding.name } };
+      } else if (tpl === "contabilidade01") {
+        newContent = { ...CONTABILIDADE01_DEFAULTS, branding: { ...CONTABILIDADE01_DEFAULTS.branding, name: profile.full_name || CONTABILIDADE01_DEFAULTS.branding.name } };
+      } else if (tpl === "confeitaria01") {
+        newContent = { ...CONFEITARIA01_DEFAULTS, branding: { ...CONFEITARIA01_DEFAULTS.branding, name: profile.full_name || CONFEITARIA01_DEFAULTS.branding.name } };
+      } else if (tpl === "creator01") {
+        newContent = { ...CREATOR01_DEFAULTS, hero: { ...CREATOR01_DEFAULTS.hero, badge: profile.full_name || CREATOR01_DEFAULTS.hero.badge } };
+      } else if (tpl === "advogado01") {
+        newContent = { ...ADVOGADO01_DEFAULTS, branding: { ...ADVOGADO01_DEFAULTS.branding, name: profile.full_name || ADVOGADO01_DEFAULTS.branding.name } };
+      } else if (tpl === "aurora") {
+        newContent = {
+          hero: { title: `Olá, sou ${profile.full_name || "profissional"}.`, subtitle: "Bem-vindo ao meu site.", cta_label: "Fale comigo", cta_href: "#contact" },
+          about: { title: "Sobre", body: "Conte um pouco sobre você e sua história." },
+          services: { title: "O que ofereço", items: [{ title: "Serviço 1", desc: "Descrição breve." }] },
+          contact: { whatsapp: "", instagram: "", email: session.user.email || "" },
+        };
+      }
+      const { error } = await supabase.from("sites").update({ template_id: tpl, content: newContent }).eq("user_id", session.user.id);
+      if (error) { card.style.opacity = "1"; toast(error.message, "error"); return; }
+      
+      let editorHref = "/editor.html";
+      if (tpl === "dentista01") editorHref = "/editor-dentista01.html";
+      if (tpl === "confeitaria01") editorHref = "/editor-confeitaria01.html";
+      if (tpl === "creator01") editorHref = "/editor-creator01.html";
+      if (tpl === "advogado01") editorHref = "/editor-advogado01.html";
+      if (tpl === "medico01") editorHref = "/editor-medico01.html";
+      if (tpl === "arquiteto01") editorHref = "/editor-arquiteto01.html";
+      if (tpl === "corretor01") editorHref = "/editor-corretor01.html";
+      if (tpl === "personal01") editorHref = "/editor-personal01.html";
+      if (tpl === "restaurante01") editorHref = "/editor-restaurante01.html";
+      if (tpl === "barbearia01") editorHref = "/editor-barbearia01.html";
+      if (tpl === "psicologo01") editorHref = "/editor-psicologo01.html";
+      if (tpl === "maquiadora01") editorHref = "/editor-maquiadora01.html";
+      if (tpl === "petshop01") editorHref = "/editor-petshop01.html";
+      if (tpl === "buffet01") editorHref = "/editor-buffet01.html";
+      if (tpl === "contabilidade01") editorHref = "/editor-contabilidade01.html";
+      
+      toast(`Template "${tplLabel}" ativado! Redirecionando...`, "success");
+      setTimeout(() => window.location.assign(editorHref), 800);
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ciro Freitas | Advocacia de Família e Sucessões</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes Premium: Playfair para Elegância (Títulos) e Plus Jakarta para Leitura -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            ciro: {
+              bg: '#FDFBF7',        /* Off-white/Creme super quente */
+              dark: '#1F3A2E',      /* Verde Floresta Profundo (A cor dele) */
+              greenLight: '#345945',/* Verde Sálvia (Destaques) */
+              sand: '#E6DFD3',      /* Areia para cartões */
+              gold: '#C5A880',      /* Dourado sóbrio para detalhes */
+              text: '#2C2A29',      /* Marrom escuro quase preto para textos */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #FDFBF7; color: #2C2A29; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Efeito de Vidro Suave */
+    .glass-card {
+      background: rgba(253, 251, 247, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 40px rgba(31, 58, 46, 0.05);
+    }
+    
+    .glass-dark {
+      background: rgba(31, 58, 46, 0.6);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animações Premium */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes slowZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    .animate-zoom { animation: slowZoom 20s ease-in-out infinite alternate; }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { animation: marquee 25s linear infinite; width: max-content; }
+
+    /* Ruído orgânico de papel/tecido */
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body class="selection:bg-ciro-dark selection:text-white pb-0">
+
+  <div class="bg-noise"></div>
+
+  <!-- Mobile Container -->
+  <div class="max-w-md mx-auto min-h-screen relative bg-ciro-bg shadow-2xl overflow-hidden sm:border-x sm:border-ciro-dark/10 flex flex-col">
+    
+    <!-- ==========================================
+         HERO SECTION: ACOLHIMENTO & AUTORIDADE
+         ========================================== -->
+    <header class="relative w-full h-[85vh] rounded-b-[3rem] overflow-hidden shadow-xl z-10 bg-ciro-dark border-b border-ciro-dark/10">
+      
+      <!-- Imagem de Capa -->
+      <img id="img-capa" src="ciro_hero.png" alt="Ciro Freitas" class="absolute inset-0 w-full h-full object-cover object-top animate-zoom opacity-90" loading="eager" fetchpriority="high" onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80'" />
+      
+      <!-- Gradientes Verdes -->
+      <div class="absolute inset-0 bg-gradient-to-t from-ciro-dark via-ciro-dark/40 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-ciro-dark/40 via-transparent to-transparent"></div>
+
+      <!-- Tag Topo -->
+      <div class="absolute top-8 left-6 glass-dark px-4 py-1.5 rounded-full flex items-center gap-2">
+        <i data-lucide="scale" class="w-3.5 h-3.5 text-ciro-gold"></i>
+        <span class="text-[9px] font-bold uppercase tracking-widest text-white">Família & Sucessões</span>
+      </div>
+
+      <!-- Títulos Principais -->
+      <div class="absolute bottom-12 left-0 w-full px-8 text-center reveal active">
+        <h2 class="text-[10px] font-bold text-ciro-gold uppercase tracking-[0.4em] mb-3 drop-shadow-md">Advocacia Humanizada</h2>
+        <h1 class="text-[4rem] font-serif font-bold text-white leading-[0.9] tracking-tight drop-shadow-xl mb-2">Ciro</h1>
+        <h1 class="text-[4rem] font-serif font-bold text-white leading-[0.9] italic tracking-tight drop-shadow-xl">Freitas</h1>
+        
+        <p class="text-[12px] text-white/80 mt-5 font-medium leading-relaxed max-w-[280px] mx-auto border-t border-white/20 pt-4">
+          "É possível recomeçar, <br>apesar da perda."
+        </p>
+      </div>
+    </header>
+
+    <!-- ==========================================
+         AÇÃO PRINCIPAL / DIAGNÓSTICO (ESTRATÉGICO)
+         ========================================== -->
+    <section class="px-6 py-6 relative z-20 -mt-6 reveal">
+      <div class="glass-card rounded-[2rem] p-8 shadow-2xl relative overflow-hidden border-t-4 border-t-ciro-dark flex flex-col items-center text-center">
+        
+        <div class="w-14 h-14 rounded-full bg-ciro-dark/5 flex items-center justify-center mb-4">
+          <i data-lucide="shield-check" class="w-7 h-7 text-ciro-dark"></i>
+        </div>
+        
+        <h3 class="font-serif text-2xl text-ciro-dark mb-2 leading-tight">Precisando de <br><span class="italic">orientação jurídica?</span></h3>
+        <p class="text-[11px] text-ciro-text/70 leading-relaxed font-medium mb-6 px-2">
+          Seja para organizar um patrimônio, lidar com um divórcio ou conduzir um inventário, o primeiro passo é a estratégia.
+        </p>
+
+        <button onclick="handleLink('acolhimento')" class="w-full bg-ciro-dark text-white py-5 rounded-2xl font-bold text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Agendar Acolhimento
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         BENTO GRID: ÁREAS DE ATUAÇÃO
+         ========================================== -->
+    <section class="px-6 py-12 relative z-10 reveal">
+      <div class="flex items-center gap-3 mb-8 pl-2">
+        <div class="w-8 h-[2px] bg-ciro-dark"></div>
+        <h2 class="text-xs font-bold uppercase tracking-[0.3em] text-ciro-dark">Como posso ajudar</h2>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        
+        <!-- Especialidade 1 (Largo) -->
+        <div onclick="handleLink('familia')" class="col-span-2 bg-ciro-sand/40 border border-ciro-dark/10 p-6 rounded-[2rem] flex items-center justify-between cursor-pointer group hover:bg-ciro-sand/60 transition-all">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-ciro-dark flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+              <i data-lucide="users" class="w-5 h-5 text-white"></i>
+            </div>
+            <div>
+              <h4 class="font-serif text-xl text-ciro-dark leading-none mb-1">Direito de Família</h4>
+              <p class="text-[10px] text-ciro-text/60 uppercase tracking-widest font-semibold">Divórcios, Guarda & Alimentos</p>
+            </div>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-ciro-dark/40 group-hover:text-ciro-dark transition-colors"></i>
+        </div>
+
+        <!-- Especialidade 2 -->
+        <div onclick="handleLink('sucessoes')" class="bg-white border border-ciro-dark/10 p-6 rounded-[2rem] flex flex-col justify-between h-44 cursor-pointer group hover:border-ciro-dark/30 transition-all shadow-sm">
+          <i data-lucide="file-text" class="w-6 h-6 text-ciro-dark/50 mb-3 group-hover:text-ciro-dark transition-colors"></i>
+          <div>
+             <h4 class="font-serif text-lg text-ciro-dark leading-tight mb-1">Inventários &<br>Sucessões</h4>
+             <p class="text-[9px] text-ciro-text/50 uppercase tracking-widest font-semibold">Segurança Patrimonial</p>
+          </div>
+        </div>
+
+        <!-- Especialidade 3 -->
+        <div onclick="handleLink('planejamento')" class="bg-white border border-ciro-dark/10 p-6 rounded-[2rem] flex flex-col justify-between h-44 cursor-pointer group hover:border-ciro-dark/30 transition-all shadow-sm">
+          <i data-lucide="landmark" class="w-6 h-6 text-ciro-dark/50 mb-3 group-hover:text-ciro-dark transition-colors"></i>
+          <div>
+             <h4 class="font-serif text-lg text-ciro-dark leading-tight mb-1">Planejamento<br>Familiar</h4>
+             <p class="text-[9px] text-ciro-text/50 uppercase tracking-widest font-semibold">Prevenção de Conflitos</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LETREIRO MARQUEE (ELEGÂNCIA)
+         ========================================== -->
+    <div class="w-full overflow-hidden border-y border-ciro-dark/10 py-4 relative z-20 bg-ciro-dark">
+      <div class="animate-marquee flex gap-10 items-center text-white italic">
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em]">Empatia</span>
+        <span class="text-ciro-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] not-italic">Estratégia</span>
+        <span class="text-ciro-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em]">Resolução</span>
+        <span class="text-ciro-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] not-italic">Sigilo Absoluto</span>
+        <span class="text-ciro-gold">•</span>
+        <!-- Clone -->
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em]">Empatia</span>
+        <span class="text-ciro-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] not-italic">Estratégia</span>
+        <span class="text-ciro-gold">•</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         AUTORIDADE & MÍDIA (SOBRE O CIRO)
+         ========================================== -->
+    <section class="px-6 py-16 relative z-10 reveal">
+      <div class="bg-ciro-dark rounded-[3rem] p-1 relative overflow-hidden shadow-2xl">
+        
+        <div class="h-64 relative rounded-[2.5rem] overflow-hidden">
+          <img id="img-autoridade" src="ciro_midia.png" alt="Ciro Freitas na Mídia" class="w-full h-full object-cover object-top" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1556157382-97dee2dcb341?auto=format&fit=crop&w=800&q=80'" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ciro-dark via-ciro-dark/20 to-transparent"></div>
+        </div>
+
+        <div class="p-8 pt-4 text-center relative z-10 text-white">
+          <h2 class="font-serif text-3xl mb-6 italic leading-tight">"A vitória nunca está na sentença."</h2>
+          
+          <div class="space-y-4 text-[13px] text-white/80 font-medium leading-relaxed text-justify mb-8">
+            <p>
+              Muitos acreditam que o sucesso na vara de família é uma briga ganha no tribunal. Na realidade, a verdadeira vitória é garantir a **paz, o recomeço e a preservação do patrimônio** de forma estratégica.
+            </p>
+            <p>
+              Sou CEO do <strong class="text-ciro-gold">Freitas Advogados</strong> e Presidente do <strong class="text-ciro-gold">IBDFAM</strong> (Instituto Brasileiro de Direito de Família). Dedico minha vida a estruturar os recomeços de famílias que enfrentam momentos difíceis.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 text-left border-t border-white/10 pt-6">
+             <div class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-ciro-gold shrink-0 mt-0.5"></i>
+                <p class="text-[10px] text-white/70 uppercase tracking-widest font-bold">Autor de Artigos</p>
+             </div>
+             <div class="flex items-start gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-ciro-gold shrink-0 mt-0.5"></i>
+                <p class="text-[10px] text-white/70 uppercase tracking-widest font-bold">Presença na Mídia</p>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ARTIGOS E CONHECIMENTO (CARROSSEL)
+         ========================================== -->
+    <section class="py-6 reveal border-t border-ciro-dark/10 mt-4">
+      <div class="px-8 mb-8">
+        <h2 class="font-serif text-3xl text-ciro-dark leading-none mb-1">Mente<br><span class="italic text-ciro-greenLight">Estratégica</span></h2>
+        <p class="text-[10px] font-bold text-ciro-text/50 uppercase tracking-widest mt-2">Artigos & Reflexões</p>
+      </div>
+
+      <div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar snap-x pb-8">
+        
+        <!-- Artigo 1 -->
+        <div onclick="window.open('https://ibdfam.org.br/artigos/2500/A+Dor+do+Tempo+nos+Processos+de+Fam%C3%ADlia%3A+Entre+a+Morosidade+Judicial+e+o+Dano+Existencial?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnZNS6Z6gbtq3VKrEm2hLAFQ6qjUIdispikplRdBg4ipFcqtvyEh4P41H8koU_aem_RFssiOAg2WyxAcY_7CHi2w', '_blank')" class="snap-center shrink-0 w-60 h-80 rounded-[2rem] overflow-hidden relative shadow-lg group cursor-pointer border border-ciro-dark/5">
+          <img id="img-post-1" src="ciro_artigo.png" alt="A dor do tempo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80'" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ciro-dark/90 via-ciro-dark/20 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="bg-ciro-gold text-white text-[8px] font-black uppercase px-2 py-1 rounded mb-2 inline-block">Artigo IBDFAM</span>
+            <p class="font-serif text-white text-lg leading-tight drop-shadow-md">A dor do tempo nos processos de família.</p>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div onclick="window.open('https://www.instagram.com/p/DYnC1hUFZQa/?img_index=1', '_blank')" class="snap-center shrink-0 w-60 h-80 rounded-[2rem] overflow-hidden relative shadow-lg group cursor-pointer border border-ciro-dark/5">
+          <img id="img-post-2" src="ciro_dica.png" alt="Dica Jurídica" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80'" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ciro-dark/90 via-ciro-dark/20 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <span class="bg-white/20 backdrop-blur-md border border-white/30 text-white text-[8px] font-black uppercase px-2 py-1 rounded mb-2 inline-block">Dica Estratégica</span>
+            <p class="font-serif text-white text-lg leading-tight drop-shadow-md">O que você não deve postar durante o divórcio.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LIFESTYLE / HUMANIZAÇÃO
+         ========================================== -->
+    <section class="px-6 py-12 bg-ciro-sand/30 border-y border-ciro-dark/5 reveal text-center">
+       <i data-lucide="quote" class="w-8 h-8 text-ciro-gold/40 mx-auto mb-4 rotate-180"></i>
+       <h3 class="font-serif text-2xl text-ciro-dark italic leading-snug px-4 mb-6">
+         "O seu normal é o sonho de alguém. Desfrute e seja grato!"
+       </h3>
+       
+       <!-- Grid de Lifestyle -->
+       <div class="grid grid-cols-2 gap-3">
+          <div class="h-40 rounded-3xl overflow-hidden shadow-sm">
+             <img id="img-life-1" src="ciro_familia.png" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80'" />
+          </div>
+          <div class="h-40 rounded-3xl overflow-hidden shadow-sm">
+             <img id="img-life-2" src="ciro_esporte.png" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1502224562085-6dfe2f22f0ae?auto=format&fit=crop&w=600&q=80'" />
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER E CONTATOS
+         ========================================== -->
+    <footer class="mt-auto px-8 pt-16 pb-24 bg-ciro-dark text-white text-center rounded-t-[4rem] border-t border-ciro-dark/10 shadow-[0_-20px_50px_rgba(0,0,0,0.1)] relative z-20">
+      
+      <div class="w-16 h-1 bg-white/10 rounded-full mx-auto mb-10"></div>
+
+      <div class="mb-12">
+        <h2 class="font-serif text-3xl mb-3 tracking-wide leading-tight">Convoque o <span class="italic text-ciro-gold">time certo</span> para o seu recomeço.</h2>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-white/50 font-bold mt-4">Freitas Advogados</p>
+      </div>
+
+      <div class="space-y-4 mb-16">
+        <!-- Botão Principal WhatsApp -->
+        <button onclick="handleLink('acolhimento')" class="w-full bg-ciro-gold hover:bg-[#a88c5c] text-ciro-dark py-5 rounded-2xl font-bold text-[11px] uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-lg active:scale-95">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          Falar com a Equipe
+        </button>
+
+        <!-- Instagram -->
+        <button onclick="window.open('https://instagram.com/cirofreitas', '_blank')" class="w-full bg-white/5 border border-white/10 text-white/80 py-4 rounded-2xl font-bold text-[11px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 hover:bg-white/10 hover:text-white active:scale-95">
+          <i data-lucide="instagram" class="w-4 h-4 text-ciro-gold"></i>
+          @cirofreitas
+        </button>
+
+        <!-- Site Escritório -->
+        <button onclick="window.open('https://freitasadvogados.net', '_blank')" class="w-full bg-transparent text-white/50 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 hover:text-white mt-2">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          Acessar Site do Escritório
+        </button>
+      </div>
+
+      <!-- Assinatura -->
+      <div class="pt-8 border-t border-white/10 flex flex-col items-center">
+        <p class="text-[9px] font-bold tracking-widest uppercase text-white/30 mb-2">
+          © 2026 CIRO FREITAS
+        </p>
+        <p class="text-[8px] uppercase tracking-[0.3em] text-white/30 flex items-center justify-center gap-1">
+          CRIADO POR <strong class="text-ciro-gold tracking-widest font-black">VERTICY.</strong> PREMIUM BIO
+        </p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
