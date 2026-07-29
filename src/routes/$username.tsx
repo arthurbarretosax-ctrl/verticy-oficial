@@ -81,7 +81,7 @@ const getPublicSite = createServerFn({ method: "GET" })
 /* ---------- route ---------- */
 export const Route = createFileRoute("/$username")({
   validateSearch: (search: Record<string, unknown>) => ({
-    preview: search.preview === "true" || search.preview === true,
+    preview: search.preview === "true" || search.preview === true ? true : undefined,
   }),
   loaderDeps: ({ search: { preview } }) => ({ preview }),
   loader: async ({ params, deps }) => {
