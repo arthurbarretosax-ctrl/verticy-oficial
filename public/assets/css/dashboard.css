@@ -389,3 +389,74 @@ button { background: none; border: none; font: inherit; cursor: pointer; color: 
 /* Copy Utility */
 .copy-btn { width: 28px; height: 28px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border: 1px solid var(--border-light); transition: all 0.2s; cursor: pointer; color: var(--text-muted); }
 .copy-btn:hover { background: rgba(255,255,255,0.1); color: var(--text-main); }
+
+/* ---------------- Responsive / Mobile Optimizations ---------------- */
+@media (max-width: 992px) {
+  .status-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .middle-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 16px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .logo-container {
+    margin-bottom: 16px;
+  }
+  .nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+  .nav-menu::-webkit-scrollbar { display: none; }
+  .nav-item {
+    white-space: nowrap;
+    padding: 8px 12px;
+  }
+  .upgrade-card, .user-profile {
+    display: none;
+  }
+
+  .main-content {
+    padding: 24px 16px;
+  }
+  
+  .top-bar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .greeting-title {
+    font-size: 24px;
+  }
+  .top-actions {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+  .preview-frame-container {
+    aspect-ratio: 16/9;
+    height: auto;
+  }
+}
