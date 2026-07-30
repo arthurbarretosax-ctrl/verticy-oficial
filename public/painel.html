@@ -5,11 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Painel · Verticy</title>
   
+  <script>
+    // Theme Manager - Prevents FOUC
+    (function() {
+      const savedTheme = localStorage.getItem('verticy_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
   <!-- Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/assets/css/dashboard.css?v=3" />
+  <link rel="stylesheet" href="assets/css/dashboard.css?v=4" />
 </head>
 <body>
 
@@ -41,7 +53,6 @@
         </a>
         <a href="analytics.html" class="nav-item">
           <div class="nav-item-left"><i class="ph ph-chart-line-up"></i><span>Analytics</span></div>
-          <span class="badge-new">Novo</span>
         </a>
         <a href="leads.html" class="nav-item">
           <div class="nav-item-left"><i class="ph ph-users"></i><span>Leads</span></div>
@@ -60,13 +71,13 @@
 
       <div class="user-profile" id="signout">
         <div class="user-profile-left">
-          <div class="user-avatar" id="avatar">AB</div>
+          <div class="user-avatar" id="avatar">A</div>
           <div class="user-details">
-            <span class="user-name" id="profile-name">Arthur Barreto</span>
-            <span class="user-email" id="profile-email">arthur@email.com</span>
+            <span class="user-name" id="profile-name">Arthur</span>
+            <span class="user-email" id="profile-email">arthurbarretosax@gmail.com</span>
           </div>
         </div>
-        <i class="ph ph-caret-down" style="color: var(--text-muted);"></i>
+        <i class="ph ph-caret-down" style="color: var(--text-muted); font-size: 14px;"></i>
       </div>
     </aside>
 
@@ -81,8 +92,11 @@
         </div>
         <div class="top-actions">
           <div class="plan-badge">
-            <i class="ph ph-diamond"></i> <span id="plan-tag">Plano Essencial</span>
+            <i class="ph ph-diamond"></i> <span id="plan-tag">Plano Profissional</span>
           </div>
+          <button class="icon-btn" id="theme-toggle" title="Alternar Modo de Cor">
+            <i class="ph ph-moon"></i>
+          </button>
           <button class="icon-btn">
             <i class="ph ph-bell"></i>
             <span class="notification-dot">3</span>
@@ -99,233 +113,189 @@
         <div class="status-card">
           <div class="status-card-header"><i class="ph ph-globe"></i> Endereço público</div>
           <div class="status-card-value">
-            <span id="stat-url" style="font-size: 15px;">verticy.site/dra-amanda</span>
-            <button class="copy-btn" id="copy-url"><i class="ph ph-copy"></i></button>
+            <span style="font-size: 14px; font-weight: 500;">app.verticy.site/arthur</span>
+            <button class="copy-btn"><i class="ph ph-copy"></i></button>
           </div>
           <div class="status-card-footer">
             <span class="badge-pill success">Ativo</span>
           </div>
         </div>
-
+        
         <div class="status-card">
-          <div class="status-card-header"><i class="ph ph-check-circle"></i> Status</div>
-          <div class="status-card-value" style="color: var(--status-green);" id="stat-status-text">Publicado</div>
-          <div class="status-card-footer" id="stat-status-desc">Seu site está online</div>
+          <div class="status-card-header"><i class="ph ph-clock"></i> Status do site</div>
+          <div class="status-card-value" style="color: var(--success);">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--success);"></div>
+              Publicado
+            </div>
+          </div>
+          <div class="status-card-footer">Seu site está online</div>
         </div>
 
         <div class="status-card">
           <div class="status-card-header"><i class="ph ph-layout"></i> Template</div>
-          <div class="status-card-value" id="stat-template">Dentista Premium</div>
+          <div class="status-card-value">Contabilidade</div>
           <div class="status-card-footer">
-            <span class="badge-pill premium" id="stat-template-badge">Premium</span>
+            <span class="badge-pill premium">Premium</span>
           </div>
         </div>
 
         <div class="status-card">
-          <div class="status-card-header"><i class="ph ph-clock"></i> Última atualização</div>
-          <div class="status-card-value" id="stat-updated">24/07/2026 às 14:32</div>
+          <div class="status-card-header"><i class="ph ph-clock-counter-clockwise"></i> Última atualização</div>
+          <div class="status-card-value">29/07/2026 às 16:36</div>
           <div class="status-card-footer">há 2 horas</div>
         </div>
       </div>
 
-      <!-- Middle Layout (Preview + Actions) -->
+      <!-- Middle Layout -->
       <div class="middle-layout">
-        <!-- Preview -->
-        <div class="section-card">
+        
+        <!-- Preview Section -->
+        <div class="preview-section-container">
           <div class="preview-header">
-            <span class="preview-title">Prévia do seu site</span>
-            <span class="badge-pill success" style="background: transparent; border: 1px solid var(--status-green);"><i class="ph ph-record" style="font-size: 10px;"></i> Ao vivo</span>
+            <h3 class="preview-title">Visão geral do seu site</h3>
+            <div class="preview-status"><span class="badge-pill" style="border: 1px solid var(--accent); color: var(--accent); background: var(--accent-transparent);"><span class="dot" style="background: var(--accent);"></span> Ao vivo</span></div>
           </div>
+          
           <div class="preview-frame-container">
-            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" alt="Preview" id="preview-img" />
-            <a class="btn btn-ghost preview-overlay-btn" id="overlay-preview-link" target="_blank" rel="noopener">Abrir site <i class="ph ph-arrow-square-out"></i></a>
+            <div class="browser-bar">
+              <div class="browser-dot red"></div>
+              <div class="browser-dot yellow"></div>
+              <div class="browser-dot green"></div>
+            </div>
+            <div class="preview-content">
+              <img src="assets/img/tpl-contabilidade01.jpg" alt="Preview" id="preview-img" style="object-position: top; object-fit: cover; border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg);" />
+              <div class="preview-overlay-btn">
+                <i class="ph ph-eye"></i> Visualizar site
+              </div>
+            </div>
           </div>
-          <div class="dots-indicator">
-            <span class="active"></span><span></span><span></span><span></span><span></span>
+
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <div class="metric-title">Visitantes hoje</div>
+              <div class="metric-value">1.248</div>
+              <div class="metric-change positive"><i class="ph ph-trend-up"></i> 12% <span>vs ontem</span></div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-title">Leads capturados</div>
+              <div class="metric-value">32</div>
+              <div class="metric-change positive"><i class="ph ph-trend-up"></i> 18% <span>vs ontem</span></div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-title">Taxa de conversão</div>
+              <div class="metric-value">2,56%</div>
+              <div class="metric-change positive"><i class="ph ph-trend-up"></i> 8% <span>vs ontem</span></div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-title">Velocidade do site</div>
+              <div class="metric-value">A+</div>
+              <div class="metric-change" style="color: var(--success);">Excelente</div>
+            </div>
           </div>
         </div>
-
+        
         <!-- Quick Actions -->
         <div>
           <h3 class="actions-header">Ações rápidas</h3>
           <div class="actions-grid">
             
-            <a href="/editor.html" class="action-box" id="action-editor">
-              <div class="action-icon"><i class="ph ph-pencil-simple"></i></div>
-              <div>
-                <h4>Editar conteúdo</h4>
-                <p>Personalize textos, imagens e cores</p>
+            <div class="action-box-main" onclick="window.location.href='/editor.html'">
+              <div class="action-main-content">
+                <div class="action-main-icon"><i class="ph ph-pencil-simple"></i></div>
+                <div class="action-main-text">
+                  <h4>Editar meu site</h4>
+                  <p>Personalize seu site, textos, imagens e cores.</p>
+                </div>
               </div>
-            </a>
-            
-            <a href="/configuracoes.html" class="action-box">
-              <div class="action-icon"><i class="ph ph-gear"></i></div>
-              <div>
-                <h4>Configurações</h4>
-                <p>SEO, metas, domínio e muito mais</p>
-              </div>
-            </a>
-            
-            <button class="action-box text-left w-full" id="btn-share-site" style="text-align: left; width: 100%;">
-              <div class="action-icon"><i class="ph ph-share-network"></i></div>
-              <div>
-                <h4>Compartilhar</h4>
-                <p>Divulgue seu site nas redes sociais</p>
-              </div>
-            </button>
-            
-            <a href="/leads.html" class="action-box">
-              <div class="action-icon"><i class="ph ph-users"></i></div>
-              <div>
-                <h4>Leads</h4>
-                <p>Veja seus contatos e mensagens</p>
-              </div>
-            </a>
-            
-            <a href="/analytics.html" class="action-box">
-              <div class="action-icon"><i class="ph ph-chart-bar"></i></div>
-              <div>
-                <h4>Analytics</h4>
-                <p>Acompanhe visitas, cliques e conversões</p>
-              </div>
-            </a>
-            
-            <button class="action-box text-left w-full" id="btn-duplicate-site" style="text-align: left; width: 100%;">
-              <div class="action-icon"><i class="ph ph-copy"></i></div>
-              <div>
-                <h4>Duplicar site</h4>
-                <p>Crie uma cópia do seu site atual</p>
-              </div>
-            </button>
+              <div class="action-main-arrow"><i class="ph ph-arrow-right"></i></div>
+            </div>
 
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-chart-bar"></i></div>
+              <h4>Analytics</h4>
+              <p>Acompanhe visitas, cliques e conversões</p>
+            </div>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-users"></i></div>
+              <h4>Leads</h4>
+              <p>Veja seus contatos e mensagens</p>
+            </div>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-magnifying-glass"></i></div>
+              <h4>SEO</h4>
+              <p>Otimize seu site para mecanismos de busca</p>
+            </div>
+
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-globe"></i></div>
+              <h4>Domínio</h4>
+              <p>Gerencie seu domínio e DNS</p>
+            </div>
+            
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-share-network"></i></div>
+              <h4>Compartilhar</h4>
+              <p>Divulgue seu site nas redes sociais</p>
+            </div>
+
+            <div class="action-box">
+              <div class="action-icon"><i class="ph ph-copy"></i></div>
+              <h4>Duplicar site</h4>
+              <p>Crie uma cópia do seu site atual</p>
+            </div>
+            
           </div>
         </div>
+
       </div>
 
-      
+      <!-- Tip -->
+      <div class="tip-banner">
+        <div class="tip-content">
+          <div class="tip-badge"><i class="ph ph-magic-wand"></i> Dica rápida</div>
+          <span>Conecte um domínio personalizado e transmita ainda mais profissionalismo.</span>
+        </div>
+        <button class="tip-btn">Conectar domínio <i class="ph ph-arrow-right"></i></button>
+      </div>
 
     </main>
   </div>
 
-  <script type="module">
-    import { supabase, requireProfile, toast, initials, TEMPLATES } from "/assets/js/verticy.js";
-    import { DENTISTA01_DEFAULTS } from "/assets/js/dentista01-defaults.js";
-    import { CONFEITARIA01_DEFAULTS } from "/assets/js/confeitaria01-defaults.js";
-    import { CREATOR01_DEFAULTS } from "/assets/js/creator01-defaults.js";
-    import { ADVOGADO01_DEFAULTS } from "/assets/js/advogado01-defaults.js";
-    import { MEDICO01_DEFAULTS } from "/assets/js/medico01-defaults.js";
-    import { ARQUITETO01_DEFAULTS } from "/assets/js/arquiteto01-defaults.js";
-    import { CORRETOR01_DEFAULTS } from "/assets/js/corretor01-defaults.js";
-    import { PERSONAL01_DEFAULTS } from "/assets/js/personal01-defaults.js";
-    import { RESTAURANTE01_DEFAULTS } from "/assets/js/restaurante01-defaults.js";
-    import { BARBEARIA01_DEFAULTS } from "/assets/js/barbearia01-defaults.js";
-    import { PSICOLOGO01_DEFAULTS } from "/assets/js/psicologo01-defaults.js";
-    import { MAQUIADORA01_DEFAULTS } from "/assets/js/maquiadora01-defaults.js";
-    import { PETSHOP01_DEFAULTS } from "/assets/js/petshop01-defaults.js";
-    import { BUFFET01_DEFAULTS } from "/assets/js/buffet01-defaults.js";
-    import { CONTABILIDADE01_DEFAULTS } from "/assets/js/contabilidade01-defaults.js";
-
-    const ctx = await requireProfile();
-    if (!ctx) throw new Error("no session");
-    const { session, profile } = ctx;
-
-    if (!profile?.onboarding_completed) { window.location.replace("/onboarding.html"); }
-
-    const fullName = profile.full_name || "Você";
-    const firstName = fullName.split(" ")[0];
-    
-    document.getElementById("avatar").textContent = initials(fullName);
-    document.getElementById("profile-name").textContent = fullName;
-    document.getElementById("profile-email").textContent = session.user.email;
-    document.getElementById("greet-name").textContent = firstName;
-    document.getElementById("plan-tag").textContent = `Plano ${profile.plan?.[0]?.toUpperCase() + profile.plan?.slice(1) || "Essencial"}`;
-
-    const publicUrl = `${window.location.host}/${profile.username}`;
-    const fullPublicUrl = `${window.location.origin}/${profile.username}`;
-    document.getElementById("stat-url").textContent = publicUrl;
-    document.getElementById("preview-link").href = fullPublicUrl;
-    document.getElementById("overlay-preview-link").href = fullPublicUrl;
-
-    const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
-    const isPub = !!site?.published;
-    const currentTpl = site?.template_id || "aurora";
-
-    
-    
-    const activeTemplateInfo = TEMPLATES.find(t => t.id === currentTpl) || TEMPLATES[0];
-
-    const statusText = document.getElementById("stat-status-text");
-    const statusDesc = document.getElementById("stat-status-desc");
-    if (isPub) {
-      statusText.textContent = "Publicado";
-      statusText.style.color = "var(--status-green)";
-      statusDesc.textContent = "Seu site está online";
-    } else {
-      statusText.textContent = "Rascunho";
-      statusText.style.color = "var(--status-purple)";
-      statusDesc.textContent = "Apenas você pode ver";
-    }
-    
-    document.getElementById("stat-template").textContent = activeTemplateInfo.name;
-    document.getElementById("stat-template-badge").textContent = activeTemplateInfo.badge;
-    document.getElementById("stat-template-badge").className = "badge-pill " + (activeTemplateInfo.badge === "Premium" ? "premium" : "success");
-    document.getElementById("preview-img").src = activeTemplateInfo.img;
-    
-    if (site?.updated_at) {
-      const date = new Date(site.updated_at);
-      document.getElementById("stat-updated").textContent = date.toLocaleDateString("pt-BR") + " às " + date.toLocaleTimeString("pt-BR", {hour: '2-digit', minute:'2-digit'});
-    } else {
-      document.getElementById("stat-updated").textContent = "Nunca";
-    }
-
-    let editorHref = "/editor.html";
-    if (currentTpl === "drantonio") editorHref = "/editor-drantonio.html";
-    if (currentTpl === "dentista01") editorHref = "/editor-dentista01.html";
-    if (currentTpl === "confeitaria01") editorHref = "/editor-confeitaria01.html";
-    if (currentTpl === "creator01") editorHref = "/editor-creator01.html";
-    if (currentTpl === "advogado01") editorHref = "/editor-advogado01.html";
-    if (currentTpl === "medico01") editorHref = "/editor-medico01.html";
-    if (currentTpl === "arquiteto01") editorHref = "/editor-arquiteto01.html";
-    if (currentTpl === "corretor01") editorHref = "/editor-corretor01.html";
-    if (currentTpl === "personal01") editorHref = "/editor-personal01.html";
-    if (currentTpl === "restaurante01") editorHref = "/editor-restaurante01.html";
-    if (currentTpl === "barbearia01") editorHref = "/editor-barbearia01.html";
-    if (currentTpl === "psicologo01") editorHref = "/editor-psicologo01.html";
-    if (currentTpl === "maquiadora01") editorHref = "/editor-maquiadora01.html";
-    if (currentTpl === "petshop01") editorHref = "/editor-petshop01.html";
-    if (currentTpl === "buffet01") editorHref = "/editor-buffet01.html";
-    if (currentTpl === "contabilidade01") editorHref = "/editor-contabilidade01.html";
-    document.getElementById("editor-link").href = editorHref;
-    document.getElementById("action-editor").href = editorHref;
-
-    document.getElementById("copy-url").addEventListener("click", async () => {
-      await navigator.clipboard.writeText(fullPublicUrl);
-      toast("Link copiado para a área de transferência!", "success");
-    });
-
-    document.getElementById("signout").addEventListener("click", async () => {
-      await supabase.auth.signOut();
-      window.location.replace("/");
-    });
-
-    document.getElementById("btn-share-site").addEventListener("click", async () => {
-      if (navigator.share) {
-        try {
-          await navigator.share({ title: 'Meu site', url: fullPublicUrl });
-        } catch (err) { console.log(err); }
-      } else {
-        await navigator.clipboard.writeText(fullPublicUrl);
-        toast("Link copiado para compartilhar!", "success");
+  <script src="assets/js/verticy.js" type="module"></script>
+  <script>
+    // Theme Toggle Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      function updateIcon(theme) {
+        if (theme === 'light') {
+          themeIcon.className = 'ph ph-sun';
+        } else {
+          themeIcon.className = 'ph ph-moon';
+        }
       }
-    });
 
-    document.getElementById("btn-duplicate-site").addEventListener("click", async () => {
-      if (window.confirm("Deseja criar uma cópia exata do seu site atual em um novo link? (Em breve)")) {
-        toast("Função de duplicação estará disponível no próximo update!", "success");
-      }
-    });
+      // Initial icon state
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      updateIcon(currentTheme);
 
-    
+      themeToggle.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'light') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('verticy_theme', 'dark');
+          updateIcon('dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('verticy_theme', 'light');
+          updateIcon('light');
+        }
+      });
+    });
   </script>
 </body>
 </html>
