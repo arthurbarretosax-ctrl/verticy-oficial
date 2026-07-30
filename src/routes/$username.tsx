@@ -332,7 +332,7 @@ function AuroraSite({ profile, content }: { profile: any; content: any }) {
 }
 
 /* ------------- Dentista01 ------------- */
-export function Dentista01({ content }: { content: any }) {
+export function Dentista01({ content, profile }: { content: any; profile?: any }) {
   const [isBookingOpen, setBookingOpen] = React.useState(false);
   const handleBookingClick = (e: React.MouseEvent) => {
     e.preventDefault();

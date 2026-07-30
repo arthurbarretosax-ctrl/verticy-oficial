@@ -52,51 +52,53 @@ export const Route = createFileRoute("/preview/$templateId")({
 
 function PreviewTemplate() {
   const { templateId } = Route.useParams();
+  
+  const dummyProfile = { full_name: "Preview Usuário", whatsapp: "5511999999999", instagram_url: "#" } as any;
 
   if (templateId === "contabilidade01") {
-    return <Contabilidade01 content={CONTABILIDADE01_DEFAULTS} />;
+    return <Contabilidade01 content={CONTABILIDADE01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "buffet01") {
-    return <Buffet01 content={BUFFET01_DEFAULTS} />;
+    return <Buffet01 content={BUFFET01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "petshop01") {
-    return <Petshop01 content={PETSHOP01_DEFAULTS} />;
+    return <Petshop01 content={PETSHOP01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "maquiadora01") {
-    return <Maquiadora01 content={MAQUIADORA01_DEFAULTS} />;
+    return <Maquiadora01 content={MAQUIADORA01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "psicologo01") {
-    return <Psicologo01 content={PSICOLOGO01_DEFAULTS} />;
+    return <Psicologo01 content={PSICOLOGO01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "barbearia01") {
-    return <Barbearia01 content={BARBEARIA01_DEFAULTS} />;
+    return <Barbearia01 content={BARBEARIA01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "restaurante01") {
-    return <Restaurante01 content={RESTAURANTE01_DEFAULTS} />;
+    return <Restaurante01 content={RESTAURANTE01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "personal01") {
-    return <Personal01 content={PERSONAL01_DEFAULTS} />;
+    return <Personal01 content={PERSONAL01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "corretor01") {
-    return <Corretor01 content={CORRETOR01_DEFAULTS} />;
+    return <Corretor01 content={CORRETOR01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "arquiteto01") {
-    return <Arquiteto01 content={ARQUITETO01_DEFAULTS} />;
+    return <Arquiteto01 content={ARQUITETO01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "advogado01") {
-    return <Advogado01 content={ADVOGADO01_DEFAULTS} />;
+    return <Advogado01 content={ADVOGADO01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "dentista01") {
-    return <Dentista01 content={DENTISTA01_DEFAULTS} />;
+    return <Dentista01 content={DENTISTA01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "medico01") {
-    return <Medico01 content={MEDICO01_DEFAULTS} />;
+    return <Medico01 content={MEDICO01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "confeitaria01") {
-    return <Confeitaria01 content={CONFEITARIA01_DEFAULTS} />;
+    return <Confeitaria01 content={CONFEITARIA01_DEFAULTS} profile={dummyProfile} />;
   }
   if (templateId === "creator01") {
-    return <Creator01 content={CREATOR01_DEFAULTS} />;
+    return <Creator01 content={CREATOR01_DEFAULTS} profile={dummyProfile} />;
   }
   return (
     <div style={{ padding: 40, textAlign: 'center', fontFamily: 'sans-serif' }}>
