@@ -139,7 +139,6 @@
 
   <script type="module">
     import { supabase, requireProfile, toast, initials, TEMPLATES } from "/assets/js/verticy.js";
-    import { DRANTONIO_DEFAULTS } from "/assets/js/drantonio-defaults.js";
     import { DENTISTA01_DEFAULTS } from "/assets/js/dentista01-defaults.js";
     import { CONFEITARIA01_DEFAULTS } from "/assets/js/confeitaria01-defaults.js";
     import { CREATOR01_DEFAULTS } from "/assets/js/creator01-defaults.js";
@@ -219,8 +218,8 @@
             <h4>${t.name}</h4>
             <p>${t.desc}</p>
             <div class="tpl-actions">
-              <button class="tpl-btn-preview" onclick="window.open('https://${t.id}.verticy.site', '_blank')">Visualizar</button>
-              <button class="tpl-btn-choose" data-action="choose">${active ? 'Template Atual' : 'Escolher'}</button>
+              <button class="tpl-btn-preview" onclick="window.open('/preview/' + '${t.id}', '_blank')">Visualizar</button>
+              <button class="tpl-btn-choose" onclick="window.chooseTemplate('${t.id}')">Escolher</button>
             </div>
           </div>
         `;
@@ -269,7 +268,6 @@
       
       if (tpl === "dentista01") newContent = { ...DENTISTA01_DEFAULTS, branding: { ...DENTISTA01_DEFAULTS.branding, name: profile.full_name || DENTISTA01_DEFAULTS.branding.name } };
       else if (tpl === "contabilidade01") newContent = { ...CONTABILIDADE01_DEFAULTS, branding: { ...CONTABILIDADE01_DEFAULTS.branding, name: profile.full_name || CONTABILIDADE01_DEFAULTS.branding.name } };
-      else if (tpl === "drantonio") newContent = { ...DRANTONIO_DEFAULTS, branding: { name: profile.full_name } };
       else if (tpl === "petshop01") newContent = { ...PETSHOP01_DEFAULTS, branding: { ...PETSHOP01_DEFAULTS.branding, name: profile.full_name || PETSHOP01_DEFAULTS.branding.name } };
       else if (tpl === "buffet01") newContent = { ...BUFFET01_DEFAULTS, branding: { ...BUFFET01_DEFAULTS.branding, name: profile.full_name || BUFFET01_DEFAULTS.branding.name } };
       else if (tpl === "psicologo01") newContent = { ...PSICOLOGO01_DEFAULTS, branding: { ...PSICOLOGO01_DEFAULTS.branding, name: profile.full_name || PSICOLOGO01_DEFAULTS.branding.name } };
