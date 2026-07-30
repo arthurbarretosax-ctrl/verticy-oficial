@@ -19,7 +19,7 @@ import { Corretor01 } from "@/components/Corretor01";
 import { CORRETOR01_DEFAULTS } from "@/lib/corretor01-defaults";
 import { Arquiteto01 } from "@/components/Arquiteto01";
 import { ARQUITETO01_DEFAULTS } from "@/lib/arquiteto01-defaults";
-import { Advogado01 } from "@/components/Advogado01";
+import Advogado01 from "@/components/Advogado01";
 import { ADVOGADO01_DEFAULTS } from "@/lib/advogado01-defaults";
 import { Dentista01 } from "@/routes/$username";
 import { DENTISTA01_DEFAULTS } from "@/lib/dentista01-defaults";
