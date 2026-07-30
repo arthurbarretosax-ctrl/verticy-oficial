@@ -14,15 +14,15 @@
   --text-muted: #9CA3AF;
   --text-dark: #4B5563;
   
-  /* Brand Gradients & Colors */
-  --brand-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
-  --brand-gradient-hover: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-  --brand-color: #7C3AED;
+  /* Brand Gradients & Colors (Laranja Premium) */
+  --brand-gradient: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+  --brand-gradient-hover: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
+  --brand-color: #F97316;
   
   --status-green: #10B981;
   --status-green-bg: rgba(16, 185, 129, 0.1);
-  --status-purple: #8B5CF6;
-  --status-purple-bg: rgba(139, 92, 246, 0.1);
+  --status-purple: #F97316;
+  --status-purple-bg: rgba(249, 115, 22, 0.1);
   --status-gray: #4B5563;
   --status-gray-bg: rgba(255, 255, 255, 0.05);
 
