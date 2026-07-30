@@ -21,7 +21,7 @@ import { Arquiteto01 } from "@/components/Arquiteto01";
 import { ARQUITETO01_DEFAULTS } from "@/lib/arquiteto01-defaults";
 import { Advogado01 } from "@/components/Advogado01";
 import { ADVOGADO01_DEFAULTS } from "@/lib/advogado01-defaults";
-import { Dentista01 } from "@/components/Dentista01";
+import { Dentista01 } from "@/routes/$username";
 import { DENTISTA01_DEFAULTS } from "@/lib/dentista01-defaults";
 import { Medico01 } from "@/components/Medico01";
 import { MEDICO01_DEFAULTS } from "@/lib/medico01-defaults";
