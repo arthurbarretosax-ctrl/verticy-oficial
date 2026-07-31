@@ -107,10 +107,10 @@ export const TEMPLATES = [
   { id: "personal01", cat: "fitness", name: "Personal Trainer Elite", desc: "Consultoria fitness e treinos", badge: "Premium", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800" },
   { id: "corretor01", cat: "imoveis", name: "Corretor Premium", desc: "Imóveis de alto padrão e luxo", badge: "Premium", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" },
   { id: "arquiteto01", cat: "imoveis", name: "Arquitetura Premium", desc: "Escritórios e design de interiores", badge: "Premium", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800" },
-  { id: "advogado01", cat: "advocacia", name: "Advocacia Humanizada", desc: "Direito de Família e Sucessões", badge: "Premium", img: "https://images.unsplash.com/photo-1459499362902-55a20553e082?auto=format&fit=crop&q=80&w=800" },
+  { id: "advogado01", cat: "advocacia", name: "Advocacia Humanizada", desc: "Direito de Família e Sucessões", badge: "Premium", img: "https://images.unsplash.com/photo-1695942301094-472c4dbf9130?auto=format&fit=crop&q=80&w=800" },
   { id: "dentista01", cat: "saude", name: "Dentista Premium", desc: "Estética e clínicas", badge: "Premium", img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800" },
   { id: "medico01", cat: "saude", name: "Clínica Médica", desc: "Médicos e especialistas", badge: "Premium", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" },
   { id: "confeitaria01", cat: "alimentacao", name: "Confeitaria Doce", desc: "Doces e bolos", badge: "Premium", img: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&q=80&w=800" },
-  { id: "creator01", cat: "creators", name: "Creator Portfolio", desc: "Mídia kit e links", badge: "Premium", img: "https://images.unsplash.com/photo-1684017834245-f714094ca936?auto=format&fit=crop&q=80&w=800" }
+  { id: "creator01", cat: "creators", name: "Creator Portfolio", desc: "Mídia kit e links", badge: "Premium", img: "https://images.unsplash.com/photo-1684979564941-dbf8664a68fc?auto=format&fit=crop&q=80&w=800" }
 ];
 export { DENTISTA01_DEFAULTS } from "./dentista01-defaults.js";
