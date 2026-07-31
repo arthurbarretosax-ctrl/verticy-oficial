@@ -222,7 +222,7 @@
   </div>
 
   <script type="module">
-    import { supabase, requireProfile, toast, initials, TEMPLATES } from "assets/js/verticy.js";
+    import { supabase, requireProfile, toast, initials, TEMPLATES } from "/assets/js/verticy.js";
 
     const ctx = await requireProfile();
     if (!ctx) throw new Error("no session");
