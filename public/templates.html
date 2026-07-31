@@ -195,6 +195,15 @@
     
     let currentTpl = site?.template_id || null;
 
+    if (site?.id) {
+      document.querySelectorAll('.nav-item').forEach(link => {
+        if (link.href && link.href.startsWith(window.location.origin) && !link.href.includes('?site=')) {
+          const url = new URL(link.href);
+          url.searchParams.set('site', site.id);
+          link.href = url.toString();
+        }
+      });
+    }
 
     const grid = document.getElementById("templates-grid");
     const searchInput = document.getElementById("search-input");

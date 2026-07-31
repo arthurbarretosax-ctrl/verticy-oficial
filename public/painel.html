@@ -306,6 +306,14 @@
     if (currentTpl === "contabilidade01") editorHref = "/editor-contabilidade01.html";
     if (site?.id) {
       editorHref += `?site=${site.id}`;
+      // Fix all sidebar links to keep context of the current site
+      document.querySelectorAll('.nav-item').forEach(link => {
+        if (link.href && link.href.startsWith(window.location.origin) && !link.href.includes('?site=')) {
+          const url = new URL(link.href);
+          url.searchParams.set('site', site.id);
+          link.href = url.toString();
+        }
+      });
     }
     document.getElementById("editor-link").href = editorHref;
     document.getElementById("action-editor").href = editorHref;
@@ -332,8 +340,20 @@
     });
 
     document.getElementById("btn-duplicate-site").addEventListener("click", async () => {
-      if (window.confirm("Deseja criar uma cópia exata do seu site atual em um novo link? (Em breve)")) {
-        toast("Função de duplicação estará disponível no próximo update!", "success");
+      if (window.confirm("Deseja criar uma cópia exata deste site?")) {
+        toast("Duplicando...", "info");
+        const { id: _, created_at, updated_at, ...copyData } = site;
+        copyData.published = false;
+        
+        const { data: newSite, error } = await supabase.from('sites').insert(copyData).select().single();
+        if(error) {
+          toast("Erro ao duplicar: " + error.message, "error");
+        } else {
+          toast("Site duplicado com sucesso!", "success");
+          setTimeout(() => {
+            window.location.href = "/painel.html?site=" + newSite.id;
+          }, 1000);
+        }
       }
     });
 
