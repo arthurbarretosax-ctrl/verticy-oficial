@@ -245,7 +245,17 @@
     document.getElementById("preview-link").href = fullPublicUrl;
     document.getElementById("overlay-preview-link").href = fullPublicUrl;
 
-    const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
+    const urlParams = new URLSearchParams(window.location.search);
+    const siteIdParam = urlParams.get('site');
+
+    let siteQuery = supabase.from("sites").select("*").eq("user_id", session.user.id);
+    if (siteIdParam) {
+      siteQuery = siteQuery.eq("id", siteIdParam).maybeSingle();
+    } else {
+      siteQuery = siteQuery.order("updated_at", { ascending: false }).limit(1).maybeSingle();
+    }
+    const { data: site } = await siteQuery;
+
     const isPub = !!site?.published;
     const currentTpl = site?.template_id || "aurora";
 
@@ -294,6 +304,9 @@
     if (currentTpl === "petshop01") editorHref = "/editor-petshop01.html";
     if (currentTpl === "buffet01") editorHref = "/editor-buffet01.html";
     if (currentTpl === "contabilidade01") editorHref = "/editor-contabilidade01.html";
+    if (site?.id) {
+      editorHref += `?site=${site.id}`;
+    }
     document.getElementById("editor-link").href = editorHref;
     document.getElementById("action-editor").href = editorHref;
 

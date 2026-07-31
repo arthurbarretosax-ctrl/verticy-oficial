@@ -124,11 +124,23 @@
     </aside>
 
     <main class="main-content" style="overflow-y: auto;">
-      <div class="settings-layout" style="text-align: center; margin-top: 100px;">
-        <div style="font-size: 48px; color: var(--brand-color); margin-bottom: 24px;"><i class="ph ph-hammer"></i></div>
-        <h1 style="font-size: 32px; font-weight: 600; color: #fff; margin-bottom: 12px;">Meus Sites</h1>
-        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 32px;">Gerencie todos os seus sites criados na Verticy.<br>Esta página está em construção e estará disponível em breve!</p>
-        <a href="/painel.html" class="btn btn-primary" style="background: var(--brand-color); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none;">Voltar ao Painel</a>
+      <div class="settings-layout" style="max-width: 1000px;">
+        <div class="settings-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h1>Meus Sites</h1>
+            <p>Gerencie todos os seus microsites criados.</p>
+          </div>
+          <a href="/templates.html" class="btn btn-primary" style="text-decoration: none; display: flex; align-items: center; gap: 8px;">
+            <i class="ph ph-plus"></i> Novo Site
+          </a>
+        </div>
+        
+        <div id="sites-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;">
+          <!-- Sites rendered via JS -->
+          <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px;">
+            Carregando seus sites...
+          </div>
+        </div>
       </div>
     </main>
     
@@ -138,7 +150,7 @@
   </div>
 
   <script type="module">
-    import { supabase, requireProfile, toast, initials } from "/assets/js/verticy.js";
+    import { supabase, requireProfile, toast, initials, TEMPLATES } from "/assets/js/verticy.js";
 
     const ctx = await requireProfile();
     if (!ctx) throw new Error("no session");
@@ -150,43 +162,106 @@
     document.getElementById("avatar").textContent = initials(fullName || "Você");
     document.getElementById("profile-name").textContent = fullName || "Você";
     document.getElementById("profile-email").textContent = session.user.email;
-    
-    document.getElementById("input-name").value = fullName;
-    document.getElementById("input-email").value = session.user.email;
-    
-    const planName = profile.plan?.[0]?.toUpperCase() + profile.plan?.slice(1) || "Essencial";
-    document.getElementById("plan-name-display").textContent = `Plano ${planName}`;
 
-    document.getElementById("signout").addEventListener("click", async () => {
-      await supabase.auth.signOut();
-      window.location.replace("/");
-    });
-
-    document.getElementById("btn-save-profile").addEventListener("click", async () => {
-      const btn = document.getElementById("btn-save-profile");
-      const newName = document.getElementById("input-name").value.trim();
+    async function loadSites() {
+      const grid = document.getElementById("sites-grid");
+      const { data: sites, error } = await supabase.from('sites').select('*').eq('user_id', session.user.id).order('updated_at', { ascending: false });
       
-      if (!newName) {
-        toast("O nome não pode ficar vazio", "error");
+      if (error) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; color: #ef4444;">Erro ao carregar sites: ${error.message}</div>`;
         return;
       }
       
-      btn.textContent = "Salvando...";
-      btn.disabled = true;
-      
-      const { error } = await supabase.from('profiles').update({ full_name: newName }).eq('id', session.user.id);
-      
-      btn.textContent = "Salvar Alterações";
-      btn.disabled = false;
-      
-      if (error) {
-        toast("Erro ao salvar: " + error.message, "error");
-      } else {
-        toast("Perfil atualizado com sucesso!", "success");
-        document.getElementById("profile-name").textContent = newName;
-        document.getElementById("avatar").textContent = initials(newName);
+      if (!sites || sites.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px dashed var(--border-light);">
+            <i class="ph ph-browser" style="font-size: 48px; color: var(--text-muted); margin-bottom: 16px;"></i>
+            <h3>Você ainda não tem nenhum site</h3>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">Crie seu primeiro site escolhendo um template incrível.</p>
+            <a href="/templates.html" class="btn btn-primary" style="text-decoration:none;">Ver Templates</a>
+          </div>`;
+        return;
       }
-    });
+      
+      grid.innerHTML = "";
+      
+      sites.forEach(site => {
+        const tplId = site.template_id || "aurora";
+        const tplInfo = TEMPLATES.find(t => t.id === tplId) || TEMPLATES[0];
+        const statusClass = site.published ? "success" : "purple";
+        const statusText = site.published ? "Publicado" : "Rascunho";
+        
+        const card = document.createElement("div");
+        card.className = "settings-card";
+        card.style.padding = "0";
+        card.style.overflow = "hidden";
+        card.style.display = "flex";
+        card.style.flexDirection = "column";
+        
+        card.innerHTML = `
+          <div style="height: 160px; overflow: hidden; position: relative;">
+            <img src="${tplInfo.img}" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); padding: 4px 12px; border-radius: 20px; font-size: 12px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px);">
+              <span style="color: var(--status-${statusClass});">●</span> ${statusText}
+            </div>
+          </div>
+          <div style="padding: 20px; flex-grow: 1;">
+            <h3 style="margin-bottom: 4px; font-size: 18px;">${tplInfo.name}</h3>
+            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">Atualizado em ${new Date(site.updated_at).toLocaleDateString("pt-BR")}</p>
+            
+            <div style="display: flex; gap: 8px;">
+              <a href="/painel.html?site=${site.id}" class="btn" style="flex: 1; background: rgba(255,255,255,0.05); text-align: center; text-decoration: none; border-radius: 6px; font-size: 14px;">Painel</a>
+            </div>
+            
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <button onclick="window.duplicateSite('${site.id}')" class="btn" style="flex: 1; background: transparent; border: 1px solid var(--border-light); color: var(--text-main); border-radius: 6px; font-size: 13px;">
+                <i class="ph ph-copy"></i> Duplicar
+              </button>
+              <button onclick="window.deleteSite('${site.id}')" class="btn" style="flex: 1; background: transparent; border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; border-radius: 6px; font-size: 13px;">
+                <i class="ph ph-trash"></i> Excluir
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    loadSites();
+
+    window.duplicateSite = async (id) => {
+      if(!confirm("Deseja criar uma cópia deste site?")) return;
+      
+      const { data: original } = await supabase.from('sites').select('*').eq('id', id).single();
+      if(!original) return;
+      
+      const { id: _, created_at, updated_at, ...copyData } = original;
+      copyData.published = false;
+      
+      toast("Duplicando...", "info");
+      const { error } = await supabase.from('sites').insert(copyData);
+      
+      if(error) {
+        toast("Erro ao duplicar: " + error.message, "error");
+      } else {
+        toast("Site duplicado com sucesso!", "success");
+        loadSites();
+      }
+    };
+
+    window.deleteSite = async (id) => {
+      if(!confirm("Tem certeza que deseja excluir este site? Esta ação não pode ser desfeita.")) return;
+      
+      const { error } = await supabase.from('sites').delete().eq('id', id);
+      
+      if(error) {
+        toast("Erro ao excluir: " + error.message, "error");
+      } else {
+        toast("Site excluído com sucesso!", "success");
+        loadSites();
+      }
+    };
+
 
   </script>
 <script type="module">

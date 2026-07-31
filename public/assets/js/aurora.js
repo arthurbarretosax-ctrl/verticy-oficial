@@ -7,7 +7,15 @@ if (!profile?.onboarding_completed) { window.location.replace("/onboarding.html"
 
 document.getElementById("preview-link").href = `${window.location.origin}/${profile.username}`;
 
-const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
+const urlParams = new URLSearchParams(window.location.search);
+    const siteIdParam = urlParams.get('site');
+    let siteQuery = supabase.from("sites").select("*").eq("user_id", session.user.id);
+    if (siteIdParam) {
+      siteQuery = siteQuery.eq("id", siteIdParam).maybeSingle();
+    } else {
+      siteQuery = siteQuery.order("updated_at", { ascending: false }).limit(1).maybeSingle();
+    }
+    const { data: site } = await siteQuery;
 if (!site) { toast("Site não encontrado", "error"); throw new Error("no site"); }
 if (site.template_id && site.template_id !== "aurora") {
   // redirect if they somehow landed here but have another template

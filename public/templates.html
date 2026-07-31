@@ -184,8 +184,17 @@
       window.location.replace("/");
     });
 
-    const { data: site } = await supabase.from('sites').select('*').eq('user_id', session.user.id).single();
-    let currentTpl = site?.template_id || "aurora";
+    const urlParams = new URLSearchParams(window.location.search);
+    const siteIdParam = urlParams.get('site');
+    
+    let site = null;
+    if (siteIdParam) {
+      const { data } = await supabase.from('sites').select('*').eq('id', siteIdParam).single();
+      site = data;
+    }
+    
+    let currentTpl = site?.template_id || null;
+
 
     const grid = document.getElementById("templates-grid");
     const searchInput = document.getElementById("search-input");
@@ -296,16 +305,34 @@
       else if (tpl === "confeitaria01") newContent = { ...CONFEITARIA01_DEFAULTS, branding: { ...CONFEITARIA01_DEFAULTS.branding, name: profile.full_name || CONFEITARIA01_DEFAULTS.branding.name } };
       else if (tpl === "creator01") newContent = { ...CREATOR01_DEFAULTS, branding: { ...CREATOR01_DEFAULTS.branding, name: profile.full_name || CREATOR01_DEFAULTS.branding.name } };
 
-      const { error } = await supabase.from('sites').update({ template_id: tpl, content: newContent }).eq('id', site.id);
+      let error;
+      if (site && site.id) {
+        // Update existing site
+        const res = await supabase.from('sites').update({ template_id: tpl, content: newContent }).eq('id', site.id);
+        error = res.error;
+      } else {
+        // Create new site
+        const res = await supabase.from('sites').insert({
+          user_id: session.user.id,
+          template_id: tpl,
+          content: newContent,
+          published: false
+        }).select().single();
+        error = res.error;
+        if (res.data) site = res.data;
+      }
+      
       if (error) {
-        toast("Erro ao trocar template: " + error.message, "error");
+        toast("Erro ao aplicar template: " + error.message, "error");
         chooseBtn.textContent = "Escolher";
         chooseBtn.style.opacity = "1";
         card.style.opacity = "1";
       } else {
         toast("Template aplicado com sucesso!", "success");
+        currentTpl = tpl;
+        renderTemplates();
         setTimeout(() => {
-          window.location.reload();
+          window.location.href = "/painel.html" + (site?.id ? `?site=${site.id}` : "");
         }, 1000);
       }
     });
