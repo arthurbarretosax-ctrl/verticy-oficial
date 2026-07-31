@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="/assets/img/logo-verticy.png" />
+  <title>Editor Dentista Premium · Verticy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/verticy.css?v=3" />
+  <style>
+    .ed-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+    .ed-nav button { padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: var(--muted, #8892a6); font-size: 13px; cursor: pointer; transition: all .2s; }
+    .ed-nav button.active { background: var(--brand, #7c5cff); border-color: transparent; color: #fff; }
+    .ed-section { display: none; }
+    .ed-section.active { display: block; }
+    .ed-repeat { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,.02); }
+    .ed-repeat-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .ed-repeat-head strong { font-size: 13px; }
+    .textarea-sm { min-height: 70px; }
+
+    /* Upload widget */
+    .ed-img { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; margin-bottom: 14px; background: rgba(255,255,255,.02); }
+    .ed-img-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+    .ed-img-head label { font-size: 13px; font-weight: 500; color: #cfd3df; }
+    .ed-img-hint { font-size: 11px; color: var(--muted, #8892a6); letter-spacing: 0.02em; }
+    .ed-img-row { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: start; }
+    .ed-img-thumb { width: 96px; height: 96px; border-radius: 10px; border: 1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.3) center/cover no-repeat; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #4a4f5c; font-size: 22px; }
+    .ed-img-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ed-img-actions { display: flex; flex-direction: column; gap: 8px; }
+    .ed-img-actions .row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ed-img input[type="file"] { display: none; }
+    .ed-img .btn-file { position: relative; overflow: hidden; }
+    .ed-img .btn-file.uploading { opacity: 0.6; pointer-events: none; }
+    .ed-img .input-sm { padding: 8px 10px; font-size: 12px; }
+    .ed-img .variant { margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,.08); }
+    .ed-img .variant .ed-img-head label { font-size: 12px; color: var(--muted, #8892a6); }
+
+    /* Color pickers */
+    .ed-color { display: grid; grid-template-columns: 56px 1fr 110px; gap: 12px; align-items: center; padding: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(255,255,255,.02); margin-bottom: 10px; }
+    .ed-color input[type="color"] { width: 56px; height: 40px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: transparent; padding: 2px; cursor: pointer; }
+    .ed-color .meta { display: flex; flex-direction: column; gap: 2px; }
+    .ed-color .meta strong { font-size: 13px; color: #dfe3ec; font-weight: 500; }
+    .ed-color .meta small { font-size: 11px; color: var(--muted, #8892a6); }
+    .ed-color input[type="text"] { padding: 8px 10px; font-size: 12px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .ed-color-reset { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="editor-shell">
+    <header class="editor-toolbar">
+      <a href="/painel.html" class="brand" style="font-size:15px"><span class="brand-mark"></span><span>Editor · Dentista Premium</span></a>
+      <div class="flex gap-2 items-center">
+        <span class="tag" id="save-state">Tudo salvo</span>
+        <a class="btn btn-ghost btn-sm" id="preview-link" target="_blank" rel="noopener">Ver site</a>
+        <button class="btn btn-primary btn-sm" id="save-btn">Salvar</button>
+      </div>
+    </header>
+
+    <div class="editor-main">
+      <aside class="editor-panel">
+        <div class="ed-nav" id="ed-nav"></div>
+        <div id="ed-body"></div>
+      </aside>
+      <main class="editor-preview">
+        <div class="device-mockup">
+          <div class="device-notch"></div>
+          <iframe id="live-preview-frame" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast, uploadSiteImage } from "/assets/js/verticy.js";
+    import { DENTISTA01_DEFAULTS } from "/assets/js/dentista01-defaults.js";
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+    if (!profile?.onboarding_completed) window.location.replace("/onboarding.html");
+
+    document.getElementById("preview-link").href = `${window.location.origin}/${profile.username}`;
+    const livePreviewFrame = document.getElementById("live-preview-frame");
+    if (livePreviewFrame) livePreviewFrame.src = `${window.location.origin}/${profile.username}?preview=true`;
+
+    const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
+    if (!site) { toast("Site não encontrado", "error"); throw new Error("no site"); }
+    if (site.template_id !== "dentista01" && site.template_id !== "Dentista01" && site.template_id !== "dentista Premium") {
+      console.warn("Template ID mismatch: ", site.template_id);
+    }
+
+    function merge(base, add) {
+      if (Array.isArray(base)) return add !== undefined ? add : base;
+      if (typeof base === "object" && base !== null) {
+        const out = { ...base };
+        for (const k of Object.keys(base)) if (add && add[k] !== undefined) out[k] = merge(base[k], add[k]);
+        if (add) for (const k of Object.keys(add)) if (!(k in base)) out[k] = add[k];
+        return out;
+      }
+      return add !== undefined ? add : base;
+    }
+    let content = merge(DENTISTA01_DEFAULTS, site.content || {});
+
+    const saveState = document.getElementById("save-state");
+    let dirty = false;
+    const markDirty = () => { 
+      dirty = true; saveState.textContent = "Alterações pendentes"; saveState.className = "tag"; 
+      if (livePreviewFrame && livePreviewFrame.contentWindow) {
+        livePreviewFrame.contentWindow.postMessage({ type: "LIVE_PREVIEW", content }, "*");
+      }
+    };
+    const markClean = () => { dirty = false; saveState.textContent = "Tudo salvo"; saveState.className = "tag success"; };
+
+    const SECTIONS = [
+      { id: "theme", label: "Cores" },
+      { id: "branding", label: "Marca" },
+      { id: "hero", label: "Capa (Hero)" },
+      { id: "about", label: "Sobre" },
+      { id: "diferenciais", label: "Diferenciais" },
+      { id: "services", label: "Procedimentos" },
+      { id: "especialistas", label: "Especialistas" },
+      { id: "resultados", label: "Antes/Depois" },
+      { id: "testimonials", label: "Depoimentos" },
+      { id: "faq", label: "FAQ" },
+      { id: "consultorio", label: "Consultório" },
+      { id: "instagram", label: "Instagram" },
+      { id: "map", label: "Mapa" },
+      { id: "contact", label: "Rodapé & Contato" },
+    ];
+
+    const nav = document.getElementById("ed-nav");
+    SECTIONS.forEach((s, i) => {
+      const b = document.createElement("button");
+      b.textContent = s.label;
+      b.dataset.tab = s.id;
+      if (i === 0) b.classList.add("active");
+      b.addEventListener("click", () => showTab(s.id));
+      nav.appendChild(b);
+    });
+
+    const body = document.getElementById("ed-body");
+    function esc(s) { return String(s ?? "").replace(/"/g, "&quot;"); }
+    function txt(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+
+    function field(label, key, val, opts = {}) {
+      const t = opts.type || "text";
+      if (t === "textarea") {
+        return `<div class="field"><label>${label}</label><textarea class="textarea ${opts.small ? "textarea-sm" : ""}" data-key="${key}">${txt(val)}</textarea></div>`;
+      }
+      if (t === "checkbox") {
+        return `<div class="field"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" data-key="${key}" ${val ? "checked" : ""}/> ${label}</label></div>`;
+      }
+      return `<div class="field"><label>${label}</label><input class="input" type="${t}" data-key="${key}" value="${esc(val)}" placeholder="${esc(opts.ph||"")}" /></div>`;
+    }
+
+    /* Image upload widget. If mobileKey is provided, adds a "mobile version" area. */
+    function imgField(label, key, val, opts = {}) {
+      const suggested = opts.suggested || "";
+      const preview = val ? `<img src="${esc(val)}" alt=""/>` : "🖼";
+      const mobile = opts.mobileKey ? `
+        <div class="variant">
+          <div class="ed-img-head">
+            <label>Versão mobile (opcional)</label>
+            <span class="ed-img-hint">${esc(opts.mobileSuggested || "Ex.: 900×1200 px (retrato)")}</span>
+          </div>
+          <div class="ed-img-row">
+            <div class="ed-img-thumb" data-thumb="${opts.mobileKey}">${opts.mobileVal ? `<img src="${esc(opts.mobileVal)}" alt=""/>` : "📱"}</div>
+            <div class="ed-img-actions">
+              <div class="row">
+                <label class="btn btn-ghost btn-sm btn-file" data-upload-key="${opts.mobileKey}">
+                  <input type="file" accept="image/*" />
+                  Enviar do dispositivo
+                </label>
+                <button class="btn btn-ghost btn-sm" type="button" data-clear-key="${opts.mobileKey}">Remover</button>
+              </div>
+              <input class="input input-sm" type="url" data-key="${opts.mobileKey}" value="${esc(opts.mobileVal)}" placeholder="ou cole uma URL" />
+            </div>
+          </div>
+        </div>` : "";
+      return `
+        <div class="ed-img">
+          <div class="ed-img-head">
+            <label>${label}</label>
+            ${suggested ? `<span class="ed-img-hint">Sugerido: ${esc(suggested)}</span>` : ""}
+          </div>
+          <div class="ed-img-row">
+            <div class="ed-img-thumb" data-thumb="${key}">${preview}</div>
+            <div class="ed-img-actions">
+              <div class="row">
+                <label class="btn btn-primary btn-sm btn-file" data-upload-key="${key}">
+                  <input type="file" accept="image/*" />
+                  Escolher do dispositivo
+                </label>
+                <button class="btn btn-ghost btn-sm" type="button" data-clear-key="${key}">Remover</button>
+              </div>
+              <input class="input input-sm" type="url" data-key="${key}" value="${esc(val)}" placeholder="ou cole uma URL" />
+            </div>
+          </div>
+          ${mobile}
+        </div>
+      `;
+    }
+
+    /* Color picker widget */
+    function colorField(label, hint, key, val) {
+      return `
+        <div class="ed-color" data-color-row="${key}">
+          <input type="color" data-color-key="${key}" value="${esc(val || "#000000")}"/>
+          <div class="meta"><strong>${label}</strong><small>${esc(hint)}</small></div>
+          <input type="text" class="input input-sm" data-key="${key}" value="${esc(val)}" placeholder="#000000"/>
+        </div>`;
+    }
+
+    function renderTheme() {
+      const c = content.theme.colors;
+      const d = DENTISTA01_DEFAULTS.theme.colors;
+      return `
+        <div class="block-label">Cores do site</div>
+        <p class="muted" style="font-size:12px;margin-bottom:14px">Personalize a paleta do template. As mudanças aparecem depois de salvar e publicar.</p>
+        ${colorField("Cor principal", "Botões, ícones e destaques (CTA)", "theme.colors.accent", c.accent)}
+        ${colorField("Cor secundária", "Gradientes e detalhes secundários", "theme.colors.accent_soft", c.accent_soft)}
+        ${colorField("Destaque (títulos em fundo escuro)", "Palavras em itálico nos títulos claros", "theme.colors.highlight", c.highlight)}
+        ${colorField("Fundo escuro", "Cor de fundo das seções escuras e navbar", "theme.colors.bg", c.bg)}
+        ${colorField("Texto escuro", "Texto principal em seções claras", "theme.colors.dark", c.dark)}
+        ${colorField("Fundo creme", "Cor de fundo das seções claras", "theme.colors.cream", c.cream)}
+        ${colorField("Texto claro", "Texto sobre fundo escuro", "theme.colors.text_light", c.text_light)}
+        <button class="btn btn-ghost btn-sm ed-color-reset" id="reset-colors" type="button">Restaurar paleta original</button>
+      `;
+    }
+
+    function renderBranding() {
+      const b = content.branding;
+      return `
+        <div class="block-label">Marca</div>
+        ${field("Nome (aparece na navbar e rodapé)", "branding.name", b.name)}
+        ${field("Registro profissional (ex: CRO-RJ 57092)", "branding.cro", b.cro)}
+        ${imgField("Logo (opcional)", "branding.logo_url", b.logo_url, { suggested: "PNG transparente · 400×120 px" })}
+      `;
+    }
+
+    function renderHero() {
+      const h = content.hero;
+      return `
+        <div class="block-label">Capa (Hero)</div>
+        ${field("Título — início", "hero.title_pre", h.title_pre)}
+        ${field("Título — destaque (itálico)", "hero.title_highlight", h.title_highlight)}
+        ${field("Título — final", "hero.title_end", h.title_end)}
+        ${imgField("Imagem de capa", "hero.image_url", h.image_url, {
+          suggested: "1920×1080 px (paisagem, foco central)",
+          mobileKey: "hero.image_mobile_url",
+          mobileVal: h.image_mobile_url,
+          mobileSuggested: "900×1400 px (retrato para celular)",
+        })}
+        ${field("WhatsApp (só números, com DDI)", "hero.wa_number", h.wa_number, { ph: "5511999999999" })}
+        ${field("Mensagem pré-preenchida do WhatsApp", "hero.wa_message", h.wa_message, { type: "textarea", small: true })}
+        ${field("Mostrar badge de CRO", "hero.show_cro_badge", h.show_cro_badge, { type: "checkbox" })}
+      `;
+    }
+
+    function renderAbout() {
+      const a = content.about;
+      const paras = (a.paragraphs || []).map((p, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Parágrafo ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-para="${i}">Remover</button></div>
+          ${field("Texto", `about.paragraphs.${i}`, p, { type: "textarea" })}
+        </div>`).join("");
+      return `
+        <div class="block-label">Sobre</div>
+        ${field("Eyebrow (rótulo pequeno)", "about.eyebrow", a.eyebrow)}
+        ${field("Título — início", "about.title_pre", a.title_pre)}
+        ${field("Título — destaque", "about.title_highlight", a.title_highlight)}
+        ${imgField("Foto de perfil", "about.image_url", a.image_url, { suggested: "600×800 px (retrato)" })}
+        <div class="block-label" style="margin-top:16px">Parágrafos</div>
+        ${paras}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-para">+ Adicionar parágrafo</button>
+        <div style="height:14px"></div>
+        ${field("Frase de destaque (aspas)", "about.quote", a.quote)}
+      `;
+    }
+
+    function renderDiferenciais() {
+      const d = content.diferenciais;
+      const items = (d.items || []).map((it, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Diferencial ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-dif="${i}">Remover</button></div>
+          ${field("Ícone (Phosphor, ex: ph-heart)", `diferenciais.items.${i}.icon`, it.icon)}
+          ${field("Título", `diferenciais.items.${i}.title`, it.title)}
+        </div>`).join("");
+      return `
+        <div class="block-label">Diferenciais</div>
+        ${field("Eyebrow", "diferenciais.eyebrow", d.eyebrow)}
+        ${field("Título — início", "diferenciais.title_pre", d.title_pre)}
+        ${field("Título — destaque", "diferenciais.title_highlight", d.title_highlight)}
+        <div class="block-label" style="margin-top:16px">Itens</div>
+        ${items}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-dif">+ Adicionar diferencial</button>
+      `;
+    }
+
+    function renderServices() {
+      const s = content.services;
+      const items = (s.items || []).map((it, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>${txt(it.title) || `Procedimento ${i+1}`}</strong><button class="btn btn-ghost btn-sm" data-remove-svc="${i}">Remover</button></div>
+          ${field("Título", `services.items.${i}.title`, it.title)}
+          ${field("Ícone (Phosphor)", `services.items.${i}.icon`, it.icon)}
+          ${imgField("Imagem do procedimento", `services.items.${i}.image_url`, it.image_url, { suggested: "800×1000 px (retrato)" })}
+        </div>`).join("");
+      return `
+        <div class="block-label">Procedimentos</div>
+        ${field("Eyebrow", "services.eyebrow", s.eyebrow)}
+        ${field("Título — início", "services.title_pre", s.title_pre)}
+        ${field("Título — destaque", "services.title_highlight", s.title_highlight)}
+        <div class="block-label" style="margin-top:16px">Itens</div>
+        ${items}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-svc">+ Adicionar procedimento</button>
+      `;
+    }
+
+    function renderEspecialistas() {
+      const e = content.especialistas;
+      const tags = (e.tags || []).map((t, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Especialidade ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-tag="${i}">Remover</button></div>
+          ${field("Nome", `especialistas.tags.${i}`, t)}
+        </div>`).join("");
+      return `
+        <div class="block-label">Especialistas</div>
+        ${field("Título — início", "especialistas.title_pre", e.title_pre)}
+        ${field("Título — destaque", "especialistas.title_highlight", e.title_highlight)}
+        ${field("Texto", "especialistas.body", e.body, { type: "textarea" })}
+        <div class="block-label" style="margin-top:16px">Tags</div>
+        ${tags}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-tag">+ Adicionar</button>
+      `;
+    }
+
+    function renderResultados() {
+      const r = content.resultados;
+      const items = (r.items || []).map((it, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Caso ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-res="${i}">Remover</button></div>
+          ${imgField("Antes", `resultados.items.${i}.before_url`, it.before_url, { suggested: "1200×900 px" })}
+          ${imgField("Depois", `resultados.items.${i}.after_url`, it.after_url, { suggested: "1200×900 px (mesmo enquadramento do antes)" })}
+        </div>`).join("");
+      return `
+        <div class="block-label">Antes / Depois</div>
+        ${field("Eyebrow", "resultados.eyebrow", r.eyebrow)}
+        ${field("Título — início", "resultados.title_pre", r.title_pre)}
+        ${field("Título — destaque", "resultados.title_highlight", r.title_highlight)}
+        <div class="block-label" style="margin-top:16px">Casos</div>
+        ${items}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-res">+ Adicionar caso</button>
+      `;
+    }
+
+    function renderTestimonials() {
+      const t = content.testimonials;
+      const items = (t.items || []).map((it, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>${txt(it.name) || `Depoimento ${i+1}`}</strong><button class="btn btn-ghost btn-sm" data-remove-tst="${i}">Remover</button></div>
+          ${field("Depoimento", `testimonials.items.${i}.quote`, it.quote, { type: "textarea" })}
+          ${field("Nome", `testimonials.items.${i}.name`, it.name)}
+          ${field("Rótulo", `testimonials.items.${i}.role`, it.role)}
+        </div>`).join("");
+      return `
+        <div class="block-label">Depoimentos</div>
+        ${field("Eyebrow", "testimonials.eyebrow", t.eyebrow)}
+        ${field("Título — início", "testimonials.title_pre", t.title_pre)}
+        ${field("Título — destaque", "testimonials.title_highlight", t.title_highlight)}
+        ${items}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-tst">+ Adicionar depoimento</button>
+      `;
+    }
+
+    function renderFaq() {
+      const f = content.faq;
+      const items = (f.items || []).map((it, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Pergunta ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-faq="${i}">Remover</button></div>
+          ${field("Pergunta", `faq.items.${i}.q`, it.q)}
+          ${field("Resposta", `faq.items.${i}.a`, it.a, { type: "textarea" })}
+        </div>`).join("");
+      return `
+        <div class="block-label">FAQ</div>
+        ${field("Eyebrow", "faq.eyebrow", f.eyebrow)}
+        ${field("Título — início", "faq.title_pre", f.title_pre)}
+        ${field("Título — destaque", "faq.title_highlight", f.title_highlight)}
+        ${items}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-faq">+ Adicionar pergunta</button>
+      `;
+    }
+
+    function renderConsultorio() {
+      const c = content.consultorio;
+      const imgs = (c.images || []).map((src, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Foto ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-cons="${i}">Remover</button></div>
+          ${imgField("Imagem", `consultorio.images.${i}`, src, { suggested: "1200×800 px (paisagem)" })}
+        </div>`).join("");
+      return `
+        <div class="block-label">Consultório</div>
+        ${field("Eyebrow", "consultorio.eyebrow", c.eyebrow)}
+        ${field("Título — início", "consultorio.title_pre", c.title_pre)}
+        ${field("Título — destaque", "consultorio.title_highlight", c.title_highlight)}
+        ${imgs}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-cons">+ Adicionar foto</button>
+      `;
+    }
+
+    function renderInstagram() {
+      const g = content.instagram;
+      const imgs = (g.images || []).map((src, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Post ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-ig="${i}">Remover</button></div>
+          ${imgField("Imagem", `instagram.images.${i}`, src, { suggested: "1080×1080 px (quadrada)" })}
+        </div>`).join("");
+      return `
+        <div class="block-label">Instagram</div>
+        ${field("Eyebrow", "instagram.eyebrow", g.eyebrow)}
+        ${field("Título — início", "instagram.title_pre", g.title_pre)}
+        ${field("Título — destaque", "instagram.title_highlight", g.title_highlight)}
+        ${field("Handle (com @)", "instagram.handle", g.handle)}
+        ${field("URL do perfil", "instagram.url", g.url)}
+        ${imgs}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-ig">+ Adicionar post</button>
+      `;
+    }
+
+    function renderMap() {
+      const m = content.map;
+      return `
+        <div class="block-label">Mapa</div>
+        ${field("Eyebrow", "map.eyebrow", m.eyebrow)}
+        ${field("Título — início", "map.title_pre", m.title_pre)}
+        ${field("Título — destaque", "map.title_highlight", m.title_highlight)}
+        ${field("URL do embed (Google Maps)", "map.embed_url", m.embed_url, { type: "textarea", small: true })}
+        <p class="muted" style="font-size:12px">Dica: no Google Maps → Compartilhar → Incorporar mapa → copie apenas o src do iframe.</p>
+      `;
+    }
+
+    function renderContact() {
+      const c = content.contact;
+      const addr = (c.address_lines || []).map((l, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Linha ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-addr="${i}">Remover</button></div>
+          ${field("Texto", `contact.address_lines.${i}`, l)}
+        </div>`).join("");
+      const hours = (c.hours_lines || []).map((l, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Linha ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-hours="${i}">Remover</button></div>
+          ${field("Texto", `contact.hours_lines.${i}`, l)}
+        </div>`).join("");
+      return `
+        <div class="block-label">Rodapé & Contato</div>
+        ${field("Chamada — início", "contact.footer_headline_pre", c.footer_headline_pre)}
+        ${field("Chamada — destaque", "contact.footer_headline_highlight", c.footer_headline_highlight)}
+        ${field("WhatsApp (só números)", "contact.wa_number", c.wa_number)}
+        ${field("Mensagem WhatsApp", "contact.wa_message", c.wa_message, { type: "textarea", small: true })}
+        ${field("Instagram URL", "contact.instagram_url", c.instagram_url)}
+        ${field("Ano do rodapé", "contact.footer_year", c.footer_year)}
+        <div class="block-label" style="margin-top:16px">Endereço</div>
+        ${addr}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-addr">+ Adicionar linha</button>
+        <div class="block-label" style="margin-top:16px">Horário</div>
+        ${hours}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-hours">+ Adicionar linha</button>
+      `;
+    }
+
+    const renderers = {
+      theme: renderTheme,
+      branding: renderBranding, hero: renderHero, about: renderAbout,
+      diferenciais: renderDiferenciais, services: renderServices, especialistas: renderEspecialistas,
+      resultados: renderResultados, testimonials: renderTestimonials, faq: renderFaq,
+      consultorio: renderConsultorio, instagram: renderInstagram, map: renderMap, contact: renderContact,
+    };
+
+    function showTab(id) {
+      document.querySelectorAll("#ed-nav button").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
+      body.innerHTML = renderers[id]();
+      attachHandlers(id);
+    }
+
+    /* ---- path helpers ---- */
+    function setPath(path, val) {
+      const keys = path.split(".");
+      let o = content;
+      for (let i = 0; i < keys.length - 1; i++) {
+        const k = keys[i];
+        const nextIsIndex = /^\d+$/.test(keys[i+1]);
+        if (o[k] === undefined || o[k] === null) o[k] = nextIsIndex ? [] : {};
+        o = o[k];
+      }
+      o[keys[keys.length - 1]] = val;
+    }
+    function getPath(path) {
+      const keys = path.split(".");
+      let o = content;
+      for (const k of keys) { if (o == null) return undefined; o = o[k]; }
+      return o;
+    }
+
+    function updateThumb(key, url) {
+      const thumb = body.querySelector(`[data-thumb="${CSS.escape(key)}"]`);
+      if (!thumb) return;
+      thumb.innerHTML = url ? `<img src="${esc(url)}" alt=""/>` : (key.includes("mobile") ? "📱" : "🖼");
+    }
+
+    function attachHandlers(id) {
+      // Text/textarea/checkbox/url inputs bound to a path
+      body.querySelectorAll("[data-key]").forEach(inp => {
+        inp.addEventListener("input", () => {
+          const v = inp.type === "checkbox" ? inp.checked : inp.value;
+          setPath(inp.dataset.key, v);
+          // Sync sibling color picker if this is a hex text field
+          const colorRow = inp.closest("[data-color-row]");
+          if (colorRow) {
+            const cp = colorRow.querySelector('input[type="color"]');
+            if (cp && /^#[0-9a-f]{6}$/i.test(v)) cp.value = v;
+          }
+          // If it's a URL field inside an image widget, refresh the thumb
+          if (inp.type === "url") updateThumb(inp.dataset.key, inp.value);
+          markDirty();
+        });
+      });
+
+      // Color pickers
+      body.querySelectorAll('input[type="color"][data-color-key]').forEach(cp => {
+        cp.addEventListener("input", () => {
+          const key = cp.dataset.colorKey;
+          setPath(key, cp.value);
+          const txt = body.querySelector(`input[type="text"][data-key="${CSS.escape(key)}"]`);
+          if (txt) txt.value = cp.value;
+          markDirty();
+        });
+      });
+
+      // File uploads
+      body.querySelectorAll("[data-upload-key]").forEach(labelEl => {
+        const input = labelEl.querySelector('input[type="file"]');
+        if (!input) return;
+        input.addEventListener("change", async (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          if (file.size > 8 * 1024 * 1024) { toast("Imagem maior que 8 MB", "error"); input.value = ""; return; }
+          const key = labelEl.dataset.uploadKey;
+          labelEl.classList.add("uploading");
+          const originalText = labelEl.childNodes[labelEl.childNodes.length - 1];
+          try {
+            const url = await uploadSiteImage(file, session.user.id);
+            setPath(key, url);
+            const urlInput = body.querySelector(`input[type="url"][data-key="${CSS.escape(key)}"]`);
+            if (urlInput) urlInput.value = url;
+            updateThumb(key, url);
+            markDirty();
+            toast("Imagem enviada", "success");
+          } catch (err) {
+            console.error(err);
+            toast(err.message || "Falha no upload", "error");
+          } finally {
+            labelEl.classList.remove("uploading");
+            input.value = "";
+          }
+        });
+      });
+
+      // Clear image
+      body.querySelectorAll("[data-clear-key]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.clearKey;
+          setPath(key, "");
+          const urlInput = body.querySelector(`input[type="url"][data-key="${CSS.escape(key)}"]`);
+          if (urlInput) urlInput.value = "";
+          updateThumb(key, "");
+          markDirty();
+        });
+      });
+
+      const addBtn = (sel, add) => { const b = body.querySelector(sel); if (b) b.addEventListener("click", () => { add(); markDirty(); showTab(id); }); };
+      const remBtn = (attr, arrPath) => {
+        body.querySelectorAll(`[${attr}]`).forEach(b => b.addEventListener("click", () => {
+          const i = Number(b.getAttribute(attr));
+          const parts = arrPath.split(".");
+          let o = content; for (const p of parts) o = o[p];
+          o.splice(i, 1);
+          markDirty(); showTab(id);
+        }));
+      };
+
+      if (id === "theme") {
+        const reset = body.querySelector("#reset-colors");
+        if (reset) reset.addEventListener("click", () => {
+          content.theme = JSON.parse(JSON.stringify(DENTISTA01_DEFAULTS.theme));
+          markDirty(); showTab("theme");
+        });
+      }
+      if (id === "about") {
+        addBtn("#add-para", () => content.about.paragraphs.push(""));
+        remBtn("data-remove-para", "about.paragraphs");
+      }
+      if (id === "diferenciais") {
+        addBtn("#add-dif", () => content.diferenciais.items.push({ icon: "ph-check", title: "Novo diferencial" }));
+        remBtn("data-remove-dif", "diferenciais.items");
+      }
+      if (id === "services") {
+        addBtn("#add-svc", () => content.services.items.push({ title: "Novo procedimento", icon: "ph-sparkle", image_url: "" }));
+        remBtn("data-remove-svc", "services.items");
+      }
+      if (id === "especialistas") {
+        addBtn("#add-tag", () => content.especialistas.tags.push("Nova especialidade"));
+        remBtn("data-remove-tag", "especialistas.tags");
+      }
+      if (id === "resultados") {
+        addBtn("#add-res", () => content.resultados.items.push({ before_url: "", after_url: "" }));
+        remBtn("data-remove-res", "resultados.items");
+      }
+      if (id === "testimonials") {
+        addBtn("#add-tst", () => content.testimonials.items.push({ quote: "", name: "", role: "Paciente" }));
+        remBtn("data-remove-tst", "testimonials.items");
+      }
+      if (id === "faq") {
+        addBtn("#add-faq", () => content.faq.items.push({ q: "Nova pergunta", a: "Resposta" }));
+        remBtn("data-remove-faq", "faq.items");
+      }
+      if (id === "consultorio") {
+        addBtn("#add-cons", () => content.consultorio.images.push(""));
+        remBtn("data-remove-cons", "consultorio.images");
+      }
+      if (id === "instagram") {
+        addBtn("#add-ig", () => content.instagram.images.push(""));
+        remBtn("data-remove-ig", "instagram.images");
+      }
+      if (id === "contact") {
+        addBtn("#add-addr", () => content.contact.address_lines.push(""));
+        remBtn("data-remove-addr", "contact.address_lines");
+        addBtn("#add-hours", () => content.contact.hours_lines.push(""));
+        remBtn("data-remove-hours", "contact.hours_lines");
+      }
+    }
+
+    showTab("theme");
+
+    async function save() {
+      const btn = document.getElementById("save-btn");
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+      const { error } = await supabase.from("sites").update({ content, published: true }).eq("user_id", session.user.id);
+      btn.disabled = false; btn.textContent = "Salvar";
+      if (error) { toast(error.message, "error"); return; }
+      markClean(); toast("Salvo", "success");
+    }
+    document.getElementById("save-btn").addEventListener("click", save);
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); save(); }
+    });
+    window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+    markClean();
+  </script>
+</body>
+</html>

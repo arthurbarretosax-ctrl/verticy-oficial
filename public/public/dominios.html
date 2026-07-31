@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="/assets/img/logo-verticy.png" />
+  <title>Domínios · Verticy</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="/assets/css/dashboard.css?v=3" />
+  <style>
+    .settings-layout { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .settings-header { margin-bottom: 32px; }
+    .settings-header h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+    .settings-header p { color: var(--text-muted); font-size: 15px; }
+    
+    .settings-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .settings-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 24px; color: #fff; display: flex; align-items: center; gap: 8px; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 8px; }
+    .form-group input { 
+      width: 100%; padding: 12px 16px; border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border-light);
+      color: #fff; font-size: 15px; transition: all 0.2s;
+    }
+    .form-group input:focus { border-color: var(--brand-color); outline: none; background: rgba(255,255,255,0.05); }
+    .form-group input:disabled { opacity: 0.6; cursor: not-allowed; }
+    
+    .plan-box {
+      border: 1px solid var(--brand-color); background: rgba(124, 92, 255, 0.08);
+      border-radius: var(--radius-md); padding: 20px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .plan-info h4 { color: var(--brand-color); font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+    .plan-info p { color: var(--text-muted); font-size: 13px; }
+    
+    .btn-save { background: var(--brand-color); color: #fff; padding: 12px 24px; border-radius: var(--radius-md); font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; }
+    .btn-save:hover { background: var(--brand-hover); }
+    
+    .fab-whatsapp {
+      position: fixed; bottom: 32px; right: 32px; width: 60px; height: 60px;
+      background: #25D366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 32px; box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4); transition: transform 0.2s; cursor: pointer; text-decoration: none;
+      z-index: 100;
+    }
+    .fab-whatsapp:hover { transform: scale(1.05); color: #fff; }
+  </style>
+<script>if(localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');</script>
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo-container">
+        <a href="/painel.html" style="display:flex; align-items:center;">
+          <img src="assets/img/logo-verticy.png" alt="Verticy" style="height: 32px;" />
+        </a>
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button id="theme-toggle-btn" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;">
+            <i class="ph ph-moon"></i>
+          </button>
+          <button id="mobile-menu-btn" class="mobile-menu-btn" style="background: none; border: none; color: var(--text-main); cursor: pointer; font-size: 24px; display: none;">
+            <i class="ph ph-list"></i>
+          </button>
+        </div>
+      </div>
+      
+      <nav class="nav-menu">
+        <a href="/painel.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-house"></i><span>Painel</span></div>
+        </a>
+        <a href="agenda.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-calendar-blank"></i><span>Agenda</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="meus-sites.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-browser"></i><span>Meus Sites</span></div>
+        </a>
+        <a href="/templates.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-layout"></i><span>Templates</span></div>
+        </a>
+        <a href="dominios.html" class="nav-item active">
+          <div class="nav-item-left"><i class="ph ph-globe"></i><span>Domínios</span></div>
+        </a>
+        <a href="analytics.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-chart-line-up"></i><span>Analytics</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="leads.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-users"></i><span>Leads</span></div>
+          <span class="badge-new">Novo</span>
+        </a>
+        <a href="faturamento.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-credit-card"></i><span>Faturamento</span></div>
+        </a>
+        <a href="loja.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-shopping-bag"></i><span>Loja</span></div>
+        </a>
+        <a href="/configuracoes.html" class="nav-item">
+          <div class="nav-item-left"><i class="ph ph-gear"></i><span>Configurações</span></div>
+        </a>
+              <a href="#" id="btn-logout" class="nav-item" style="margin-top: auto; color: #ef4444;">
+          <div class="nav-item-left"><i class="ph ph-sign-out"></i><span>Sair</span></div>
+        </a>
+      </nav>
+
+      <div class="user-profile" id="signout">
+        <div class="user-profile-left">
+          <div class="user-avatar" id="avatar">AB</div>
+          <div class="user-details">
+            <span class="user-name" id="profile-name">Carregando...</span>
+            <span class="user-email" id="profile-email">...</span>
+          </div>
+        </div>
+        <i class="ph ph-caret-down" style="color: var(--text-muted);"></i>
+      </div>
+    </aside>
+
+    <main class="main-content" style="overflow-y: auto;">
+      <div class="settings-layout" style="text-align: center; margin-top: 100px;">
+        <div style="font-size: 48px; color: var(--brand-color); margin-bottom: 24px;"><i class="ph ph-hammer"></i></div>
+        <h1 style="font-size: 32px; font-weight: 600; color: #fff; margin-bottom: 12px;">Domínios</h1>
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 32px;">Gerencie seus domínios personalizados.<br>Esta página está em construção e estará disponível em breve!</p>
+        <a href="/painel.html" class="btn btn-primary" style="background: var(--brand-color); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none;">Voltar ao Painel</a>
+      </div>
+    </main>
+    
+    <a href="https://wa.me/5522998256061" target="_blank" class="fab-whatsapp" title="Suporte via WhatsApp">
+      <i class="ph ph-whatsapp-logo"></i>
+    </a>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast, initials } from "/assets/js/verticy.js";
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+
+    if (!profile?.onboarding_completed) { window.location.replace("/onboarding.html"); }
+
+    const fullName = profile.full_name || "";
+    document.getElementById("avatar").textContent = initials(fullName || "Você");
+    document.getElementById("profile-name").textContent = fullName || "Você";
+    document.getElementById("profile-email").textContent = session.user.email;
+    
+    document.getElementById("input-name").value = fullName;
+    document.getElementById("input-email").value = session.user.email;
+    
+    const planName = profile.plan?.[0]?.toUpperCase() + profile.plan?.slice(1) || "Essencial";
+    document.getElementById("plan-name-display").textContent = `Plano ${planName}`;
+
+    document.getElementById("signout").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      window.location.replace("/");
+    });
+
+    document.getElementById("btn-save-profile").addEventListener("click", async () => {
+      const btn = document.getElementById("btn-save-profile");
+      const newName = document.getElementById("input-name").value.trim();
+      
+      if (!newName) {
+        toast("O nome não pode ficar vazio", "error");
+        return;
+      }
+      
+      btn.textContent = "Salvando...";
+      btn.disabled = true;
+      
+      const { error } = await supabase.from('profiles').update({ full_name: newName }).eq('id', session.user.id);
+      
+      btn.textContent = "Salvar Alterações";
+      btn.disabled = false;
+      
+      if (error) {
+        toast("Erro ao salvar: " + error.message, "error");
+      } else {
+        toast("Perfil atualizado com sucesso!", "success");
+        document.getElementById("profile-name").textContent = newName;
+        document.getElementById("avatar").textContent = initials(newName);
+      }
+    });
+
+  </script>
+<script type="module">
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const navMenu = document.querySelector('.nav-menu');
+  if(mobileMenuBtn && navMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      const icon = mobileMenuBtn.querySelector('i');
+      if(navMenu.classList.contains('open')) {
+        icon.className = 'ph ph-x';
+      } else {
+        icon.className = 'ph ph-list';
+      }
+    });
+  }
+
+  // Theme Toggle
+  const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  if(themeToggleBtn) {
+    const updateIcon = () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      themeToggleBtn.innerHTML = isLight ? '<i class="ph ph-sun"></i>' : '<i class="ph ph-moon"></i>';
+    };
+    updateIcon();
+    themeToggleBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if(isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+      updateIcon();
+    });
+  }
+
+  // Logout
+  const btnLogout = document.getElementById('btn-logout');
+  if(btnLogout) {
+    btnLogout.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const module = await import('/assets/js/verticy.js');
+        await module.supabase.auth.signOut();
+      } catch (err) { console.error(err); }
+      window.location.href = '/entrar.html';
+    });
+  }
+</script>
+</body>
+</html>

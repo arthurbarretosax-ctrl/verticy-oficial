@@ -1,0 +1,133 @@
+// Defaults do template Dentista01 para uso no editor vanilla (browser).
+export const DENTISTA01_DEFAULTS = {
+  theme: {
+    colors: {
+      bg: "#1a1715",
+      dark: "#2a2522",
+      cream: "#fdfbf9",
+      accent: "#b9825f",
+      accent_soft: "#c69874",
+      highlight: "#e3ccb7",
+      highlight_dark: "#b9825f",
+      text_light: "#fdfbf9",
+    },
+  },
+  branding: { name: "Dra. Amanda", cro: "CRO-RJ 57092", logo_url: "" },
+  hero: {
+    title_pre: "Estética com",
+    title_highlight: "naturalidade,",
+    title_end: "função e identidade.",
+    image_url: "https://placehold.co/1920x1080/1A1715/E3CCB7?text=Foto+de+Capa",
+    image_mobile_url: "",
+    wa_number: "5522999258149",
+    wa_message: "Olá! Vim do site e gostaria de agendar uma avaliação.",
+    show_cro_badge: true,
+  },
+  about: {
+    eyebrow: "A Dentista",
+    title_pre: "Conheça a",
+    title_highlight: "Dra. Amanda",
+    image_url: "https://placehold.co/600x800/E3CCB7/2A2522?text=Perfil",
+    paragraphs: [
+      "Formada em Odontologia, com atualização em Reabilitação Oral e Harmonização Orofacial, construiu seu próprio consultório: um espaço pensado para que cada paciente se sinta cuidado de forma humana do início ao fim.",
+      "Seu olhar para a estética vai além da aparência. Para ela, beleza é aquilo que respeita identidade. Por isso, cada planejamento é realizado de forma individual, buscando resultados leves, harmônicos e reais.",
+    ],
+    quote: "Aqui, sorrisos têm segunda chance.",
+  },
+  diferenciais: {
+    eyebrow: "Excelência",
+    title_pre: "Por que me",
+    title_highlight: "escolher?",
+    items: [
+      { icon: "ph-heart", title: "Olhar Humano" },
+      { icon: "ph-graduation-cap", title: "Técnica e Atualização" },
+      { icon: "ph-armchair", title: "Ambiente Acolhedor" },
+      { icon: "ph-leaf", title: "Resultados Naturais" },
+    ],
+  },
+  services: {
+    eyebrow: "Especialidades",
+    title_pre: "Procedimentos e",
+    title_highlight: "Tratamentos",
+    items: [
+      { title: "Prevenção", icon: "ph-first-aid", image_url: "https://placehold.co/400x600/2A2522/E3CCB7?text=Prevencao" },
+      { title: "Restauração", icon: "ph-tooth", image_url: "https://placehold.co/400x600/2A2522/E3CCB7?text=Restauracao" },
+      { title: "Reabilitação", icon: "ph-cube", image_url: "https://placehold.co/400x600/2A2522/E3CCB7?text=Reabilitacao" },
+      { title: "Facetas", icon: "ph-diamonds-four", image_url: "https://placehold.co/400x600/2A2522/E3CCB7?text=Facetas" },
+      { title: "Próteses Dentárias", icon: "ph-smiley", image_url: "https://placehold.co/400x600/2A2522/E3CCB7?text=Proteses" },
+      { title: "Estética Facial", icon: "ph-drop", image_url: "https://placehold.co/400x600/2A2522/E3CCB7?text=Estetica" },
+    ],
+  },
+  especialistas: {
+    title_pre: "Nossos",
+    title_highlight: "Especialistas",
+    body: "O seu cuidado não para na minha cadeira. O consultório conta com uma equipe de especialistas de confiança para que você encontre tudo o que precisa em um só lugar.",
+    tags: ["Ortodontia", "Periodontia", "Cirurgia Bucomaxilofacial"],
+  },
+  resultados: {
+    eyebrow: "Portfólio",
+    title_pre: "A arte de transformar",
+    title_highlight: "sorrisos",
+    items: [
+      { before_url: "https://placehold.co/800x600/3a3a3a/ffffff?text=Antes+1", after_url: "https://placehold.co/800x600/e3ccb7/2a2522?text=Depois+1" },
+      { before_url: "https://placehold.co/800x600/3a3a3a/ffffff?text=Antes+2", after_url: "https://placehold.co/800x600/e3ccb7/2a2522?text=Depois+2" },
+    ],
+  },
+  testimonials: {
+    eyebrow: "Experiência",
+    title_pre: "O que dizem nossos",
+    title_highlight: "pacientes",
+    items: [
+      { quote: "Está tão bonito… minha autoestima está melhor graças as suas mãos.", name: "Jéssica de Oliveira", role: "Paciente" },
+      { quote: "Simplesmente sensacional! Uma profissional paciente, dedicada e gentil.", name: "Ana Beatriz Verneque", role: "Paciente" },
+    ],
+  },
+  faq: {
+    eyebrow: "Dúvidas Frequentes",
+    title_pre: "Transparência em",
+    title_highlight: "cada detalhe",
+    items: [
+      { q: "Atende convênios?", a: "No momento, o consultório não trabalha com convênios. Oferecemos condições facilitadas." },
+      { q: "Como funciona o pagamento?", a: "Todos os procedimentos podem ser parcelados em até 12x no cartão de crédito." },
+      { q: "Preciso sentir dor para ir ao dentista?", a: "Não! Consultas de rotina e limpezas regulares evitam problemas dolorosos." },
+    ],
+  },
+  consultorio: {
+    eyebrow: "A Clínica",
+    title_pre: "Conforto e",
+    title_highlight: "Tecnologia",
+    images: [
+      "https://placehold.co/600x400/E3CCB7/2A2522?text=Clinica+1",
+      "https://placehold.co/600x400/E3CCB7/2A2522?text=Clinica+2",
+    ],
+  },
+  instagram: {
+    eyebrow: "Nosso Dia a Dia",
+    title_pre: "Acompanhe no",
+    title_highlight: "Instagram",
+    handle: "@dra.amandaaraujo",
+    url: "https://instagram.com/dra.amandaaraujo",
+    images: [
+      "https://placehold.co/400x400/2A2522/E3CCB7?text=Post+1",
+      "https://placehold.co/400x400/2A2522/E3CCB7?text=Post+2",
+      "https://placehold.co/400x400/2A2522/E3CCB7?text=Post+3",
+      "https://placehold.co/400x400/2A2522/E3CCB7?text=Post+4",
+    ],
+  },
+  map: {
+    eyebrow: "Localização",
+    title_pre: "Onde",
+    title_highlight: "Estamos",
+    embed_url: "https://maps.google.com/maps?q=Campos%20dos%20Goytacazes%20RJ&t=&z=13&ie=UTF8&iwloc=&output=embed",
+  },
+  contact: {
+    footer_headline_pre: "Pronto para viver o seu",
+    footer_headline_highlight: "melhor sorriso?",
+    address_lines: ["Ed. Alexander Fleming", "R. Conselheiro Otaviano, 86 - Centro", "Campos dos Goytacazes - RJ"],
+    hours_lines: ["Segunda a Sexta: 09h às 19h", "Sábados: 09h às 13h"],
+    wa_number: "5522999258149",
+    wa_message: "Olá! Vim do site e gostaria de agendar uma avaliação.",
+    instagram_url: "https://instagram.com/dra.amandaaraujo",
+    footer_year: "2026",
+  },
+};

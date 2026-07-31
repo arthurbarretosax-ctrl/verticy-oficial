@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="/assets/img/logo-verticy.png" />
+  <title>Editor Creator Premium · Verticy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/verticy.css?v=3" />
+  <style>
+    .ed-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+    .ed-nav button { padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: var(--muted, #8892a6); font-size: 13px; cursor: pointer; transition: all .2s; }
+    .ed-nav button.active { background: var(--brand, #7c5cff); border-color: transparent; color: #fff; }
+    .ed-section { display: none; }
+    .ed-section.active { display: block; }
+    .ed-repeat { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 16px; margin-bottom: 12px; background: rgba(255,255,255,.02); }
+    .ed-repeat-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .ed-repeat-head strong { font-size: 13px; }
+    .textarea-sm { min-height: 70px; }
+
+    /* Upload widget */
+    .ed-img { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 14px; margin-bottom: 14px; background: rgba(255,255,255,.02); }
+    .ed-img-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+    .ed-img-head label { font-size: 13px; font-weight: 500; color: #cfd3df; }
+    .ed-img-hint { font-size: 11px; color: var(--muted, #8892a6); letter-spacing: 0.02em; }
+    .ed-img-row { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: start; }
+    .ed-img-preview { width: 96px; height: 96px; border-radius: 12px; background: rgba(0,0,0,0.2); border: 1px dashed rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .ed-img-preview img { width: 100%; height: 100%; object-fit: cover; }
+    .ed-img input[type="file"] { display: none; }
+    .ed-img .btn-file { position: relative; overflow: hidden; }
+    .ed-img .btn-file.uploading { opacity: 0.6; pointer-events: none; }
+    .ed-img .input-sm { padding: 8px 10px; font-size: 12px; }
+    
+    /* Color pickers */
+    .ed-color { display: grid; grid-template-columns: 56px 1fr 110px; gap: 12px; align-items: center; padding: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(255,255,255,.02); margin-bottom: 10px; }
+    .ed-color input[type="color"] { width: 56px; height: 40px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; background: transparent; padding: 2px; cursor: pointer; }
+    .ed-color .meta { display: flex; flex-direction: column; gap: 2px; }
+    .ed-color .meta strong { font-size: 13px; color: #dfe3ec; font-weight: 500; }
+    .ed-color .meta small { font-size: 11px; color: var(--muted, #8892a6); }
+    .ed-color input[type="text"] { padding: 8px 10px; font-size: 12px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  </style>
+</head>
+<body>
+  <div class="editor-shell">
+    <header class="editor-toolbar">
+      <a href="/painel.html" class="brand" style="font-size:15px">
+        <div style="width:24px;height:24px;border-radius:6px;background:var(--brand, #7c5cff);"></div>
+        <span>Editor · Creator Premium</span>
+      </a>
+      <div class="flex gap-2 items-center">
+        <span class="tag" id="save-state">Tudo salvo</span>
+        <a class="btn btn-ghost btn-sm" id="preview-link" target="_blank" rel="noopener">Ver site</a>
+        <button class="btn btn-primary btn-sm" id="save-btn">Salvar</button>
+      </div>
+    </header>
+
+    <div class="editor-main" style="grid-template-columns: 1fr 400px; gap: 32px; padding-right: 32px;">
+      <aside class="editor-panel">
+        <div class="ed-nav" id="ed-nav"></div>
+        <form id="editor-form" onsubmit="event.preventDefault()">
+          
+          <div class="ed-section active" data-id="cores">
+            <h3 class="mb-1 text-sm font-semibold uppercase tracking-wider text-[#8892a6]">Cores do Site</h3>
+            <p class="text-xs text-[#8892a6] mb-6">Personalize a paleta com tons "old money" ou vibrantes.</p>
+            
+            <div class="ed-color">
+              <input type="color" name="theme.colors.bg" value="#F6F5EC">
+              <div class="meta"><strong>Fundo (bg)</strong><small>Fundo geral</small></div>
+              <input type="text" name="theme.colors.bg_hex" value="#F6F5EC" maxlength="7">
+            </div>
+            <div class="ed-color">
+              <input type="color" name="theme.colors.text" value="#1a1a1a">
+              <div class="meta"><strong>Texto Primário</strong><small>Cor do texto escuro</small></div>
+              <input type="text" name="theme.colors.text_hex" value="#1a1a1a" maxlength="7">
+            </div>
+            <div class="ed-color">
+              <input type="color" name="theme.colors.brand" value="#B29079">
+              <div class="meta"><strong>Destaque (brand)</strong><small>Textos e Botões em destaque</small></div>
+              <input type="text" name="theme.colors.brand_hex" value="#B29079" maxlength="7">
+            </div>
+            <div class="ed-color">
+              <input type="color" name="theme.colors.border" value="#C1B6A4">
+              <div class="meta"><strong>Bordas (border)</strong><small>Divisórias e Cards</small></div>
+              <input type="text" name="theme.colors.border_hex" value="#C1B6A4" maxlength="7">
+            </div>
+            <div class="ed-color">
+              <input type="color" name="theme.colors.text_light" value="#ffffff">
+              <div class="meta"><strong>Texto Claro</strong><small>Texto sobre botões escuros</small></div>
+              <input type="text" name="theme.colors.text_light_hex" value="#ffffff" maxlength="7">
+            </div>
+          </div>
+
+          <div class="ed-section" data-id="hero">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#8892a6]">Capa Principal</h3>
+            <div class="input-group">
+              <label>Selo (Badge)</label>
+              <input type="text" name="hero.badge" class="input" placeholder="Ex: Sofia Inocêncio">
+            </div>
+            <div class="input-group">
+              <label>Subtítulo</label>
+              <input type="text" name="hero.subtitle" class="input" placeholder="Ex: Creator • Lifestyle • UGC">
+            </div>
+            <div class="input-group">
+              <label>Título (Início)</label>
+              <input type="text" name="hero.title_pre" class="input" placeholder="Ex: SOFIA">
+            </div>
+            <div class="input-group">
+              <label>Título (Destaque)</label>
+              <input type="text" name="hero.title_highlight" class="input" placeholder="Ex: INOCÊNCIO">
+            </div>
+            <div class="input-group">
+              <label>Descrição</label>
+              <textarea name="hero.description" class="input textarea-sm" placeholder="Resumo do criador..."></textarea>
+            </div>
+            <div class="input-group">
+              <label>Botão Call to Action</label>
+              <input type="text" name="hero.cta_label" class="input" placeholder="Ex: Trabalhar comigo">
+            </div>
+            
+            <div class="ed-img mt-4">
+              <div class="ed-img-head">
+                <label>Foto de Capa</label>
+              </div>
+              <div class="ed-img-row">
+                <div class="ed-img-preview" id="preview-hero_image">
+                  <span style="font-size:10px;color:#8892a6">Sem imagem</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <button type="button" class="btn btn-outline btn-sm btn-file w-full" onclick="document.getElementById('file-hero_image').click()">
+                    Carregar Nova
+                  </button>
+                  <input type="file" id="file-hero_image" accept="image/*" onchange="uploadImage(event, 'hero.image_url', 'preview-hero_image')">
+                  <input type="text" name="hero.image_url" class="input input-sm" placeholder="Ou cole a URL..." onchange="updatePreviewImg(this.value, 'preview-hero_image')">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ed-section" data-id="about">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#8892a6]">Sobre o Criador</h3>
+            <div class="input-group">
+              <label>Pequeno Título (Eyebrow)</label>
+              <input type="text" name="about.eyebrow" class="input" placeholder="Ex: Sobre">
+            </div>
+            <div class="input-group">
+              <label>Título (Início)</label>
+              <input type="text" name="about.title_pre" class="input" placeholder="Ex: estética &">
+            </div>
+            <div class="input-group">
+              <label>Título (Destaque)</label>
+              <input type="text" name="about.title_highlight" class="input" placeholder="Ex: conexão">
+            </div>
+            
+            <!-- We will simplify paragraphs to a single textarea for simplicity in UI, separated by \n\n -->
+            <div class="input-group">
+              <label>Texto (Parágrafos)</label>
+              <textarea name="about.paragraphs" class="input textarea-sm" placeholder="Separe os parágrafos com linha em branco..." style="min-height: 120px;"></textarea>
+            </div>
+          </div>
+
+          <div class="ed-section" data-id="stats">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#8892a6]">Estatísticas & Presença</h3>
+            <div class="input-group">
+              <label>Pequeno Título (Eyebrow)</label>
+              <input type="text" name="stats.eyebrow" class="input" placeholder="Ex: presença digital">
+            </div>
+            <div class="input-group">
+              <label>Título (Início)</label>
+              <input type="text" name="stats.title_pre" class="input" placeholder="Ex: conteúdo que">
+            </div>
+            <div class="input-group">
+              <label>Título (Destaque)</label>
+              <input type="text" name="stats.title_highlight" class="input" placeholder="Ex: gera impacto">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="input-group">
+                <label>Seguidores</label>
+                <input type="text" name="stats.followers" class="input" placeholder="Ex: 5100">
+              </div>
+              <div class="input-group">
+                <label>Alcance (k)</label>
+                <input type="text" name="stats.reach" class="input" placeholder="Ex: 30">
+              </div>
+              <div class="input-group">
+                <label>Formato Principal</label>
+                <input type="text" name="stats.format" class="input" placeholder="Ex: Reels">
+              </div>
+              <div class="input-group">
+                <label>Público-alvo</label>
+                <input type="text" name="stats.audience" class="input" placeholder="Ex: Feminino">
+              </div>
+            </div>
+          </div>
+          
+          <div class="ed-section" data-id="projects">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#8892a6]">Formatos de Parceria</h3>
+            <div class="input-group">
+              <label>Selo</label>
+              <input type="text" name="projects.badge" class="input" placeholder="Ex: Projetos">
+            </div>
+            <div class="input-group">
+              <label>Título (Início)</label>
+              <input type="text" name="projects.title_pre" class="input" placeholder="Ex: formatos de">
+            </div>
+            <div class="input-group">
+              <label>Título (Destaque)</label>
+              <input type="text" name="projects.title_highlight" class="input" placeholder="Ex: parceria">
+            </div>
+            
+            <div id="projects-list"></div>
+            <button type="button" class="btn btn-outline btn-sm w-full mt-2" onclick="addProject()">+ Adicionar Parceria</button>
+          </div>
+
+          <div class="ed-section" data-id="measurements">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#8892a6]">Medidas e Informações</h3>
+            <div class="input-group">
+              <label>Pequeno Título (Eyebrow)</label>
+              <input type="text" name="measurements.eyebrow" class="input" placeholder="Ex: informações">
+            </div>
+            <div class="input-group">
+              <label>Título</label>
+              <input type="text" name="measurements.title" class="input" placeholder="Ex: medidas">
+            </div>
+            <div class="input-group">
+              <label>Manequim (Selo Opcional)</label>
+              <input type="text" name="measurements.mannequin" class="input" placeholder="Ex: Manequim 36">
+            </div>
+            <div id="measurements-list"></div>
+            <button type="button" class="btn btn-outline btn-sm w-full mt-2" onclick="addMeasurement()">+ Adicionar Medida</button>
+          </div>
+          
+          <div class="ed-section" data-id="contact">
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-[#8892a6]">Contato</h3>
+            <div class="input-group">
+              <label>Pequeno Título</label>
+              <input type="text" name="contact.eyebrow" class="input" placeholder="Ex: trabalhe comigo!">
+            </div>
+            <div class="input-group">
+              <label>Título (Início)</label>
+              <input type="text" name="contact.title_pre" class="input" placeholder="Ex: vamos criar">
+            </div>
+            <div class="input-group">
+              <label>Título (Destaque)</label>
+              <input type="text" name="contact.title_highlight" class="input" placeholder="Ex: algo incrível">
+            </div>
+            <div class="input-group">
+              <label>WhatsApp (Somente números)</label>
+              <input type="text" name="contact.wa_number" class="input" placeholder="Ex: 5511999999999">
+            </div>
+            <div class="input-group">
+              <label>Mensagem padrão WhatsApp</label>
+              <input type="text" name="contact.wa_message" class="input" placeholder="Ex: Olá, gostaria de um orçamento...">
+            </div>
+            <div class="input-group">
+              <label>E-mail</label>
+              <input type="text" name="contact.email" class="input" placeholder="Ex: contato@email.com">
+            </div>
+            <div class="input-group">
+              <label>Instagram (Sem @)</label>
+              <input type="text" name="contact.instagram" class="input" placeholder="Ex: seunome">
+            </div>
+          </div>
+
+        </form>
+      </aside>
+
+      <!-- Iframe Preview Phone Container -->
+      <div class="flex items-center justify-center sticky top-[100px]" style="height: calc(100vh - 120px);">
+        <div class="relative shadow-2xl rounded-[40px] overflow-hidden" style="width: 375px; height: 812px; border: 12px solid #1f2937; transform: scale(0.9); transform-origin: top center;">
+          <div class="absolute top-0 inset-x-0 h-6 bg-[#1f2937] z-50 rounded-b-2xl mx-auto" style="width: 150px;"></div>
+          <iframe id="preview-iframe" src="/$username?t=creator01" class="w-full h-full bg-white border-0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase, requireProfile, toast, uploadSiteImage } from "/assets/js/verticy.js";
+    import { CREATOR01_DEFAULTS } from '/assets/js/creator01-defaults.js';
+
+    const ctx = await requireProfile();
+    if (!ctx) throw new Error("no session");
+    const { session, profile } = ctx;
+    if (!profile?.onboarding_completed) window.location.replace("/onboarding.html");
+
+    document.getElementById("preview-link").href = `${window.location.origin}/${profile.username}`;
+    const livePreviewFrame = document.getElementById("preview-iframe");
+    if (livePreviewFrame) livePreviewFrame.src = `${window.location.origin}/${profile.username}?preview=true`;
+
+    const { data: site } = await supabase.from("sites").select("*").eq("user_id", session.user.id).maybeSingle();
+    if (!site) { toast("Site não encontrado", "error"); throw new Error("no site"); }
+    if (site.template_id !== "creator01") {
+      window.location.replace("/editor.html");
+      throw new Error("wrong template");
+    }
+
+    function merge(base, add) {
+      if (Array.isArray(base)) return add !== undefined ? add : base;
+      if (typeof base === "object" && base !== null) {
+        const out = { ...base };
+        for (const k of Object.keys(base)) if (add && add[k] !== undefined) out[k] = merge(base[k], add[k]);
+        if (add) for (const k of Object.keys(add)) if (!(k in base)) out[k] = add[k];
+        return out;
+      }
+      return add !== undefined ? add : base;
+    }
+    
+    let contentData = merge(CREATOR01_DEFAULTS, site.content || {});
+
+    // Nav setup
+    const sections = [
+      { id: "cores", label: "Cores" },
+      { id: "hero", label: "Capa (Hero)" },
+      { id: "about", label: "Sobre Mim" },
+      { id: "stats", label: "Estatísticas" },
+      { id: "projects", label: "Parcerias" },
+      { id: "measurements", label: "Medidas" },
+      { id: "contact", label: "Contato" }
+    ];
+
+    const nav = document.getElementById("ed-nav");
+    sections.forEach((sec, idx) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = sec.label;
+      if (idx === 0) btn.classList.add("active");
+      btn.onclick = () => {
+        document.querySelectorAll(".ed-nav button").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".ed-section").forEach(s => s.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelector(`.ed-section[data-id="${sec.id}"]`).classList.add("active");
+      };
+      nav.appendChild(btn);
+    });
+
+    // Handle deep object mapping
+    function getProp(obj, path) {
+      return path.split('.').reduce((o, p) => o && o[p], obj);
+    }
+    function setProp(obj, path, value) {
+      const parts = path.split('.');
+      const last = parts.pop();
+      const target = parts.reduce((o, p) => o[p] = o[p] || {}, obj);
+      target[last] = value;
+    }
+
+    function initForm() {
+      const form = document.getElementById("editor-form");
+      const inputs = form.querySelectorAll("input, textarea");
+
+      // Special handling for paragraphs array mapped to a textarea
+      if (contentData.about && Array.isArray(contentData.about.paragraphs)) {
+        form.querySelector('textarea[name="about.paragraphs"]').value = contentData.about.paragraphs.join('\n\n');
+      }
+
+      inputs.forEach(input => {
+        if (input.name && input.name !== "about.paragraphs" && !input.name.endsWith("_hex")) {
+          const val = getProp(contentData, input.name);
+          if (val !== undefined) input.value = val;
+        }
+
+        // Color sync logic
+        if (input.type === "color") {
+          const hexInput = form.querySelector(`input[name="${input.name}_hex"]`);
+          input.addEventListener("input", (e) => {
+            if (hexInput) hexInput.value = e.target.value.toUpperCase();
+            triggerUpdate();
+          });
+          if (hexInput) {
+            hexInput.addEventListener("input", (e) => {
+              const val = e.target.value;
+              if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+                input.value = val;
+                triggerUpdate();
+              }
+            });
+          }
+        }
+
+        input.addEventListener("input", () => {
+          if (input.type !== "color" && !input.name.endsWith("_hex")) {
+            triggerUpdate();
+          }
+        });
+      });
+
+      renderProjects();
+      renderMeasurements();
+    }
+
+    // Dynamic Lists (Projects & Measurements)
+    window.addProject = function() {
+      if(!contentData.projects.items) contentData.projects.items = [];
+      contentData.projects.items.push({ title: "Nova Parceria", description: "Detalhes aqui...", image_url: "" });
+      renderProjects();
+      triggerUpdate();
+    }
+    
+    window.removeProject = function(i) {
+      contentData.projects.items.splice(i, 1);
+      renderProjects();
+      triggerUpdate();
+    }
+
+    function renderProjects() {
+      const list = document.getElementById("projects-list");
+      list.innerHTML = "";
+      (contentData.projects.items || []).forEach((it, i) => {
+        list.innerHTML += `
+          <div class="ed-repeat">
+            <div class="ed-repeat-head">
+              <strong>Formato ${i+1}</strong>
+              <button type="button" class="btn btn-ghost btn-sm" style="color:#f87171" onclick="removeProject(${i})">Excluir</button>
+            </div>
+            <div class="input-group">
+              <label>Título</label>
+              <input type="text" class="input" value="${it.title || ''}" oninput="updateProject(${i}, 'title', this.value)">
+            </div>
+            <div class="input-group">
+              <label>Descrição</label>
+              <textarea class="input textarea-sm" oninput="updateProject(${i}, 'description', this.value)">${it.description || ''}</textarea>
+            </div>
+          </div>
+        `;
+      });
+    }
+    window.updateProject = (i, field, val) => { contentData.projects.items[i][field] = val; triggerUpdate(); }
+
+    window.addMeasurement = function() {
+      if(!contentData.measurements.items) contentData.measurements.items = [];
+      contentData.measurements.items.push({ label: "Nova Medida", value: "0" });
+      renderMeasurements();
+      triggerUpdate();
+    }
+    
+    window.removeMeasurement = function(i) {
+      contentData.measurements.items.splice(i, 1);
+      renderMeasurements();
+      triggerUpdate();
+    }
+
+    function renderMeasurements() {
+      const list = document.getElementById("measurements-list");
+      list.innerHTML = "";
+      (contentData.measurements.items || []).forEach((it, i) => {
+        list.innerHTML += `
+          <div class="ed-repeat">
+            <div class="ed-repeat-head">
+              <input type="text" class="input" style="width: 45%" value="${it.label || ''}" placeholder="Label" oninput="updateMeasurement(${i}, 'label', this.value)">
+              <input type="text" class="input" style="width: 45%" value="${it.value || ''}" placeholder="Valor" oninput="updateMeasurement(${i}, 'value', this.value)">
+              <button type="button" class="btn btn-ghost btn-sm px-2" style="color:#f87171" onclick="removeMeasurement(${i})">X</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+    window.updateMeasurement = (i, field, val) => { contentData.measurements.items[i][field] = val; triggerUpdate(); }
+
+    function triggerUpdate() {
+      document.getElementById("save-state").textContent = "Não salvo";
+      document.getElementById("save-state").style.color = "#f59e0b";
+      
+      const form = document.getElementById("editor-form");
+      const inputs = form.querySelectorAll("input, textarea");
+      
+      inputs.forEach(input => {
+        if (input.name && input.name !== "about.paragraphs" && !input.name.endsWith("_hex") && input.type !== "file") {
+          setProp(contentData, input.name, input.value);
+        }
+      });
+      
+      const paraText = form.querySelector('textarea[name="about.paragraphs"]')?.value || "";
+      if(paraText) {
+        contentData.about.paragraphs = paraText.split('\n\n').map(s => s.trim()).filter(s => s);
+      }
+
+      sendPreview();
+    }
+
+    let iframeLoaded = false;
+    const iframe = document.getElementById("preview-iframe");
+    iframe.onload = () => {
+      iframeLoaded = true;
+      sendPreview();
+    };
+
+    function sendPreview() {
+      if (!iframeLoaded) return;
+      iframe.contentWindow.postMessage({ type: 'UPDATE_PREVIEW', content: contentData }, '*');
+    }
+
+    window.updatePreviewImg = function(url, previewId) {
+      const el = document.getElementById(previewId);
+      if (el && url) {
+        el.innerHTML = `<img src="${url}">`;
+      } else if (el) {
+        el.innerHTML = `<span style="font-size:10px;color:#8892a6">Sem imagem</span>`;
+      }
+      triggerUpdate();
+    };
+
+    initForm();
+    
+    document.getElementById("save-btn").addEventListener("click", async () => {
+      try {
+        const btn = document.getElementById("save-btn");
+        btn.textContent = "Salvando...";
+        btn.disabled = true;
+        const { error } = await supabase.from("sites").update({ content: contentData, updated_at: new Date().toISOString() }).eq("id", site.id);
+        if (error) throw error;
+        document.getElementById("save-state").textContent = "Tudo salvo";
+        document.getElementById("save-state").style.color = "#10b981";
+        toast("Site atualizado!");
+      } catch (e) {
+        console.error(e);
+        toast("Erro ao salvar", "error");
+      } finally {
+        const btn = document.getElementById("save-btn");
+        btn.textContent = "Salvar";
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

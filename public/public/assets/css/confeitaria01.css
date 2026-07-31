@@ -1,0 +1,106 @@
+/* =========================================================================
+   Confeitaria01 Premium Theme CSS
+   ========================================================================= */
+
+/* Use variables for dynamic themes */
+.c01 {
+  --c01-bg: #FDFBF7;
+  --c01-card: #FFFFFF;
+  --c01-rose: #E8B4B8;
+  --c01-roseDark: #D49A9E;
+  --c01-gold: #D4AF37;
+  --c01-text: #4A3737;
+
+  background-color: var(--c01-bg);
+  color: var(--c01-text);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+.c01 .hide-scrollbar::-webkit-scrollbar { display: none; }
+.c01 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* --- EFEITOS DE FUNDO FIXOS PELO SITE --- */
+.c01 .bg-noise {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Orbs de luz em tons de Rosé e Dourado */
+.c01 .glow-orb-1 {
+  position: fixed;
+  top: -10%; left: -20%;
+  width: 350px; height: 350px;
+  background: var(--c01-rose);
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.4;
+  animation: c01-float 10s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.c01 .glow-orb-2 {
+  position: fixed;
+  bottom: 10%; right: -20%;
+  width: 300px; height: 300px;
+  background: var(--c01-gold);
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.2;
+  animation: c01-float 12s ease-in-out infinite alternate-reverse;
+  z-index: 0;
+}
+
+@keyframes c01-float {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 40px); }
+}
+
+/* --- CARTÕES DE VIDRO --- */
+.c01 .glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 180, 184, 0.4);
+  box-shadow: 0 10px 30px rgba(74, 55, 55, 0.05);
+}
+
+.c01 .hero-bg {
+  background-size: cover;
+  background-position: center;
+}
+
+/* --- ANIMAÇÕES GERAIS --- */
+.c01 .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.c01 .reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Botão Gradient Rosé */
+.c01 .btn-rose {
+  background: linear-gradient(90deg, var(--c01-rose), var(--c01-roseDark));
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(232, 180, 184, 0.4);
+  transition: all 0.3s ease;
+}
+.c01 .btn-rose:active {
+  transform: scale(0.98);
+}
+
+/* Letreiro Marquee */
+@keyframes c01-marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.c01 .animate-marquee { 
+  animation: c01-marquee 15s linear infinite; 
+  width: max-content; 
+}

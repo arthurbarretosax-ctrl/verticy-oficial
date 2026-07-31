@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="/assets/img/logo-verticy.png" />
+  <title>Entrar · Verticy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="/assets/css/verticy.css?v=3" />
+  <meta name="description" content="Acesse sua conta Verticy e comece a construir seu microsite premium." />
+</head>
+<body>
+  <div class="mesh-bg"></div>
+
+  <main class="auth-shell">
+    <div class="auth-card">
+      <a href="/" class="brand" style="justify-content:center;margin-bottom:8px">
+        <img src="assets/img/logo-verticy.png" alt="Verticy" style="height: 32px;" />
+      </a>
+      <h1 class="h-2 text-center" style="margin-top:12px">Entre na Verticy</h1>
+      <p class="lead text-center" style="margin:8px auto 24px;font-size:14px">Publique seu site premium em minutos.</p>
+
+      <div class="auth-tabs">
+        <button data-tab="signin" class="active">Entrar</button>
+        <button data-tab="signup">Criar conta</button>
+      </div>
+
+      <!-- SIGN IN -->
+      <form id="form-signin">
+        <div class="field">
+          <label for="si-email">E-mail</label>
+          <input class="input" type="email" id="si-email" required autocomplete="email" placeholder="voce@email.com" />
+        </div>
+        <div class="field">
+          <label for="si-password">Senha</label>
+          <div style="position: relative;">
+            <input class="input" type="password" id="si-password" required autocomplete="current-password" minlength="6" style="padding-right: 40px;" />
+            <button type="button" class="btn-toggle-pass" data-target="si-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;"><i class="ph ph-eye"></i></button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          <span class="btn-label">Entrar</span>
+        </button>
+        <div class="error-msg" id="si-error"></div>
+        <div class="text-center mt-4">
+          <a href="#" id="forgot-link" class="muted" style="font-size:13px">Esqueci minha senha</a>
+        </div>
+      </form>
+
+      <!-- SIGN UP -->
+      <form id="form-signup" class="hidden">
+        <div class="field">
+          <label for="su-name">Seu nome</label>
+          <input class="input" type="text" id="su-name" required minlength="2" placeholder="João Silva" />
+        </div>
+        <div class="field">
+          <label for="su-email">E-mail</label>
+          <input class="input" type="email" id="su-email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="su-password">Crie uma senha</label>
+          <div style="position: relative;">
+            <input class="input" type="password" id="su-password" required minlength="6" autocomplete="new-password" style="padding-right: 40px;" />
+            <button type="button" class="btn-toggle-pass" data-target="su-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px;"><i class="ph ph-eye"></i></button>
+          </div>
+          <span class="help">Mínimo 6 caracteres.</span>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          <span class="btn-label">Criar conta</span>
+        </button>
+        <div class="error-msg" id="su-error"></div>
+      </form>
+
+      <div class="text-center mt-6 muted" style="font-size:12px">
+        Ao continuar, você concorda com os Termos e Política de Privacidade da Verticy.
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { supabase, toast } from "/assets/js/verticy.js";
+
+    // If already signed in, go to dashboard
+    (async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) window.location.replace("/painel.html");
+    })();
+
+    const tabs = document.querySelectorAll(".auth-tabs button");
+    const formIn = document.getElementById("form-signin");
+    const formUp = document.getElementById("form-signup");
+    tabs.forEach((b) => b.addEventListener("click", () => {
+      tabs.forEach((x) => x.classList.remove("active"));
+      b.classList.add("active");
+      const t = b.dataset.tab;
+      formIn.classList.toggle("hidden", t !== "signin");
+      formUp.classList.toggle("hidden", t !== "signup");
+    }));
+
+    function setLoading(form, on) {
+      const btn = form.querySelector("button[type=submit]");
+      btn.disabled = on;
+      btn.innerHTML = on
+        ? '<span class="spinner"></span>'
+        : `<span class="btn-label">${form === formIn ? "Entrar" : "Criar conta"}</span>`;
+    }
+
+    formIn.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const err = document.getElementById("si-error"); err.textContent = "";
+      setLoading(formIn, true);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: document.getElementById("si-email").value.trim(),
+        password: document.getElementById("si-password").value,
+      });
+      setLoading(formIn, false);
+      if (error) { err.textContent = error.message; return; }
+      // Fetch profile to decide next screen
+      const { data: profile } = await supabase
+        .from("profiles").select("onboarding_completed").eq("id", data.user.id).maybeSingle();
+      window.location.replace(profile?.onboarding_completed ? "/painel.html" : "/onboarding.html");
+    });
+
+    formUp.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const err = document.getElementById("su-error"); err.textContent = "";
+      setLoading(formUp, true);
+      const email = document.getElementById("su-email").value.trim();
+      const password = document.getElementById("su-password").value;
+      const full_name = document.getElementById("su-name").value.trim();
+      const { data, error } = await supabase.auth.signUp({
+        email, password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/painel.html`,
+          data: { full_name },
+        },
+      });
+      setLoading(formUp, false);
+      if (error) { err.textContent = error.message; return; }
+      if (!data.session) {
+        toast("Confirme seu e-mail para continuar.", "success");
+        return;
+      }
+      window.location.replace("/onboarding.html");
+    });
+
+    document.getElementById("forgot-link").addEventListener("click", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("si-email").value.trim();
+      if (!email) { toast("Digite seu e-mail acima primeiro.", "error"); return; }
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/entrar.html`,
+      });
+      if (error) toast(error.message, "error");
+      else toast("Enviamos o link de redefinição.", "success");
+    });
+
+    // Toggle password visibility
+    document.querySelectorAll(".btn-toggle-pass").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const input = document.getElementById(btn.dataset.target);
+        const icon = btn.querySelector("i");
+        if (input.type === "password") {
+          input.type = "text";
+          icon.className = "ph ph-eye-slash";
+        } else {
+          input.type = "password";
+          icon.className = "ph ph-eye";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
