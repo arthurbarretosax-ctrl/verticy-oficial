@@ -223,21 +223,6 @@
 
   <script type="module">
     import { supabase, requireProfile, toast, initials, TEMPLATES } from "assets/js/verticy.js";
-    import { DENTISTA01_DEFAULTS } from "/assets/js/dentista01-defaults.js";
-    import { CONFEITARIA01_DEFAULTS } from "/assets/js/confeitaria01-defaults.js";
-    import { CREATOR01_DEFAULTS } from "/assets/js/creator01-defaults.js";
-    import { ADVOGADO01_DEFAULTS } from "/assets/js/advogado01-defaults.js";
-    import { MEDICO01_DEFAULTS } from "/assets/js/medico01-defaults.js";
-    import { ARQUITETO01_DEFAULTS } from "/assets/js/arquiteto01-defaults.js";
-    import { CORRETOR01_DEFAULTS } from "/assets/js/corretor01-defaults.js";
-    import { PERSONAL01_DEFAULTS } from "/assets/js/personal01-defaults.js";
-    import { RESTAURANTE01_DEFAULTS } from "/assets/js/restaurante01-defaults.js";
-    import { BARBEARIA01_DEFAULTS } from "/assets/js/barbearia01-defaults.js";
-    import { PSICOLOGO01_DEFAULTS } from "/assets/js/psicologo01-defaults.js";
-    import { MAQUIADORA01_DEFAULTS } from "/assets/js/maquiadora01-defaults.js";
-    import { PETSHOP01_DEFAULTS } from "/assets/js/petshop01-defaults.js";
-    import { BUFFET01_DEFAULTS } from "/assets/js/buffet01-defaults.js";
-    import { CONTABILIDADE01_DEFAULTS } from "/assets/js/contabilidade01-defaults.js";
 
     const ctx = await requireProfile();
     if (!ctx) throw new Error("no session");
