@@ -7,6 +7,13 @@
   <title>Editor · Verticy</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/verticy.css?v=3" />
+  <style>
+    .editor-canvas { background: var(--bg-soft, #0b0b13); padding: 20px; }
+    .block { background: var(--surface, #10101a); border: 1px solid var(--border, rgba(255,255,255,0.1)); padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+    .block-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--brand-1, #EA580C); font-weight: 700; margin-bottom: 12px; }
+    .editor-panel { background: var(--bg, #06060a); border-left: 1px solid var(--border, rgba(255,255,255,0.1)); padding: 24px; }
+    input.input, textarea.textarea { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); }
+  </style>
 </head>
 <body>
   <div class="editor-shell">
