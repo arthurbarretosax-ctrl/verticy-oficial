@@ -124,11 +124,97 @@
     </aside>
 
     <main class="main-content" style="overflow-y: auto;">
-      <div class="settings-layout" style="text-align: center; margin-top: 100px;">
-        <div style="font-size: 48px; color: var(--brand-color); margin-bottom: 24px;"><i class="ph ph-hammer"></i></div>
-        <h1 style="font-size: 32px; font-weight: 600; color: #fff; margin-bottom: 12px;">Leads</h1>
-        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 32px;">Visualize e gerencie contatos recebidos através do site.<br>Esta página está em construção e estará disponível em breve!</p>
-        <a href="/painel.html" class="btn btn-primary" style="background: var(--brand-color); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none;">Voltar ao Painel</a>
+      <div style="max-width: 1200px; margin: 0 auto; padding: 24px; height: 100%; display: flex; flex-direction: column;">
+        <div class="settings-header" style="margin-bottom: 24px;">
+          <h1 style="font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 8px;">Caixa de Entrada (Leads)</h1>
+          <p style="color: var(--text-muted); font-size: 15px;">Acompanhe as mensagens recebidas pelo formulário do seu site.</p>
+        </div>
+
+        <!-- CRM Layout -->
+        <div style="display: flex; gap: 24px; flex: 1; min-height: 500px;">
+          <!-- Leads List -->
+          <div style="flex: 1; max-width: 350px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); display: flex; flex-direction: column; overflow: hidden;">
+            <div style="padding: 16px; border-bottom: 1px solid var(--border-light);">
+              <div style="position: relative;">
+                <i class="ph ph-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                <input type="text" placeholder="Buscar leads..." style="width: 100%; padding: 10px 10px 10px 36px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); border-radius: 8px; color: #fff; outline: none; font-size: 14px;" />
+              </div>
+            </div>
+            <div style="flex: 1; overflow-y: auto;">
+              <!-- Lead Item Active -->
+              <div style="padding: 16px; border-bottom: 1px solid var(--border-light); background: rgba(124, 92, 255, 0.05); border-left: 3px solid var(--brand-color); cursor: pointer;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                  <span style="font-weight: 600; color: #fff; font-size: 15px;">Mariana Souza</span>
+                  <span style="font-size: 12px; color: var(--brand-color);">Agora</span>
+                </div>
+                <div style="font-size: 13px; color: #cfd3df; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Gostaria de agendar uma consulta...</div>
+                <div style="display: flex; gap: 6px;">
+                  <span style="background: rgba(37, 211, 102, 0.1); color: #25D366; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 500;">Novo</span>
+                </div>
+              </div>
+              
+              <!-- Lead Item -->
+              <div style="padding: 16px; border-bottom: 1px solid var(--border-light); cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                  <span style="font-weight: 500; color: #fff; font-size: 15px;">Carlos Ferreira</span>
+                  <span style="font-size: 12px; color: var(--text-muted);">Ontem</span>
+                </div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Qual o valor do tratamento de...</div>
+              </div>
+
+              <!-- Lead Item -->
+              <div style="padding: 16px; border-bottom: 1px solid var(--border-light); cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                  <span style="font-weight: 500; color: #fff; font-size: 15px;">Fernanda Lima</span>
+                  <span style="font-size: 12px; color: var(--text-muted);">24/07</span>
+                </div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Tenho interesse em fechar o plano anual...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lead Detail -->
+          <div style="flex: 2; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); display: flex; flex-direction: column;">
+            <div style="padding: 24px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: flex-start;">
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-color), #4f39f6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600;">
+                  MS
+                </div>
+                <div>
+                  <h2 style="font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 4px;">Mariana Souza</h2>
+                  <div style="display: flex; gap: 12px; color: var(--text-muted); font-size: 13px;">
+                    <span style="display: flex; align-items: center; gap: 4px;"><i class="ph ph-envelope-simple"></i> mariana.s@email.com</span>
+                    <span style="display: flex; align-items: center; gap: 4px;"><i class="ph ph-phone"></i> (11) 98765-4321</span>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-ghost" style="padding: 8px 12px; border-radius: 8px;"><i class="ph ph-trash" style="font-size: 18px;"></i></button>
+              </div>
+            </div>
+            
+            <div style="padding: 32px 24px; flex: 1; background: rgba(255,255,255,0.01);">
+              <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); padding: 20px; border-radius: 12px; position: relative;">
+                <div style="position: absolute; top: -12px; left: 24px; background: var(--bg-card); padding: 0 8px; color: var(--brand-color); font-size: 12px; font-weight: 500;">Mensagem Recebida</div>
+                <p style="color: #fff; font-size: 15px; line-height: 1.6; margin-bottom: 0;">
+                  Olá, bom dia! Gostaria de saber mais informações sobre os serviços e agendar uma avaliação para a próxima semana se possível. Qual é a disponibilidade de vocês no período da tarde?
+                </p>
+                <div style="margin-top: 16px; font-size: 12px; color: var(--text-muted); text-align: right;">
+                  Hoje às 14:32
+                </div>
+              </div>
+              
+              <div style="margin-top: 32px; display: flex; gap: 16px;">
+                <a href="https://wa.me/5511987654321" target="_blank" class="btn btn-primary" style="background: #25D366; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; flex: 1; text-align: center; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: 500;">
+                  <i class="ph ph-whatsapp-logo" style="font-size: 20px;"></i> Responder via WhatsApp
+                </a>
+                <a href="mailto:mariana.s@email.com" class="btn btn-ghost" style="border: 1px solid var(--border-light); color: #fff; padding: 12px 24px; border-radius: 8px; flex: 1; text-align: center; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: 500;">
+                  <i class="ph ph-envelope-simple" style="font-size: 20px;"></i> Enviar E-mail
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     

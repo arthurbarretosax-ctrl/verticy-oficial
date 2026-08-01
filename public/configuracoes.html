@@ -130,6 +130,34 @@
           <p>Gerencie seu perfil, preferências e plano de assinatura.</p>
         </div>
 
+        <div class="settings-card" id="seo-card">
+          <h3><i class="ph ph-magnifying-glass"></i> SEO & Buscas (Google)</h3>
+          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px; margin-top:-16px;">Como seu site aparece no Google e ao ser compartilhado.</p>
+          <div class="form-group">
+            <label>Título do Site</label>
+            <input type="text" id="input-seo-title" placeholder="Ex: Dra. Amanda | Clínica Odontológica" />
+          </div>
+          <div class="form-group">
+            <label>Descrição Breve</label>
+            <input type="text" id="input-seo-desc" placeholder="Ex: Especialista em ortodontia e estética facial..." />
+          </div>
+          <button class="btn-save" id="btn-save-seo">Salvar SEO</button>
+        </div>
+
+        <div class="settings-card" id="social-card">
+          <h3><i class="ph ph-share-network"></i> Redes Sociais</h3>
+          <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px; margin-top:-16px;">Links globais que aparecerão no site.</p>
+          <div class="form-group">
+            <label>WhatsApp (com DDD)</label>
+            <input type="text" id="input-social-wa" placeholder="5511999999999" />
+          </div>
+          <div class="form-group">
+            <label>Instagram (URL ou @)</label>
+            <input type="text" id="input-social-ig" placeholder="@seunome" />
+          </div>
+          <button class="btn-save" id="btn-save-social">Salvar Redes Sociais</button>
+        </div>
+
         <div class="settings-card">
           <h3><i class="ph ph-user"></i> Meu Perfil</h3>
           <div class="form-group">
@@ -180,6 +208,57 @@
     document.getElementById("input-name").value = fullName;
     document.getElementById("input-email").value = session.user.email;
     
+    // --- SITE LOGIC (SEO & SOCIAL) ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const siteIdParam = urlParams.get('site');
+    let siteQuery = supabase.from("sites").select("*").eq("user_id", session.user.id);
+    if (siteIdParam) {
+      siteQuery = siteQuery.eq("id", siteIdParam).maybeSingle();
+    } else {
+      siteQuery = siteQuery.order("updated_at", { ascending: false }).limit(1).maybeSingle();
+    }
+    const { data: site } = await siteQuery;
+
+    if (site) {
+      // Add ?site= parameter to sidebar links
+      document.querySelectorAll('.nav-item').forEach(link => {
+        if (link.href && link.href.startsWith(window.location.origin) && !link.href.includes('?site=')) {
+          const url = new URL(link.href);
+          url.searchParams.set('site', site.id);
+          link.href = url.toString();
+        }
+      });
+
+      const content = site.content || {};
+      document.getElementById("input-seo-title").value = content.seo_title || "";
+      document.getElementById("input-seo-desc").value = content.seo_desc || "";
+      document.getElementById("input-social-wa").value = content.social_wa || "";
+      document.getElementById("input-social-ig").value = content.social_ig || "";
+
+      document.getElementById("btn-save-seo").addEventListener("click", async () => {
+        const btn = document.getElementById("btn-save-seo");
+        btn.textContent = "Salvando..."; btn.disabled = true;
+        const novoContent = { ...site.content, seo_title: document.getElementById("input-seo-title").value, seo_desc: document.getElementById("input-seo-desc").value };
+        const { error } = await supabase.from('sites').update({ content: novoContent }).eq('id', site.id);
+        btn.textContent = "Salvar SEO"; btn.disabled = false;
+        if (error) toast("Erro ao salvar", "error");
+        else { toast("SEO salvo com sucesso!", "success"); site.content = novoContent; }
+      });
+
+      document.getElementById("btn-save-social").addEventListener("click", async () => {
+        const btn = document.getElementById("btn-save-social");
+        btn.textContent = "Salvando..."; btn.disabled = true;
+        const novoContent = { ...site.content, social_wa: document.getElementById("input-social-wa").value, social_ig: document.getElementById("input-social-ig").value };
+        const { error } = await supabase.from('sites').update({ content: novoContent }).eq('id', site.id);
+        btn.textContent = "Salvar Redes Sociais"; btn.disabled = false;
+        if (error) toast("Erro ao salvar", "error");
+        else { toast("Redes salvas com sucesso!", "success"); site.content = novoContent; }
+      });
+    } else {
+      document.getElementById("seo-card").style.display = 'none';
+      document.getElementById("social-card").style.display = 'none';
+    }
+
     const planName = profile.plan?.[0]?.toUpperCase() + profile.plan?.slice(1) || "Essencial";
     document.getElementById("plan-name-display").textContent = `Plano ${planName}`;
 
