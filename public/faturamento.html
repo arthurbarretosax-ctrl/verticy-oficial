@@ -124,11 +124,87 @@
     </aside>
 
     <main class="main-content" style="overflow-y: auto;">
-      <div class="settings-layout" style="text-align: center; margin-top: 100px;">
-        <div style="font-size: 48px; color: var(--brand-color); margin-bottom: 24px;"><i class="ph ph-hammer"></i></div>
-        <h1 style="font-size: 32px; font-weight: 600; color: #fff; margin-bottom: 12px;">Faturamento</h1>
-        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 32px;">Histórico de pagamentos e notas fiscais.<br>Esta página está em construção e estará disponível em breve!</p>
-        <a href="/painel.html" class="btn btn-primary" style="background: var(--brand-color); color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none;">Voltar ao Painel</a>
+      <div style="max-width: 1000px; margin: 0 auto; padding: 32px 24px;">
+        <div class="settings-header" style="margin-bottom: 32px;">
+          <h1 style="font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 8px;">Faturamento</h1>
+          <p style="color: var(--text-muted); font-size: 15px;">Gerencie seu plano, formas de pagamento e notas fiscais.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px;">
+          <!-- Plano Atual -->
+          <div class="settings-card" style="margin-bottom: 0; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--brand-color); background: linear-gradient(145deg, rgba(124, 92, 255, 0.05) 0%, rgba(124, 92, 255, 0.02) 100%);">
+            <div>
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                <h3 style="margin: 0; font-size: 20px;"><i class="ph ph-star" style="color: var(--brand-color);"></i> Plano Atual</h3>
+                <span class="badge-pill premium">Essencial</span>
+              </div>
+              <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Você está no plano básico e gratuito.</p>
+              <div style="display: flex; align-items: baseline; gap: 4px;">
+                <span style="font-size: 32px; font-weight: 700; color: #fff;">R$ 0</span>
+                <span style="color: var(--text-muted); font-size: 14px;">/mês</span>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <button class="btn btn-primary" onclick="alert('Integração de pagamento em breve!')" style="background: var(--brand-color); border: none; padding: 12px 24px; font-weight: 600; border-radius: 8px; margin-bottom: 12px; width: 100%;">Fazer Upgrade para Premium</button>
+              <p style="color: var(--text-muted); font-size: 12px; margin: 0;">Desbloqueie todos os templates e IA ilimitada</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forma de Pagamento -->
+        <div class="settings-card" style="margin-bottom: 24px;">
+          <h3 style="margin-bottom: 20px; font-size: 18px; display: flex; align-items: center; justify-content: space-between;">
+            <span><i class="ph ph-credit-card"></i> Forma de Pagamento</span>
+            <button class="btn btn-ghost btn-sm" style="font-size: 13px;">Adicionar Cartão</button>
+          </h3>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+              <div style="width: 48px; height: 32px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 12px; font-style: italic;">
+                VISA
+              </div>
+              <div>
+                <div style="color: #fff; font-weight: 500; font-size: 15px; margin-bottom: 4px;">Visa terminando em 4242</div>
+                <div style="color: var(--text-muted); font-size: 13px;">Expira em 12/28</div>
+              </div>
+            </div>
+            <span style="background: rgba(37, 211, 102, 0.1); color: #25D366; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">Padrão</span>
+          </div>
+        </div>
+
+        <!-- Histórico de Pagamentos -->
+        <div class="settings-card">
+          <h3 style="margin-bottom: 20px; font-size: 18px;"><i class="ph ph-receipt"></i> Histórico de Faturas</h3>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--border-light); color: var(--text-muted); font-size: 13px;">
+                  <th style="padding: 12px 16px; font-weight: 500;">Data</th>
+                  <th style="padding: 12px 16px; font-weight: 500;">Descrição</th>
+                  <th style="padding: 12px 16px; font-weight: 500;">Valor</th>
+                  <th style="padding: 12px 16px; font-weight: 500;">Status</th>
+                  <th style="padding: 12px 16px; font-weight: 500; text-align: right;">Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-light); transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                  <td style="padding: 16px; color: #fff; font-size: 14px;">15/07/2026</td>
+                  <td style="padding: 16px; color: #fff; font-size: 14px;">Plano Essencial Mensal</td>
+                  <td style="padding: 16px; color: #fff; font-size: 14px;">R$ 0,00</td>
+                  <td style="padding: 16px;"><span style="background: rgba(37, 211, 102, 0.1); color: #25D366; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">Pago</span></td>
+                  <td style="padding: 16px; text-align: right;"><button class="btn btn-ghost btn-sm" style="color: var(--text-muted);"><i class="ph ph-download-simple"></i> Recibo</button></td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-light); transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
+                  <td style="padding: 16px; color: #fff; font-size: 14px;">15/06/2026</td>
+                  <td style="padding: 16px; color: #fff; font-size: 14px;">Plano Essencial Mensal</td>
+                  <td style="padding: 16px; color: #fff; font-size: 14px;">R$ 0,00</td>
+                  <td style="padding: 16px;"><span style="background: rgba(37, 211, 102, 0.1); color: #25D366; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">Pago</span></td>
+                  <td style="padding: 16px; text-align: right;"><button class="btn btn-ghost btn-sm" style="color: var(--text-muted);"><i class="ph ph-download-simple"></i> Recibo</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </main>
     
