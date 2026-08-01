@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carregando... · Verticy</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module">
+    import { supabase } from "/assets/js/verticy.js";
+    
+    async function loadSite() {
+      // Get the slug from the URL path, e.g. verticy.site/dra.amanda -> slug = "dra.amanda"
+      const path = window.location.pathname.replace(/^\/|\/$/g, "");
+      let slug = path;
+      if (!slug || slug === "index.html") {
+        // Se acessar a raiz sem slug, redireciona para o login ou painel
+        window.location.replace("/entrar.html");
+        return;
+      }
+      
+      // 1. Encontrar o perfil pelo slug
+      const { data: profile } = await supabase.from("profiles").select("id").eq("username", slug).maybeSingle();
+      if (!profile) {
+        document.body.innerHTML = `<div style="text-align:center; padding: 50px; font-family: sans-serif; color: #fff;"><h1>404 - Site não encontrado</h1><p>O endereço <b>${slug}</b> não existe na Verticy.</p></div>`;
+        return;
+      }
+      
+      // 2. Encontrar o site ativo desse usuário
+      const { data: site } = await supabase.from("sites").select("*").eq("user_id", profile.id).order("updated_at", { ascending: false }).limit(1).maybeSingle();
+      if (!site) {
+        document.body.innerHTML = `<div style="text-align:center; padding: 50px; font-family: sans-serif; color: #fff;"><h1>Site em construção</h1><p>O dono deste site ainda não publicou nenhum conteúdo.</p></div>`;
+        return;
+      }
+      
+      const templateId = site.template_id;
+      const content = site.content || {};
+      
+      // Update document title and SEO if set
+      if (content.seo_title) document.title = content.seo_title;
+      
+      // 3. Carregar o HTML bruto (raw) do template escolhido
+      try {
+        const res = await fetch(`/${templateId}_raw.html`);
+        if (!res.ok) throw new Error("Template HTML not found");
+        const html = await res.text();
+        
+        // 4. Injetar o HTML na página
+        document.open();
+        document.write(html);
+        document.close();
+        
+        // Esperar o DOM recarregar e injetar os valores
+        window.addEventListener("DOMContentLoaded", () => {
+          function getPath(obj, path) {
+            return path.split(".").reduce((o, k) => (o ? o[k] : undefined), obj);
+          }
+          
+          document.querySelectorAll("[data-bind]").forEach(el => {
+            const val = getPath(content, el.dataset.bind);
+            if (val !== undefined && val !== "") {
+              if (el.tagName === "IMG") el.src = val;
+              else if (el.tagName === "A") el.href = val;
+              else el.textContent = val;
+            }
+          });
+        });
+        
+      } catch (err) {
+        console.error(err);
+        document.body.innerHTML = `<div style="text-align:center; padding: 50px; font-family: sans-serif; color: #fff;"><h1>Erro</h1><p>Erro ao carregar o template do site.</p></div>`;
+      }
+    }
+    
+    loadSite();
+  </script>
+</head>
+<body style="background: #0b0b13;">
+  <div style="display:flex; justify-content:center; align-items:center; height:100vh;">
+    <div style="color: #fff; font-family: sans-serif;">Carregando site...</div>
+  </div>
+</body>
+</html>

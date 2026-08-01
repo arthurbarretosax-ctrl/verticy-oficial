@@ -32,6 +32,8 @@
     .ed-img .btn-file { position: relative; overflow: hidden; }
     .ed-img .btn-file.uploading { opacity: 0.6; pointer-events: none; }
     .ed-img .input-sm { padding: 8px 10px; font-size: 12px; }
+    .ed-img .variant { margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,.08); }
+    .ed-img .variant .ed-img-head label { font-size: 12px; color: var(--muted, #8892a6); }
 
     /* Color pickers */
     .ed-color { display: grid; grid-template-columns: 56px 1fr 110px; gap: 12px; align-items: center; padding: 12px; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(255,255,255,.02); margin-bottom: 10px; }
@@ -40,15 +42,17 @@
     .ed-color .meta strong { font-size: 13px; color: #dfe3ec; font-weight: 500; }
     .ed-color .meta small { font-size: 11px; color: var(--muted, #8892a6); }
     .ed-color input[type="text"] { padding: 8px 10px; font-size: 12px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .ed-color-reset { margin-top: 8px; }
   </style>
 </head>
 <body>
   <div class="editor-shell">
     <header class="editor-toolbar">
-      <a href="/painel.html" class="brand" style="font-size:15px"><span class="brand-mark"></span><span>Editor · Confeitaria Premium</span></a>
+      <a href="/painel.html" class="brand" style="font-size:15px"><span class="brand-mark"></span><span>Editor · Dentista Premium</span></a>
       <div class="flex gap-2 items-center">
         <span class="tag" id="save-state">Tudo salvo</span>
         <a class="btn btn-ghost btn-sm" id="preview-link" target="_blank" rel="noopener">Ver site</a>
+        <button class="btn btn-ghost btn-sm" id="ai-btn" style="color: #7c5cff; border: 1px solid rgba(124, 92, 255, 0.3);"><i class="ph ph-sparkle"></i> IA</button>
         <button class="btn btn-primary btn-sm" id="save-btn">Salvar</button>
       </div>
     </header>
@@ -90,9 +94,8 @@
     }
     const { data: site } = await siteQuery;
     if (!site) { toast("Site não encontrado", "error"); throw new Error("no site"); }
-    if (site.template_id !== "confeitaria01") {
-      window.location.replace("/editor.html");
-      throw new Error("wrong template");
+    if (site.template_id !== "confeitaria01" && site.template_id !== "Dentista01" && site.template_id !== "dentista Premium") {
+      console.warn("Template ID mismatch: ", site.template_id);
     }
 
     function merge(base, add) {
@@ -118,14 +121,12 @@
     const markClean = () => { dirty = false; saveState.textContent = "Tudo salvo"; saveState.className = "tag success"; };
 
     const SECTIONS = [
-      { id: "theme", label: "Cores" },
-      { id: "branding", label: "Marca" },
-      { id: "hero", label: "Capa (Hero)" },
-      { id: "catalog", label: "Menu & Catálogo" },
-      { id: "marquee", label: "Letreiro (Marquee)" },
-      { id: "gallery", label: "Galeria (Vitrine)" },
-      { id: "contact", label: "Contato & Rodapé" },
-    ];
+  { id: "branding", label: "Marca" },
+  { id: "catalog", label: "Catálogo" },
+  { id: "gallery", label: "Galeria" },
+  { id: "contact", label: "Contato" },
+  { id: "marquee", label: "Faixa Rotativa" }
+];
 
     const nav = document.getElementById("ed-nav");
     SECTIONS.forEach((s, i) => {
@@ -155,6 +156,26 @@
     function imgField(label, key, val, opts = {}) {
       const suggested = opts.suggested || "";
       const preview = val ? `<img src="${esc(val)}" alt=""/>` : "🖼";
+      const mobile = opts.mobileKey ? `
+        <div class="variant">
+          <div class="ed-img-head">
+            <label>Versão mobile (opcional)</label>
+            <span class="ed-img-hint">${esc(opts.mobileSuggested || "Ex.: 900×1200 px (retrato)")}</span>
+          </div>
+          <div class="ed-img-row">
+            <div class="ed-img-thumb" data-thumb="${opts.mobileKey}">${opts.mobileVal ? `<img src="${esc(opts.mobileVal)}" alt=""/>` : "📱"}</div>
+            <div class="ed-img-actions">
+              <div class="row">
+                <label class="btn btn-ghost btn-sm btn-file" data-upload-key="${opts.mobileKey}">
+                  <input type="file" accept="image/*" />
+                  Enviar do dispositivo
+                </label>
+                <button class="btn btn-ghost btn-sm" type="button" data-clear-key="${opts.mobileKey}">Remover</button>
+              </div>
+              <input class="input input-sm" type="url" data-key="${opts.mobileKey}" value="${esc(opts.mobileVal)}" placeholder="ou cole uma URL" />
+            </div>
+          </div>
+        </div>` : "";
       return `
         <div class="ed-img">
           <div class="ed-img-head">
@@ -174,340 +195,209 @@
               <input class="input input-sm" type="url" data-key="${key}" value="${esc(val)}" placeholder="ou cole uma URL" />
             </div>
           </div>
+          ${mobile}
         </div>
       `;
     }
 
-    function buildTab(id) {
-      if (id === "theme") {
-        const c = content.theme.colors;
-        const cField = (lbl, key, hex, name) => `
-          <div class="ed-color">
-            <input type="color" data-key="theme.colors.${key}" value="${esc(hex)}" />
-            <div class="meta"><strong>${lbl}</strong><small>${name}</small></div>
-            <input type="text" value="${esc(hex)}" readonly />
-          </div>`;
-        return `
-          <div class="ed-section active" data-sec="theme">
-            <h2 class="h2">Paleta de Cores</h2>
-            <p class="text-muted mb-6">Personalize os tons de rosé e bege da confeitaria.</p>
-            ${cField("Fundo Principal", "bg", c.bg, "Fundo geral (claro)")}
-            ${cField("Fundo dos Cartões", "card", c.card, "Fundo dos cartões e elementos")}
-            ${cField("Texto Escuro", "text", c.text, "Texto principal")}
-            ${cField("Cor de Destaque 1", "rose", c.rose, "Rosé, botões, ícones")}
-            ${cField("Cor de Destaque 2", "roseDark", c.roseDark, "Rosé escuro para textos de destaque")}
-            ${cField("Dourado", "gold", c.gold, "Pequenos detalhes de brilho")}
-            <button class="btn btn-ghost btn-sm ed-color-reset" type="button" id="reset-colors">Restaurar Cores Originais</button>
-          </div>
-        `;
-      }
-      if (id === "branding") {
-        const b = content.branding;
-        return `
-          <div class="ed-section active" data-sec="branding">
-            <h2 class="h2">Marca</h2>
-            ${imgField("Logo / Foto de Perfil", "branding.logo_url", b.logo_url, { suggested: "Redonda, fundo branco" })}
-            ${field("Nome da Confeitaria", "branding.name", b.name)}
-            ${field("Slogan (Curto)", "branding.slogan", b.slogan)}
-            ${field("Localização", "branding.location", b.location, { ph: "Ex: Campos / RJ" })}
-          </div>
-        `;
-      }
-      if (id === "hero") {
-        const h = content.hero;
-        return `
-          <div class="ed-section active" data-sec="hero">
-            <h2 class="h2">Capa Principal</h2>
-            ${imgField("Imagem de Fundo", "hero.image_url", h.image_url, { suggested: "Vertical, alta qualidade" })}
-            ${field("Texto do Botão", "hero.cta_label", h.cta_label)}
-          </div>
-        `;
-      }
-      if (id === "marquee") {
-        const words = content.marquee.words || [];
-        return `
-          <div class="ed-section active" data-sec="marquee">
-            <h2 class="h2">Letreiro Rotativo</h2>
-            <p class="text-muted mb-4">Adicione as palavras que giram na faixa.</p>
-            <div id="mq-list"></div>
-            <button class="btn btn-secondary btn-sm mt-2" type="button" id="add-mq">+ Adicionar Palavra</button>
-          </div>
-        `;
-      }
-      if (id === "catalog") {
-        const c = content.catalog;
-        return `
-          <div class="ed-section active" data-sec="catalog">
-            <h2 class="h2">Catálogo de Produtos</h2>
-            ${field("Título da Seção", "catalog.title", c.title)}
-            ${field("Subtítulo", "catalog.subtitle", c.subtitle)}
-            <hr class="my-6" style="border-color:rgba(255,255,255,.1)"/>
-            <div id="cat-items-list"></div>
-            <button class="btn btn-secondary mt-2" type="button" id="add-cat-item">+ Novo Produto</button>
-          </div>
-        `;
-      }
-      if (id === "gallery") {
-        const g = content.gallery;
-        return `
-          <div class="ed-section active" data-sec="gallery">
-            <h2 class="h2">Galeria de Fotos</h2>
-            ${field("Título da Galeria", "gallery.title", g.title)}
-            ${field("Subtítulo", "gallery.subtitle", g.subtitle)}
-            <hr class="my-6" style="border-color:rgba(255,255,255,.1)"/>
-            <div id="gal-imgs-list"></div>
-            <button class="btn btn-secondary mt-2" type="button" id="add-gal-img">+ Adicionar Foto</button>
-          </div>
-        `;
-      }
-      if (id === "contact") {
-        const c = content.contact;
-        return `
-          <div class="ed-section active" data-sec="contact">
-            <h2 class="h2">Contato e Rodapé</h2>
-            ${field("Título do Rodapé", "contact.title_pre", c.title_pre)}
-            ${field("Destaque (Cor diferente)", "contact.title_highlight", c.title_highlight)}
-            ${field("Subtítulo de Contato", "contact.subtitle", c.subtitle)}
-            <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-              ${field("Botão do WhatsApp", "contact.cta_label", c.cta_label)}
-              ${field("Número do WhatsApp", "contact.whatsapp_number", c.whatsapp_number, { ph: "5522999999999" })}
-            </div>
-            <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-              ${field("Texto do Instagram", "contact.instagram_handle", c.instagram_handle, { ph: "@usuario" })}
-              ${field("Link do Instagram", "contact.instagram_url", c.instagram_url, { ph: "https://..." })}
-            </div>
-            <hr class="my-6" style="border-color:rgba(255,255,255,.1)"/>
-            ${field("Ano Copyright", "contact.footer_year", c.footer_year, { type: "number" })}
-            ${field("Texto Copyright", "contact.footer_name", c.footer_name)}
-          </div>
-        `;
-      }
-      return "";
+
+    function renderBranding() {
+      const b = content.branding;
+      return `
+        <div class="block-label">Marca</div>
+        ${field("Nome", "branding.name", b.name)}
+        ${imgField("Logo", "branding.logo_url", b.logo_url)}
+        ${field("Localização", "branding.location", b.location)}
+        ${field("Slogan", "branding.slogan", b.slogan)}
+      `;
     }
-
-    function renderMqList() {
-      const container = document.getElementById("mq-list");
-      if (!container) return;
-      container.innerHTML = "";
-      const words = content.marquee.words || [];
-      words.forEach((w, i) => {
-        const div = document.createElement("div");
-        div.className = "ed-repeat";
-        div.innerHTML = `
-          <div class="ed-repeat-head"><strong>Palavra ${i+1}</strong> <button class="btn btn-ghost btn-sm del-mq" data-idx="${i}">Excluir</button></div>
-          <div class="field-row" style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;">
-            ${field("Texto", `marquee.words.${i}.text`, w.text)}
-            ${field("Itálico?", `marquee.words.${i}.italic`, w.italic, { type: "checkbox" })}
-          </div>
-        `;
-        container.appendChild(div);
-      });
-      container.querySelectorAll(".del-mq").forEach(b => b.addEventListener("click", e => {
-        const i = parseInt(e.target.dataset.idx);
-        content.marquee.words.splice(i, 1);
-        markDirty();
-        renderMqList();
-      }));
+    function renderCatalog() {
+      const c = content.catalog;
+      const items = (c.items || []).map((it, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Item ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-cat="${i}">Remover</button></div>
+          ${field("Categoria", `catalog.items.${i}.category`, it.category)}
+          ${field("Título", `catalog.items.${i}.title`, it.title)}
+          ${field("Descrição", `catalog.items.${i}.description`, it.description, { type: "textarea" })}
+          ${imgField("Imagem", `catalog.items.${i}.image_url`, it.image_url)}
+        </div>`).join("");
+      return `
+        <div class="block-label">Catálogo</div>
+        ${field("Título", "catalog.title", c.title)}
+        ${field("Subtítulo", "catalog.subtitle", c.subtitle)}
+        <div class="block-label" style="margin-top:16px">Itens</div>
+        ${items}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-cat">+ Adicionar item</button>
+      `;
     }
-
-    function renderCatItems() {
-      const container = document.getElementById("cat-items-list");
-      if (!container) return;
-      container.innerHTML = "";
-      const items = content.catalog.items || [];
-      items.forEach((item, i) => {
-        const div = document.createElement("div");
-        div.className = "ed-repeat";
-        div.innerHTML = `
-          <div class="ed-repeat-head"><strong>Produto ${i+1}</strong> <button class="btn btn-ghost btn-sm del-cat" data-idx="${i}">Excluir</button></div>
-          ${imgField("Foto do Produto", `catalog.items.${i}.image_url`, item.image_url)}
-          <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            ${field("Nome", `catalog.items.${i}.title`, item.title)}
-            ${field("Categoria (Badge)", `catalog.items.${i}.category`, item.category)}
-          </div>
-          ${field("Descrição", `catalog.items.${i}.description`, item.description, { type: "textarea", small: true })}
-        `;
-        container.appendChild(div);
-      });
-      container.querySelectorAll(".del-cat").forEach(b => b.addEventListener("click", e => {
-        const i = parseInt(e.target.dataset.idx);
-        content.catalog.items.splice(i, 1);
-        markDirty();
-        renderCatItems();
-      }));
+    function renderGallery() {
+      const g = content.gallery;
+      const imgs = (g.images || []).map((src, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Foto ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-gal="${i}">Remover</button></div>
+          ${imgField("Imagem", `gallery.images.${i}`, src)}
+        </div>`).join("");
+      return `
+        <div class="block-label">Galeria</div>
+        ${field("Título", "gallery.title", g.title)}
+        ${field("Subtítulo", "gallery.subtitle", g.subtitle)}
+        ${imgs}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-gal">+ Adicionar foto</button>
+      `;
     }
-
-    function renderGalImgs() {
-      const container = document.getElementById("gal-imgs-list");
-      if (!container) return;
-      container.innerHTML = "";
-      const images = content.gallery.images || [];
-      images.forEach((src, i) => {
-        const div = document.createElement("div");
-        div.className = "ed-repeat";
-        div.innerHTML = `
-          <div class="ed-repeat-head"><strong>Imagem ${i+1}</strong> <button class="btn btn-ghost btn-sm del-gal" data-idx="${i}">Excluir</button></div>
-          ${imgField("Foto", `gallery.images.${i}`, src)}
-        `;
-        container.appendChild(div);
-      });
-      container.querySelectorAll(".del-gal").forEach(b => b.addEventListener("click", e => {
-        const i = parseInt(e.target.dataset.idx);
-        content.gallery.images.splice(i, 1);
-        markDirty();
-        renderGalImgs();
-      }));
+    function renderContact() {
+      const c = content.contact;
+      return `
+        <div class="block-label">Contato</div>
+        ${field("Título - Início", "contact.title_pre", c.title_pre)}
+        ${field("Título - Destaque", "contact.title_highlight", c.title_highlight)}
+        ${field("Subtítulo", "contact.subtitle", c.subtitle)}
+        ${field("Botão CTA", "contact.cta_label", c.cta_label)}
+        ${field("WhatsApp (só números)", "contact.wa_number", c.wa_number)}
+        ${field("Mensagem", "contact.wa_message", c.wa_message, { type: "textarea" })}
+      `;
     }
-
-    function hookInputs(root) {
-      root.querySelectorAll("input[data-key], textarea[data-key]").forEach(el => {
-        el.addEventListener("input", e => {
-          const key = e.target.dataset.key;
-          let val = e.target.type === "checkbox" ? e.target.checked : e.target.value;
-          if (e.target.type === "color") {
-            const txt = e.target.parentElement.querySelector('input[type="text"]');
-            if (txt) txt.value = val;
-          }
-          setPath(content, key, val);
-          markDirty();
-        });
-      });
-
-      root.querySelectorAll("input[type='url'][data-key]").forEach(el => {
-        el.addEventListener("change", e => {
-          const key = e.target.dataset.key;
-          const thumb = root.querySelector(`.ed-img-thumb[data-thumb="${key}"]`);
-          if (thumb) thumb.innerHTML = e.target.value ? `<img src="${esc(e.target.value)}" alt=""/>` : "🖼";
-        });
-      });
-
-      root.querySelectorAll(".btn-file input[type='file']").forEach(input => {
-        input.addEventListener("change", async e => {
-          const file = e.target.files[0];
-          if (!file) return;
-          const label = e.target.closest("label");
-          const key = label.dataset.uploadKey;
-          try {
-            label.classList.add("uploading");
-            label.childNodes[2].textContent = " Enviando...";
-            const url = await uploadSiteImage(session.user.id, profile.username, file);
-            setPath(content, key, url);
-            markDirty();
-            
-            const urlInput = root.querySelector(`input[data-key="${key}"]`);
-            if (urlInput) {
-              urlInput.value = url;
-              urlInput.dispatchEvent(new Event("change"));
-            }
-          } catch (err) {
-            console.error(err);
-            toast("Erro no upload", "error");
-          } finally {
-            label.classList.remove("uploading");
-            label.childNodes[2].textContent = " Escolher do dispositivo";
-            e.target.value = "";
-          }
-        });
-      });
-
-      root.querySelectorAll("button[data-clear-key]").forEach(btn => {
-        btn.addEventListener("click", e => {
-          const key = e.target.dataset.clearKey;
-          setPath(content, key, "");
-          markDirty();
-          const urlInput = root.querySelector(`input[data-key="${key}"]`);
-          if (urlInput) {
-            urlInput.value = "";
-            urlInput.dispatchEvent(new Event("change"));
-          }
-        });
-      });
-
-      const resetColors = root.querySelector("#reset-colors");
-      if (resetColors) {
-        resetColors.addEventListener("click", () => {
-          content.theme.colors = JSON.parse(JSON.stringify(CONFEITARIA01_DEFAULTS.theme.colors));
-          markDirty();
-          showTab("theme");
-        });
-      }
-
-      const addMq = root.querySelector("#add-mq");
-      if (addMq) {
-        addMq.addEventListener("click", () => {
-          if (!content.marquee) content.marquee = { words: [] };
-          if (!content.marquee.words) content.marquee.words = [];
-          content.marquee.words.push({ text: "Novo Texto", italic: false });
-          markDirty();
-          renderMqList();
-          hookInputs(document.getElementById("mq-list"));
-        });
-      }
-
-      const addCat = root.querySelector("#add-cat-item");
-      if (addCat) {
-        addCat.addEventListener("click", () => {
-          if (!content.catalog) content.catalog = { items: [] };
-          if (!content.catalog.items) content.catalog.items = [];
-          content.catalog.items.push({
-            id: "novo", title: "Novo Produto", description: "Descrição do produto", category: "Categoria", image_url: ""
-          });
-          markDirty();
-          renderCatItems();
-          hookInputs(document.getElementById("cat-items-list"));
-        });
-      }
-
-      const addGal = root.querySelector("#add-gal-img");
-      if (addGal) {
-        addGal.addEventListener("click", () => {
-          if (!content.gallery) content.gallery = { images: [] };
-          if (!content.gallery.images) content.gallery.images = [];
-          content.gallery.images.push("");
-          markDirty();
-          renderGalImgs();
-          hookInputs(document.getElementById("gal-imgs-list"));
-        });
-      }
+    function renderMarquee() {
+      const m = content.marquee || [];
+      const items = m.map((txt, i) => `
+        <div class="ed-repeat">
+          <div class="ed-repeat-head"><strong>Palavra ${i+1}</strong><button class="btn btn-ghost btn-sm" data-remove-mar="${i}">Remover</button></div>
+          ${field("Texto", `marquee.${i}`, txt)}
+        </div>`).join("");
+      return `
+        <div class="block-label">Faixa Rotativa</div>
+        ${items}
+        <button class="btn btn-ghost btn-sm btn-block" id="add-mar">+ Adicionar palavra</button>
+      `;
     }
+    const renderers = { branding: renderBranding, catalog: renderCatalog, gallery: renderGallery, contact: renderContact, marquee: renderMarquee };
 
-    function setPath(obj, path, val) {
-      const parts = path.split(".");
-      let curr = obj;
-      for (let i = 0; i < parts.length - 1; i++) {
-        if (!curr[parts[i]]) curr[parts[i]] = {};
-        curr = curr[parts[i]];
-      }
-      curr[parts[parts.length - 1]] = val;
-    }
 
     function showTab(id) {
-      document.querySelectorAll(".ed-nav button").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
-      body.innerHTML = buildTab(id);
-      hookInputs(body);
-      if (id === "marquee") { renderMqList(); hookInputs(document.getElementById("mq-list")); }
-      if (id === "catalog") { renderCatItems(); hookInputs(document.getElementById("cat-items-list")); }
-      if (id === "gallery") { renderGalImgs(); hookInputs(document.getElementById("gal-imgs-list")); }
+      document.querySelectorAll("#ed-nav button").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
+      body.innerHTML = renderers[id]();
+      attachHandlers(id);
     }
 
-    showTab("theme");
-
-    document.getElementById("save-btn").addEventListener("click", async () => {
-      try {
-        const btn = document.getElementById("save-btn");
-        btn.classList.add("loading");
-        const { error } = await supabase.from("sites").update({ content, updated_at: new Date().toISOString() }).eq("id", site.id);
-        if (error) throw error;
-        markClean();
-        toast("Site atualizado!");
-      } catch (e) {
-        console.error(e);
-        toast("Erro ao salvar", "error");
-      } finally {
-        document.getElementById("save-btn").classList.remove("loading");
+    function setPath(path, val) {
+      const keys = path.split(".");
+      let o = content;
+      for (let i = 0; i < keys.length - 1; i++) {
+        const k = keys[i];
+        const nextIsIndex = /^\d+$/.test(keys[i+1]);
+        if (o[k] === undefined || o[k] === null) o[k] = nextIsIndex ? [] : {};
+        o = o[k];
       }
+      o[keys[keys.length - 1]] = val;
+    }
+    function getPath(path) {
+      const keys = path.split(".");
+      let o = content;
+      for (const k of keys) { if (o == null) return undefined; o = o[k]; }
+      return o;
+    }
+
+    function updateThumb(key, url) {
+      const thumb = body.querySelector(`[data-thumb="${CSS.escape(key)}"]`);
+      if (!thumb) return;
+      thumb.innerHTML = url ? `<img src="${esc(url)}" alt=""/>` : (key.includes("mobile") ? "📱" : "🖼");
+    }
+
+    function attachHandlers(id) {
+      body.querySelectorAll("[data-key]").forEach(inp => {
+        inp.addEventListener("input", () => {
+          const v = inp.type === "checkbox" ? inp.checked : inp.value;
+          setPath(inp.dataset.key, v);
+          if (inp.type === "url") updateThumb(inp.dataset.key, inp.value);
+          markDirty();
+        });
+      });
+
+      body.querySelectorAll("[data-upload-key]").forEach(labelEl => {
+        const input = labelEl.querySelector('input[type="file"]');
+        if (!input) return;
+        input.addEventListener("change", async (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          if (file.size > 8 * 1024 * 1024) { toast("Imagem maior que 8 MB", "error"); input.value = ""; return; }
+          const key = labelEl.dataset.uploadKey;
+          labelEl.classList.add("uploading");
+          try {
+            const url = await uploadSiteImage(file, session.user.id);
+            setPath(key, url);
+            const urlInput = body.querySelector(`input[type="url"][data-key="${CSS.escape(key)}"]`);
+            if (urlInput) urlInput.value = url;
+            updateThumb(key, url);
+            markDirty();
+            toast("Imagem enviada", "success");
+          } catch (err) {
+            console.error(err);
+            toast(err.message || "Falha no upload", "error");
+          } finally {
+            labelEl.classList.remove("uploading");
+            input.value = "";
+          }
+        });
+      });
+
+      body.querySelectorAll("[data-clear-key]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.clearKey;
+          setPath(key, "");
+          const urlInput = body.querySelector(`input[type="url"][data-key="${CSS.escape(key)}"]`);
+          if (urlInput) urlInput.value = "";
+          updateThumb(key, "");
+          markDirty();
+        });
+      });
+
+      const addBtn = (sel, add) => { const b = body.querySelector(sel); if (b) b.addEventListener("click", () => { add(); markDirty(); showTab(id); }); };
+      const remBtn = (attr, arrPath) => {
+        body.querySelectorAll(`[${attr}]`).forEach(b => b.addEventListener("click", () => {
+          const i = Number(b.getAttribute(attr));
+          const parts = arrPath.split(".");
+          let o = content; for (const p of parts) o = o[p];
+          o.splice(i, 1);
+          markDirty(); showTab(id);
+        }));
+      };
+
+
+      if (id === "catalog") {
+        addBtn("#add-cat", () => content.catalog.items.push({ category: "Novo", title: "Item", description: "", image_url: "" }));
+        remBtn("data-remove-cat", "catalog.items");
+      }
+      if (id === "gallery") {
+        addBtn("#add-gal", () => content.gallery.images.push(""));
+        remBtn("data-remove-gal", "gallery.images");
+      }
+      if (id === "marquee") {
+        addBtn("#add-mar", () => content.marquee.push("Nova palavra"));
+        remBtn("data-remove-mar", "marquee");
+      }
+
+    }
+    showTab("branding");
+    
+    async function save() {
+      const btn = document.getElementById("save-btn");
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+      const { error } = await supabase.from("sites").update({ content, published: true }).eq("user_id", session.user.id);
+      btn.disabled = false; btn.textContent = "Salvar";
+      if (error) { toast(error.message, "error"); return; }
+      markClean(); toast("Salvo", "success");
+    }
+    document.getElementById("save-btn").addEventListener("click", save);
+    document.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); save(); }
+    });
+    window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+    document.getElementById("ai-btn").addEventListener("click", () => {
+      toast("✨ Inteligência Artificial conectada! O preenchimento automático estará disponível em breve.", "success");
     });
 
+    markClean();
   </script>
 </body>
 </html>

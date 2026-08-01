@@ -22,6 +22,7 @@
       <div class="flex gap-2 items-center">
         <span class="tag" id="save-state">Tudo salvo</span>
         <a class="btn btn-ghost btn-sm" id="preview-link" target="_blank" rel="noopener">Ver site</a>
+        <button class="btn btn-ghost btn-sm" id="ai-btn" style="color: #7c5cff; border: 1px solid rgba(124, 92, 255, 0.3);"><i class="ph ph-sparkle"></i> IA</button>
         <button class="btn btn-primary btn-sm" id="save-btn">Salvar</button>
       </div>
     </header>
@@ -226,6 +227,10 @@
       if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); save(); }
     });
     window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+    document.getElementById("ai-btn").addEventListener("click", () => {
+      toast("✨ Inteligência Artificial conectada! O preenchimento automático estará disponível em breve.", "success");
+    });
 
     renderPreview();
     markClean();

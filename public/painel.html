@@ -304,8 +304,18 @@
     if (site?.updated_at) {
       const date = new Date(site.updated_at);
       document.getElementById("stat-updated").textContent = date.toLocaleDateString("pt-BR") + " às " + date.toLocaleTimeString("pt-BR", {hour: '2-digit', minute:'2-digit'});
+      
+      const seconds = Math.floor((new Date() - date) / 1000);
+      let timeAgo = "agora mesmo";
+      if (seconds > 31536000) timeAgo = "há " + Math.floor(seconds / 31536000) + " anos";
+      else if (seconds > 2592000) timeAgo = "há " + Math.floor(seconds / 2592000) + " meses";
+      else if (seconds > 86400) timeAgo = "há " + Math.floor(seconds / 86400) + " dias";
+      else if (seconds > 3600) timeAgo = "há " + Math.floor(seconds / 3600) + " horas";
+      else if (seconds > 60) timeAgo = "há " + Math.floor(seconds / 60) + " minutos";
+      document.getElementById("stat-updated").nextElementSibling.textContent = timeAgo;
     } else {
       document.getElementById("stat-updated").textContent = "Nunca";
+      document.getElementById("stat-updated").nextElementSibling.textContent = "-";
     }
 
     let editorHref = "/editor.html";
