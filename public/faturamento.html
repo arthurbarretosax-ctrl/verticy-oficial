@@ -10,7 +10,7 @@
   <style>
     .settings-layout { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
     .settings-header { margin-bottom: 32px; }
-    .settings-header h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+    .settings-header h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
     .settings-header p { color: var(--text-muted); font-size: 15px; }
     
     .settings-card {
@@ -20,14 +20,14 @@
       padding: 32px;
       margin-bottom: 24px;
     }
-    .settings-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 24px; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .settings-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 24px; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
     
     .form-group { margin-bottom: 20px; }
     .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 8px; }
     .form-group input { 
       width: 100%; padding: 12px 16px; border-radius: var(--radius-md);
       background: rgba(255,255,255,0.03); border: 1px solid var(--border-light);
-      color: #fff; font-size: 15px; transition: all 0.2s;
+      color: var(--text-main); font-size: 15px; transition: all 0.2s;
     }
     .form-group input:focus { border-color: var(--brand-color); outline: none; background: rgba(255,255,255,0.05); }
     .form-group input:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -123,10 +123,10 @@
       </div>
     </aside>
 
-    <main class="main-content" style="overflow-y: auto;">
+    <main class="main-content" style="overflow-y: auto; padding-bottom: 100px;">
       <div style="max-width: 1000px; margin: 0 auto; padding: 32px 24px;">
         <div class="settings-header" style="margin-bottom: 32px;">
-          <h1 style="font-size: 28px; font-weight: 600; color: #fff; margin-bottom: 8px;">Faturamento</h1>
+          <h1 style="font-size: 28px; font-weight: 600; color: var(--text-main); margin-bottom: 8px;">Faturamento</h1>
           <p style="color: var(--text-muted); font-size: 15px;">Gerencie seu plano, formas de pagamento e notas fiscais.</p>
         </div>
 
@@ -140,7 +140,7 @@
               </div>
               <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Você está no plano básico e gratuito.</p>
               <div style="display: flex; align-items: baseline; gap: 4px;">
-                <span style="font-size: 32px; font-weight: 700; color: #fff;">R$ 0</span>
+                <span style="font-size: 32px; font-weight: 700; color: var(--text-main);">R$ 0</span>
                 <span style="color: var(--text-muted); font-size: 14px;">/mês</span>
               </div>
             </div>
@@ -163,7 +163,7 @@
                 VISA
               </div>
               <div>
-                <div style="color: #fff; font-weight: 500; font-size: 15px; margin-bottom: 4px;">Visa terminando em 4242</div>
+                <div style="color: var(--text-main); font-weight: 500; font-size: 15px; margin-bottom: 4px;">Visa terminando em 4242</div>
                 <div style="color: var(--text-muted); font-size: 13px;">Expira em 12/28</div>
               </div>
             </div>
@@ -187,16 +187,16 @@
               </thead>
               <tbody>
                 <tr style="border-bottom: 1px solid var(--border-light); transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
-                  <td style="padding: 16px; color: #fff; font-size: 14px;">15/07/2026</td>
-                  <td style="padding: 16px; color: #fff; font-size: 14px;">Plano Essencial Mensal</td>
-                  <td style="padding: 16px; color: #fff; font-size: 14px;">R$ 0,00</td>
+                  <td style="padding: 16px; color: var(--text-main); font-size: 14px;">15/07/2026</td>
+                  <td style="padding: 16px; color: var(--text-main); font-size: 14px;">Plano Essencial Mensal</td>
+                  <td style="padding: 16px; color: var(--text-main); font-size: 14px;">R$ 0,00</td>
                   <td style="padding: 16px;"><span style="background: rgba(37, 211, 102, 0.1); color: #25D366; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">Pago</span></td>
                   <td style="padding: 16px; text-align: right;"><button class="btn btn-ghost btn-sm" style="color: var(--text-muted);"><i class="ph ph-download-simple"></i> Recibo</button></td>
                 </tr>
                 <tr style="border-bottom: 1px solid var(--border-light); transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
-                  <td style="padding: 16px; color: #fff; font-size: 14px;">15/06/2026</td>
-                  <td style="padding: 16px; color: #fff; font-size: 14px;">Plano Essencial Mensal</td>
-                  <td style="padding: 16px; color: #fff; font-size: 14px;">R$ 0,00</td>
+                  <td style="padding: 16px; color: var(--text-main); font-size: 14px;">15/06/2026</td>
+                  <td style="padding: 16px; color: var(--text-main); font-size: 14px;">Plano Essencial Mensal</td>
+                  <td style="padding: 16px; color: var(--text-main); font-size: 14px;">R$ 0,00</td>
                   <td style="padding: 16px;"><span style="background: rgba(37, 211, 102, 0.1); color: #25D366; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 500;">Pago</span></td>
                   <td style="padding: 16px; text-align: right;"><button class="btn btn-ghost btn-sm" style="color: var(--text-muted);"><i class="ph ph-download-simple"></i> Recibo</button></td>
                 </tr>
