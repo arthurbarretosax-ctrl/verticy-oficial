@@ -192,7 +192,7 @@ function Landing() {
             </p>
           </div>
           <div className="grid grid-3">
-            [
+            {[
 { name: "Denis", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "denis" },
 { name: "Duo", tag: "Novo", grad: "linear-gradient(135deg,#111,#333)", id: "duo" },
 { name: "Manuel", tag: "Novo", grad: "linear-gradient(135deg,#f59e0b,#ef4444)", id: "manuel" },
@@ -224,7 +224,7 @@ function Landing() {
 { name: "Duo2", tag: "Novo", grad: "linear-gradient(135deg,#4b6bff,#a78bfa)", id: "duo2" },
 { name: "Yaveh", tag: "Novo", grad: "linear-gradient(135deg,#0f766e,#22d3ee)", id: "yaveh" },
 { name: "Star", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "star" }
-            ]            ].map((t) => (
+            ].map((t) => (
               <a href={`/preview/${t.id}`} target="_blank" key={t.name} className="card reveal" style={{ padding: 0, overflow: "hidden" }}>
                 <div style={{ height: 200, background: t.grad }} />
                 <div style={{ padding: 20 }}>
