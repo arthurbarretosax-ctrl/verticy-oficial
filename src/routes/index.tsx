@@ -192,15 +192,40 @@ function Landing() {
             </p>
           </div>
           <div className="grid grid-3">
-            {[
-              { name: "Aurora", tag: "Premium", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)" },
-              { name: "Noir", tag: "Escuro", grad: "linear-gradient(135deg,#111,#333)" },
-              { name: "Solar", tag: "Colorido", grad: "linear-gradient(135deg,#f59e0b,#ef4444)" },
-              { name: "Mono", tag: "Minimalista", grad: "linear-gradient(135deg,#f5f5fa,#a4a4b5)" },
-              { name: "Prisma", tag: "Moderno", grad: "linear-gradient(135deg,#4b6bff,#a78bfa)" },
-              { name: "Vaia", tag: "Elegante", grad: "linear-gradient(135deg,#0f766e,#22d3ee)" },
-            ].map((t) => (
-              <div key={t.name} className="card reveal" style={{ padding: 0, overflow: "hidden" }}>
+            [
+{ name: "Denis", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "denis" },
+{ name: "Duo", tag: "Novo", grad: "linear-gradient(135deg,#111,#333)", id: "duo" },
+{ name: "Manuel", tag: "Novo", grad: "linear-gradient(135deg,#f59e0b,#ef4444)", id: "manuel" },
+{ name: "Wilian", tag: "Novo", grad: "linear-gradient(135deg,#f5f5fa,#a4a4b5)", id: "wilian" },
+{ name: "Loyola", tag: "Novo", grad: "linear-gradient(135deg,#4b6bff,#a78bfa)", id: "loyola" },
+{ name: "Amandex", tag: "Novo", grad: "linear-gradient(135deg,#0f766e,#22d3ee)", id: "amandex" },
+{ name: "FrancianeFurohumanizado2", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "francianefurohumanizado2" },
+{ name: "Ilgner", tag: "Novo", grad: "linear-gradient(135deg,#111,#333)", id: "ilgner" },
+{ name: "Ilgner2", tag: "Novo", grad: "linear-gradient(135deg,#f59e0b,#ef4444)", id: "ilgner2" },
+{ name: "IgnosForadoar", tag: "Novo", grad: "linear-gradient(135deg,#f5f5fa,#a4a4b5)", id: "ignosforadoar" },
+{ name: "LuanaForadoar", tag: "Novo", grad: "linear-gradient(135deg,#4b6bff,#a78bfa)", id: "luanaforadoar" },
+{ name: "DraMirella", tag: "Novo", grad: "linear-gradient(135deg,#0f766e,#22d3ee)", id: "dramirella" },
+{ name: "Yaveh2", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "yaveh2" },
+{ name: "Jt", tag: "Novo", grad: "linear-gradient(135deg,#111,#333)", id: "jt" },
+{ name: "LaylaPsi", tag: "Novo", grad: "linear-gradient(135deg,#f59e0b,#ef4444)", id: "laylapsi" },
+{ name: "Hortela2", tag: "Novo", grad: "linear-gradient(135deg,#f5f5fa,#a4a4b5)", id: "hortela2" },
+{ name: "Zisa", tag: "Novo", grad: "linear-gradient(135deg,#4b6bff,#a78bfa)", id: "zisa" },
+{ name: "CristianaPsi", tag: "Novo", grad: "linear-gradient(135deg,#0f766e,#22d3ee)", id: "cristianapsi" },
+{ name: "Dudu", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "dudu" },
+{ name: "CristianaPsi2", tag: "Novo", grad: "linear-gradient(135deg,#111,#333)", id: "cristianapsi2" },
+{ name: "DraRaisabastos", tag: "Novo", grad: "linear-gradient(135deg,#f59e0b,#ef4444)", id: "draraisabastos" },
+{ name: "TaiStorymaker", tag: "Novo", grad: "linear-gradient(135deg,#f5f5fa,#a4a4b5)", id: "taistorymaker" },
+{ name: "DayForadoar", tag: "Novo", grad: "linear-gradient(135deg,#4b6bff,#a78bfa)", id: "dayforadoar" },
+{ name: "Tai", tag: "Novo", grad: "linear-gradient(135deg,#0f766e,#22d3ee)", id: "tai" },
+{ name: "LaviniaPsi", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "laviniapsi" },
+{ name: "DraAndrezza", tag: "Novo", grad: "linear-gradient(135deg,#111,#333)", id: "draandrezza" },
+{ name: "Hortela", tag: "Novo", grad: "linear-gradient(135deg,#f59e0b,#ef4444)", id: "hortela" },
+{ name: "Gabi1", tag: "Novo", grad: "linear-gradient(135deg,#f5f5fa,#a4a4b5)", id: "gabi1" },
+{ name: "Duo2", tag: "Novo", grad: "linear-gradient(135deg,#4b6bff,#a78bfa)", id: "duo2" },
+{ name: "Yaveh", tag: "Novo", grad: "linear-gradient(135deg,#0f766e,#22d3ee)", id: "yaveh" },
+{ name: "Star", tag: "Novo", grad: "linear-gradient(135deg,#7c5cff,#22d3ee)", id: "star" }
+            ]            ].map((t) => (
+              <a href={`/preview/${t.id}`} target="_blank" key={t.name} className="card reveal" style={{ padding: 0, overflow: "hidden" }}>
                 <div style={{ height: 200, background: t.grad }} />
                 <div style={{ padding: 20 }}>
                   <div className="flex justify-between items-center">
@@ -208,7 +233,7 @@ function Landing() {
                     <span className="tag">{t.tag}</span>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
