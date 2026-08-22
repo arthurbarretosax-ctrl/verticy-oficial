@@ -3,7 +3,7 @@ import "@/assets/css/denis.css";
 
 export default function Denis({ content }: { content: any }) {
   return (
-    <div className="denis-wrapper template-denis">
+    <div className="denis-wrapper template-denis overflow-x-hidden selection:bg-denis-gold selection:text-black pb-10">
       
 
   

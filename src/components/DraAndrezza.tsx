@@ -3,7 +3,7 @@ import "@/assets/css/draandrezza.css";
 
 export default function DraAndrezza({ content }: { content: any }) {
   return (
-    <div className="dra.andrezza-wrapper template-dra andrezza">
+    <div className="dra.andrezza-wrapper template-dra andrezza text-slate-700 antialiased relative">
       
 
     

@@ -3,7 +3,7 @@ import "@/assets/css/francianefurohumanizado2.css";
 
 export default function FrancianeFurohumanizado2({ content }: { content: any }) {
   return (
-    <div className="franciane-furohumanizado2-wrapper template-franciane-furohumanizado2">
+    <div className="franciane-furohumanizado2-wrapper template-franciane-furohumanizado2 selection:bg-furo-pink selection:text-white pb-10">
       
 
   

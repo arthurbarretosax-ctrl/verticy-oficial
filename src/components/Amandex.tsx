@@ -3,7 +3,7 @@ import "@/assets/css/amandex.css";
 
 export default function Amandex({ content }: { content: any }) {
   return (
-    <div className="amandex-wrapper template-amandex">
+    <div className="amandex-wrapper template-amandex antialiased selection:bg-nude-300 selection:text-dark">
       
 
     

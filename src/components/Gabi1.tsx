@@ -3,7 +3,7 @@ import "@/assets/css/gabi1.css";
 
 export default function Gabi1({ content }: { content: any }) {
   return (
-    <div className="gabi1-wrapper template-gabi1">
+    <div className="gabi1-wrapper template-gabi1 overflow-x-hidden selection:bg-[#C6A87C] selection:text-white pb-20">
       
 
   

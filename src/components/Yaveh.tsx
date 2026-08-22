@@ -3,7 +3,7 @@ import "@/assets/css/yaveh.css";
 
 export default function Yaveh({ content }: { content: any }) {
   return (
-    <div className="yaveh-wrapper template-yaveh">
+    <div className="yaveh-wrapper template-yaveh overflow-x-hidden selection:bg-yaveh-gold selection:text-yaveh-black pb-10">
       
 
   

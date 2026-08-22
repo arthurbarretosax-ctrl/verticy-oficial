@@ -3,7 +3,7 @@ import "@/assets/css/dudu.css";
 
 export default function Dudu({ content }: { content: any }) {
   return (
-    <div className="dudu-wrapper template-dudu">
+    <div className="dudu-wrapper template-dudu bg-brand-black text-gray-200 overflow-x-hidden selection:bg-brand-orange selection:text-white pb-20 min-h-screen">
       
 
   

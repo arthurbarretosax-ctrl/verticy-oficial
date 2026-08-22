@@ -3,7 +3,7 @@ import "@/assets/css/manuel.css";
 
 export default function Manuel({ content }: { content: any }) {
   return (
-    <div className="manuel-wrapper template-manuel">
+    <div className="manuel-wrapper template-manuel selection:bg-manuel-blue selection:text-white pb-20">
       
 
   

@@ -3,7 +3,7 @@ import "@/assets/css/cristianapsi2.css";
 
 export default function CristianaPsi2({ content }: { content: any }) {
   return (
-    <div className="cristiana.psi2-wrapper template-cristiana psi2">
+    <div className="cristiana.psi2-wrapper template-cristiana psi2 selection:bg-psi-accent selection:text-white pb-0">
       
 
   

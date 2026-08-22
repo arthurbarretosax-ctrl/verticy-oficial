@@ -3,7 +3,7 @@ import "@/assets/css/wilian.css";
 
 export default function Wilian({ content }: { content: any }) {
   return (
-    <div className="wilian-wrapper template-wilian">
+    <div className="wilian-wrapper template-wilian bg-wilian-bg text-wilian-dark overflow-x-hidden selection:bg-wilian-orange selection:text-white pb-20 font-sans">
       
 
   

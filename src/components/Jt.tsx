@@ -3,7 +3,7 @@ import "@/assets/css/jt.css";
 
 export default function Jt({ content }: { content: any }) {
   return (
-    <div className="jt-wrapper template-jt">
+    <div className="jt-wrapper template-jt overflow-x-hidden selection:bg-jt-gold selection:text-jt-black pb-10">
       
 
   

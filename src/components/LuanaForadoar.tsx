@@ -3,7 +3,7 @@ import "@/assets/css/luanaforadoar.css";
 
 export default function LuanaForadoar({ content }: { content: any }) {
   return (
-    <div className="luana-foradoar-wrapper template-luana-foradoar">
+    <div className="luana-foradoar-wrapper template-luana-foradoar bg-lens-black text-lens-light overflow-x-hidden selection:bg-lens-accent selection:text-lens-black pb-20 min-h-screen">
       
 
   

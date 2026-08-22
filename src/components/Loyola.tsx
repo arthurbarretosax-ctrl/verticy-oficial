@@ -3,7 +3,7 @@ import "@/assets/css/loyola.css";
 
 export default function Loyola({ content }: { content: any }) {
   return (
-    <div className="loyola-wrapper template-loyola">
+    <div className="loyola-wrapper template-loyola selection:bg-loyola-gold selection:text-black pb-10">
       
 
   

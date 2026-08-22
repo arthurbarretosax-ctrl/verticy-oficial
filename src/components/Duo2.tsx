@@ -3,7 +3,7 @@ import "@/assets/css/duo2.css";
 
 export default function Duo2({ content }: { content: any }) {
   return (
-    <div className="duo2-wrapper template-duo2">
+    <div className="duo2-wrapper template-duo2 overflow-x-hidden selection:bg-[#9E9EA0] selection:text-[#050505] pb-0 bg-[#050505]">
       
 
   

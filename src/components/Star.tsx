@@ -3,7 +3,7 @@ import "@/assets/css/star.css";
 
 export default function Star({ content }: { content: any }) {
   return (
-    <div className="star-wrapper template-star">
+    <div className="star-wrapper template-star overflow-x-hidden selection:bg-star-gold selection:text-black">
       
 
   

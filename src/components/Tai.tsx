@@ -3,7 +3,7 @@ import "@/assets/css/tai.css";
 
 export default function Tai({ content }: { content: any }) {
   return (
-    <div className="tai-wrapper template-tai">
+    <div className="tai-wrapper template-tai selection:bg-tai-brown selection:text-white pb-0">
       
 
   

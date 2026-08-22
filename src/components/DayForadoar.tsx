@@ -3,7 +3,7 @@ import "@/assets/css/dayforadoar.css";
 
 export default function DayForadoar({ content }: { content: any }) {
   return (
-    <div className="day-foradoar-wrapper template-day-foradoar">
+    <div className="day-foradoar-wrapper template-day-foradoar text-slate-700 antialiased relative">
       
 
     
