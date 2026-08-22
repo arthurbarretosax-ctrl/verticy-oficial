@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/luanaforadoar.css";
 
 export default function LuanaForadoar({ content }: { content: any }) {
   return (
-    <div className="luana-foradoar-wrapper">
+    <div className="luana-foradoar-wrapper template-luana-foradoar">
       
 
   
-  <div className="max-w-md mx-auto bg-lens-black min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-white/5">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto bg-lens-black min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-white/5">
     
     
     <div className="camera-focus top-0 left-1/2 -translate-x-1/2"></div>

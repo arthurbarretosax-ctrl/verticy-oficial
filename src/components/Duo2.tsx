@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/duo2.css";
 
 export default function Duo2({ content }: { content: any }) {
   return (
-    <div className="duo2-wrapper">
+    <div className="duo2-wrapper template-duo2">
       
 
   
-  <div className="max-w-md mx-auto min-h-screen relative shadow-2xl bg-[#050505] sm:border-x sm:border-white/10 overflow-hidden flex flex-col">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto min-h-screen relative shadow-2xl bg-[#050505] sm:border-x sm:border-white/10 overflow-hidden flex flex-col">
     
     <div className="bg-noise mix-blend-overlay"></div>
 

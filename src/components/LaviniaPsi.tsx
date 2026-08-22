@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/laviniapsi.css";
 
 export default function LaviniaPsi({ content }: { content: any }) {
   return (
-    <div className="lavinia.psi-wrapper">
+    <div className="lavinia.psi-wrapper template-lavinia psi">
       
 
-  <div className="bg-noise"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+      `}</style>
+<div className="bg-noise"></div>
 
   <div className="max-w-md mx-auto min-h-screen relative bg-psi-black shadow-2xl overflow-hidden sm:border-x sm:border-white/5 flex flex-col">
     

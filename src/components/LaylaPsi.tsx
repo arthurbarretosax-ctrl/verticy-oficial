@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/laylapsi.css";
 
 export default function LaylaPsi({ content }: { content: any }) {
   return (
-    <div className="layla.psi-wrapper">
+    <div className="layla.psi-wrapper template-layla psi">
       
 
   
-  <div className="max-w-md mx-auto bg-layla-bg min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-white/40">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto bg-layla-bg min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-white/40">
     
     
     <header className="relative w-full h-[60vh] overflow-hidden group border-b border-white/40">

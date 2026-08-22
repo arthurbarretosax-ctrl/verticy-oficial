@@ -1,0 +1,1667 @@
+
+*, ::before, ::after{
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop{
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+/*
+! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com
+*/
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: Plus Jakarta Sans, sans-serif;
+  /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-feature-settings: normal;
+  /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  letter-spacing: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+
+.template-wilian .pointer-events-none{
+  pointer-events: none;
+}
+
+.template-wilian .absolute{
+  position: absolute;
+}
+
+.template-wilian .relative{
+  position: relative;
+}
+
+.template-wilian .inset-0{
+  inset: 0px;
+}
+
+.template-wilian .-bottom-10{
+  bottom: -2.5rem;
+}
+
+.template-wilian .-right-10{
+  right: -2.5rem;
+}
+
+.template-wilian .-top-8{
+  top: -2rem;
+}
+
+.template-wilian .bottom-10{
+  bottom: 2.5rem;
+}
+
+.template-wilian .bottom-4{
+  bottom: 1rem;
+}
+
+.template-wilian .left-0{
+  left: 0px;
+}
+
+.template-wilian .left-1\/2{
+  left: 50%;
+}
+
+.template-wilian .left-14{
+  left: 3.5rem;
+}
+
+.template-wilian .left-4{
+  left: 1rem;
+}
+
+.template-wilian .right-0{
+  right: 0px;
+}
+
+.template-wilian .right-4{
+  right: 1rem;
+}
+
+.template-wilian .right-6{
+  right: 1.5rem;
+}
+
+.template-wilian .top-0{
+  top: 0px;
+}
+
+.template-wilian .top-32{
+  top: 8rem;
+}
+
+.template-wilian .top-4{
+  top: 1rem;
+}
+
+.template-wilian .top-6{
+  top: 1.5rem;
+}
+
+.template-wilian .top-8{
+  top: 2rem;
+}
+
+.template-wilian .top-\[30\%\]{
+  top: 30%;
+}
+
+.template-wilian .z-10{
+  z-index: 10;
+}
+
+.template-wilian .z-20{
+  z-index: 20;
+}
+
+.template-wilian .z-30{
+  z-index: 30;
+}
+
+.template-wilian .col-span-2{
+  grid-column: span 2 / span 2;
+}
+
+.template-wilian .mx-2{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.template-wilian .mx-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.template-wilian .-mt-2{
+  margin-top: -0.5rem;
+}
+
+.template-wilian .mb-1{
+  margin-bottom: 0.25rem;
+}
+
+.template-wilian .mb-10{
+  margin-bottom: 2.5rem;
+}
+
+.template-wilian .mb-12{
+  margin-bottom: 3rem;
+}
+
+.template-wilian .mb-2{
+  margin-bottom: 0.5rem;
+}
+
+.template-wilian .mb-3{
+  margin-bottom: 0.75rem;
+}
+
+.template-wilian .mb-4{
+  margin-bottom: 1rem;
+}
+
+.template-wilian .mb-6{
+  margin-bottom: 1.5rem;
+}
+
+.template-wilian .ml-1{
+  margin-left: 0.25rem;
+}
+
+.template-wilian .ml-12{
+  margin-left: 3rem;
+}
+
+.template-wilian .mt-1{
+  margin-top: 0.25rem;
+}
+
+.template-wilian .mt-2{
+  margin-top: 0.5rem;
+}
+
+.template-wilian .mt-4{
+  margin-top: 1rem;
+}
+
+.template-wilian .mt-6{
+  margin-top: 1.5rem;
+}
+
+.template-wilian .line-clamp-2{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.template-wilian .flex{
+  display: flex;
+}
+
+.template-wilian .grid{
+  display: grid;
+}
+
+.template-wilian .h-1\.5{
+  height: 0.375rem;
+}
+
+.template-wilian .h-14{
+  height: 3.5rem;
+}
+
+.template-wilian .h-3\.5{
+  height: 0.875rem;
+}
+
+.template-wilian .h-36{
+  height: 9rem;
+}
+
+.template-wilian .h-4{
+  height: 1rem;
+}
+
+.template-wilian .h-40{
+  height: 10rem;
+}
+
+.template-wilian .h-44{
+  height: 11rem;
+}
+
+.template-wilian .h-5{
+  height: 1.25rem;
+}
+
+.template-wilian .h-6{
+  height: 1.5rem;
+}
+
+.template-wilian .h-7{
+  height: 1.75rem;
+}
+
+.template-wilian .h-72{
+  height: 18rem;
+}
+
+.template-wilian .h-80{
+  height: 20rem;
+}
+
+.template-wilian .h-\[24rem\]{
+  height: 24rem;
+}
+
+.template-wilian .h-\[2px\]{
+  height: 2px;
+}
+
+.template-wilian .h-\[65vh\]{
+  height: 65vh;
+}
+
+.template-wilian .h-full{
+  height: 100%;
+}
+
+.template-wilian .min-h-screen{
+  min-height: 100vh;
+}
+
+.template-wilian .w-1\.5{
+  width: 0.375rem;
+}
+
+.template-wilian .w-14{
+  width: 3.5rem;
+}
+
+.template-wilian .w-16{
+  width: 4rem;
+}
+
+.template-wilian .w-3\.5{
+  width: 0.875rem;
+}
+
+.template-wilian .w-4{
+  width: 1rem;
+}
+
+.template-wilian .w-40{
+  width: 10rem;
+}
+
+.template-wilian .w-44{
+  width: 11rem;
+}
+
+.template-wilian .w-48{
+  width: 12rem;
+}
+
+.template-wilian .w-5{
+  width: 1.25rem;
+}
+
+.template-wilian .w-6{
+  width: 1.5rem;
+}
+
+.template-wilian .w-7{
+  width: 1.75rem;
+}
+
+.template-wilian .w-72{
+  width: 18rem;
+}
+
+.template-wilian .w-8{
+  width: 2rem;
+}
+
+.template-wilian .w-80{
+  width: 20rem;
+}
+
+.template-wilian .w-full{
+  width: 100%;
+}
+
+.template-wilian .min-w-full{
+  min-width: 100%;
+}
+
+.template-wilian .max-w-md{
+  max-width: 28rem;
+}
+
+.template-wilian .shrink-0{
+  flex-shrink: 0;
+}
+
+.template-wilian .-translate-x-1\/2{
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian .-rotate-2{
+  --tw-rotate: -2deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian .-rotate-6{
+  --tw-rotate: -6deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian .rotate-6{
+  --tw-rotate: 6deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian .transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian .cursor-pointer{
+  cursor: pointer;
+}
+
+.template-wilian .snap-x{
+  scroll-snap-type: x var(--tw-scroll-snap-strictness);
+}
+
+.template-wilian .snap-center{
+  scroll-snap-align: center;
+}
+
+.template-wilian .grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.template-wilian .flex-col{
+  flex-direction: column;
+}
+
+.template-wilian .items-end{
+  align-items: flex-end;
+}
+
+.template-wilian .items-center{
+  align-items: center;
+}
+
+.template-wilian .justify-center{
+  justify-content: center;
+}
+
+.template-wilian .justify-between{
+  justify-content: space-between;
+}
+
+.template-wilian .gap-1{
+  gap: 0.25rem;
+}
+
+.template-wilian .gap-1\.5{
+  gap: 0.375rem;
+}
+
+.template-wilian .gap-12{
+  gap: 3rem;
+}
+
+.template-wilian .gap-2{
+  gap: 0.5rem;
+}
+
+.template-wilian .gap-3{
+  gap: 0.75rem;
+}
+
+.template-wilian .gap-4{
+  gap: 1rem;
+}
+
+.template-wilian :is(.space-y-4 > :not([hidden]) ~ :not([hidden])){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.template-wilian .overflow-hidden{
+  overflow: hidden;
+}
+
+.template-wilian .overflow-x-auto{
+  overflow-x: auto;
+}
+
+.template-wilian .whitespace-nowrap{
+  white-space: nowrap;
+}
+
+.template-wilian .rounded-2xl{
+  border-radius: 1rem;
+}
+
+.template-wilian .rounded-\[2rem\]{
+  border-radius: 2rem;
+}
+
+.template-wilian .rounded-\[3rem\]{
+  border-radius: 3rem;
+}
+
+.template-wilian .rounded-full{
+  border-radius: 9999px;
+}
+
+.template-wilian .rounded-b-\[3rem\]{
+  border-bottom-right-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+}
+
+.template-wilian .rounded-t-\[3rem\]{
+  border-top-left-radius: 3rem;
+  border-top-right-radius: 3rem;
+}
+
+.template-wilian .border{
+  border-width: 1px;
+}
+
+.template-wilian .border-b{
+  border-bottom-width: 1px;
+}
+
+.template-wilian .border-t{
+  border-top-width: 1px;
+}
+
+.template-wilian .border-gray-100{
+  --tw-border-opacity: 1;
+  border-color: rgb(243 244 246 / var(--tw-border-opacity, 1));
+}
+
+.template-wilian .border-gray-200{
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+}
+
+.template-wilian .border-gray-200\/60{
+  border-color: rgb(229 231 235 / 0.6);
+}
+
+.template-wilian .border-white\/10{
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+.template-wilian .border-white\/20{
+  border-color: rgb(255 255 255 / 0.2);
+}
+
+.template-wilian .border-white\/30{
+  border-color: rgb(255 255 255 / 0.3);
+}
+
+.template-wilian .bg-\[\#111827\]{
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .bg-transparent{
+  background-color: transparent;
+}
+
+.template-wilian .bg-white{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .bg-white\/10{
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+.template-wilian .bg-white\/20{
+  background-color: rgb(255 255 255 / 0.2);
+}
+
+.template-wilian .bg-wilian-bg{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 249 250 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .bg-wilian-blue{
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .bg-wilian-blue\/10{
+  background-color: rgb(37 99 235 / 0.1);
+}
+
+.template-wilian .bg-wilian-orange{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .bg-wilian-orange\/10{
+  background-color: rgb(249 115 22 / 0.1);
+}
+
+.template-wilian .bg-wilian-orange\/50{
+  background-color: rgb(249 115 22 / 0.5);
+}
+
+.template-wilian .bg-gradient-to-t{
+  background-image: linear-gradient(to top, var(--tw-gradient-stops));
+}
+
+.template-wilian .from-black\/80{
+  --tw-gradient-from: rgb(0 0 0 / 0.8) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.template-wilian .from-wilian-dark\/90{
+  --tw-gradient-from: rgb(17 24 39 / 0.9) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(17 24 39 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.template-wilian .via-transparent{
+  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.template-wilian .via-wilian-dark\/20{
+  --tw-gradient-to: rgb(17 24 39 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(17 24 39 / 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.template-wilian .to-transparent{
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+
+.template-wilian .fill-white{
+  fill: #fff;
+}
+
+.template-wilian .object-cover{
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.template-wilian .object-center{
+  -o-object-position: center;
+     object-position: center;
+}
+
+.template-wilian .p-2{
+  padding: 0.5rem;
+}
+
+.template-wilian .p-6{
+  padding: 1.5rem;
+}
+
+.template-wilian .px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.template-wilian .px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.template-wilian .px-6{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.template-wilian .px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.template-wilian .py-1\.5{
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.template-wilian .py-10{
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.template-wilian .py-12{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.template-wilian .py-2{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.template-wilian .py-3{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.template-wilian .py-5{
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.template-wilian .py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.template-wilian .pb-24{
+  padding-bottom: 6rem;
+}
+
+.template-wilian .pb-8{
+  padding-bottom: 2rem;
+}
+
+.template-wilian .pl-2{
+  padding-left: 0.5rem;
+}
+
+.template-wilian .pt-10{
+  padding-top: 2.5rem;
+}
+
+.template-wilian .pt-16{
+  padding-top: 4rem;
+}
+
+.template-wilian .pt-8{
+  padding-top: 2rem;
+}
+
+.template-wilian .text-center{
+  text-align: center;
+}
+
+.template-wilian .font-serif{
+  font-family: Playfair Display, serif;
+}
+
+.template-wilian .text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.template-wilian .text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.template-wilian .text-5xl{
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.template-wilian .text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.template-wilian .text-\[10px\]{
+  font-size: 10px;
+}
+
+.template-wilian .text-\[11px\]{
+  font-size: 11px;
+}
+
+.template-wilian .text-\[12px\]{
+  font-size: 12px;
+}
+
+.template-wilian .text-\[13px\]{
+  font-size: 13px;
+}
+
+.template-wilian .text-\[14px\]{
+  font-size: 14px;
+}
+
+.template-wilian .text-\[8px\]{
+  font-size: 8px;
+}
+
+.template-wilian .text-\[9px\]{
+  font-size: 9px;
+}
+
+.template-wilian .text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.template-wilian .text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.template-wilian .text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.template-wilian .font-black{
+  font-weight: 900;
+}
+
+.template-wilian .font-bold{
+  font-weight: 700;
+}
+
+.template-wilian .font-medium{
+  font-weight: 500;
+}
+
+.template-wilian .uppercase{
+  text-transform: uppercase;
+}
+
+.template-wilian .italic{
+  font-style: italic;
+}
+
+.template-wilian .leading-none{
+  line-height: 1;
+}
+
+.template-wilian .leading-relaxed{
+  line-height: 1.625;
+}
+
+.template-wilian .leading-tight{
+  line-height: 1.25;
+}
+
+.template-wilian .tracking-\[0\.2em\]{
+  letter-spacing: 0.2em;
+}
+
+.template-wilian .tracking-\[0\.3em\]{
+  letter-spacing: 0.3em;
+}
+
+.template-wilian .tracking-tight{
+  letter-spacing: -0.025em;
+}
+
+.template-wilian .tracking-tighter{
+  letter-spacing: -0.05em;
+}
+
+.template-wilian .tracking-widest{
+  letter-spacing: 0.1em;
+}
+
+.template-wilian .text-gray-400{
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .text-gray-500{
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .text-gray-600{
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .text-gray-800{
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .text-white\/30{
+  color: rgb(255 255 255 / 0.3);
+}
+
+.template-wilian .text-white\/50{
+  color: rgb(255 255 255 / 0.5);
+}
+
+.template-wilian .text-white\/80{
+  color: rgb(255 255 255 / 0.8);
+}
+
+.template-wilian .text-wilian-blue{
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .text-wilian-blue\/40{
+  color: rgb(37 99 235 / 0.4);
+}
+
+.template-wilian .text-wilian-dark{
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .text-wilian-orange{
+  --tw-text-opacity: 1;
+  color: rgb(249 115 22 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .opacity-50{
+  opacity: 0.5;
+}
+
+.template-wilian .opacity-90{
+  opacity: 0.9;
+}
+
+.template-wilian .shadow-2xl{
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.template-wilian .shadow-\[0_-20px_50px_rgba\(0\2c 0\2c 0\2c 0\.1\)\]{
+  --tw-shadow: 0 -20px 50px rgba(0,0,0,0.1);
+  --tw-shadow-colored: 0 -20px 50px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.template-wilian .shadow-lg{
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.template-wilian .shadow-sm{
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.template-wilian .shadow-xl{
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.template-wilian .shadow-blue-500\/20{
+  --tw-shadow-color: rgb(59 130 246 / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.template-wilian .shadow-blue-600\/30{
+  --tw-shadow-color: rgb(37 99 235 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.template-wilian .outline-none{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.template-wilian .blur-\[100px\]{
+  --tw-blur: blur(100px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.template-wilian .blur-\[30px\]{
+  --tw-blur: blur(30px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.template-wilian .blur-\[80px\]{
+  --tw-blur: blur(80px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.template-wilian .drop-shadow-lg{
+  --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.template-wilian .drop-shadow-md{
+  --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.template-wilian .drop-shadow-sm{
+  --tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.template-wilian .filter{
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.template-wilian .backdrop-blur-md{
+  --tw-backdrop-blur: blur(12px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.template-wilian .backdrop-blur-sm{
+  --tw-backdrop-blur: blur(4px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.template-wilian .transition-all{
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.template-wilian .transition-transform{
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.template-wilian .duration-300{
+  transition-duration: 300ms;
+}
+
+.template-wilian .duration-700{
+  transition-duration: 700ms;
+}
+
+.template-wilian .ease-in-out{
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ocultar barra de rolagem */
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animações Influencer Style */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Estilo de Vidro Suave para os Cards */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.mask-gradient {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Classe para forçar as polaroids para a frente no telemóvel ao clicar */
+
+.polaroid.active-pop {
+  z-index: 50 !important;
+  transform: rotate(0deg) scale(1.05) !important;
+}
+
+.template-wilian .hover\:z-40:hover{
+  z-index: 40;
+}
+
+.template-wilian .hover\:rotate-0:hover{
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian .hover\:scale-105:hover{
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian .hover\:bg-blue-700:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .hover\:bg-white\/5:hover{
+  background-color: rgb(255 255 255 / 0.05);
+}
+
+.template-wilian .hover\:text-white:hover{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .active\:scale-95:active{
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian :is(.group:hover .group-hover\:scale-105){
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian :is(.group:hover .group-hover\:scale-110){
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.template-wilian :is(.group:hover .group-hover\:opacity-100){
+  opacity: 1;
+}
+
+@media (min-width: 640px){
+  .template-wilian .sm\:border-x{
+    border-left-width: 1px;
+    border-right-width: 1px;
+  }
+
+  .template-wilian .sm\:border-gray-200{
+    --tw-border-opacity: 1;
+    border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+  }
+}
+  

@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/jt.css";
 
 export default function Jt({ content }: { content: any }) {
   return (
-    <div className="jt-wrapper">
+    <div className="jt-wrapper template-jt">
       
 
-  <div className="bg-noise"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,400;1,700;1,900&display=swap');
+      `}</style>
+<div className="bg-noise"></div>
 
   
   <div className="max-w-md mx-auto min-h-screen relative sm:border-x sm:border-white/5 flex flex-col bg-jt-black shadow-2xl">

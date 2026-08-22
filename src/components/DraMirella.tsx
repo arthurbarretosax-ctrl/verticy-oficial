@@ -1,11 +1,17 @@
 import React from "react";
+import "@/assets/css/dramirella.css";
 
 export default function DraMirella({ content }: { content: any }) {
   return (
-    <div className="dra.mirella-wrapper">
+    <div className="dra.mirella-wrapper template-dra mirella">
       
 
-    <div className="custom-cursor" id="custom-cursor"></div>
+    
+      <style>{`
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
+      `}</style>
+<div className="custom-cursor" id="custom-cursor"></div>
     <div className="cursor-dot" id="cursor-dot"></div>
 
     

@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/dudu.css";
 
 export default function Dudu({ content }: { content: any }) {
   return (
-    <div className="dudu-wrapper">
+    <div className="dudu-wrapper template-dudu">
       
 
   
-  <div className="max-w-md mx-auto bg-brand-black min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-brand-border">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto bg-brand-black min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-brand-border">
     
     
     <div className="absolute top-0 left-0 w-full h-[400px] bg-brand-orange/20 mix-blend-overlay filter blur-[120px] pointer-events-none"></div>

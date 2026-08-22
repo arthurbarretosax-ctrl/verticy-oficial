@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/wilian.css";
 
 export default function Wilian({ content }: { content: any }) {
   return (
-    <div className="wilian-wrapper">
+    <div className="wilian-wrapper template-wilian">
       
 
   
-  <div className="max-w-md mx-auto bg-wilian-bg min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-gray-200">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto bg-wilian-bg min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-gray-200">
     
     
     <div className="absolute top-0 right-0 w-72 h-72 bg-wilian-blue/10 rounded-full filter blur-[80px] pointer-events-none animate-float"></div>

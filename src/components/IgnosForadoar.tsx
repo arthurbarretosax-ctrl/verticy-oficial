@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/ignosforadoar.css";
 
 export default function IgnosForadoar({ content }: { content: any }) {
   return (
-    <div className="ignos-foradoar-wrapper">
+    <div className="ignos-foradoar-wrapper template-ignos-foradoar">
       
 
   
-  <div className="max-w-md mx-auto bg-ignoss-dark min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-ignoss-primary/20">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto bg-ignoss-dark min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-ignoss-primary/20">
     
     
     <div className="absolute top-0 left-0 w-full h-[60vh] bg-gradient-to-b from-ignoss-primary/20 to-transparent pointer-events-none mix-blend-overlay"></div>

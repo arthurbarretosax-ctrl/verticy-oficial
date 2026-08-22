@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/hortela.css";
 
 export default function Hortela({ content }: { content: any }) {
   return (
-    <div className="hortela-wrapper">
+    <div className="hortela-wrapper template-hortela">
       
 
   
-  <div className="max-w-md mx-auto min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,0.05)] bg-[#FDFBF7] sm:border-x sm:border-[#1C2621]/10 overflow-hidden flex flex-col">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,0.05)] bg-[#FDFBF7] sm:border-x sm:border-[#1C2621]/10 overflow-hidden flex flex-col">
     
     <div className="bg-noise mix-blend-multiply"></div>
 

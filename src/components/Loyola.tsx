@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/loyola.css";
 
 export default function Loyola({ content }: { content: any }) {
   return (
-    <div className="loyola-wrapper">
+    <div className="loyola-wrapper template-loyola">
       
 
-  <div className="max-w-md mx-auto bg-loyola-bg min-h-screen relative shadow-2xl sm:border-x sm:border-white/5 overflow-hidden">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto bg-loyola-bg min-h-screen relative shadow-2xl sm:border-x sm:border-white/5 overflow-hidden">
     
     <div className="absolute top-0 left-0 w-full h-[400px] bg-gradient-to-b from-loyola-accent/20 to-transparent pointer-events-none"></div>
     <div className="absolute top-[20%] right-0 w-64 h-64 bg-loyola-gold/5 rounded-full blur-[100px] pointer-events-none"></div>

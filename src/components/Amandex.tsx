@@ -1,11 +1,17 @@
 import React from "react";
+import "@/assets/css/amandex.css";
 
 export default function Amandex({ content }: { content: any }) {
   return (
-    <div className="amandex-wrapper">
+    <div className="amandex-wrapper template-amandex">
       
 
-    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+    
+      <style>{`
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap');
+      `}</style>
+<div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-nude-200/40 blur-[100px] mix-blend-multiply animate-pulse-slow"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-nude-300/30 blur-[120px] mix-blend-multiply animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
     </div>

@@ -1,5 +1,5 @@
 export const LAVINIAPSI_DEFAULTS = {
-  img_1: "lavinia1.png",
+  img_1: "/assets/lavinia.psi/lavinia1.png",
   text_1: "Lavínia",
   text_2: "Morais",
   text_3: "Psicóloga Clínica",

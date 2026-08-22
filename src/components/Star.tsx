@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/star.css";
 
 export default function Star({ content }: { content: any }) {
   return (
-    <div className="star-wrapper">
+    <div className="star-wrapper template-star">
       
 
-  <div className="bg-noise"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@300;400;500;700;800&display=swap');
+      `}</style>
+<div className="bg-noise"></div>
 
   
   <div className="max-w-md mx-auto bg-star-black min-h-screen relative shadow-2xl sm:border-x sm:border-white/5 overflow-hidden">

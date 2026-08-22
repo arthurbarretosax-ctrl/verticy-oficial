@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/cristianapsi2.css";
 
 export default function CristianaPsi2({ content }: { content: any }) {
   return (
-    <div className="cristiana.psi2-wrapper">
+    <div className="cristiana.psi2-wrapper template-cristiana psi2">
       
 
-  <div className="bg-grain"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+      `}</style>
+<div className="bg-grain"></div>
 
   
   <div className="max-w-[450px] mx-auto min-h-screen relative bg-psi-black shadow-2xl flex flex-col sm:border-x sm:border-white/5 overflow-hidden">

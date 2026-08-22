@@ -1,5 +1,5 @@
 export const FRANCIANEFUROHUMANIZADO2_DEFAULTS = {
-  img_1: "franciane1.png",
+  img_1: "/assets/franciane-furohumanizado2/franciane1.png",
   text_1: "Home Care Goiânia",
   text_2: "Região",
   text_3: "Leve, Seguro",
@@ -34,9 +34,9 @@ export const FRANCIANEFUROHUMANIZADO2_DEFAULTS = {
   text_32: "Estrutura confortável para o bebê e para os pais se sentirem em casa.",
   text_33: "Body Piercing",
   text_34: "Aplicação em adultos usando técnica humanizada com cateter e joias de alta qualidade.",
-  img_2: "franciane2.png",
+  img_2: "/assets/franciane-furohumanizado2/franciane2.png",
   text_35: "Brinquinhos Delicados",
-  img_3: "franciane3.png",
+  img_3: "/assets/franciane-furohumanizado2/franciane3.png",
   text_36: "Primeiro Brinquinho",
   text_37: "Realce o brilho da sua princesa com segurança.",
   text_38: "Agendar Atendimento",

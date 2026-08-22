@@ -1,11 +1,17 @@
 import React from "react";
+import "@/assets/css/draraisabastos.css";
 
 export default function DraRaisabastos({ content }: { content: any }) {
   return (
-    <div className="dra.raisabastos-wrapper">
+    <div className="dra.raisabastos-wrapper template-dra raisabastos">
       
 
-    <div className="custom-cursor" id="custom-cursor"></div>
+    
+      <style>{`
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
+      `}</style>
+<div className="custom-cursor" id="custom-cursor"></div>
     <div className="cursor-dot" id="cursor-dot"></div>
 
     

@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/ilgner.css";
 
 export default function Ilgner({ content }: { content: any }) {
   return (
-    <div className="ilgner-wrapper">
+    <div className="ilgner-wrapper template-ilgner">
       
 
-  <div className="bg-noise"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+      `}</style>
+<div className="bg-noise"></div>
 
   
   <div className="max-w-md mx-auto min-h-screen relative bg-icn-black shadow-2xl flex flex-col sm:border-x sm:border-white/5 overflow-hidden">

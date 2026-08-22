@@ -1,5 +1,5 @@
 export const LAYLAPSI_DEFAULTS = {
-  img_1: "layla1.png",
+  img_1: "/assets/layla.psi/layla1.png",
   text_1: "Desde 2015",
   text_2: "Layla Ferreira",
   text_3: "Psicóloga Clínica • CRP 05/49671",

@@ -1,12 +1,18 @@
 import React from "react";
+import "@/assets/css/dayforadoar.css";
 
 export default function DayForadoar({ content }: { content: any }) {
   return (
-    <div className="day-foradoar-wrapper">
+    <div className="day-foradoar-wrapper template-day-foradoar">
       
 
     
-    <div className="custom-cursor" id="custom-cursor"></div>
+    
+      <style>{`
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
+      `}</style>
+<div className="custom-cursor" id="custom-cursor"></div>
     <div className="cursor-dot" id="cursor-dot"></div>
 
     

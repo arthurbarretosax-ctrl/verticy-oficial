@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/tai.css";
 
 export default function Tai({ content }: { content: any }) {
   return (
-    <div className="tai-wrapper">
+    <div className="tai-wrapper template-tai">
       
 
-  <div className="bg-paper"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+      `}</style>
+<div className="bg-paper"></div>
 
   
   <div className="max-w-[480px] mx-auto min-h-screen relative bg-tai-bg shadow-2xl flex flex-col sm:border-x sm:border-tai-dark/10 overflow-hidden">

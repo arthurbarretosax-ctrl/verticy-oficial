@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/manuel.css";
 
 export default function Manuel({ content }: { content: any }) {
   return (
-    <div className="manuel-wrapper">
+    <div className="manuel-wrapper template-manuel">
       
 
-  <div className="bg-noise"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+      `}</style>
+<div className="bg-noise"></div>
 
   
   <div className="max-w-md mx-auto min-h-screen relative bg-manuel-bg shadow-2xl sm:border-x sm:border-white/5 overflow-hidden">

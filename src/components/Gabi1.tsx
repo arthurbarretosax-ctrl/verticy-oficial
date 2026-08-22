@@ -1,12 +1,17 @@
 import React from "react";
+import "@/assets/css/gabi1.css";
 
 export default function Gabi1({ content }: { content: any }) {
   return (
-    <div className="gabi1-wrapper">
+    <div className="gabi1-wrapper template-gabi1">
       
 
   
-  <div className="max-w-md mx-auto bg-[#FAF9F6] min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-gray-200">
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
+      `}</style>
+<div className="max-w-md mx-auto bg-[#FAF9F6] min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-gray-200">
     
     
     <header className="relative w-full h-[65vh] rounded-b-[2.5rem] overflow-hidden shadow-sm">

@@ -1,6 +1,6 @@
 export const CRISTIANAPSI2_DEFAULTS = {
-  img_1: "cristiana_logo.png",
-  img_2: "cristiana_hero.png",
+  img_1: "/assets/cristiana.psi2/cristiana_logo.png",
+  img_2: "/assets/cristiana.psi2/cristiana_hero.png",
   text_1: "Cristiana",
   text_2: "Inafuku",
   text_3: "Psicóloga Clínica • CRP 06/229755",
@@ -21,7 +21,7 @@ export const CRISTIANAPSI2_DEFAULTS = {
   text_18: "Acolhimento Necessário",
   text_19: "Sua análise indica uma sobrecarga emocional. O diálogo é o primeiro passo para a sua liberdade mental.",
   text_20: "Agendar Conversa Clínica",
-  img_3: "cristiana_office.png",
+  img_3: "/assets/cristiana.psi2/cristiana_office.png",
   text_21: "A Essência",
   text_22: "da Mudança",
   text_23: "Minha missão é oferecer um ambiente seguro e humano para que você possa organizar o que se passa por dentro.",

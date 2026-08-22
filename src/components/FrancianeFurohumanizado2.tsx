@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/francianefurohumanizado2.css";
 
 export default function FrancianeFurohumanizado2({ content }: { content: any }) {
   return (
-    <div className="franciane-furohumanizado2-wrapper">
+    <div className="franciane-furohumanizado2-wrapper template-franciane-furohumanizado2">
       
 
-  <div className="bg-sparkles"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+      `}</style>
+<div className="bg-sparkles"></div>
 
   
   <div className="max-w-md mx-auto min-h-screen relative bg-furo-bg shadow-2xl overflow-hidden sm:border-x sm:border-white/5 flex flex-col">

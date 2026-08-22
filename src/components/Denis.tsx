@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/denis.css";
 
 export default function Denis({ content }: { content: any }) {
   return (
-    <div className="denis-wrapper">
+    <div className="denis-wrapper template-denis">
       
 
-  <div className="bg-noise"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
+      `}</style>
+<div className="bg-noise"></div>
 
   
   <div className="max-w-[450px] mx-auto min-h-screen relative bg-denis-black shadow-2xl sm:border-x sm:border-white/5">

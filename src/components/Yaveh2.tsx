@@ -1,11 +1,16 @@
 import React from "react";
+import "@/assets/css/yaveh2.css";
 
 export default function Yaveh2({ content }: { content: any }) {
   return (
-    <div className="yaveh2-wrapper">
+    <div className="yaveh2-wrapper template-yaveh2">
       
 
-  <div className="bg-noise"></div>
+  
+      <style>{`
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+      `}</style>
+<div className="bg-noise"></div>
 
   
   <div className="max-w-[480px] mx-auto min-h-screen relative sm:border-x sm:border-white/5 flex flex-col bg-yaveh-black shadow-2xl">
