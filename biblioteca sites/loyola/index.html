@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiago Loyola | Consultor Imobiliário</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            loyola: {
+              bg: '#040814',      /* Azul Marinho super escuro / Corporate Black */
+              card: '#0B1221',    /* Azul Escuro para os cartões */
+              gold: '#D4AF37',    /* Dourado Premium */
+              goldLight: '#F3E5AB',
+              accent: '#1E3A8A',  /* Azul Caixa / Destaque Institucional */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #040814; color: #F8FAFC; -webkit-font-smoothing: antialiased; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Efeito de Vidro e Bordas Elegantes */
+    .glass-panel {
+      background: rgba(11, 18, 33, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Animações Premium */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Brilho Dourado Metálico para botões */
+    .btn-gold {
+      background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+      background-size: 200% 200%;
+      animation: shimmer 5s ease infinite;
+      color: #000;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body class="selection:bg-loyola-gold selection:text-black pb-10">
+
+  <div class="max-w-md mx-auto bg-loyola-bg min-h-screen relative shadow-2xl sm:border-x sm:border-white/5 overflow-hidden">
+    
+    <div class="absolute top-0 left-0 w-full h-[400px] bg-gradient-to-b from-loyola-accent/20 to-transparent pointer-events-none"></div>
+    <div class="absolute top-[20%] right-0 w-64 h-64 bg-loyola-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <header class="relative px-6 pt-16 pb-8 text-center z-10 reveal active">
+      
+      <div class="flex justify-center mb-6">
+        <div class="bg-[#005CA9]/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#005CA9]/30 flex items-center gap-2 shadow-[0_0_15px_rgba(0,92,169,0.2)]">
+          <i data-lucide="shield-check" class="w-4 h-4 text-[#00A1E0]"></i>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-white">Parceiro Credenciado Caixa</span>
+        </div>
+      </div>
+
+      <div class="relative w-36 h-36 mx-auto mb-6">
+        <div class="absolute inset-0 rounded-full border-2 border-loyola-gold/30 scale-[1.05] animate-[spin_15s_linear_infinite] border-t-loyola-gold border-r-transparent"></div>
+        <div class="w-full h-full rounded-full overflow-hidden border-4 border-loyola-bg relative z-10 shadow-2xl">
+          <img id="img-perfil" src="" alt="Thiago Loyola" class="w-full h-full object-cover" loading="eager" />
+        </div>
+        <div class="absolute bottom-1 right-2 bg-loyola-gold w-8 h-8 rounded-full flex items-center justify-center border-4 border-loyola-bg z-20">
+          <i data-lucide="check" class="w-4 h-4 text-black stroke-[3]"></i>
+        </div>
+      </div>
+
+      <h1 class="font-serif text-3xl font-bold text-white mb-1">Thiago Loyola</h1>
+      <p class="text-xs text-loyola-gold uppercase tracking-[0.2em] font-semibold mb-4">Consultor Imobiliário</p>
+
+      <p class="text-sm text-gray-300 leading-relaxed max-w-[90%] mx-auto font-medium">
+        Ajudo famílias a conquistarem o sonho da casa própria com <strong class="text-white">segurança, inteligência financeira e as melhores oportunidades</strong> do mercado.
+      </p>
+    </header>
+
+    <section class="px-6 py-4 relative z-20 reveal">
+      <button onclick="handleLink('whatsapp')" class="w-full btn-gold py-4 rounded-2xl font-bold text-[14px] uppercase tracking-wider transition-all active:scale-95 flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Falar com o Thiago
+      </button>
+      <p class="text-center text-[10px] text-gray-500 mt-3 flex items-center justify-center gap-1">
+        <i data-lucide="clock" class="w-3 h-3"></i> Resposta rápida e atendimento exclusivo.
+      </p>
+    </section>
+
+    <!-- ==========================================
+         SOBRE O THIAGO (AUTORIDADE)
+         ========================================== -->
+    <section class="px-6 py-8 relative z-10 reveal">
+      <div class="glass-panel rounded-[2rem] overflow-hidden border border-white/5 relative shadow-xl">
+        
+        <!-- Foto Maior -->
+        <div class="w-full h-[22rem] relative">
+          <div class="absolute inset-0 bg-gradient-to-t from-loyola-card via-transparent to-transparent z-10 opacity-90"></div>
+          <img id="img-sobre-thiago" src="" alt="Sobre Thiago Loyola" class="w-full h-full object-cover object-top" loading="lazy" />
+        </div>
+
+        <!-- Conteúdo Textual (Sobreposto à foto) -->
+        <div class="p-5 relative z-20 -mt-24">
+          <div class="bg-loyola-bg/90 backdrop-blur-xl rounded-[1.5rem] p-6 border border-white/10 shadow-2xl">
+             <h2 class="font-serif text-2xl font-bold text-white mb-3">Quem é Thiago Loyola?</h2>
+             <div class="w-8 h-[2px] bg-loyola-gold mb-5"></div>
+             
+             <div class="space-y-4 text-[13px] text-gray-300 leading-relaxed font-medium text-justify">
+               <p>
+                 Empreendedor e especialista no mercado imobiliário, atuo com foco em trazer as melhores oportunidades de investimento e moradia para os meus clientes.
+               </p>
+               <p>
+                 À frente da <strong class="text-white">Imobiliária Loyola</strong>, construí uma trajetória pautada na transparência, segurança e resultados. Minha missão é simplificar processos complexos, como os leilões e financiamentos.
+               </p>
+             </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="px-6 py-8 relative z-10 reveal">
+      <div class="flex items-center gap-3 mb-5 pl-1">
+        <div class="w-8 h-[2px] bg-loyola-gold"></div>
+        <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-white">Minhas Especialidades</h2>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        
+        <div onclick="handleLink('whatsapp')" class="col-span-2 glass-panel rounded-[1.5rem] p-6 relative overflow-hidden group cursor-pointer hover:border-loyola-gold/50 transition-colors">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-loyola-gold/10 rounded-full blur-[40px] group-hover:bg-loyola-gold/20 transition-colors"></div>
+          <div class="flex items-start justify-between relative z-10">
+            <div>
+              <div class="w-10 h-10 rounded-full bg-loyola-gold/10 flex items-center justify-center mb-3 border border-loyola-gold/20">
+                <i data-lucide="gavel" class="w-5 h-5 text-loyola-gold"></i>
+              </div>
+              <h3 class="font-serif text-xl font-bold text-white mb-1">Imóveis de Leilão</h3>
+              <p class="text-[11px] text-gray-400 leading-relaxed max-w-[85%]">Oportunidades únicas com alto desconto. Assessoria completa da arrematação até a posse desocupada.</p>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-gray-500 group-hover:text-loyola-gold transition-colors"></i>
+          </div>
+        </div>
+
+        <div onclick="handleLink('whatsapp')" class="glass-panel rounded-[1.5rem] p-5 flex flex-col justify-between group cursor-pointer hover:border-[#005CA9]/50 transition-colors">
+          <div class="w-10 h-10 rounded-full bg-[#005CA9]/10 flex items-center justify-center mb-4 border border-[#005CA9]/20">
+            <i data-lucide="building" class="w-5 h-5 text-[#00A1E0]"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-sm mb-1">Financiamento<br>& FGTS</h3>
+            <p class="text-[10px] text-gray-400">Processo ágil pela Caixa.</p>
+          </div>
+        </div>
+
+        <div onclick="handleLink('whatsapp')" class="glass-panel rounded-[1.5rem] p-5 flex flex-col justify-between group cursor-pointer hover:border-loyola-gold/50 transition-colors">
+          <div class="w-10 h-10 rounded-full bg-loyola-gold/10 flex items-center justify-center mb-4 border border-loyola-gold/20">
+            <i data-lucide="key" class="w-5 h-5 text-loyola-gold"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-sm mb-1">Lançamentos<br>& Loteamentos</h3>
+            <p class="text-[10px] text-gray-400">As melhores localizações.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="px-6 py-6 relative z-10 reveal">
+      <div class="bg-gradient-to-br from-[#0B1221] to-[#040814] rounded-[2rem] border border-white/5 p-6 shadow-2xl relative overflow-hidden flex items-center gap-5">
+        
+        <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-loyola-gold/5 rounded-full blur-[30px]"></div>
+
+        <div class="w-20 h-20 rounded-full bg-black border border-white/10 flex items-center justify-center p-2 shrink-0 shadow-lg relative z-10">
+          <img id="img-logo-imob" src="" alt="Imobiliária Loyola" class="w-full h-full object-contain" />
+        </div>
+        
+        <div class="relative z-10">
+          <p class="text-[9px] uppercase tracking-widest text-loyola-gold font-bold mb-1">Proprietário</p>
+          <h3 class="font-serif text-lg font-bold text-white leading-tight mb-2">Imobiliária<br>Loyola</h3>
+          <button onclick="window.open('https://instagram.com/imobiliarialoyola', '_blank')" class="text-[10px] font-semibold text-white/70 flex items-center gap-1 hover:text-loyola-gold transition-colors">
+            <i data-lucide="instagram" class="w-3 h-3"></i> @imobiliarialoyola
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         GALERIA: SONHOS REALIZADOS (CLIENTES)
+         ========================================== -->
+    <section class="py-10 relative z-10 reveal border-t border-white/5 mt-4 bg-gradient-to-b from-[#040814] to-[#0B1221]/50">
+      <div class="px-6 mb-6">
+        <h2 class="text-3xl font-serif font-bold text-white mb-1 leading-tight">Sonhos<br><span class="text-loyola-gold italic">Realizados</span></h2>
+        <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Famílias de casa nova</p>
+      </div>
+
+      <div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar snap-x pb-8">
+        
+        <!-- Cliente 1 -->
+        <div class="snap-center shrink-0 w-60 h-80 rounded-[1.5rem] overflow-hidden relative border border-white/10 shadow-xl group">
+          <img id="img-cliente-1" src="" alt="Cliente Feliz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-loyola-gold/20 flex items-center justify-center border border-loyola-gold/30">
+                <i data-lucide="key" class="w-3 h-3 text-loyola-gold"></i>
+              </div>
+              <span class="text-[9px] font-bold text-loyola-gold uppercase tracking-wider">Chave na Mão</span>
+            </div>
+            <p class="text-sm text-white font-medium leading-snug">Mais uma família conquistando o seu imóvel próprio com segurança.</p>
+          </div>
+        </div>
+
+        <!-- Cliente 2 -->
+        <div class="snap-center shrink-0 w-60 h-80 rounded-[1.5rem] overflow-hidden relative border border-white/10 shadow-xl group">
+          <img id="img-cliente-2" src="" alt="Cliente Feliz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-loyola-gold/20 flex items-center justify-center border border-loyola-gold/30">
+                <i data-lucide="home" class="w-3 h-3 text-loyola-gold"></i>
+              </div>
+              <span class="text-[9px] font-bold text-loyola-gold uppercase tracking-wider">Imóvel de Leilão</span>
+            </div>
+            <p class="text-sm text-white font-medium leading-snug">Oportunidade incrível arrematada e entregue com sucesso.</p>
+          </div>
+        </div>
+
+        <!-- Cliente 3 -->
+        <div class="snap-center shrink-0 w-60 h-80 rounded-[1.5rem] overflow-hidden relative border border-white/10 shadow-xl group">
+          <img id="img-cliente-3" src="" alt="Cliente Feliz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-5 left-5 right-5">
+            <div class="flex items-center gap-2 mb-2">
+              <div class="w-6 h-6 rounded-full bg-loyola-gold/20 flex items-center justify-center border border-loyola-gold/30">
+                <i data-lucide="star" class="w-3 h-3 text-loyola-gold"></i>
+              </div>
+              <span class="text-[9px] font-bold text-loyola-gold uppercase tracking-wider">Novo Lar</span>
+            </div>
+            <p class="text-sm text-white font-medium leading-snug">A alegria indescritível de entrar pela primeira vez na casa nova.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-10 relative z-10 reveal border-t border-white/5">
+      <div class="px-6 mb-6 flex justify-between items-end">
+        <div>
+          <h2 class="text-2xl font-serif font-bold text-white mb-1">Aprenda sobre<br>o mercado</h2>
+          <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Dicas Práticas</p>
+        </div>
+      </div>
+
+      <div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar snap-x pb-8">
+        
+        <div onclick="window.open('https://instagram.com/thloyolaoficial', '_blank')" class="snap-center shrink-0 w-44 h-72 rounded-[1.5rem] overflow-hidden relative border border-white/10 shadow-lg group cursor-pointer">
+          <img id="img-reel-1" src="" alt="Dica Leilão" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          
+          <div class="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+            <i data-lucide="play" class="w-4 h-4 text-white fill-white ml-0.5"></i>
+          </div>
+
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="inline-block px-2 py-1 bg-loyola-gold/20 border border-loyola-gold/30 rounded text-[9px] font-bold text-loyola-gold uppercase mb-2">Leilões</span>
+            <p class="text-xs text-white font-medium leading-snug line-clamp-2">Tomando posse de um imóvel desocupado.</p>
+          </div>
+        </div>
+
+        <div onclick="window.open('https://instagram.com/thloyolaoficial', '_blank')" class="snap-center shrink-0 w-44 h-72 rounded-[1.5rem] overflow-hidden relative border border-white/10 shadow-lg group cursor-pointer">
+          <img id="img-reel-2" src="" alt="Dica Financiamento" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          
+          <div class="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+            <i data-lucide="play" class="w-4 h-4 text-white fill-white ml-0.5"></i>
+          </div>
+
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="inline-block px-2 py-1 bg-[#00A1E0]/20 border border-[#00A1E0]/30 rounded text-[9px] font-bold text-[#00A1E0] uppercase mb-2">Financiamento</span>
+            <p class="text-xs text-white font-medium leading-snug line-clamp-2">Como quitar seu financiamento na metade do tempo.</p>
+          </div>
+        </div>
+
+        <div onclick="window.open('https://instagram.com/thloyolaoficial', '_blank')" class="snap-center shrink-0 w-44 h-72 rounded-[1.5rem] overflow-hidden relative border border-white/10 shadow-lg group cursor-pointer">
+          <img id="img-reel-3" src="" alt="Depoimento" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          
+          <div class="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+            <i data-lucide="play" class="w-4 h-4 text-white fill-white ml-0.5"></i>
+          </div>
+
+          <div class="absolute bottom-4 left-4 right-4">
+            <span class="inline-block px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-[9px] font-bold text-green-400 uppercase mb-2">Resultados</span>
+            <p class="text-xs text-white font-medium leading-snug line-clamp-2">Relato de quem já comprou de leilão.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="px-6 py-8 reveal">
+      <div class="flex items-center gap-3 mb-6 pl-1">
+        <div class="w-8 h-[2px] bg-loyola-gold"></div>
+        <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-white">Dúvidas Frequentes</h2>
+      </div>
+      
+      <div class="space-y-3">
+        <div class="faq-item glass-panel rounded-2xl overflow-hidden transition-all duration-300">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="text-sm font-medium text-white">Comprar em leilão é seguro?</span>
+            <i data-lucide="plus" class="w-4 h-4 text-loyola-gold transition-transform duration-300 icon-plus"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 opacity-0 px-5">
+            <p class="text-xs text-gray-400 leading-relaxed pb-5 pt-1">
+              Sim, é totalmente seguro quando feito com assessoria especializada. Cuidamos de toda a análise jurídica e documental para garantir que o seu investimento não tenha riscos.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item glass-panel rounded-2xl overflow-hidden transition-all duration-300">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="text-sm font-medium text-white">Posso usar o meu FGTS?</span>
+            <i data-lucide="plus" class="w-4 h-4 text-loyola-gold transition-transform duration-300 icon-plus"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 opacity-0 px-5">
+            <p class="text-xs text-gray-400 leading-relaxed pb-5 pt-1">
+              Na grande maioria dos casos de venda direta e financiamentos pela Caixa, sim! O seu FGTS pode ser usado como entrada ou para abater o saldo devedor.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item glass-panel rounded-2xl overflow-hidden transition-all duration-300">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="text-sm font-medium text-white">E se o imóvel de leilão estiver ocupado?</span>
+            <i data-lucide="plus" class="w-4 h-4 text-loyola-gold transition-transform duration-300 icon-plus"></i>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 opacity-0 px-5">
+            <p class="text-xs text-gray-400 leading-relaxed pb-5 pt-1">
+              Nossa equipe atua ativamente na desocupação. Na maioria das vezes, resolvemos de forma amigável extrajudicialmente, garantindo a sua posse o mais rápido possível.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="pt-8 pb-16 text-center relative z-10">
+      
+      <div class="flex justify-center gap-4 mb-8">
+        <button onclick="window.open('https://instagram.com/thloyolaoficial', '_blank')" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-gray-400 hover:text-white hover:border-loyola-gold transition-all shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="ig-grad" x1="2" y1="2" x2="22" y2="22">
+                <stop offset="0%" stop-color="#f9ce34" />
+                <stop offset="30%" stop-color="#ee2a7b" />
+                <stop offset="70%" stop-color="#6228d7" />
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </button>
+        <button onclick="handleLink('whatsapp')" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-gray-400 hover:text-[#25D366] hover:border-[#25D366] transition-all shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <p class="text-[9px] font-bold tracking-widest uppercase text-gray-600 mb-2">
+        © 2026 THIAGO LOYOLA IMÓVEIS
+      </p>
+      <p class="text-[8px] uppercase tracking-[0.3em] text-gray-700 flex items-center justify-center gap-1">
+        CRIADO POR <strong class="text-loyola-gold tracking-widest">VERTICY.</strong> PREMIUM BIO
+      </p>
+    </footer>
+
+  </div>
+    <script>
+    // ==========================================
+    // ⚙️ CONFIGURAÇÃO - THIAGO LOYOLA
+    // ==========================================
+    const config = {
+      // O link fornecido
+      whatsapp: "https://api.whatsapp.com/message/7W7M7H2QMMM3L1?autoload=1&app_absent=0&utm_source=ig", 
+      
+      fotos: {
+        perfil: "thiagol1.png",       // Foto de perfil dele (Blazer Azul)
+        sobre_thiago: "thiagol2.png", // Foto grande para a seção "Sobre Mim"
+        logo_imob: "thiagol3.png",    // Logo da Imobiliária Loyola
+        reel_1: "thiagol4.png",       // Print do vídeo 1
+        reel_2: "thiagol5.png",       // Print do vídeo 2
+        reel_3: "thiagol6.png",       // Print do vídeo 3
+        cliente_1: "thiagol7.png",    // NOVA FOTO: Cliente com a chave / Família
+        cliente_2: "thiagol8.png",    // NOVA FOTO: Cliente com a chave / Família
+        cliente_3: "thiagol9.png",    // NOVA FOTO: Cliente com a chave / Família
+      }
+    };
+
+    // Redirecionamento
+    function handleLink(tipo) {
+      if (tipo === 'whatsapp') {
+        window.open(config.whatsapp, '_blank');
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      // Injeta as imagens
+      const imagensMap = {
+        'img-perfil': config.fotos.perfil,
+        'img-sobre-thiago': config.fotos.sobre_thiago,
+        'img-logo-imob': config.fotos.logo_imob,
+        'img-reel-1': config.fotos.reel_1,
+        'img-reel-2': config.fotos.reel_2,
+        'img-reel-3': config.fotos.reel_3,
+        'img-cliente-1': config.fotos.cliente_1,
+        'img-cliente-2': config.fotos.cliente_2,
+        'img-cliente-3': config.fotos.cliente_3,
+      };
+
+      for (const [id, url] of Object.entries(imagensMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      // Animação Reveal
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target); 
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Script para o Accordion do FAQ Minimalista
+      const faqButtons = document.querySelectorAll('.faq-button');
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector('.icon-plus');
+          const item = button.parentElement;
+          
+          // Fecha os outros
+          document.querySelectorAll('.faq-content').forEach(c => {
+            if (c !== content) {
+              c.style.maxHeight = null;
+              c.classList.remove('opacity-100');
+              c.classList.add('opacity-0');
+              const otherIcon = c.previousElementSibling.querySelector('.icon-plus');
+              otherIcon.classList.remove('rotate-45');
+              c.parentElement.classList.remove('border-loyola-gold/30');
+            }
+          });
+
+          // Abre/Fecha o clicado
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            content.classList.remove('opacity-100');
+            content.classList.add('opacity-0');
+            icon.classList.remove('rotate-45');
+            item.classList.remove('border-loyola-gold/30');
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.remove('opacity-0');
+            content.classList.add('opacity-100');
+            icon.classList.add('rotate-45');
+            item.classList.add('border-loyola-gold/30');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

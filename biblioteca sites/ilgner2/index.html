@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ICNTEAM | Ilgner Chagas</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes de Impacto -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            icn: {
+              black: '#050505',
+              dark: '#0f0f0f',
+              green: '#4ade80',    /* Verde Neon Performance */
+              silver: '#A1A1AA',
+              white: '#FFFFFF',
+              pain: '#ef4444'     /* Vermelho para alertas */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { 
+      background-color: #050505; 
+      color: #FFFFFF; 
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior-y: none;
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .glass-premium {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* --- ANIMAÇÕES CROMÁTICAS (Imagens ganham cor no scroll) --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 1s ease-out, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .reveal img {
+      filter: grayscale(1);
+      transition: filter 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+      will-change: filter;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.active img {
+      filter: grayscale(0);
+    }
+
+    /* --- MARQUEE --- */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { 
+      animation: marquee 20s linear infinite; 
+      width: max-content;
+    }
+
+    @keyframes slowZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    .animate-zoom { 
+      animation: slowZoom 20s ease-in-out infinite alternate; 
+      will-change: transform;
+    }
+
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(74, 222, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+    }
+    .animate-pulse-green { animation: pulse-green 2s infinite; }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-icn-green selection:text-icn-black pb-6">
+
+  <div class="bg-noise"></div>
+
+  <!-- Mobile Container -->
+  <div class="max-w-md mx-auto min-h-screen relative sm:border-x sm:border-white/5 flex flex-col bg-icn-black shadow-2xl text-white">
+    
+    <!-- ==========================================
+         HERO SECTION: IMPACTO TOTAL
+         ========================================== -->
+    <section class="relative w-full h-[75vh] overflow-hidden rounded-b-[4rem] border-b border-icn-green/20 reveal active">
+      <div class="absolute inset-0 z-0">
+        <!-- FOTO icn1.png -->
+        <img id="img-hero" src="icn1.png" alt="Ilgner Chagas" class="w-full h-full object-cover animate-zoom" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-gradient-to-t from-icn-black via-icn-black/20 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-icn-black/60 via-transparent to-transparent"></div>
+      </div>
+
+      <!-- Título e Logo Centralizada -->
+      <div class="absolute inset-0 flex flex-col justify-end p-8 pb-10 z-20 text-center">
+        <!-- FOTO icn_logo.png -->
+        <div class="w-32 h-32 bg-icn-black rounded-full p-1 shadow-2xl border-4 border-icn-green/30 mx-auto mb-6 overflow-hidden flex items-center justify-center transition-transform duration-700 hover:scale-105">
+           <img id="img-logo" src="icn_logo.png" alt="Logo ICNTEAM" class="w-full h-full object-cover rounded-full" />
+        </div>
+
+        <h2 class="text-[10px] font-bold uppercase tracking-[0.6em] text-white/80 mb-2 italic">Estratégia + Consistência</h2>
+        <h1 class="font-display text-5xl font-black text-white leading-none mb-6 uppercase italic tracking-tighter">CRESÇA E <span class="text-icn-green">SEQUE.</span></h1>
+        
+        <div class="flex flex-col gap-3">
+          <button onclick="handleWhatsAppClick('Consultoria')" class="w-full bg-icn-green text-icn-black py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl animate-pulse-green active:scale-95 transition-all">
+            Agendar Agora
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         MARQUEE VALORES
+         ========================================== -->
+    <div class="w-full overflow-hidden border-y border-white/5 py-5 relative z-20 bg-black/60 backdrop-blur-md">
+      <div class="animate-marquee flex gap-10 items-center text-white italic text-[11px] font-black uppercase tracking-widest">
+        <span class="opacity-50">Transformação Profissional</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">Alta Performance</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">Padrão ICNTEAM</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">Evolução Real</span>
+        
+        <!-- Clone -->
+        <span class="opacity-50 ml-10">Transformação Profissional</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">Alta Performance</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">Padrão ICNTEAM</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         O ESPECIALISTA: BIO COMPACTA
+         ========================================== -->
+    <section class="px-6 py-12 reveal">
+       <div class="glass-premium rounded-[3.5rem] overflow-hidden border border-white/10 shadow-2xl relative group bg-gradient-to-br from-icn-dark to-black text-center p-2">
+          <!-- FOTO icn_especialista.png -->
+          <div class="h-[28rem] rounded-[3rem] relative overflow-hidden">
+             <img id="img-especialista" src="icn_especialista.png" alt="Ilgner Chagas" class="w-full h-full object-cover object-top" />
+             <div class="absolute inset-0 bg-gradient-to-t from-icn-black via-icn-black/20 to-transparent"></div>
+          </div>
+          
+          <div class="p-8 relative z-10 text-center">
+             <h2 class="font-display text-4xl font-black text-white italic uppercase tracking-tighter leading-none mb-4">
+               Ilgner<br><span class="text-icn-green">Chagas</span>
+             </h2>
+             <p class="text-[10px] font-bold text-icn-green uppercase tracking-[0.4em] mb-6 font-black">Estrategista de Físico</p>
+             
+             <div class="space-y-4 text-sm text-icn-silver leading-relaxed font-medium">
+                <p>
+                   Referência em <strong>Alta Performance</strong> e <strong>Fisiculturismo</strong>, Ilgner Chagas lidera o ICNTEAM transformando vidas através de ciência e disciplina.
+                </p>
+                <p>
+                   Com histórico de <strong>inúmeras vitórias</strong> nos cenários masculino e feminino, sua metodologia foca na precisão cirúrgica de cada ajuste.
+                </p>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         RESULTADOS: ELITE TEAM (CARROSSEL)
+         ========================================== -->
+    <section class="py-12 bg-black/40 border-y border-white/5">
+       <div class="text-center mb-8 px-6 reveal">
+          <h2 class="font-display text-4xl uppercase tracking-tighter text-white leading-none mx-auto text-center">Elite<br><span class="text-icn-green italic text-3xl">ICNTEAM</span></h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-widest mt-3 font-bold text-center mx-auto">Vitórias que provam o método</p>
+       </div>
+
+       <div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar snap-x pb-4">
+          <!-- FOTO icn_res1.png -->
+          <div class="reveal snap-center shrink-0 w-72 h-[28rem] rounded-[3rem] overflow-hidden relative shadow-2xl border border-white/5 bg-icn-dark text-white text-center">
+            <img id="img-result-1" src="icn_res1.png" alt="Resultado 1" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-icn-black via-transparent to-transparent flex flex-col justify-end p-8">
+               <p class="text-[10px] font-bold text-icn-green uppercase tracking-[0.3em] mb-1">Evolução</p>
+               <h4 class="font-display text-2xl uppercase italic leading-none">Alta Performance</h4>
+            </div>
+          </div>
+          <!-- FOTO icn_res2.png -->
+          <div class="reveal snap-center shrink-0 w-72 h-[28rem] rounded-[3rem] overflow-hidden relative shadow-2xl border border-white/5 bg-icn-dark text-white text-center">
+            <img id="img-result-2" src="icn_res2.png" alt="Time de Atletas" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-icn-black via-transparent to-transparent flex flex-col justify-end p-8">
+               <p class="text-[10px] font-bold text-icn-green uppercase tracking-[0.3em] mb-1">Campeões</p>
+               <h4 class="font-display text-2xl uppercase italic leading-none text-center">Padrão ICN</h4>
+            </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER: AJUSTE DE ESPAÇAMENTO
+         ========================================== -->
+    <footer class="mt-auto px-8 pt-10 pb-12 bg-black border-t border-white/5 text-center reveal text-white relative">
+      <h3 class="font-display text-2xl mb-8 tracking-tighter uppercase leading-none italic text-center mx-auto uppercase">Transformação<br><span class="text-icn-green opacity-60 font-black">ICNTEAM</span></h3>
+      
+      <div class="space-y-4 max-w-xs mx-auto">
+        <button onclick="handleWhatsAppClick()" class="w-full bg-icn-green text-icn-black py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest shadow-xl active:scale-[0.97] transition-all flex items-center justify-center gap-3">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Começar Agora
+        </button>
+        
+        <button onclick="window.open(config.links.instagram, '_blank')" class="w-full bg-[#0a0a0a] border border-white/10 text-white py-5 rounded-[2rem] font-bold text-[12px] uppercase tracking-[0.1em] transition-all flex items-center justify-center gap-3 active:scale-95 shadow-xl">
+          <i data-lucide="instagram" class="w-5 h-5"></i> @icnteam
+        </button>
+      </div>
+
+      <!-- Espaçamento reduzido conforme as setas amarelas -->
+      <div class="mt-12 pt-6 border-t border-white/5 opacity-20 text-white text-center">
+        <p class="text-[8px] font-bold uppercase tracking-[0.5em] mb-3">© 2026 ICNTEAM - ILGNER CHAGAS</p>
+        <p class="text-[8px] uppercase tracking-[0.4em]">CRIADO POR <strong class="text-white tracking-[0.2em] font-black text-center mx-auto uppercase">VERTICY.</strong> PREMIUM BIO</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // ⚙️ CONFIGURAÇÕES - ICNTEAM
+    // ==========================================
+    const config = {
+      whatsapp: "5522998958120", 
+      links: {
+        instagram: "https://www.instagram.com/icnteam/", 
+      },
+      fotos: {
+        hero: "icn1.png",            
+        logo: "icn_logo.png",        
+        especialista: "icn_especialista.png", 
+        res1: "icn_res1.png",       
+        res2: "icn_res2.png"        
+      }
+    };
+
+    function handleWhatsAppClick(interesse = "") {
+      let text = "Olá Ilgner! Vim pelo seu novo site e gostaria de saber mais sobre a consultoria ICNTEAM.";
+      if (interesse) text = `Olá Ilgner! Vim pelo seu novo site e tenho interesse em: *${interesse}*. Como funciona?`;
+      window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      
+      const imagensMap = {
+        'img-hero': config.fotos.hero,
+        'img-logo': config.fotos.logo,
+        'img-especialista': config.fotos.especialista,
+        'img-result-1': config.fotos.res1,
+        'img-result-2': config.fotos.res2
+      };
+
+      for (const [id, url] of Object.entries(imagensMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

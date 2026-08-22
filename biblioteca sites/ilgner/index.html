@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ICNTEAM | Ilgner Chagas Specialist</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes de Impacto -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            icn: {
+              black: '#050505',
+              dark: '#0a0a0a',
+              green: '#4ade80',    /* Verde Neon */
+              greenDark: '#166534',
+              silver: '#A1A1AA',
+              white: '#FFFFFF',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { 
+      background-color: #050505; 
+      color: #FFFFFF; 
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior-y: none;
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* --- ANIMAÇÕES --- */
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .animate-ken-burns { animation: kenBurns 20s ease-in-out infinite; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(74, 222, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+    }
+    .animate-pulse-green { animation: pulse-green 2s infinite; }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { 
+      animation: marquee 25s linear infinite; 
+      width: max-content;
+    }
+
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-icn-green selection:text-icn-black pb-4">
+
+  <div class="bg-noise"></div>
+
+  <!-- Mobile Container -->
+  <div class="max-w-md mx-auto min-h-screen relative bg-icn-black shadow-2xl flex flex-col sm:border-x sm:border-white/5 overflow-hidden">
+    
+    <!-- Cabeçalho Flutuante -->
+    <header class="absolute top-0 left-0 w-full z-50 flex justify-center px-6 py-6">
+      <span class="text-[9px] font-bold uppercase tracking-[0.3em] bg-white/5 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 text-white shadow-lg">Evolução de Elite</span>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-[70vh] overflow-hidden group">
+      <div class="absolute inset-0 w-full h-full">
+        <!-- Nome corrigido para Icn1.png -->
+        <img id="img-hero" src="Icn1.png" alt="Ilgner Chagas Capa" class="w-full h-full object-cover animate-ken-burns" loading="eager" />
+      </div>
+      
+      <div class="absolute inset-0 bg-gradient-to-b from-icn-black/60 via-transparent to-icn-black/90"></div>
+
+      <!-- Logo Central Redonda -->
+      <div class="absolute bottom-6 left-0 w-full flex flex-col items-center z-20 px-6">
+        <div class="w-32 h-32 bg-icn-black rounded-full p-1 shadow-2xl border-4 border-icn-green/30 mb-4 overflow-hidden flex items-center justify-center transition-transform duration-700 hover:scale-105">
+          <img id="img-logo" src="icn_logo.png" alt="Logo ICNTEAM" class="w-full h-full object-cover rounded-full" />
+        </div>
+        <h2 class="text-[10px] font-black uppercase tracking-[0.5em] text-icn-green mb-1 drop-shadow-lg italic text-center leading-none">Referência em Alta Performance</h2>
+        <div class="h-1 w-8 bg-icn-green/40 rounded-full"></div>
+      </div>
+    </section>
+
+    <!-- Bio Especialista (CORRIGIDA: Sem asteriscos e com espaçamento reduzido) -->
+    <section class="px-8 pt-8 pb-10 text-center reveal active">
+      <h1 class="font-display text-4xl font-black text-white uppercase italic tracking-tighter mb-8 leading-none mx-auto">
+        ESTRATÉGIA +<br><span class="text-icn-green">CONSISTÊNCIA</span>
+      </h1>
+      
+      <div class="glass-card p-8 rounded-[3rem] border border-white/10 relative group bg-icn-dark text-center">
+         <h2 class="font-display text-3xl font-black text-white italic uppercase tracking-tighter mb-4 mx-auto leading-none">
+           Ilgner<br><span class="text-icn-green">Chagas</span>
+         </h2>
+         <div class="space-y-4 text-sm text-icn-silver leading-relaxed font-medium">
+            <p>
+               Referência absoluta em <strong>Alta Performance</strong> e <strong>Fisiculturismo</strong>, Ilgner Chagas é a mente estratégica por trás de grandes transformações no cenário nacional. 
+            </p>
+            <p>
+               Com um histórico de <strong>inúmeras vitórias</strong> em competições de elite, liderando atletas nos cenários masculino e feminino ao topo do pódio através de uma metodologia de precisão técnica.
+            </p>
+            <p class="text-white italic font-bold border-t border-white/5 pt-4">
+               "A tua transformação é uma ciência exata." 🏆
+            </p>
+         </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="w-full overflow-hidden border-y border-white/5 py-3 relative z-20 bg-icn-dark/80 backdrop-blur-md">
+      <div class="animate-marquee flex gap-8 items-center text-white italic">
+        <span class="text-[9px] font-black uppercase tracking-[0.2em] opacity-40">Vitórias Masculino</span>
+        <span class="text-[10px] text-icn-green">|</span>
+        <span class="text-[9px] font-black uppercase tracking-[0.2em]">Alta Performance</span>
+        <span class="text-[10px] text-icn-green">|</span>
+        <span class="text-[9px] font-black uppercase tracking-[0.2em] opacity-40">Fisiculturismo Feminino</span>
+        <span class="text-[10px] text-icn-green">|</span>
+        <span class="text-[9px] font-black uppercase tracking-[0.2em]">Padrão ICNTEAM</span>
+        <!-- Clone -->
+        <span class="text-[9px] font-black uppercase tracking-[0.2em] opacity-40 ml-8">Vitórias Masculino</span>
+        <span class="text-[10px] text-icn-green">|</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Estratégia Pura</span>
+      </div>
+    </div>
+
+    <!-- Planos de Consultoria (Espaçamentos reduzidos) -->
+    <section id="planos" class="px-6 py-12 reveal">
+      <div class="text-center mb-8">
+        <h2 class="font-display text-3xl font-black text-white uppercase italic tracking-tighter">PLANOS DE<br><span class="text-icn-green">CONSULTORIA</span></h2>
+        <div class="bg-icn-green/10 inline-block px-4 py-1 rounded-full mt-4 border border-icn-green/20">
+           <p class="text-[9px] text-icn-green uppercase tracking-widest font-black italic">Entrega em até 3-5 dias úteis</p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Plano Start -->
+        <div class="glass-card p-6 rounded-[2.5rem] border-l-4 border-l-icn-silver/30">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h3 class="font-display text-xl font-bold text-white uppercase italic">Plano Start</h3>
+              <p class="text-[9px] text-icn-silver uppercase tracking-widest mt-1">O Início da Jornada</p>
+            </div>
+            <span class="text-[8px] font-black text-icn-silver uppercase border border-icn-silver/20 px-2 py-1 rounded">Sem Revisão</span>
+          </div>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-center gap-3 text-[11px] text-icn-silver"><i data-lucide="check" class="w-4 h-4 text-icn-green"></i> Plano individual completo</li>
+            <li class="flex items-center gap-3 text-[11px] text-icn-silver"><i data-lucide="check" class="w-4 h-4 text-icn-green"></i> Ajuste único gratuito em 30 dias</li>
+          </ul>
+          <button onclick="handleWhatsAppClick('Plano Start')" class="w-full bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest active:scale-95 transition-all text-center">Selecionar Plano</button>
+        </div>
+
+        <!-- Plano Premium Plus -->
+        <div class="bg-white p-7 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 p-4">
+             <span class="bg-icn-green text-icn-black text-[8px] font-black uppercase px-3 py-1 rounded-full animate-pulse">Alta Performance</span>
+          </div>
+          <div class="mb-4">
+            <h3 class="font-display text-xl font-black text-icn-black uppercase italic leading-none">Premium Plus</h3>
+            <p class="text-[9px] font-bold text-icn-green uppercase tracking-widest mt-1">Revisões Semanais</p>
+          </div>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-center gap-3 text-[11px] text-icn-black/80 font-bold"><i data-lucide="zap" class="w-4 h-4 text-icn-green fill-icn-green"></i> Melhor ritmo de ajustes</li>
+            <li class="flex items-center gap-3 text-[11px] text-icn-black/80 font-bold"><i data-lucide="zap" class="w-4 h-4 text-icn-green fill-icn-green"></i> Resultados mais rápidos</li>
+          </ul>
+          <button onclick="handleWhatsAppClick('Plano Premium Plus')" class="w-full bg-icn-black text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl active:scale-95 transition-all text-center text-white">Assinar Premium</button>
+        </div>
+
+        <!-- Bimestral Premium -->
+        <div class="glass-card p-6 rounded-[2.5rem] border-l-4 border-l-icn-green/50">
+          <div class="mb-4">
+            <h3 class="font-display text-xl font-bold text-white uppercase italic">Bimestral Premium</h3>
+            <p class="text-[9px] font-bold text-icn-green uppercase tracking-widest mt-1">Revisão Quinzenal</p>
+          </div>
+          <ul class="space-y-2 mb-6 text-left">
+            <li class="flex items-center gap-3 text-[11px] text-icn-silver"><i data-lucide="trending-up" class="w-4 h-4 text-icn-green"></i> Melhor custo x benefício</li>
+            <li class="flex items-center gap-3 text-[11px] text-icn-silver"><i data-lucide="trending-up" class="w-4 h-4 text-icn-green"></i> Evolução contínua com economia</li>
+          </ul>
+          <button onclick="handleWhatsAppClick('Plano Bimestral Premium')" class="w-full bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest active:scale-95 transition-all text-center">Escolher Bimestral</button>
+        </div>
+
+        <!-- Trimestral PROMOCIONAL -->
+        <div class="relative p-[2px] rounded-[3rem] bg-gradient-to-br from-icn-green via-icn-greenDark to-icn-black shadow-[0_0_50px_rgba(74,222,128,0.2)]">
+          <div class="bg-icn-black p-7 rounded-[2.9rem] h-full text-left">
+            <div class="flex justify-between items-start mb-4">
+               <h3 class="font-display text-xl font-black text-icn-green uppercase italic leading-none">Trimestral Elite<br><span class="text-white text-[10px] opacity-50 not-italic">Plano Promocional</span></h3>
+               <i data-lucide="award" class="w-7 h-7 text-icn-green"></i>
+            </div>
+            <div class="space-y-3 mb-6">
+              <div class="flex items-start gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5 text-icn-green shrink-0"></i>
+                <p class="text-[11px] text-icn-silver leading-relaxed"><strong class="text-white">Acompanhamento Total:</strong> Revisão semanal + Protocolo hormonal + Suplementação.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="target" class="w-5 h-5 text-icn-green shrink-0"></i>
+                <p class="text-[11px] text-icn-silver leading-relaxed"><strong class="text-white">Precisão Máxima:</strong> Ideal para transformação real até o verão com ajustes estratégicos.</p>
+              </div>
+            </div>
+            <div class="bg-white/5 p-4 rounded-2xl mb-6 border border-white/10">
+               <p class="text-[10px] text-white/80 font-medium leading-relaxed italic text-center">
+                 Acesso direto comigo, maior flexibilidade nos ajustes e suporte presente para garantir sua evolução.
+               </p>
+            </div>
+            <button onclick="handleWhatsAppClick('Trimestral Elite Promo')" class="w-full bg-icn-green text-icn-black py-5 rounded-3xl font-black text-[10px] uppercase tracking-widest animate-pulse-green shadow-xl active:scale-95 transition-all text-center">Garantir Vaga Promo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Elite Team Resultados -->
+    <section class="py-12 bg-icn-dark/40 border-t border-white/5">
+       <div class="text-center mb-10 px-6 reveal">
+          <h2 class="font-display text-4xl uppercase tracking-tighter text-white leading-none text-center mx-auto uppercase leading-none">Resultados<br><span class="text-icn-green italic text-3xl">ICNTEAM</span></h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-widest mt-4 font-bold text-center mx-auto leading-none">Histórico que prova o método</p>
+       </div>
+
+       <div class="flex overflow-x-auto gap-4 px-8 hide-scrollbar snap-x pb-4">
+          <div class="reveal snap-center shrink-0 w-72 h-[28rem] rounded-[3rem] overflow-hidden relative shadow-2xl border border-white/5 bg-icn-black">
+            <img id="img-res-1" src="icn_res1.png" alt="Transformação 1" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-icn-black via-transparent to-transparent flex flex-col justify-end p-8">
+               <p class="text-[10px] font-bold text-icn-green uppercase tracking-[0.3em] mb-1">Evolução</p>
+               <h4 class="font-display text-2xl uppercase italic leading-none text-white">Alta Performance</h4>
+            </div>
+          </div>
+          <div class="reveal snap-center shrink-0 w-72 h-[28rem] rounded-[3rem] overflow-hidden relative shadow-2xl border border-white/5 bg-icn-black text-white text-center">
+            <img id="img-res-2" src="icn_res2.png" alt="Troféus Elite Team" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-icn-black via-transparent to-transparent flex flex-col justify-end p-8">
+               <p class="text-[10px] font-bold text-icn-green uppercase tracking-[0.3em] mb-1">Campeões</p>
+               <h4 class="font-display text-2xl uppercase italic leading-none text-white">Padrão ICN</h4>
+            </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- Footer (Ajuste de Espaçamento Final) -->
+    <footer class="mt-auto px-8 pt-8 pb-12 bg-icn-black border-t border-white/5 text-center reveal text-white relative">
+      <h3 class="font-display text-2xl mb-8 tracking-tighter uppercase leading-none italic text-center mx-auto uppercase leading-none">Inicie agora a sua<br><span class="text-icn-green opacity-60 font-black">Transformação</span></h3>
+      
+      <div class="space-y-4 max-w-xs mx-auto">
+        <button onclick="handleWhatsAppClick('Consultoria Geral')" class="w-full bg-icn-green text-icn-black py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest shadow-xl active:scale-[0.97] transition-all flex items-center justify-center gap-3">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Agendar Avaliação
+        </button>
+        
+        <button onclick="window.open('https://instagram.com/icnteam/', '_blank')" class="w-full bg-icn-dark border border-white/10 text-white py-5 rounded-[2rem] font-bold text-[12px] uppercase tracking-[0.1em] transition-all flex items-center justify-center gap-3 active:scale-95 shadow-xl text-white">
+          <i data-lucide="instagram" class="w-5 h-5"></i> @icnteam
+        </button>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-white/5 opacity-20 text-white text-center">
+        <p class="text-[8px] font-bold uppercase tracking-[0.5em] mb-4">© 2026 ICNTEAM - ILGNER CHAGAS</p>
+        <p class="text-[8px] uppercase tracking-[0.4em]">CRIADO POR <strong class="text-white tracking-[0.2em] font-black text-center mx-auto uppercase">VERTICY.</strong> PREMIUM BIO</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    const config = {
+      whatsapp: "5522998958120",
+      fotos: {
+        hero: "Icn1.png",            
+        logo: "icn_logo.png",        
+        res1: "icn_res1.png",       
+        res2: "icn_res2.png",       
+      }
+    };
+
+    function handleWhatsAppClick(interesse = "") {
+      let text = "Olá Ilgner! Vim pelo seu novo site e gostaria de saber mais sobre a consultoria ICNTEAM.";
+      if (interesse) text = `Olá Ilgner! Vim pelo seu novo site e tenho interesse no *${interesse}*. Como funciona?`;
+      window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      
+      const imagensMap = {
+        'img-hero': config.fotos.hero,
+        'img-logo': config.fotos.logo,
+        'img-res-1': config.fotos.res1,
+        'img-res-2': config.fotos.res2,
+      };
+
+      for (const [id, url] of Object.entries(imagensMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Raísa Bastos | Odontopediatria, Laserterapia e PNE</title>
+    <meta name="description" content="Atendimento odontopediátrico especializado em Campos dos Goytacazes. Dra. Raísa Bastos: alegria, paciência e tecnologia para o seu filho.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        display: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            pink: '#FFD1DC',
+                            'pink-dark': '#D86B8C',
+                            'pink-light': '#FFF0F5',
+                            blue: '#BDE0FE',
+                            'blue-dark': '#6C9BCF',
+                            'blue-light': '#F0F8FF',
+                            yellow: '#FFF3CD',
+                            'yellow-dark': '#D4A324',
+                            'yellow-light': '#FFFBEB',
+                            green: '#D4EDDA',
+                            'green-dark': '#5C946E',
+                            'green-light': '#F0FFF4',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(216, 107, 140, 0.15)',
+                        'float': '0 20px 40px -10px rgba(108, 155, 207, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: transparent; cursor: none; }
+        @media (pointer: fine) {
+            .custom-cursor { position: fixed; top: 0; left: 0; width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle, rgba(216, 107, 140, 0.6) 0%, rgba(216, 107, 140, 0) 70%); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s ease; mix-blend-mode: multiply; }
+            .custom-cursor.hover { width: 50px; height: 50px; background: radial-gradient(circle, rgba(108, 155, 207, 0.4) 0%, rgba(108, 155, 207, 0) 70%); transform: translate(-50%, -50%) scale(1.5); }
+            .cursor-dot { position: fixed; top: 0; left: 0; width: 6px; height: 6px; background-color: #D86B8C; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
+        }
+        @media (pointer: coarse) { body { cursor: auto; } .custom-cursor, .cursor-dot { display: none; } }
+        
+        .reveal-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-item.active .faq-answer { max-height: 500px; }
+        
+        @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .animate-bob { animation: bob 3s ease-in-out infinite; }
+    </style>
+</head>
+<body class="text-slate-700 antialiased relative overflow-x-hidden">
+
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
+    <!-- Loader com Transição Suave -->
+    <div id="loader" class="fixed inset-0 bg-brand-pink-light z-50 flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="animate-bounce"><i class="ph-fill ph-tooth text-6xl text-white drop-shadow-lg"></i></div>
+        <p class="mt-4 font-display font-bold text-brand-pink-dark animate-pulse">A preparar um mundo de sorrisos...</p>
+    </div>
+
+    <!-- Navegação -->
+    <nav class="fixed w-full z-40 top-0 glass-card" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="bg-brand-pink text-white p-2 rounded-xl"><i class="ph-fill ph-tooth text-2xl"></i></div>
+                <div>
+                    <h1 class="font-display font-bold text-xl text-slate-800">Dra. Raísa Bastos</h1>
+                    <p class="text-[10px] font-bold text-brand-pink-dark uppercase">Odontopediatria • CRO 43104</p>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center gap-8 font-bold text-slate-600">
+                <a href="#sobre" class="hover:text-brand-pink-dark transition-colors">Sobre</a>
+                <a href="#momentos" class="hover:text-brand-pink-dark transition-colors">Momentos</a>
+                <a href="#especialidades" class="hover:text-brand-pink-dark transition-colors">Especialidades</a>
+                <a href="#galeria" class="hover:text-brand-pink-dark transition-colors">O Consultório</a>
+            </div>
+            <a href="#agendamento" class="bg-brand-pink text-white px-5 py-2 rounded-full font-bold shadow-sm hover:scale-105 transition-all text-sm">Marcar Consulta</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center reveal-on-scroll is-visible">
+            <div>
+                <div class="inline-block bg-white px-4 py-1 rounded-full shadow-sm text-brand-pink-dark font-bold text-xs mb-6">✨ O Sorriso do seu filho em boas mãos</div>
+                <h1 class="font-display font-extrabold text-4xl lg:text-6xl text-slate-800 leading-tight">
+                    Onde o cuidado vira <span class="text-brand-pink-dark italic">brincadeira</span> e diversão!
+                </h1>
+                <p class="mt-8 text-lg text-slate-600">
+                    Especialista em criar experiências positivas. Atendimento com <strong>Laserterapia</strong> para garantir zero dor e muita alegria para os pequenos.
+                </p>
+                <div class="mt-10">
+                    <a href="#agendamento" class="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold text-lg shadow-float inline-flex items-center gap-2 hover:-translate-y-1 transition-all">
+                        <i class="ph-fill ph-whatsapp-logo"></i> Agendar via WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="bg-brand-blue rounded-[3rem] absolute inset-0 rotate-3 -z-10 opacity-50"></div>
+                <div class="bg-white p-2 rounded-[3rem] shadow-soft overflow-hidden">
+                    <img src="raisa_hero.png" alt="Dra. Raísa Bastos" class="w-full aspect-square object-cover rounded-[2.5rem]" onerror="this.src='https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80&w=800'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="py-24 px-6 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center reveal-on-scroll">
+            <div class="relative order-2 md:order-1">
+                <div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-brand-pink-light shadow-soft">
+                    <img src="raisa_perfil.png" alt="Dra. Raísa Perfil" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800'">
+                </div>
+                <div class="absolute -bottom-4 -right-4 bg-brand-yellow w-20 h-20 rounded-2xl flex items-center justify-center shadow-float animate-bob">
+                    <i class="ph-fill ph-star text-white text-4xl"></i>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-800 mb-6 italic">Muito prazer, sou a Raísa! 💖</h2>
+                <div class="space-y-6 text-lg text-slate-600">
+                    <p>Sou a <strong>Dra. Raísa Bastos</strong>, odontopediatra que acredita que o consultório deve ser um lugar de luz, cores e muitos sorrisos sinceros.</p>
+                    <p>Com especialização em <strong>Odontopediatria e Laserterapia</strong>, dedico-me a tratamentos humanizados para bebés, crianças e adolescentes, com um carinho especial por pacientes PNE.</p>
+                    <p class="p-5 bg-brand-pink-light/30 rounded-3xl border-l-8 border-brand-pink text-slate-700 font-medium leading-relaxed">
+                        "O meu superpoder? É a paciência e a alegria. Transformo o medo em coragem e cada consulta numa grande aventura lúdica!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Momentos com Pacientes (Alegria e Paciência) -->
+    <section id="momentos" class="py-24 px-6 bg-brand-blue-light/20 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto text-center mb-16 reveal-on-scroll">
+            <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-800 mb-4">Sorrisos que nos movem ✨</h2>
+            <p class="text-lg text-slate-500">As crianças adoram o nosso cantinho porque aqui a alegria e a diversão são as regras principais!</p>
+        </div>
+        <div class="flex overflow-x-auto gap-8 px-4 pb-12 snap-x no-scrollbar reveal-on-scroll">
+            <div class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white p-4 rounded-[2.5rem] shadow-soft transform -rotate-2">
+                <img src="paciente1.png" alt="Alegria" class="w-full aspect-[3/4] object-cover rounded-[2rem] mb-4" onerror="this.src='https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=600'">
+                <p class="text-center font-bold text-brand-pink-dark">Felicidade em cada detalhe!</p>
+            </div>
+            <div class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white p-4 rounded-[2.5rem] shadow-soft transform rotate-2">
+                <img src="paciente2.png" alt="Diversão" class="w-full aspect-[3/4] object-cover rounded-[2rem] mb-4" onerror="this.src='https://images.unsplash.com/photo-1471333055470-67a4ed30a00d?auto=format&fit=crop&q=80&w=600'">
+                <p class="text-center font-bold text-brand-blue-dark">Brincar ajuda a cuidar.</p>
+            </div>
+            <div class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white p-4 rounded-[2.5rem] shadow-soft transform -rotate-1">
+                <img src="paciente3.png" alt="Paciência" class="w-full aspect-[3/4] object-cover rounded-[2rem] mb-4" onerror="this.src='https://images.unsplash.com/photo-1502781259889-3893a5214468?auto=format&fit=crop&q=80&w=600'">
+                <p class="text-center font-bold text-brand-green-dark">Paciência infinita 💖</p>
+            </div>
+            <div class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white p-4 rounded-[2.5rem] shadow-soft transform rotate-3">
+                <img src="paciente4.png" alt="Coragem" class="w-full aspect-[3/4] object-cover rounded-[2rem] mb-4" onerror="this.src='https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=600'">
+                <p class="text-center font-bold text-brand-yellow-dark">Coragem que brilha!</p>
+            </div>
+        </div>
+        <div class="flex justify-center gap-2 text-slate-400 text-sm animate-pulse mt-4">
+            <i class="ph ph-arrows-left-right text-xl"></i>
+            <span>Deslize para ver mais momentos mágicos</span>
+        </div>
+    </section>
+
+    <!-- Especialidades -->
+    <section id="especialidades" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border-b-8 border-brand-pink reveal-on-scroll">
+                <div class="text-4xl mb-6">⚡</div>
+                <h3 class="font-display font-bold text-xl mb-3">Laserterapia</h3>
+                <p class="text-sm text-slate-600">Tratamentos rápidos e sem dor para aftas, herpes e cicatrização. Tecnologia que garante o máximo conforto.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border-b-8 border-brand-blue reveal-on-scroll" style="transition-delay: 0.1s">
+                <div class="text-4xl mb-6">♿</div>
+                <h3 class="font-display font-bold text-xl mb-3">Atendimento PNE</h3>
+                <p class="text-sm text-slate-600">Acolhimento especializado para pacientes com necessidades especiais, com foco total na calma e bem-estar.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border-b-8 border-brand-yellow reveal-on-scroll" style="transition-delay: 0.2s">
+                <div class="text-4xl mb-6">🦷</div>
+                <h3 class="font-display font-bold text-xl mb-3">Odonto para Bebês</h3>
+                <p class="text-sm text-slate-600">Prevenção e acompanhamento lúdico desde o nascimento até os primeiros dentinhos. O cuidado começa cedo!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria do Consultório -->
+    <section id="galeria" class="py-24 px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-800 mb-4">Um mundo de cores 🎨</h2>
+                <p class="text-lg text-slate-500">Conheça o nosso espaço lúdico preparado para acolher a sua família.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 reveal-on-scroll">
+                <img src="consultorio1.png" alt="Recepção" class="rounded-3xl shadow-soft aspect-video object-cover transition-transform hover:scale-105 duration-500" onerror="this.src='https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800'">
+                <img src="consultorio2.png" alt="Cadeira Lúdica" class="rounded-3xl shadow-soft aspect-video object-cover transition-transform hover:scale-105 duration-500" onerror="this.src='https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800'">
+                <img src="consultorio3.png" alt="Brinquedoteca" class="rounded-3xl shadow-soft aspect-video object-cover transition-transform hover:scale-105 duration-500" onerror="this.src='https://images.unsplash.com/photo-1590105577767-e21a46b5300c?auto=format&fit=crop&q=80&w=800'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento -->
+    <section id="agendamento" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto bg-brand-pink-light/50 rounded-[3rem] p-10 md:p-20 text-center shadow-soft border border-white reveal-on-scroll">
+            <h2 class="font-display font-extrabold text-3xl md:text-5xl text-slate-800 mb-8">Vamos agendar um sorriso saudável? 🚀</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-left mb-12">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-brand-pink/20">
+                    <p class="font-bold text-brand-pink-dark mb-2 uppercase text-[10px] tracking-widest">Onde estamos</p>
+                    <p class="text-slate-700 font-bold">Edifício Pelinca Prime, Sala 711</p>
+                    <p class="text-sm text-slate-500 italic">Campos dos Goytacazes/RJ</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-brand-blue/20">
+                    <p class="font-bold text-brand-blue-dark mb-2 uppercase text-[10px] tracking-widest">Contato Direto</p>
+                    <p class="text-slate-700 font-bold">(22) 99936-9695</p>
+                    <p class="text-sm text-slate-500">raisabastoss1@gmail.com</p>
+                </div>
+            </div>
+            <a href="https://api.whatsapp.com/send?phone=5522999369695&text=Olá Dra. Raísa! Gostaria de agendar uma consulta para meu filho." target="_blank" class="bg-[#25D366] text-white px-12 py-5 rounded-full font-bold text-xl shadow-float inline-flex items-center gap-3 hover:scale-105 transition-all">
+                <i class="ph-fill ph-whatsapp-logo text-3xl"></i> Agendar Agora
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-slate-400 text-sm border-t border-slate-100 bg-white">
+        <p class="mb-2">Dra. Raísa Bastos © 2026 • CRO 43104</p>
+        <p class="text-[10px]">Desenvolvido com carinho para pequenos sorrisos.</p>
+    </footer>
+
+    <script>
+        // Loader Failsafe: se a página demorar muito, o loader sai sozinho em 3s
+        const hideLoader = () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 700);
+            }
+        };
+
+        // Failsafe automático de 3 segundos
+        const loaderTimeout = setTimeout(hideLoader, 3000);
+
+        window.addEventListener('load', () => {
+            clearTimeout(loaderTimeout); // Cancela o failsafe se carregar antes
+            hideLoader();
+        });
+
+        // Scroll reveal logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Custom cursor logic
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursor = document.getElementById('custom-cursor'), dot = document.getElementById('cursor-dot');
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+                dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+            });
+            
+            // Hover effect on interactables
+            document.querySelectorAll('a, button, .cursor-pointer, .snap-center').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+    </script>
+</body>
+</html>

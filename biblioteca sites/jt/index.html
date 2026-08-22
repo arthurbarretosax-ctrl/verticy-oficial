@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>JT Performance | Jeferson Teixeira</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes de Impacto (Montserrat & Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            jt: {
+              black: '#050505',
+              dark: '#0f0f0f',
+              gold: '#D4AF37',    /* Ouro Premium */
+              silver: '#A1A1AA',
+              white: '#FFFFFF',
+              pain: '#ef4444'     /* Vermelho para alertas de dor */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { 
+      background-color: #050505; 
+      color: #FFFFFF; 
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior-y: none;
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .glass-premium {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* --- ANIMAÇÕES CROMÁTICAS (Imagens ganham cor no scroll) --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 1s ease-out, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal img {
+      filter: grayscale(1);
+      transition: filter 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+      will-change: filter;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.active img {
+      filter: grayscale(0);
+    }
+
+    /* --- MARQUEE (Letreiro de Parceiros) --- */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { 
+      animation: marquee 20s linear infinite; 
+      width: max-content;
+    }
+
+    @keyframes slowZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    .animate-zoom { 
+      animation: slowZoom 20s ease-in-out infinite alternate; 
+    }
+
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    @keyframes pulse-gold {
+      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    }
+    .animate-pulse-gold { animation: pulse-gold 2s infinite; }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-jt-gold selection:text-jt-black pb-10">
+
+  <div class="bg-noise"></div>
+
+  <!-- Mobile Container -->
+  <div class="max-w-md mx-auto min-h-screen relative sm:border-x sm:border-white/5 flex flex-col bg-jt-black shadow-2xl">
+    
+    <!-- ==========================================
+         HERO SECTION: SEM LOGO
+         ========================================== -->
+    <section class="relative w-full h-[85vh] overflow-hidden rounded-b-[4rem] border-b border-jt-gold/20 reveal active">
+      <div class="absolute inset-0 z-0">
+        <img id="img-hero" src="jt1.png" alt="Jeferson Teixeira" class="w-full h-full object-cover animate-zoom" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-gradient-to-t from-jt-black via-jt-black/30 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-jt-black/60 via-transparent to-transparent"></div>
+      </div>
+
+      <div class="absolute inset-0 flex flex-col justify-end p-8 pb-16 z-20 text-center text-white">
+        <h2 class="text-[10px] font-bold uppercase tracking-[0.6em] text-white/80 mb-3">Sua máquina merece o melhor</h2>
+        <h1 class="font-display text-5xl font-black text-jt-gold leading-none mb-1 uppercase italic tracking-tighter">DESTRAVE</h1>
+        <h1 class="font-display text-5xl font-black text-white leading-none mb-8 uppercase italic tracking-tighter">SEU CORPO</h1>
+        
+        <div class="flex flex-col gap-4">
+          <button onclick="handleWhatsAppClick('Avaliação Completa')" class="w-full bg-jt-gold text-jt-black py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl animate-pulse-gold active:scale-95 transition-all">
+            Agendar Avaliação
+          </button>
+          <button onclick="document.getElementById('especialista').scrollIntoView({behavior:'smooth'})" class="w-full glass-premium py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 active:bg-white/10 active:scale-95 transition-all">
+            <i data-lucide="award" class="w-4 h-4 text-jt-gold"></i> O Especialista
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LETREIRO DE PARCEIROS
+         ========================================== -->
+    <div class="w-full overflow-hidden border-b border-white/5 py-6 relative z-20 bg-black/60 backdrop-blur-md">
+      <div class="animate-marquee flex gap-10 items-center text-white italic text-[11px] font-black uppercase tracking-widest">
+        <span class="opacity-50">Dracma</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">MGF</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">Campos Atlético</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">ETT</span>
+        <span class="text-white/20 font-light">|</span>
+        
+        <!-- Clone para o loop -->
+        <span class="opacity-50">Dracma</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">MGF</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">Campos Atlético</span>
+        <span class="text-white/20 font-light">|</span>
+        <span class="opacity-50">ETT</span>
+        <span class="text-white/20 font-light">|</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         O ESPECIALISTA: FOTO GRANDE
+         ========================================== -->
+    <section id="especialista" class="px-6 py-20 reveal">
+       <div class="glass-premium rounded-[3.5rem] overflow-hidden border border-white/10 shadow-2xl relative group bg-gradient-to-br from-jt-dark to-black text-center">
+          <div class="h-[28rem] relative overflow-hidden">
+             <img id="img-especialista" src="jt_especialista.png" alt="Jeferson Teixeira Especialista" class="w-full h-full object-cover object-top" />
+             <div class="absolute inset-0 bg-gradient-to-t from-jt-black via-jt-black/20 to-transparent"></div>
+          </div>
+          
+          <div class="p-10 pt-8 relative z-10">
+             <h2 class="font-display text-4xl font-black text-white italic uppercase tracking-tighter leading-none mb-4">
+               Jeferson<br><span class="text-jt-gold">Teixeira</span>
+             </h2>
+             <p class="text-[10px] font-bold text-jt-gold uppercase tracking-[0.4em] mb-8 font-black">Criador do Método JT Performance</p>
+             
+             <div class="space-y-6 text-sm text-jt-silver leading-relaxed font-medium">
+                <p>
+                   Referência em recuperação muscular e otimização física, Jeferson desenvolveu uma técnica exclusiva que une a ciência da <strong class="text-white font-bold">Quiropraxia</strong> à precisão da <strong class="text-white font-bold">Liberação Miofascial</strong>.
+                </p>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         SINTOMAS / DORES
+         ========================================== -->
+    <section class="px-6 py-20 bg-jt-dark/30 border-y border-white/5">
+      <div class="text-center mb-12 reveal">
+        <h2 class="font-display text-2xl uppercase tracking-tighter text-white leading-none">Sente que seu corpo<br><span class="text-jt-pain italic">travou?</span></h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4">
+        <div class="glass-premium p-6 rounded-[2rem] border-l-4 border-l-jt-pain reveal">
+           <div class="flex gap-4 items-start">
+              <i data-lucide="alert-triangle" class="w-6 h-6 text-jt-pain shrink-0"></i>
+              <div>
+                 <h4 class="font-bold text-sm uppercase text-white mb-1">Dores Recorrentes</h4>
+                 <p class="text-xs text-jt-silver font-medium">Tensões musculares que prejudicam o seu treino e o seu dia a dia.</p>
+              </div>
+           </div>
+        </div>
+        <div class="glass-premium p-6 rounded-[2rem] border-l-4 border-l-jt-pain reveal">
+           <div class="flex gap-4 items-start">
+              <i data-lucide="battery-low" class="w-6 h-6 text-jt-pain shrink-0"></i>
+              <div>
+                 <h4 class="font-bold text-sm uppercase text-white mb-1">Cansaço Crônico</h4>
+                 <p class="text-xs text-jt-silver font-medium">Sensação de peso e fadiga, mesmo após períodos de descanso.</p>
+              </div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         A CONTA RÁPIDA (UPGRADE)
+         ========================================== -->
+    <section class="px-6 py-24 relative overflow-hidden">
+      <div class="absolute -right-20 top-20 w-64 h-64 bg-jt-gold/5 rounded-full blur-[100px]"></div>
+      
+      <div class="text-center mb-16 reveal">
+        <h3 class="text-[10px] font-bold uppercase tracking-[0.4em] text-jt-silver mb-2 italic text-center mx-auto">"Deixa eu te fazer uma conta rápida"</h3>
+        <h2 class="font-display text-3xl uppercase text-white text-center mx-auto leading-none">Upgrade de<br><span class="text-jt-gold italic">Saúde</span></h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 relative z-10">
+        <div class="reveal bg-white p-10 rounded-[3rem] shadow-2xl flex flex-col items-center text-center">
+          <p class="text-[9px] text-jt-black/60 mb-6 font-black uppercase tracking-[0.2em]">Plano Mensal JT Performance</p>
+          <div class="w-16 h-16 rounded-full bg-jt-gold/10 flex items-center justify-center mb-6 border border-jt-gold/20">
+             <i data-lucide="infinity" class="w-9 h-9 text-jt-gold"></i>
+          </div>
+          <h3 class="text-jt-black font-display text-4xl font-black italic mb-3 tracking-tighter uppercase leading-none text-center">Padrão Elite</h3>
+          <p class="text-jt-black text-xs font-medium leading-relaxed max-w-[85%]">Acompanhamento contínuo para manter sua máquina funcionando no auge.</p>
+          
+          <div class="mt-10 pt-8 border-t border-black/5 w-full">
+            <p class="text-jt-black text-sm font-bold uppercase tracking-widest">Consulte planos personalizados</p>
+          </div>
+        </div>
+
+        <button onclick="handleWhatsAppClick('Plano de Performance')" class="reveal w-full bg-jt-gold text-jt-black py-5 rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-lg active:scale-95 transition-all">
+          Ser um Aluno Jeferson Teixeira
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ELITE TEAM (CARROSSEL)
+         ========================================== -->
+    <section class="py-16 bg-black/40 border-t border-white/5">
+       <div class="text-center mb-12 px-6 reveal">
+          <h2 class="font-display text-4xl uppercase tracking-tighter text-white leading-none text-center mx-auto">Elite<br><span class="text-jt-gold italic">JT Team</span></h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-widest mt-4 font-bold">Autoridade reconhecida por referências</p>
+       </div>
+
+       <div class="flex overflow-x-auto gap-5 px-6 hide-scrollbar snap-x pb-8">
+          <div class="snap-center shrink-0 w-72 h-[30rem] rounded-[3rem] overflow-hidden relative shadow-2xl border border-white/5 bg-jt-dark">
+            <img id="img-atleta-1" src="jt3.png" alt="Bodybuilder" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-jt-black via-transparent to-transparent flex flex-col justify-end p-8 text-center text-white">
+               <p class="text-[10px] font-bold text-jt-gold uppercase tracking-[0.3em] mb-1">Recuperação Máxima</p>
+               <h4 class="font-display text-2xl uppercase italic leading-none">Bodybuilding</h4>
+            </div>
+          </div>
+          <div class="snap-center shrink-0 w-72 h-[30rem] rounded-[3rem] overflow-hidden relative shadow-2xl border border-white/5 bg-jt-dark text-white">
+            <img id="img-atleta-2" src="jt4.png" alt="Fernando Fernandes" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-jt-black via-transparent to-transparent flex flex-col justify-end p-8 text-center text-white">
+               <p class="text-[10px] font-bold text-jt-gold uppercase tracking-[0.3em] mb-1">Mobilidade & Superação</p>
+               <h4 class="font-display text-2xl uppercase italic leading-none">Performance Elite</h4>
+            </div>
+          </div>
+          <div class="snap-center shrink-0 w-72 h-[30rem] rounded-[3rem] overflow-hidden relative shadow-2xl border border-white/5 bg-jt-dark text-white">
+            <img id="img-atleta-3" src="jt5.png" alt="Running" class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-jt-black via-transparent to-transparent flex flex-col justify-end p-8 text-center text-white">
+               <p class="text-[10px] font-bold text-jt-gold uppercase tracking-[0.3em] mb-1">Resistência Muscular</p>
+               <h4 class="font-display text-2xl uppercase italic leading-none">Running</h4>
+            </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         FEEDBACKS: 3 ITENS (DIRECIONANDO PARA LINKS ESPECÍFICOS)
+         ========================================== -->
+    <section class="px-6 py-20 reveal border-t border-white/5">
+       <div class="text-center mb-12">
+          <h2 class="font-display text-3xl uppercase tracking-tighter text-white leading-none">Feedbacks<br><span class="text-jt-gold italic text-xl">Provas Reais</span></h2>
+          <p class="text-[10px] text-white/40 uppercase tracking-widest mt-4 font-black">Toque para ver os depoimentos</p>
+       </div>
+
+       <div class="grid grid-cols-2 gap-3">
+          <!-- Feed 1: Link do vídeo 1 -->
+          <div onclick="window.open(config.links.feed1_insta, '_blank')" class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative glass-premium cursor-pointer group shadow-xl">
+             <img id="img-feed-1" src="jt7.png" alt="Feedback Vídeo" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+             <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent">
+                <i data-lucide="play-circle" class="w-12 h-12 text-white/80 group-hover:scale-110 transition-transform"></i>
+             </div>
+          </div>
+          <!-- Feed 2: Link do vídeo 2 -->
+          <div onclick="window.open(config.links.feed2_insta, '_blank')" class="aspect-[9/16] rounded-[2.5rem] overflow-hidden relative glass-premium cursor-pointer group shadow-xl">
+             <img id="img-feed-2" src="jt8.png" alt="Feedback Vídeo" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+             <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent">
+                <i data-lucide="play-circle" class="w-12 h-12 text-white/80 group-hover:scale-110 transition-transform"></i>
+             </div>
+          </div>
+          <!-- Feed 3: Link do perfil oficial -->
+          <div onclick="window.open(config.links.instagram, '_blank')" class="col-span-2 aspect-[16/9] rounded-[2.5rem] overflow-hidden relative glass-premium cursor-pointer group shadow-xl mt-1">
+             <img id="img-feed-3" src="jt9.png" alt="Feedback Especial" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
+             <div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-transparent">
+                <div class="bg-white/10 backdrop-blur-md p-4 rounded-full border border-white/20">
+                   <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+                </div>
+             </div>
+             <p class="absolute bottom-4 left-0 w-full text-center text-[9px] font-black uppercase tracking-widest text-white/60">Ver no perfil oficial</p>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         MUNDO CORPORATIVO
+         ========================================== -->
+    <section class="px-6 pb-24 reveal">
+       <div class="glass-premium rounded-[3.5rem] overflow-hidden border-white/5 relative group bg-gradient-to-br from-jt-dark to-black shadow-2xl">
+          <div class="h-64 relative overflow-hidden">
+             <img id="img-corp" src="jt6.png" alt="Ambiente Corporativo" class="w-full h-full object-cover" />
+             <div class="absolute inset-0 bg-gradient-to-t from-jt-black via-jt-black/20 to-transparent"></div>
+          </div>
+          <div class="p-10 pt-8 text-white text-center">
+             <h3 class="font-display text-4xl font-black italic uppercase tracking-tighter mb-4 leading-none">Mundo<br>Corporativo</h3>
+             <p class="text-xs text-jt-silver leading-relaxed font-medium mb-10 px-2">
+                Otimize a produtividade do seu time. Oferecemos soluções para fadiga muscular e dores posturais no ambiente de trabalho.
+             </p>
+             <button onclick="handleWhatsAppClick('Orçamento Corporativo')" class="w-full py-5 rounded-2xl border border-jt-gold text-jt-gold font-black text-[11px] uppercase tracking-widest hover:bg-jt-gold hover:text-jt-black transition-all">
+                Orçamento para Empresas
+             </button>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         LOCALIZAÇÃO: MAPA
+         ========================================== -->
+    <section class="px-6 py-20 reveal border-t border-white/5">
+      <div class="text-center mb-10 text-white">
+        <h2 class="font-display text-3xl uppercase tracking-tighter leading-none">Localização</h2>
+        <p class="text-[10px] text-jt-silver uppercase tracking-[0.4em] font-bold mt-4">Campos dos Goytacazes - RJ</p>
+      </div>
+
+      <div class="glass-premium p-4 rounded-[3.5rem] overflow-hidden shadow-2xl relative border-white/5 bg-jt-dark">
+        <div class="w-full h-80 rounded-[3rem] overflow-hidden relative shadow-inner">
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.650868779693!2d-41.3283!3d-21.7569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc530467b5e1f7%3A0x673967d1656f70!2sCampos%20dos%20Goytacazes%2C%20RJ!5e0!3m2!1spt-BR!2sbr!4v1714080000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+        <div class="p-10 text-center">
+          <p class="text-xs text-jt-silver font-bold italic mb-8 leading-relaxed text-center mx-auto">
+            Espaço Teixeira Terapia <br>
+            <span class="text-white not-italic uppercase tracking-widest block mt-2 font-black">Rua Conselheiro Otaviano, 84 - Centro</span>
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+             <button onclick="handleLink('mapa')" class="bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 active:bg-white/10">
+                <i data-lucide="map-pin" class="w-4 h-4"></i> Maps
+             </button>
+             <button onclick="handleLink('waze')" class="bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 active:bg-white/10">
+                <i data-lucide="navigation" class="w-4 h-4"></i> Waze
+             </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <section class="mt-auto px-8 pt-10 pb-24 bg-black border-t border-white/5 text-center reveal">
+      <div class="w-16 h-16 bg-jt-gold/5 rounded-full border border-jt-gold/10 flex items-center justify-center mx-auto mb-10 shadow-xl text-jt-gold text-center">
+        <i data-lucide="award" class="w-8 h-8 opacity-30"></i>
+      </div>
+      <h3 class="font-display text-2xl mb-12 tracking-tighter uppercase leading-none text-white italic text-center mx-auto">Upgrade de<br><span class="text-jt-gold opacity-60 font-black">Performance</span></h3>
+      
+      <div class="space-y-4 max-w-xs mx-auto">
+        <button onclick="handleWhatsAppClick('Agendamento Final')" class="w-full bg-jt-gold text-jt-black py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl active:scale-[0.97] transition-all flex items-center justify-center gap-3">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Agendar Agora
+        </button>
+        <button onclick="window.open(config.links.instagram, '_blank')" class="w-full glass-premium py-5 rounded-2xl font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-3 active:scale-[0.97] active:bg-white/10 transition-all text-white">
+          <i data-lucide="instagram" class="w-5 h-5 text-jt-gold"></i> @jefersonteixeiraett
+        </button>
+      </div>
+
+      <div class="mt-24 pt-10 border-t border-white/5 opacity-20 text-white">
+        <p class="text-[8px] font-bold uppercase tracking-[0.5em] mb-4">© 2026 JEFERSON TEIXEIRA</p>
+        <p class="text-[8px] uppercase tracking-[0.4em]">CRIADO POR <strong class="text-white tracking-[0.2em] font-black">VERTICY.</strong> PREMIUM BIO</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const config = {
+      whatsapp: "5522998958120", 
+      links: {
+        instagram: "https://www.instagram.com/jefersonteixeiraett/", 
+        feed1_insta: "https://www.instagram.com/p/DUjNuV_EWvz/",
+        feed2_insta: "https://www.instagram.com/p/DU9SJxsERQs/",
+        maps_link: "https://maps.app.goo.gl/uXpXpXpXpXpXpXpXp",
+        waze_link: "https://waze.com/ul?ll=-21.7569,-41.3283&navigate=yes"
+      },
+      fotos: {
+        hero: "jt1.png",
+        especialista: "jt_especialista.png",
+        atleta1: "jt3.png",
+        atleta2: "jt4.png",
+        atleta3: "jt5.png",
+        corp: "jt6.png",
+        feed1: "jt7.png",
+        feed2: "jt8.png",
+        feed3: "jt9.png" 
+      }
+    };
+
+    function handleWhatsAppClick(interesse = "") {
+      let text = "Olá Jeferson! Vim pelo seu novo site e gostaria de agendar um atendimento.";
+      if (interesse) text = `Olá Jeferson! Vim pelo seu novo site e tenho interesse em: *${interesse}*. Como podemos agendar?`;
+      window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function handleLink(tipo) {
+      if (tipo === 'mapa') window.open(config.links.maps_link, '_blank');
+      else if (tipo === 'waze') window.open(config.links.waze_link, '_blank');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      
+      const imagesMap = {
+        'img-hero': config.fotos.hero,
+        'img-especialista': config.fotos.especialista,
+        'img-atleta-1': config.fotos.atleta1,
+        'img-atleta-2': config.fotos.atleta2,
+        'img-atleta-3': config.fotos.atleta3,
+        'img-corp': config.fotos.corp,
+        'img-feed-1': config.fotos.feed1,
+        'img-feed-2': config.fotos.feed2,
+        'img-feed-3': config.fotos.feed3
+      };
+
+      for (const [id, url] of Object.entries(imagesMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+      
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

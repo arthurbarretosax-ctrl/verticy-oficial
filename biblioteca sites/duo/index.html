@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duo Imports | Especialista Apple</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes Premium (Inspirado no ecossistema Apple e Editorial) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Cores Oficiais da Duo Imports (Vibe Apple Premium) */
+    :root {
+      --cor-preto: #050505;      /* Deep Black */
+      --cor-bege: #9E9EA0;       /* Natural Titanium (Substitui o Bege da Bennett) */
+      --cor-offwhite: #F5F5F7;   /* Silver/Off-white da Apple */
+      --cor-oliva: #1C1C1E;      /* Dark Gray para contrastes */
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cor-preto);
+      color: var(--cor-offwhite);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif { font-family: 'Playfair Display', serif; }
+
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* --- ANIMAÇÕES PREMIUM --- */
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .animate-ken-burns {
+      animation: kenBurns 20s ease-in-out infinite;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { 
+      animation: marquee 20s linear infinite; 
+      width: max-content;
+    }
+
+    /* --- ANIMAÇÕES FLUTUANTES --- */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+    .animate-float { animation: float 8s ease-in-out infinite; }
+    .animate-float-delayed { animation: float 8s ease-in-out 4s infinite; }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9) translateY(30px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-scale.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
+    .faq-content.open {
+      opacity: 1;
+    }
+
+    /* Efeito Noise/Grão Editorial no Fundo */
+    .bg-noise {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-[#9E9EA0] selection:text-[#050505] pb-0 bg-[#050505]">
+
+  <!-- Container Mobile (Dark Mode Premium) -->
+  <div class="max-w-md mx-auto min-h-screen relative shadow-2xl bg-[#050505] sm:border-x sm:border-white/10 overflow-hidden flex flex-col">
+    
+    <div class="bg-noise mix-blend-overlay"></div>
+
+    <!-- Elementos Decorativos de Fundo (Luzes suaves Titanium/Silver) -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-[#9E9EA0] rounded-full mix-blend-overlay filter blur-[120px] opacity-20 pointer-events-none animate-float"></div>
+    <div class="absolute top-[45%] left-0 w-80 h-80 bg-[#F5F5F7] rounded-full mix-blend-overlay filter blur-[140px] opacity-10 pointer-events-none animate-float-delayed"></div>
+
+    <!-- ==========================================
+         CABEÇALHO FLUTUANTE
+         ========================================== -->
+    <header class="absolute top-0 left-0 w-full z-50 flex justify-start items-center px-6 py-6 text-[#F5F5F7]">
+      <span class="text-[9px] font-bold uppercase tracking-[0.2em] bg-[#050505]/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 shadow-sm flex items-center gap-2">
+        <i data-lucide="apple" class="w-3 h-3 text-white"></i> Especialista
+      </span>
+    </header>
+
+    <!-- ==========================================
+         HERO SECTION (Efeito Ken Burns Bennett)
+         ========================================== -->
+    <section class="relative w-full h-[70vh] rounded-b-[3rem] overflow-hidden shadow-sm reveal active group border-b border-white/5">
+      <!-- Imagem com efeito de zoom lento -->
+      <div class="absolute inset-0 w-full h-[120%] -top-[10%]">
+        <img id="img-duo1" src="" alt="Duo Imports" class="w-full h-full object-cover object-center animate-ken-burns parallax-bg" loading="eager" fetchpriority="high" />
+      </div>
+      
+      <!-- Gradientes para profundidade -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#050505]/40 via-transparent to-transparent"></div>
+      <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-transparent"></div>
+
+      <!-- Logo Sobreposta (No fundo) -->
+      <div class="absolute bottom-10 left-0 w-full flex justify-center px-6 transform transition-transform duration-700 group-hover:-translate-y-2">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent blur-2xl w-48 h-48 left-1/2 -translate-x-1/2 rounded-full pointer-events-none"></div>
+        <div class="w-28 h-28 bg-[#0a0a0a] rounded-[2rem] border border-white/10 p-2 shadow-2xl relative z-10 flex items-center justify-center">
+            <img id="img-logo-topo" src="" alt="Duo Imports Logo" class="w-full h-full object-contain" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LETREIRO MARQUEE
+         ========================================== -->
+    <div class="w-full overflow-hidden border-b border-white/5 py-3 relative z-20 bg-[#050505]/80 backdrop-blur-md">
+      <div class="animate-marquee flex gap-8 items-center text-[#F5F5F7]">
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">iPhones</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] italic">MacBooks</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Assistência Apple</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <!-- Clone para o loop -->
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">iPhones</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] italic">MacBooks</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Assistência Apple</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">iPhones</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] italic">MacBooks</span>
+        <span class="text-[10px] text-[#9E9EA0]">&bull;</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Assistência Apple</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         CARTÕES DE AÇÃO (Estilo Bennett: Metade Foto)
+         ========================================== -->
+    <section class="px-5 mt-10 space-y-4 relative z-20">
+      
+      <!-- Cartão 1: Comprar Aparelho (Silver/Off-white) -->
+      <div onclick="handleLink('vendas')" class="w-full bg-[#F5F5F7] rounded-[2rem] h-40 flex overflow-hidden shadow-[0_10px_30px_rgba(245,245,247,0.05)] cursor-pointer group hover:shadow-xl transition-all duration-500 reveal active:scale-[0.98]">
+        <div class="w-[55%] p-6 flex flex-col justify-center relative">
+          <h3 class="font-serif text-2xl text-[#050505] mb-1 relative z-10 group-hover:text-[#1C1C1E] transition-colors">Aparelhos</h3>
+          <p class="text-[10px] uppercase tracking-widest text-[#050505]/70 font-semibold whitespace-nowrap truncate relative z-10">
+            Falar com Julio
+          </p>
+          <div class="absolute bottom-5 right-5 w-8 h-8 rounded-full bg-[#050505]/5 flex items-center justify-center group-hover:translate-x-2 transition-transform duration-500">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-[#050505]"></i>
+          </div>
+        </div>
+        <div class="w-[45%] h-full relative overflow-hidden bg-[#F5F5F7]">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#F5F5F7] via-[#F5F5F7]/40 to-transparent z-10"></div>
+          <img id="img-duo2" src="" alt="Comprar iPhone" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 mix-blend-multiply opacity-90" />
+        </div>
+      </div>
+
+      <!-- Cartão 2: Assistência Técnica (Titanium/Bege) -->
+      <div onclick="handleLink('assistencia')" class="w-full bg-[#9E9EA0] rounded-[2rem] h-40 flex overflow-hidden shadow-[0_10px_30px_rgba(158,158,160,0.05)] cursor-pointer group hover:shadow-xl transition-all duration-500 reveal active:scale-[0.98] delay-100">
+        <div class="w-[45%] h-full relative overflow-hidden bg-[#9E9EA0]">
+          <div class="absolute inset-0 bg-gradient-to-l from-[#9E9EA0] via-[#9E9EA0]/40 to-transparent z-10"></div>
+          <img id="img-duo3" src="" alt="Assistência Técnica" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 mix-blend-multiply opacity-90" />
+        </div>
+        <div class="w-[55%] p-6 flex flex-col justify-center items-end text-right relative">
+          <h3 class="font-serif text-2xl text-[#050505] mb-1 relative z-10 group-hover:text-[#1C1C1E] transition-colors">Reparos</h3>
+          <p class="text-[10px] uppercase tracking-widest text-[#050505]/70 font-semibold whitespace-nowrap truncate relative z-10">
+            Assistência Apple
+          </p>
+          <div class="absolute bottom-5 left-5 w-8 h-8 rounded-full bg-[#050505]/5 flex items-center justify-center group-hover:-translate-x-2 transition-transform duration-500">
+            <i data-lucide="arrow-left" class="w-4 h-4 text-[#050505]"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cartão 3: Catálogo (Silver/Off-white) -->
+      <div onclick="window.open('https://instagram.com/duo_importss', '_blank')" class="w-full bg-[#F5F5F7] rounded-[2rem] h-40 flex overflow-hidden shadow-[0_10px_30px_rgba(245,245,247,0.05)] cursor-pointer group hover:shadow-xl transition-all duration-500 reveal active:scale-[0.98] delay-200">
+        <div class="w-[55%] p-6 flex flex-col justify-center relative">
+          <h3 class="font-serif text-2xl text-[#050505] mb-1 relative z-10 group-hover:text-[#1C1C1E] transition-colors">Catálogo</h3>
+          <p class="text-[9.5px] uppercase tracking-widest text-[#050505]/70 font-semibold whitespace-nowrap truncate relative z-10">
+            Estoque Atualizado
+          </p>
+          <div class="absolute bottom-5 right-5 w-8 h-8 rounded-full bg-[#050505]/5 flex items-center justify-center group-hover:translate-x-2 transition-transform duration-500">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-[#050505]"></i>
+          </div>
+        </div>
+        <div class="w-[45%] h-full relative overflow-hidden bg-[#F5F5F7]">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#F5F5F7] via-[#F5F5F7]/40 to-transparent z-10"></div>
+          <img id="img-duo4" src="" alt="Catálogo Apple" class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 mix-blend-multiply opacity-90" />
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         SOBRE A DUO (Editorial Style)
+         ========================================== -->
+    <section class="px-8 mt-24 mb-12 reveal">
+      <div class="flex items-center gap-4 mb-8">
+        <div class="w-12 h-[1px] bg-[#9E9EA0]/30"></div>
+        <h2 class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#9E9EA0]">A Experiência</h2>
+      </div>
+      <h2 class="font-serif text-4xl text-[#F5F5F7] mb-8 leading-tight">Tecnologia &<br><span class="italic text-[#9E9EA0]">Confiança</span></h2>
+      <div class="space-y-5 text-[14px] text-[#F5F5F7]/70 font-medium leading-relaxed text-justify relative">
+        <i data-lucide="quote" class="absolute -top-4 -left-3 w-16 h-16 text-[#9E9EA0]/10 -z-10 rotate-180"></i>
+        
+        <p>
+          A <strong class="font-bold text-[#F5F5F7]">Duo Imports</strong> nasceu para oferecer o melhor do ecossistema Apple com a segurança e o atendimento que você merece.
+        </p>
+        <p>
+          Do seu novo iPhone zero à assistência técnica especializada, garantimos produtos 100% originais, transparência em cada negociação e facilidade no pagamento, em até 18x. O nosso compromisso é com a sua tranquilidade.
+        </p>
+      </div>
+    </section>
+
+    <!-- Foto de Editorial Grande -->
+    <section class="px-5 mb-16 reveal-scale">
+      <div class="w-full aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 relative group bg-[#1C1C1E]">
+        <img id="img-duo5" src="" alt="Sobre a Duo" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 opacity-90" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ==========================================
+         A EXPERIÊNCIA DUO (Galeria em Cascata - Estilo Bennett)
+         ========================================== -->
+    <section class="py-8 relative z-10 border-t border-white/5 reveal">
+      <div class="px-8 mb-8 text-center">
+        <h2 class="text-3xl font-serif text-[#F5F5F7] mb-4">Nossa Entrega</h2>
+        <p class="text-sm text-[#9E9EA0] font-light leading-relaxed">
+          O sorriso de quem acaba de conquistar o seu novo Apple. Aqui, cada detalhe conta.
+        </p>
+      </div>
+
+      <!-- Grelha com 4 fotos aparecendo em cascata -->
+      <div class="grid grid-cols-2 gap-3 px-6 pb-8">
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-xl border border-white/10 relative group reveal-scale">
+          <img id="img-duo6" src="" alt="Cliente Duo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+        </div>
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-xl border border-white/10 relative group reveal-scale delay-100">
+          <img id="img-duo7" src="" alt="Aparelhos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+        </div>
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-xl border border-white/10 relative group reveal-scale delay-200">
+          <img id="img-duo8" src="" alt="Assistência" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+        </div>
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-xl border border-white/10 relative group reveal-scale delay-300">
+          <img id="img-duo9" src="" alt="Unboxing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LOCALIZAÇÃO / MAPA COM CORES REAIS
+         ========================================== -->
+    <section class="px-6 py-12 relative z-10 reveal mb-10">
+      <div class="bg-[#0a0a0a] p-6 rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden">
+        
+        <!-- Luz decorativa de fundo -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-[#9E9EA0] rounded-full filter blur-[80px] opacity-10 pointer-events-none"></div>
+
+        <div class="text-center mb-6">
+          <h2 class="text-2xl font-serif text-[#F5F5F7] mb-2">Onde nos encontrar</h2>
+          <p class="text-[10px] uppercase tracking-widest text-[#9E9EA0] font-bold">Campos dos Goytacazes</p>
+        </div>
+
+        <!-- Mapa Google (Cores Originais Ativadas) -->
+        <div class="w-full h-64 rounded-[2rem] overflow-hidden border border-white/5 mb-6 bg-[#1C1C1E]">
+          <iframe src="https://maps.google.com/maps?q=Shopping%20Avenida%2028,%20Campos%20dos%20Goytacazes&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+            <i data-lucide="map-pin" class="w-4 h-4 text-[#9E9EA0]"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-[#F5F5F7]">Shopping Avenida 28</p>
+            <p class="text-xs text-[#F5F5F7]/60 mt-1">Loja 86 - Campos dos Goytacazes, RJ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         DÚVIDAS COMUNS (FAQ INTERATIVO BRANCO)
+         ========================================== -->
+    <section class="bg-white rounded-t-[3.5rem] pt-20 pb-8 px-6 reveal shadow-[0_-20px_50px_rgba(0,0,0,0.5)] relative">
+      
+      <div class="absolute top-4 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-[#050505]/10 rounded-full"></div>
+
+      <div class="text-center mb-12">
+        <h2 class="font-serif text-4xl text-[#050505] mb-3">Informações</h2>
+        <p class="text-[10px] uppercase tracking-widest text-[#050505]/60 font-bold">Dúvidas Frequentes</p>
+      </div>
+
+      <div class="space-y-3">
+        
+        <!-- Pergunta 1 -->
+        <div class="faq-item border border-[#050505]/10 rounded-2xl bg-[#F5F5F7] overflow-hidden transition-all duration-300 hover:bg-gray-100 shadow-sm reveal delay-100">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="font-serif text-[17px] text-[#050505]">Os aparelhos têm garantia?</span>
+            <div class="w-7 h-7 rounded-full bg-[#050505]/5 flex items-center justify-center shrink-0">
+              <i data-lucide="chevron-down" class="w-4 h-4 text-[#050505] transition-transform duration-500 icon-arrow"></i>
+            </div>
+          </button>
+          <div class="faq-content px-5">
+            <p class="text-[12px] text-[#050505]/80 font-medium leading-relaxed pb-5 border-t border-[#050505]/10 pt-3">
+              Sim! Todos os nossos aparelhos novos e seminovos passam por rigorosos testes de qualidade, são 100% originais e contam com garantia para a sua total segurança.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pergunta 2 -->
+        <div class="faq-item border border-[#050505]/10 rounded-2xl bg-[#F5F5F7] overflow-hidden transition-all duration-300 hover:bg-gray-100 shadow-sm reveal delay-200">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="font-serif text-[17px] text-[#050505]">Quais as formas de pagamento?</span>
+            <div class="w-7 h-7 rounded-full bg-[#050505]/5 flex items-center justify-center shrink-0">
+              <i data-lucide="chevron-down" class="w-4 h-4 text-[#050505] transition-transform duration-500 icon-arrow"></i>
+            </div>
+          </button>
+          <div class="faq-content px-5">
+            <p class="text-[12px] text-[#050505]/80 font-medium leading-relaxed pb-5 border-t border-[#050505]/10 pt-3">
+              Aceitamos pagamentos à vista, Pix e facilitamos a sua compra com parcelamento no cartão de crédito em até 18x. Consulte as condições com o nosso consultor!
+            </p>
+          </div>
+        </div>
+
+        <!-- Pergunta 3 -->
+        <div class="faq-item border border-[#050505]/10 rounded-2xl bg-[#F5F5F7] overflow-hidden transition-all duration-300 hover:bg-gray-100 shadow-sm reveal delay-300">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="font-serif text-[17px] text-[#050505]">Fazem assistência técnica de outras marcas?</span>
+            <div class="w-7 h-7 rounded-full bg-[#050505]/5 flex items-center justify-center shrink-0">
+              <i data-lucide="chevron-down" class="w-4 h-4 text-[#050505] transition-transform duration-500 icon-arrow"></i>
+            </div>
+          </button>
+          <div class="faq-content px-5">
+            <p class="text-[12px] text-[#050505]/80 font-medium leading-relaxed pb-5 border-t border-[#050505]/10 pt-3">
+              A nossa assistência técnica é altamente especializada no ecossistema Apple (iPhones, iPads, MacBooks, etc.), garantindo um serviço de excelência focado na marca.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Assinatura Rodapé -->
+      <div class="text-center pt-12 pb-2">
+        <a href="https://instagram.com/duo_importss" target="_blank" class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] hover:scale-110 transition-transform duration-300 mb-6 shadow-xl shadow-pink-500/30">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <p class="text-[10px] font-bold tracking-widest uppercase text-[#050505]/50 mb-2">
+          © 2026 DUO IMPORTS
+        </p>
+        <p class="text-[8px] uppercase tracking-[0.3em] text-[#050505]/40 flex items-center justify-center gap-1">
+          Criado por 
+          <a href="https://verticy.site" target="_blank" class="text-[#050505] font-black text-[11px] tracking-widest hover:text-[#1C1C1E] transition-colors relative after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-px after:bg-[#050505]/30 hover:after:bg-[#1C1C1E]">
+            VERTICY.
+          </a>
+          <span class="text-[7px]">Premium Bio</span>
+        </p>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // ⚙️ CONFIGURAÇÃO DA DUO IMPORTS
+    // ==========================================
+    const config = {
+      whatsapp_vendas: "5522998562262", 
+      whatsapp_assistencia: "5522997311138",
+      
+      fotos: {
+        logo: "duo1.png",       
+        hero: "duo2.png",       
+        card1: "duo3.png",      
+        card2: "duo4.png",      
+        card3: "duo5.png",      
+        sobre: "duo6.png",      
+        galeria1: "duo7.png",   
+        galeria2: "duo8.png",   
+        galeria3: "duo9.png",   
+        galeria4: "duo10.png"   
+      }
+    };
+
+    // Função de redirecionamento
+    function handleLink(tipo) {
+      if (tipo === 'vendas') {
+        const text = encodeURIComponent("Olá Julio! Acessei o link na bio da Duo e tenho interesse num aparelho Apple.");
+        window.open(`https://wa.me/${config.whatsapp_vendas}?text=${text}`, '_blank');
+      } else if (tipo === 'assistencia') {
+        const text = encodeURIComponent("Olá! Acessei o link na bio da Duo e gostaria de saber sobre assistência técnica.");
+        window.open(`https://wa.me/${config.whatsapp_assistencia}?text=${text}`, '_blank');
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      // Injeta as imagens nos espaços corretos
+      const imagensMap = {
+        'img-logo-topo': config.fotos.logo,
+        'img-duo1': config.fotos.hero,
+        'img-duo2': config.fotos.card1,
+        'img-duo3': config.fotos.card2,
+        'img-duo4': config.fotos.card3,
+        'img-duo5': config.fotos.sobre,
+        'img-duo6': config.fotos.galeria1,
+        'img-duo7': config.fotos.galeria2,
+        'img-duo8': config.fotos.galeria3,
+        'img-duo9': config.fotos.galeria4,
+      };
+
+      for (const [id, url] of Object.entries(imagensMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      // Animação Reveal ao carregar
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target); 
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal, .reveal-scale').forEach(el => observer.observe(el));
+
+      // Script para o Accordion do FAQ (Efeito Sanfona)
+      const faqButtons = document.querySelectorAll('.faq-button');
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector('.icon-arrow');
+          const item = button.parentElement;
+          
+          // Fecha os outros
+          document.querySelectorAll('.faq-content').forEach(c => {
+            if (c !== content) {
+              c.style.maxHeight = null;
+              c.classList.remove('open');
+              c.previousElementSibling.querySelector('.icon-arrow').style.transform = 'rotate(0deg)';
+              c.parentElement.classList.remove('bg-gray-100');
+            }
+          });
+
+          // Abre/Fecha o clicado
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            content.classList.remove('open');
+            icon.style.transform = 'rotate(0deg)';
+            item.classList.remove('bg-gray-100');
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add('open');
+            icon.style.transform = 'rotate(180deg)';
+            item.classList.add('bg-gray-100');
+          }
+        });
+      });
+
+      // Efeito Parallax simples no Scroll para a foto da capa
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const parallaxElements = document.querySelectorAll('.parallax-bg');
+        
+        parallaxElements.forEach(el => {
+          const speed = 0.15;
+          el.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tainara Fernandes | Storymaker & VideoMaker</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes Elegantes: Playfair para Títulos, Plus Jakarta para Textos -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            tai: {
+              bg: '#F9F8F6',        /* Off-white texturizado / Papel */
+              dark: '#2A1F18',      /* Castanho muito escuro / Quase preto */
+              brown: '#7A4B3A',     /* Castanho terroso / Cobre */
+              light: '#E6DCD3',     /* Bege claro para fundos de cartões */
+              accent: '#B57C5A',    /* Castanho claro / Destaque */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { 
+      background-color: #F9F8F6; 
+      color: #2A1F18; 
+      -webkit-font-smoothing: antialiased; 
+      scroll-behavior: smooth; 
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Textura de papel sutil de fundo para combinar com os posts dela */
+    .bg-paper {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* Animações de Revelação Suave */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    /* Máscara suave para imagens */
+    .img-mask {
+      border-radius: 200px 200px 0 0;
+    }
+
+    .btn-elegant {
+      background-color: #2A1F18;
+      color: #F9F8F6;
+      transition: all 0.3s ease;
+    }
+    .btn-elegant:hover, .btn-elegant:active {
+      background-color: #7A4B3A;
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body class="selection:bg-tai-brown selection:text-white pb-0">
+
+  <div class="bg-paper"></div>
+
+  <!-- Mobile Container Principal -->
+  <div class="max-w-[480px] mx-auto min-h-screen relative bg-tai-bg shadow-2xl flex flex-col sm:border-x sm:border-tai-dark/10 overflow-hidden">
+    
+    <!-- 1. HERO SECTION COM FOTO DE FUNDO E LOGO -->
+    <header class="relative w-full h-[85vh] overflow-hidden flex flex-col items-center justify-end pb-16 z-10 shadow-2xl">
+      
+      <!-- Imagem de Fundo (A foto principal da Tai) -->
+      <div class="absolute inset-0 z-0">
+        <img id="img-capa" src="tai_capa.png" alt="Cobertura em Tempo Real" class="w-full h-full object-cover object-top animate-[slowZoom_20s_ease-in-out_infinite_alternate]" loading="eager" onerror="this.src='https://images.unsplash.com/photo-1606857521015-7f9fcf423740?q=80&w=800&auto=format&fit=crop'" />
+        <!-- Gradiente para escurecer o fundo e dar leitura ao texto -->
+        <div class="absolute inset-0 bg-gradient-to-b from-tai-dark/80 via-tai-dark/40 to-tai-dark/95"></div>
+      </div>
+
+      <!-- Logo no Topo -->
+      <div class="absolute top-10 left-1/2 -translate-x-1/2 z-20">
+        <div class="w-24 h-24 bg-tai-bg rounded-full p-1.5 shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex items-center justify-center overflow-hidden border border-tai-accent/30">
+          <img id="img-logo" src="tai_logo.png" alt="Logo Tai" class="w-full h-full object-contain rounded-full" onerror="this.style.display='none'" />
+          <!-- Ícone de segurança caso a logo não carregue -->
+          <i data-lucide="camera" class="w-8 h-8 text-tai-dark absolute -z-10 opacity-20"></i>
+        </div>
+      </div>
+      
+      <!-- Conteúdo do Hero (Headline Melhorada) -->
+      <div class="text-center reveal active w-full relative z-20 px-8">
+        <h2 class="text-[10px] font-bold uppercase tracking-[0.4em] text-tai-bg/80 mb-3 drop-shadow-md">Storymaker & Videomaker</h2>
+        <h1 class="font-serif text-[2.7rem] font-medium leading-[1.1] text-tai-bg mb-4 tracking-tight drop-shadow-xl">
+          Você vive o momento.<br><span class="italic text-tai-accent">Eu crio a narrativa.</span>
+        </h1>
+        <p class="text-[13px] text-tai-bg/80 font-medium mb-8 drop-shadow-md">
+          Cobertura estratégica em tempo real para casamentos, marcas e eventos de alto padrão.
+        </p>
+        
+        <button onclick="handleLink('orcamento')" class="w-full bg-tai-accent text-white hover:bg-tai-brown py-5 rounded-full font-bold text-xs uppercase tracking-[0.2em] shadow-[0_10px_30px_rgba(181,124,90,0.4)] flex items-center justify-center gap-3 transition-all active:scale-95">
+          Solicitar Orçamento <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- 3. STATEMENT / POSICIONAMENTO -->
+    <section class="py-20 px-8 bg-tai-dark text-tai-bg text-center reveal relative overflow-hidden">
+      <!-- Decorativo -->
+      <i data-lucide="quote" class="absolute top-10 left-10 w-24 h-24 text-tai-bg/5 rotate-180"></i>
+      
+      <p class="font-serif text-3xl italic leading-snug mb-6 relative z-10">
+        "Stories bem feitos não são detalhe.<br>
+        <span class="text-tai-accent font-bold not-italic uppercase tracking-widest text-lg block mt-4">São decisão estratégica."</span>
+      </p>
+      
+      <div class="w-12 h-[1px] bg-tai-accent mx-auto mb-6"></div>
+      
+      <p class="text-xs font-light tracking-widest uppercase opacity-80">
+        Eu não faço stories bonitos.<br>Eu construo narrativas.
+      </p>
+    </section>
+
+    <!-- 4. OS 3 PILARES DE SERVIÇOS -->
+    <section class="py-24 px-6 reveal">
+      <div class="text-center mb-16">
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-tai-brown mb-2 block">Portfólio</span>
+        <h2 class="font-serif text-4xl text-tai-dark leading-tight">Eu atendo 3 <br><span class="italic text-tai-brown">principais serviços</span></h2>
+      </div>
+
+      <div class="space-y-6">
+        
+        <!-- Serviço 1: Cobertura Real Time -->
+        <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-tai-dark/5 reveal">
+          <div class="w-12 h-12 rounded-full bg-tai-light flex items-center justify-center mb-6">
+            <i data-lucide="smartphone" class="w-5 h-5 text-tai-brown"></i>
+          </div>
+          <h3 class="font-serif text-2xl text-tai-dark mb-3">Cobertura em <span class="italic text-tai-brown">Tempo Real</span></h3>
+          <p class="text-sm text-tai-dark/70 leading-relaxed mb-6 font-medium">
+            A cobertura é feita diretamente nos stories do cliente, criando conexão com a audiência e gerando proximidade.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start gap-2 text-xs text-tai-dark/80"><i data-lucide="check" class="w-4 h-4 text-tai-accent shrink-0"></i> <strong>Empresas:</strong> Mais chances de futuros negócios.</li>
+            <li class="flex items-start gap-2 text-xs text-tai-dark/80"><i data-lucide="check" class="w-4 h-4 text-tai-accent shrink-0"></i> <strong>Eventos Sociais:</strong> Eternizar a emoção do momento enquanto ele acontece.</li>
+          </ul>
+        </div>
+
+        <!-- Serviço 2: Produção de Conteúdo -->
+        <div class="bg-tai-light/30 rounded-[2rem] p-8 border border-tai-dark/5 reveal">
+          <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm">
+            <i data-lucide="clapperboard" class="w-5 h-5 text-tai-brown"></i>
+          </div>
+          <h3 class="font-serif text-2xl text-tai-dark mb-3">Produção de <span class="italic text-tai-brown">Conteúdo</span></h3>
+          <p class="text-sm text-tai-dark/70 leading-relaxed mb-6 font-medium">
+            Para negócios que precisam estar presentes no digital de forma consistente. O objetivo é transformar a sua marca em referência com vídeos criativos.
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-xs text-tai-dark/80"><i data-lucide="circle-dot" class="w-4 h-4 text-tai-accent shrink-0"></i> <strong>Recorrentes:</strong> Para quem quer constância.</li>
+            <li class="flex items-start gap-2 text-xs text-tai-dark/80"><i data-lucide="circle-dot" class="w-4 h-4 text-tai-accent shrink-0"></i> <strong>Avulsas:</strong> Para demandas pontuais.</li>
+          </ul>
+        </div>
+
+        <!-- Serviço 3: VideoMaker -->
+        <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-tai-dark/5 reveal">
+          <div class="w-12 h-12 rounded-full bg-tai-light flex items-center justify-center mb-6">
+            <i data-lucide="film" class="w-5 h-5 text-tai-brown"></i>
+          </div>
+          <h3 class="font-serif text-2xl text-tai-dark mb-3">VideoMaker em <span class="italic text-tai-brown">Eventos</span></h3>
+          <p class="text-sm text-tai-dark/70 leading-relaxed font-medium">
+            Se não deseja cobertura em tempo real, mas quer um resumo profissional do seu evento. Faço a captação e entrego um vídeo bem editado com os melhores momentos.
+          </p>
+          <div class="mt-6 bg-tai-bg p-4 rounded-xl text-center border border-tai-dark/5">
+            <p class="font-serif italic text-tai-brown text-sm">"Uma lembrança única, pronta para ser compartilhada."</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. PARA QUEM É (GALERIA) -->
+    <section class="py-20 bg-tai-light/20 border-y border-tai-dark/5 reveal">
+      <div class="px-6 mb-10">
+        <h2 class="font-serif text-3xl text-tai-dark leading-tight mb-2">Momentos <br><span class="italic text-tai-brown">Inesquecíveis</span></h2>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-tai-dark/50">Ideal para que tipos de evento?</p>
+      </div>
+
+      <div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar snap-x pb-4">
+        <!-- Card 1 -->
+        <div class="snap-center shrink-0 w-64 h-80 rounded-[2rem] overflow-hidden relative shadow-lg">
+          <img src="tai_wedding.png" alt="Mini Wedding" class="w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-tai-dark/90 via-tai-dark/20 to-transparent flex flex-col justify-end p-6">
+             <h4 class="text-white font-serif text-2xl italic mb-1">Casamentos &<br>Mini Weddings</h4>
+             <p class="text-[10px] text-white/70 uppercase tracking-widest">Intimidade & Detalhe</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="snap-center shrink-0 w-64 h-80 rounded-[2rem] overflow-hidden relative shadow-lg">
+          <img src="tai_corp.png" alt="Corporativo" class="w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-tai-dark/90 via-tai-dark/20 to-transparent flex flex-col justify-end p-6">
+             <h4 class="text-white font-serif text-2xl italic mb-1">Eventos<br>Corporativos</h4>
+             <p class="text-[10px] text-white/70 uppercase tracking-widest">Lançamentos & Marcas</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="snap-center shrink-0 w-64 h-80 rounded-[2rem] overflow-hidden relative shadow-lg">
+          <img src="tai_party.png" alt="Formaturas" class="w-full h-full object-cover" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-tai-dark/90 via-tai-dark/20 to-transparent flex flex-col justify-end p-6">
+             <h4 class="text-white font-serif text-2xl italic mb-1">Formaturas &<br>Aniversários</h4>
+             <p class="text-[10px] text-white/70 uppercase tracking-widest">Celebração Real Time</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. STATEMENT 2 -->
+    <section class="py-24 px-8 text-center reveal">
+       <i data-lucide="camera" class="w-8 h-8 text-tai-accent mx-auto mb-6 opacity-50"></i>
+       <h3 class="font-serif text-[2rem] text-tai-dark leading-tight italic">
+         "Ter alguém registrando em tempo real é permitir que <span class="font-bold text-tai-brown">você reviva aquilo que não conseguiu ver."</span>
+       </h3>
+    </section>
+
+    <!-- 7. FOOTER / CALL TO ACTION FINAL -->
+    <footer class="mt-auto px-6 pt-16 pb-28 bg-tai-dark text-center reveal rounded-t-[3rem]">
+      
+      <div class="mb-12">
+        <h2 class="font-serif text-4xl text-white mb-6">Se é um destes serviços <br><span class="italic text-tai-brown">que procura...</span></h2>
+        <p class="text-sm text-white/70 leading-relaxed font-light">
+          Vamos juntos contar a história do seu evento ou construir a presença da sua marca.
+        </p>
+      </div>
+
+      <div class="space-y-4 mb-16">
+        <button onclick="handleLink('orcamento')" class="w-full bg-tai-bg text-tai-dark py-5 rounded-full font-bold text-xs uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Pedir Informações
+        </button>
+        
+        <button onclick="window.open('https://instagram.com/tainarafernandes__', '_blank')" class="w-full border border-white/20 text-white py-5 rounded-full font-medium text-xs uppercase tracking-[0.2em] hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center gap-3">
+          <i data-lucide="instagram" class="w-4 h-4"></i> @tainarafernandes__
+        </button>
+      </div>
+
+      <div class="pt-10 border-t border-white/10 opacity-40">
+        <p class="text-[10px] font-bold uppercase tracking-[0.4em] mb-2 text-white">Tai • Storymaker</p>
+        <p class="text-[8px] uppercase tracking-[0.3em] text-white">Desenvolvido por Verticy</p>
+      </div>
+    </footer>
+
+    <!-- BOTÃO FIXO WHATSAPP (ESTILO BOUTIQUE) -->
+    <a href="https://wa.me/5554991397135" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-tai-dark text-tai-bg rounded-full shadow-[0_10px_30px_rgba(42,31,24,0.3)] flex items-center justify-center z-50 hover:scale-110 active:scale-90 transition-transform border border-tai-bg/20">
+      <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </a>
+
+  </div>
+
+  <script>
+    // Configurações e Links
+    const config = {
+      // Número retirado do print da Bio do Instagram da Tai
+      whatsapp: "5554991397135", 
+    };
+
+    function handleLink(tipo) {
+      if (tipo === 'orcamento') {
+        const text = encodeURIComponent("Olá Tai! Vi a sua página e gostaria de saber mais informações sobre os seus serviços de Storymaker/VideoMaker.");
+        window.open(`https://wa.me/${config.whatsapp}?text=${text}`, '_blank');
+      }
+    }
+
+    // Inicializar ícones e animações de scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

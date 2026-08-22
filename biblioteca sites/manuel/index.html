@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Manuel Lema | Personal Trainer 30+</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes de Impacto: Oswald para títulos, Inter para leitura -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Oswald', 'sans-serif'],
+          },
+          colors: {
+            manuel: {
+              bg: '#09090b',       
+              card: '#18181b',     
+              blue: '#2563eb',     /* Azul Performance */
+              orange: '#f97316',   /* Laranja Energia */
+              text: '#f4f4f5',     
+              muted: '#a1a1aa',    
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { 
+      background-color: #09090b; 
+      color: #f4f4f5; 
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior-y: none;
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Efeito de Vidro Profundo */
+    .glass-card {
+      background: rgba(24, 24, 27, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Animações de Entrada */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Letreiro Infinito */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { 
+      animation: marquee 15s linear infinite; 
+      width: max-content;
+    }
+
+    /* Pulso de Brilho Suave (Glow Pulse) */
+    @keyframes pulse-border {
+      0%, 100% { box-shadow: 0 0 5px rgba(37, 99, 235, 0.2); border-color: rgba(37, 99, 235, 0.3); }
+      50% { box-shadow: 0 0 25px rgba(37, 99, 235, 0.5); border-color: rgba(37, 99, 235, 0.7); }
+    }
+    .glow-pulse { animation: pulse-border 3s ease-in-out infinite; }
+
+    /* Brilho no Botão Principal */
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+    }
+    .btn-glow { animation: pulse-glow 2s infinite; }
+
+    /* Textura de Fundo */
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body class="selection:bg-manuel-blue selection:text-white pb-20">
+
+  <div class="bg-noise"></div>
+
+  <!-- Container Principal Mobile -->
+  <div class="max-w-md mx-auto min-h-screen relative bg-manuel-bg shadow-2xl sm:border-x sm:border-white/5 overflow-hidden">
+    
+    <!-- Glows de Iluminação -->
+    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-manuel-blue/20 rounded-full blur-[120px] pointer-events-none -translate-y-1/3 translate-x-1/3"></div>
+    <div class="absolute bottom-[20%] left-0 w-[300px] h-[300px] bg-manuel-orange/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/2"></div>
+
+    <!-- ==========================================
+         HERO SECTION: O ESPECIALISTA
+         ========================================== -->
+    <header class="relative pt-12 pb-6 px-6 text-center z-10 reveal active">
+      
+      <!-- Tag de Posicionamento -->
+      <div class="inline-flex items-center gap-2 bg-manuel-card border border-manuel-orange/30 px-3 py-1.5 rounded-full mb-8 shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+        <i data-lucide="zap" class="w-3.5 h-3.5 text-manuel-orange"></i>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-manuel-orange">Performance & Longevidade</span>
+      </div>
+
+      <!-- Avatar com Novo Efeito de Brilho Pulsante -->
+      <div class="relative w-40 h-40 mx-auto mb-6">
+        <div class="w-full h-full rounded-full border-[3px] border-manuel-blue/40 glow-pulse p-1 bg-manuel-bg">
+          <div class="w-full h-full rounded-full overflow-hidden bg-manuel-card border-4 border-manuel-bg relative z-10">
+            <img id="img-perfil" src="manuel1.png" alt="Manuel Lema" class="w-full h-full object-cover" loading="eager" />
+          </div>
+        </div>
+        <!-- Selo de Verificado -->
+        <div class="absolute bottom-1 right-2 bg-manuel-blue p-1.5 rounded-full border-4 border-manuel-bg z-20 shadow-lg">
+          <i data-lucide="check" class="w-4 h-4 text-white stroke-[3]"></i>
+        </div>
+      </div>
+
+      <h1 class="font-display text-4xl font-bold text-white tracking-wide uppercase mb-1">Manuel Lema</h1>
+      <h2 class="text-xs font-semibold text-manuel-muted uppercase tracking-[0.2em] mb-6">@manuel.personal</h2>
+
+      <p class="text-sm text-gray-300 leading-relaxed max-w-[90%] mx-auto font-medium mb-10">
+        Especialista em hipertrofia e emagrecimento <strong class="text-white bg-white/10 px-1.5 py-0.5 rounded">30+</strong>. <br>
+        Dicas, memes e a rotina de quem faz acontecer!
+      </p>
+
+      <div class="flex flex-col gap-4 px-2">
+        <!-- CTA Principal -->
+        <button onclick="handleLink('consultoria')" class="w-full bg-manuel-blue hover:bg-blue-600 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl btn-glow active:scale-95 transition-all">
+          Agendar Avaliação
+        </button>
+        <!-- Scroll para Biografia -->
+        <button onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})" class="w-full glass-card py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 active:bg-white/10 active:scale-95 transition-all border border-white/5">
+          <i data-lucide="user" class="w-4 h-4 text-manuel-orange"></i> Conhecer o Manuel
+        </button>
+      </div>
+    </header>
+
+    <!-- ==========================================
+         PROVA SOCIAL (NÚMEROS)
+         ========================================== -->
+    <section class="px-5 pb-10 relative z-10 reveal">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-gradient-to-br from-manuel-card to-[#2a1205] border border-manuel-orange/20 rounded-2xl p-5 text-center shadow-lg">
+          <div class="flex justify-center mb-1"><i data-lucide="flame" class="w-5 h-5 text-manuel-orange fill-manuel-orange/20"></i></div>
+          <p class="font-display text-2xl font-bold text-white mb-1 leading-none">+ 1000</p>
+          <p class="text-[9px] font-bold uppercase tracking-widest text-manuel-muted">Vidas Mudadas</p>
+        </div>
+        <div class="bg-gradient-to-br from-manuel-card to-[#07132b] border border-manuel-blue/20 rounded-2xl p-5 text-center shadow-lg">
+          <div class="flex justify-center mb-1"><i data-lucide="users" class="w-5 h-5 text-manuel-blue"></i></div>
+          <p class="font-display text-2xl font-bold text-white mb-1 leading-none">60.1K</p>
+          <p class="text-[9px] font-bold uppercase tracking-widest text-manuel-muted">Seguidores</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LETREIRO MARQUEE
+         ========================================== -->
+    <div class="w-full overflow-hidden border-y border-white/5 py-4 mb-10 relative z-20 bg-manuel-card/40 backdrop-blur-md">
+      <div class="animate-marquee flex gap-8 items-center text-white italic">
+        <span class="text-[11px] font-black uppercase tracking-widest">Hipertrofia</span>
+        <span class="text-[10px] text-manuel-orange">⚡</span>
+        <span class="text-[11px] font-black uppercase tracking-widest">Emagrecimento 30+</span>
+        <span class="text-[10px] text-manuel-orange">⚡</span>
+        <span class="text-[11px] font-black uppercase tracking-widest text-manuel-blue not-italic">Humor & Memes</span>
+        <span class="text-[10px] text-manuel-orange">⚡</span>
+        <!-- Duplicação para Loop -->
+        <span class="text-[11px] font-black uppercase tracking-widest">Hipertrofia</span>
+        <span class="text-[10px] text-manuel-orange">⚡</span>
+        <span class="text-[11px] font-black uppercase tracking-widest">Emagrecimento 30+</span>
+        <span class="text-[10px] text-manuel-orange">⚡</span>
+        <span class="text-[11px] font-black uppercase tracking-widest text-manuel-blue not-italic">Humor & Memes</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         GALERIA "NO FEED" (COM BOTÃO PLAY)
+         ========================================== -->
+    <section class="py-8 relative z-10 bg-manuel-card/20 reveal border-t border-white/5">
+      <div class="px-6 mb-6 font-display text-xl font-bold uppercase tracking-wide text-manuel-muted">O Meu Conteúdo</div>
+      
+      <div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar snap-x pb-4">
+        
+        <!-- Item 1: manuel2.png -->
+        <div onclick="handleLink('reel2')" class="snap-center shrink-0 w-48 h-72 rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl cursor-pointer group">
+          <img src="manuel2.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <!-- Overlay de Vídeo -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-xl group-hover:scale-110 transition-transform">
+               <i data-lucide="play" class="w-6 h-6 text-white fill-white ml-0.5"></i>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-4">
+            <p class="text-[11px] font-bold text-white leading-tight uppercase tracking-wide">Técnica de Treino</p>
+          </div>
+        </div>
+
+        <!-- Item 2: manuel3.png -->
+        <div onclick="handleLink('reel3')" class="snap-center shrink-0 w-48 h-72 rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl cursor-pointer group">
+          <img src="manuel3.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-xl group-hover:scale-110 transition-transform">
+               <i data-lucide="play" class="w-6 h-6 text-white fill-white ml-0.5"></i>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-4">
+            <p class="text-[11px] font-bold text-white leading-tight uppercase tracking-wide">A Realidade</p>
+          </div>
+        </div>
+
+        <!-- Item 3: manuel4.png -->
+        <div onclick="handleLink('reel4')" class="snap-center shrink-0 w-48 h-72 rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl cursor-pointer group">
+          <img src="manuel4.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-xl group-hover:scale-110 transition-transform">
+               <i data-lucide="play" class="w-6 h-6 text-white fill-white ml-0.5"></i>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-end p-4">
+            <p class="text-[11px] font-bold text-white leading-tight uppercase tracking-wide">Lifestyle & Viagens</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SOBRE O MANUEL (A HISTÓRIA - FOTO GRANDE)
+         ========================================== -->
+    <section id="sobre" class="px-6 py-12 relative z-10 reveal border-t border-white/5 mt-4">
+      <div class="glass-card rounded-[2.5rem] overflow-hidden shadow-2xl relative flex flex-col border border-white/10">
+        
+        <!-- Foto imponente de fundo -->
+        <div class="w-full h-[32rem] relative">
+           <img id="img-sobre" src="manuel5.png" alt="Manuel Lema" class="w-full h-full object-cover object-top" loading="lazy" />
+           <!-- Fusão degradê -->
+           <div class="absolute inset-0 bg-gradient-to-t from-[#18181b] via-[#18181b]/60 to-transparent"></div>
+        </div>
+
+        <div class="px-8 pb-12 relative z-20 -mt-28">
+          <h3 class="font-display text-4xl font-bold text-white mb-1 uppercase italic tracking-tighter drop-shadow-xl">Quem é o Manuel?</h3>
+          <p class="text-[10px] uppercase tracking-[0.25em] text-manuel-orange font-black mb-8 drop-shadow-md">Alta Performance & Conexão</p>
+          
+          <div class="w-12 h-1 bg-manuel-blue mb-8 shadow-[0_0_15px_rgba(37,99,235,0.6)]"></div>
+          
+          <div class="space-y-4 text-sm text-gray-300 leading-relaxed font-medium text-justify">
+            <p>
+              Sou apaixonado por transformar a vida de pessoas acima dos 30 anos. Acredito firmemente que o processo de mudança física não tem de ser um castigo ou algo sem vida.
+            </p>
+            <p>
+              Aqui encontras a ciência do treino aliada a uma <strong class="text-white">boa dose de humor</strong> e realidade. O meu objetivo é mostrar-te como blindar a tua saúde e conquistar o corpo que desejas, sem deixares de viver a vida! ⚡
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         POR QUÊ 30+?
+         ========================================== -->
+    <section class="px-6 py-10 relative z-10 reveal">
+      <div class="glass-card rounded-[2rem] p-8 text-center relative overflow-hidden border-t-2 border-t-manuel-blue">
+        <i data-lucide="quote" class="absolute -top-2 -left-2 w-16 h-16 text-white/5 rotate-180"></i>
+        <h3 class="font-display text-2xl font-bold text-white uppercase tracking-wide mb-4">Porquê focar nos <span class="text-manuel-blue">30+?</span></h3>
+        <p class="text-[13px] text-manuel-muted leading-relaxed font-medium">A partir dos 30, o metabolismo e a recuperação mudam. O treino genérico já não serve. A minha metodologia é desenhada para construir músculos e queimar gordura protegendo as tuas articulações.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER & CONVERSÃO FINAL
+         ========================================== -->
+    <footer class="px-6 pt-12 pb-24 relative z-10 text-center bg-[#030303] rounded-t-[3rem] border-t border-white/5 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      
+      <div class="w-16 h-1.5 bg-white/10 rounded-full mx-auto mb-10"></div>
+
+      <h2 class="font-display text-3xl font-bold text-white uppercase tracking-wider mb-10 leading-none">
+        Pronto para<br>a <span class="text-manuel-orange italic">evolução?</span>
+      </h2>
+
+      <div class="space-y-4 max-w-xs mx-auto mb-16">
+        <!-- CTA Consultoria -->
+        <button onclick="handleLink('consultoria')" class="w-full bg-manuel-blue hover:bg-blue-600 text-white py-5 rounded-2xl font-bold text-[12px] uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95">
+          <i data-lucide="target" class="w-5 h-5"></i>
+          Garantir a minha vaga
+        </button>
+
+        <!-- Instagram Link -->
+        <button onclick="window.open('https://instagram.com/manuel.personal', '_blank')" class="w-full border border-white/10 bg-white/5 text-white/70 py-4 rounded-2xl font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 hover:text-white transition-all">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+          @manuel.personal
+        </button>
+      </div>
+
+      <div class="pt-10 border-t border-white/5 opacity-30 text-[8px] font-bold uppercase tracking-[0.5em] text-gray-500 text-center mx-auto">
+        © 2026 MANUEL LEMA | CRIADO POR <span class="text-white tracking-widest">VERTICY.</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Configuração de Links
+    const config = {
+      link_consultoria: "https://bit.ly/2TN2FyA", 
+      whatsapp: "5511999999999",
+      reels: {
+        reel2: "https://www.instagram.com/reel/DXO3idbjiU3/",
+        reel3: "https://www.instagram.com/reel/DSn4QS5Eeu_/",
+        reel4: "https://www.instagram.com/reel/DRXnLM7jutP/"
+      }
+    };
+
+    function handleLink(tipo) {
+      if (tipo === 'consultoria') {
+        window.open(config.link_consultoria, '_blank');
+      } else if (tipo.startsWith('reel')) {
+        window.open(config.reels[tipo], '_blank');
+      } else {
+        const msg = encodeURIComponent("Olá Manuel! Vim pelo teu link na bio e quero saber mais sobre a consultoria.");
+        window.open(`https://wa.me/${config.whatsapp}?text=${msg}`, '_blank');
+      }
+    }
+
+    // Inicialização de Componentes e Animações
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

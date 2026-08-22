@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Yaveh | Fisioterapia Pediátrica Premium</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes Refinadas: Playfair (Delicadeza/Elegância) e Plus Jakarta (Modernidade) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            yaveh: {
+              black: '#141210',    /* Marrom Café Super Escuro (Menos agressivo que preto) */
+              dark: '#1F1B18',     /* Fundo secundário quente */
+              gold: '#D9C5B2',     /* Ouro Rosé / Champanhe (Delicado) */
+              silver: '#BDB5AD',   /* Cinza quente para textos secundários */
+              white: '#FDFBF9',
+              green: '#2A5C50'     /* Verde Sálvia escuro para acentos */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { 
+      background-color: #141210; 
+      color: #FDFBF9; 
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior-y: none;
+    }
+    
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Vidro Fosco Delicado */
+    .glass-premium {
+      background: rgba(253, 251, 249, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(217, 197, 178, 0.1); /* Borda champanhe super sutil */
+    }
+
+    /* --- ANIMAÇÕES SUAVES --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Em vez de 100% P&B agressivo, um P&B suave (Sépia) que ganha cor e vida */
+    .reveal img {
+      filter: grayscale(0.6) contrast(0.9) sepia(0.2);
+      transition: filter 2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+      will-change: filter;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.active img {
+      filter: grayscale(0) contrast(1) sepia(0);
+    }
+
+    /* --- MARQUEE (Letreiro) --- */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { 
+      animation: marquee 25s linear infinite; 
+      width: max-content;
+    }
+
+    @keyframes slowZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+    .animate-zoom { 
+      animation: slowZoom 25s ease-in-out infinite alternate; 
+    }
+
+    /* Textura de Fundo Suave */
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-yaveh-gold selection:text-yaveh-black pb-10">
+
+  <div class="bg-noise"></div>
+
+  <!-- Mobile Container (Dark Delicate) -->
+  <div class="max-w-[480px] mx-auto min-h-screen relative sm:border-x sm:border-white/5 flex flex-col bg-yaveh-black shadow-2xl">
+    
+    <!-- Header Oculto p/ Logo -->
+    <header class="absolute top-0 left-0 w-full pt-8 z-50 flex justify-center px-4">
+      <div class="w-24 h-24 rounded-full border-[3px] border-yaveh-gold/30 shadow-[0_0_30px_rgba(217,197,178,0.15)] overflow-hidden bg-white flex items-center justify-center">
+        <img id="img-logo" src="yaveh1.png" alt="Yaveh Logo" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+      </div>
+    </header>
+
+    <!-- ==========================================
+         HERO SECTION: IMPACTO DELICADO
+         ========================================== -->
+    <section class="relative w-full aspect-[9/16] overflow-hidden rounded-b-[4rem] border-b border-yaveh-gold/20 reveal active">
+      <div class="absolute inset-0 z-0">
+        <img id="img-hero" src="yaveh2.png" alt="Yaveh Fisioterapia" class="w-full h-full object-cover object-top animate-zoom" loading="eager" fetchpriority="high" />
+        <div class="absolute inset-0 bg-gradient-to-t from-yaveh-black via-yaveh-black/50 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-yaveh-black/60 via-transparent to-transparent"></div>
+      </div>
+
+      <div class="absolute inset-0 flex flex-col justify-end p-8 pb-16 z-20 text-center text-white">
+        <h2 class="text-[10px] font-bold uppercase tracking-[0.5em] text-yaveh-gold mb-3">Fisioterapia Pediátrica</h2>
+        
+        <!-- Fontes serifadas elegantes em vez de blocos pesados -->
+        <h1 class="font-display text-4xl font-medium text-white leading-tight mb-8">
+          Desenvolvimento<br>com <span class="text-yaveh-gold italic">Afeto & Ciência</span>
+        </h1>
+        
+        <div class="flex flex-col gap-4">
+          <button onclick="handleWhatsAppClick('Avaliação Infantil')" class="w-full bg-yaveh-gold text-yaveh-black py-5 rounded-2xl font-bold text-[11px] uppercase tracking-widest shadow-[0_0_20px_rgba(217,197,178,0.2)] active:scale-[0.98] transition-all">
+            Agendar Avaliação
+          </button>
+          <button onclick="document.getElementById('especialista').scrollIntoView({behavior:'smooth'})" class="w-full glass-premium py-4 rounded-2xl font-semibold text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 active:bg-white/10 active:scale-[0.98] transition-all border border-yaveh-gold/20">
+            <i data-lucide="heart" class="w-4 h-4 text-yaveh-gold"></i> Conheça a Dra. Isabela
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LETREIRO (MARQUEE) - Suave
+         ========================================== -->
+    <div class="w-full overflow-hidden border-b border-yaveh-gold/10 py-5 relative z-20 bg-yaveh-dark/80 backdrop-blur-md">
+      <div class="animate-marquee flex gap-10 items-center text-yaveh-silver text-[10px] font-semibold uppercase tracking-[0.2em]">
+        <span>Desenvolvimento Motor</span>
+        <span class="text-yaveh-gold/40">✦</span>
+        <span>Neuroreabilitação</span>
+        <span class="text-yaveh-gold/40">✦</span>
+        <span>Fisioterapia Respiratória</span>
+        <span class="text-yaveh-gold/40">✦</span>
+        <span>Cuidado com Afeto</span>
+        <span class="text-yaveh-gold/40">✦</span>
+        
+        <!-- Clone para o loop -->
+        <span>Desenvolvimento Motor</span>
+        <span class="text-yaveh-gold/40">✦</span>
+        <span>Neuroreabilitação</span>
+        <span class="text-yaveh-gold/40">✦</span>
+        <span>Fisioterapia Respiratória</span>
+        <span class="text-yaveh-gold/40">✦</span>
+        <span>Cuidado com Afeto</span>
+        <span class="text-yaveh-gold/40">✦</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         A ESPECIALISTA (ESTILO BOUTIQUE ESCURA)
+         ========================================== -->
+    <section id="especialista" class="px-6 py-20 reveal">
+       <div class="glass-premium rounded-[3rem] overflow-hidden border border-yaveh-gold/10 shadow-2xl relative group bg-gradient-to-br from-yaveh-dark to-yaveh-black text-center">
+          <div class="h-[26rem] relative overflow-hidden">
+             <img id="img-especialista" src="yaveh3.png" alt="Dra. Isabela Baierle" class="w-full h-full object-cover object-top" onerror="this.src='https://images.unsplash.com/photo-1623849187310-752e259b15b1?auto=format&fit=crop&w=800&q=80'" />
+             <div class="absolute inset-0 bg-gradient-to-t from-yaveh-black via-yaveh-black/30 to-transparent"></div>
+          </div>
+          
+          <div class="p-10 pt-6 relative z-10">
+             <h2 class="font-display text-3xl font-medium text-white mb-2">
+               Dra. Isabela Baierle
+             </h2>
+             <p class="text-[10px] font-bold text-yaveh-gold uppercase tracking-[0.3em] mb-6">Fisioterapeuta Pediátrica</p>
+             
+             <div class="space-y-5 text-[13px] text-yaveh-silver leading-relaxed font-light">
+                <p>
+                   Acredito que <strong class="text-white font-medium">cada criança carrega um potencial independente do diagnóstico</strong>. Meu método une a mais alta técnica científica com cuidado humanizado.
+                </p>
+                <p>
+                   Aqui, cada pequena conquista é celebrada, e o cuidado vai muito além da clínica.
+                </p>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         PILARES / SERVIÇOS (DELICADOS)
+         ========================================== -->
+    <section class="px-6 py-20 bg-yaveh-dark/40 border-y border-yaveh-gold/10 reveal">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl text-white mb-2">Nossos Cuidados</h2>
+        <p class="text-[10px] text-yaveh-gold uppercase tracking-widest font-bold">Intervenção e Afeto</p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4">
+        
+        <!-- Serviço 1 -->
+        <div onclick="handleWhatsAppClick('Desenvolvimento do Bebê')" class="glass-premium p-6 rounded-[2rem] border-l-[3px] border-l-yaveh-gold cursor-pointer group hover:bg-white/5 transition-all">
+           <div class="flex gap-5 items-center">
+              <div class="w-12 h-12 rounded-full bg-yaveh-gold/10 flex items-center justify-center border border-yaveh-gold/20 group-hover:bg-yaveh-gold/20 transition-colors">
+                 <i data-lucide="baby" class="w-5 h-5 text-yaveh-gold"></i>
+              </div>
+              <div class="flex-1">
+                 <h4 class="font-serif text-lg font-medium text-white mb-1">Desenvolvimento Infantil</h4>
+                 <p class="text-[11px] text-yaveh-silver font-light leading-relaxed">Acompanhamento e estimulação precoce de 0 a 1 ano.</p>
+              </div>
+           </div>
+        </div>
+
+        <!-- Serviço 2 -->
+        <div onclick="handleWhatsAppClick('Fisio Respiratória')" class="glass-premium p-6 rounded-[2rem] border-l-[3px] border-l-yaveh-white cursor-pointer group hover:bg-white/5 transition-all">
+           <div class="flex gap-5 items-center">
+              <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-white/10 transition-colors">
+                 <i data-lucide="wind" class="w-5 h-5 text-white"></i>
+              </div>
+              <div class="flex-1">
+                 <h4 class="font-serif text-lg font-medium text-white mb-1">Fisio Respiratória</h4>
+                 <p class="text-[11px] text-yaveh-silver font-light leading-relaxed">Alívio em crises para noites de sono tranquilas.</p>
+              </div>
+           </div>
+        </div>
+
+        <!-- Serviço 3 -->
+        <div onclick="handleWhatsAppClick('Neuroreabilitação')" class="glass-premium p-6 rounded-[2rem] border-l-[3px] border-l-yaveh-gold cursor-pointer group hover:bg-white/5 transition-all">
+           <div class="flex gap-5 items-center">
+              <div class="w-12 h-12 rounded-full bg-yaveh-gold/10 flex items-center justify-center border border-yaveh-gold/20 group-hover:bg-yaveh-gold/20 transition-colors">
+                 <i data-lucide="brain" class="w-5 h-5 text-yaveh-gold"></i>
+              </div>
+              <div class="flex-1">
+                 <h4 class="font-serif text-lg font-medium text-white mb-1">Neuroreabilitação</h4>
+                 <p class="text-[11px] text-yaveh-silver font-light leading-relaxed">Maximizando a independência e funcionalidade de crianças atípicas.</p>
+              </div>
+           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         O AMBIENTE (GALERIA)
+         ========================================== -->
+    <section class="py-16 bg-[#100E0C] border-t border-yaveh-gold/5">
+       <div class="text-center mb-10 px-6 reveal">
+          <h2 class="font-display text-3xl text-white mb-3">Ambiente Acolhedor</h2>
+          <p class="text-[11px] text-yaveh-silver font-light max-w-[280px] mx-auto">Cada detalhe foi pensado para acolher e cuidar de quem mais importa.</p>
+       </div>
+
+       <div class="flex overflow-x-auto gap-5 px-6 hide-scrollbar snap-x pb-8">
+          
+          <div class="snap-center shrink-0 w-64 h-[26rem] rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-yaveh-gold/10 bg-yaveh-dark text-white text-center reveal group">
+            <img id="img-clinica1" src="yaveh4.png" alt="Árvore da Vida" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-yaveh-black via-transparent to-transparent flex flex-col justify-end p-8">
+               <p class="text-[9px] font-bold text-yaveh-gold uppercase tracking-[0.2em] mb-1">A Árvore</p>
+               <h4 class="font-display text-xl italic text-white">Um lugar lúdico</h4>
+            </div>
+          </div>
+          
+          <div class="snap-center shrink-0 w-64 h-[26rem] rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-yaveh-gold/10 bg-yaveh-dark text-white text-center reveal group">
+            <img id="img-clinica2" src="yaveh5.png" alt="Luzes e Conforto" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-yaveh-black via-transparent to-transparent flex flex-col justify-end p-8">
+               <p class="text-[9px] font-bold text-yaveh-gold uppercase tracking-[0.2em] mb-1">Estrutura</p>
+               <h4 class="font-display text-xl italic text-white">Luz e Calma</h4>
+            </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         FILOSOFIA (CITAÇÃO DE IMPACTO SUTIL)
+         ========================================== -->
+    <section class="px-6 py-20 relative overflow-hidden reveal">
+      <!-- Glow Decorativo -->
+      <div class="absolute -right-10 top-10 w-40 h-40 bg-yaveh-gold/10 rounded-full blur-[80px]"></div>
+      
+      <div class="glass-premium border border-yaveh-gold/10 p-10 rounded-[3rem] shadow-2xl text-center relative overflow-hidden bg-yaveh-dark/50">
+        <i data-lucide="quote" class="absolute top-6 right-6 w-12 h-12 text-yaveh-gold/10 rotate-180"></i>
+        
+        <h3 class="font-display text-2xl font-medium text-white italic leading-snug mb-6 relative z-10">
+          "O cuidado não termina na sessão."
+        </h3>
+        
+        <p class="text-xs text-yaveh-silver leading-relaxed font-light mb-8 relative z-10">
+          Cuidar do seu filho com segurança começa com a orientação certa. Por aqui, compartilho conteúdos de um jeito leve, real e possível.
+        </p>
+
+        <button onclick="window.open('https://instagram.com/yaveh.fisioped', '_blank')" class="w-full bg-transparent border border-yaveh-gold/30 text-yaveh-gold py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:bg-yaveh-gold/10 transition-all flex items-center justify-center gap-2 relative z-10">
+          <i data-lucide="instagram" class="w-4 h-4"></i> Seguir @yaveh.fisioped
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LOCALIZAÇÃO: MAPA (Filtro Quente)
+         ========================================== -->
+    <section class="px-6 py-16 border-t border-yaveh-gold/5 reveal">
+      <div class="text-center mb-8 text-white">
+        <h2 class="font-display text-2xl text-white">Localização</h2>
+        <p class="text-[10px] text-yaveh-gold uppercase tracking-[0.3em] font-bold mt-2">Toledo - PR</p>
+      </div>
+
+      <div class="glass-premium p-3 rounded-[3rem] overflow-hidden shadow-2xl relative border-yaveh-gold/10 bg-yaveh-dark/40 text-center">
+        <!-- Mapa com Filtro Dark Sépia (Mais elegante e menos agressivo) -->
+        <div class="w-full h-64 rounded-[2.5rem] overflow-hidden relative shadow-inner">
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.593256086203!2d-53.7431!3d-24.7214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQzJzE3LjAiUyA1M8KwNDQnMzUuMiJX!5e0!3m2!1spt-BR!2sbr!4v1714080000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0; filter: grayscale(0.8) invert(90%) sepia(20%) hue-rotate(330deg);" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        
+        <div class="p-8 text-center text-white">
+          <p class="text-xs text-yaveh-silver font-medium mb-6 leading-relaxed">
+            Edifício Toledo <br>
+            <span class="text-white block mt-1 font-semibold">Rua Dom Pedro II, 2117 - Sala 402</span>
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+             <button onclick="window.open('https://maps.google.com/?q=Rua+Dom+Pedro+II,+2117+-+Toledo', '_blank')" class="bg-yaveh-black border border-yaveh-gold/20 text-white py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-yaveh-gold/10 transition-colors">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-yaveh-gold"></i> Maps
+             </button>
+             <button onclick="window.open('https://waze.com/ul?ll=-24.7214,-53.7431&navigate=yes', '_blank')" class="bg-yaveh-black border border-yaveh-gold/20 text-white py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-yaveh-gold/10 transition-colors">
+                <i data-lucide="navigation" class="w-3.5 h-3.5 text-yaveh-gold"></i> Waze
+             </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER: AÇÃO FINAL
+         ========================================== -->
+    <section class="mt-auto px-8 pt-8 pb-20 bg-[#0C0B0A] border-t border-yaveh-gold/10 text-center reveal text-white rounded-t-[3rem] shadow-[0_-20px_40px_rgba(0,0,0,0.2)]">
+      
+      <h3 class="font-display text-2xl mb-8 text-white italic">Aguardamos por você!</h3>
+      
+      <div class="space-y-4 max-w-[280px] mx-auto">
+        <!-- WhatsApp -->
+        <button onclick="handleWhatsAppClick('Agendamento')" class="w-full bg-yaveh-gold text-yaveh-black py-4 rounded-full font-bold text-[11px] uppercase tracking-widest shadow-[0_0_20px_rgba(217,197,178,0.2)] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+          <i data-lucide="calendar-heart" class="w-4 h-4"></i> Agendar Consulta
+        </button>
+      </div>
+
+      <div class="mt-16 pt-8 border-t border-yaveh-gold/10 opacity-40 text-yaveh-silver text-center">
+        <p class="text-[8px] font-bold uppercase tracking-[0.4em] mb-3">© 2026 YAVEH FISIOTERAPIA</p>
+        <p class="text-[8px] uppercase tracking-[0.3em]">CRIADO POR <strong class="text-yaveh-gold tracking-[0.2em] font-black">VERTICY.</strong> PREMIUM BIO</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const config = {
+      whatsapp: "5545999999999", // ATENÇÃO: Substituir pelo número correto com DDD 45
+      fotos: {
+        logo: "yaveh1.png",       
+        hero: "yaveh2.png",       
+        isabela: "yaveh3.png",    
+        clinica1: "yaveh4.png",   
+        clinica2: "yaveh5.png"    
+      }
+    };
+
+    function handleWhatsAppClick(interesse = "") {
+      let text = "Olá! Vim pelo site da Yaveh e gostaria de agendar uma consulta.";
+      if (interesse) text = `Olá! Vim pelo site da Yaveh e tenho interesse em: *${interesse}*. Como funciona?`;
+      window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      
+      const imagesMap = {
+        'img-logo': config.fotos.logo,
+        'img-hero': config.fotos.hero,
+        'img-especialista': config.fotos.isabela,
+        'img-clinica1': config.fotos.clinica1,
+        'img-clinica2': config.fotos.clinica2
+      };
+
+      for (const [id, url] of Object.entries(imagesMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>

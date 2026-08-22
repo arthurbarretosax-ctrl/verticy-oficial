@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Amanda | Estética Dental Premium</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        nude: {
+                            50: '#fdfbf9',
+                            100: '#f8f3ec',
+                            200: '#efe3d5',
+                            300: '#e3ccb7',
+                            400: '#d3b092',
+                            500: '#c69874',
+                            600: '#b9825f',
+                            700: '#9b684c',
+                            800: '#805642',
+                            900: '#684738',
+                        },
+                        dark: '#2A2522',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            overflow-x: hidden;
+            background-color: #fdfbf9;
+            color: #2A2522;
+        }
+
+        /* Glassmorphism Premium */
+        .glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(104, 71, 56, 0.05);
+        }
+        
+        .glass-dark {
+            background: rgba(42, 37, 34, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Efeito Blob */
+        .blob-shape {
+            animation: morph 8s ease-in-out infinite, float 6s ease-in-out infinite;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: all 1s ease-in-out;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(198, 152, 116, 0.3);
+        }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* Efeitos Hover */
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(198, 152, 116, 0.2);
+        }
+
+        .img-zoom {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .group:hover .img-zoom {
+            transform: scale(1.08);
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Slider Antes/Depois */
+        .ba-slider { touch-action: none; }
+        .ba-image-after { clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); }
+
+        /* FAQ Accordion */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdfbf9; }
+        ::-webkit-scrollbar-thumb { background: #d3b092; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b9825f; }
+    </style>
+</head>
+<body class="antialiased selection:bg-nude-300 selection:text-dark">
+
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-nude-200/40 blur-[100px] mix-blend-multiply animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-nude-300/30 blur-[120px] mix-blend-multiply animate-pulse-slow" style="animation-delay: 2s;"></div>
+    </div>
+
+    <header class="fixed w-full top-0 z-50 px-6 py-4 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto glass rounded-full px-6 py-3 flex justify-between items-center relative z-50">
+            <div class="flex items-center cursor-pointer">
+                <img src="amanda1.png" alt="Logo Dra. Amanda" class="h-10 md:h-14 w-auto object-contain">
+            </div>
+            
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-dark/80">
+                <a href="#sobre" class="hover:text-nude-600 transition-colors">Sobre</a>
+                <a href="#diferenciais" class="hover:text-nude-600 transition-colors">Diferenciais</a>
+                <a href="#tratamentos" class="hover:text-nude-600 transition-colors">Procedimentos</a>
+                <a href="#consultorio" class="hover:text-nude-600 transition-colors">Consultório</a>
+                <a href="#resultados" class="hover:text-nude-600 transition-colors">Resultados</a>
+                <a href="#faq" class="hover:text-nude-600 transition-colors">FAQ</a>
+            </nav>
+
+            <a href="#contato" class="hidden md:flex items-center gap-2 bg-dark text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-nude-700 transition-colors shadow-lg shadow-dark/20 hover-lift">
+                Agendar Avaliação
+                <i class="ph ph-calendar-plus"></i>
+            </a>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-2xl text-dark p-1 focus:outline-none">
+                <i class="ph ph-list" id="mobile-menu-icon"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="fixed inset-0 bg-nude-50/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300 lg:hidden">
+            <nav class="flex flex-col items-center gap-6 font-display text-2xl text-dark">
+                <a href="#sobre" class="mobile-link hover:text-nude-600 transition-colors">Sobre</a>
+                <a href="#diferenciais" class="mobile-link hover:text-nude-600 transition-colors">Diferenciais</a>
+                <a href="#tratamentos" class="mobile-link hover:text-nude-600 transition-colors">Procedimentos</a>
+                <a href="#consultorio" class="mobile-link hover:text-nude-600 transition-colors">Consultório</a>
+                <a href="#resultados" class="mobile-link hover:text-nude-600 transition-colors">Resultados</a>
+                <a href="#faq" class="mobile-link hover:text-nude-600 transition-colors">FAQ</a>
+                <a href="#contato" class="mt-6 bg-dark text-white px-8 py-3 rounded-full font-medium text-lg flex items-center gap-2 shadow-xl shadow-dark/20 mobile-link">
+                    <i class="ph-fill ph-calendar-plus text-2xl"></i>
+                    Agendar
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="relative pt-36 pb-16 lg:min-h-[100svh] lg:flex lg:items-center px-6 overflow-hidden">
+        <div class="max-w-5xl mx-auto w-full flex flex-col items-center text-center relative z-10 space-y-6 md:space-y-8">
+            
+            <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full border border-nude-300/50 reveal">
+                <span class="w-2 h-2 rounded-full bg-nude-500 animate-pulse"></span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-nude-700">Odontologia de Alto Padrão</span>
+            </div>
+            
+            <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] text-dark reveal reveal-delay-1">
+                <span class="font-semibold italic text-transparent bg-clip-text bg-gradient-to-r from-nude-600 to-nude-400">Sorrisos têm</span><br>
+                segunda chance.
+            </h1>
+            
+            <div class="relative h-[480px] sm:h-[620px] lg:h-[720px] w-full flex justify-center items-center reveal reveal-delay-2 my-4 md:my-8">
+                <div class="absolute inset-0 border border-nude-300/40 rounded-full animate-[spin_20s_linear_infinite] w-[360px] h-[360px] sm:w-[550px] sm:h-[550px] lg:w-[680px] lg:h-[680px] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                
+                <div class="blob-shape w-[320px] h-[440px] sm:w-[380px] sm:h-[580px] lg:w-[450px] lg:h-[680px] relative z-10">
+                    <img src="amanda2.png" alt="Dra. Amanda" class="w-full h-full object-cover object-top scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent"></div>
+                </div>
+
+                <div class="absolute bottom-0 right-0 md:right-[5%] lg:right-[10%] z-20 glass px-4 py-3 sm:px-6 sm:py-4 rounded-2xl animate-float backdrop-blur-xl text-left">
+                    <div class="flex items-center gap-3 sm:gap-4">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex justify-center items-center text-nude-600 shadow-md">
+                            <i class="ph-fill ph-certificate text-xl sm:text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="font-display font-bold text-base sm:text-lg text-dark">CRO-RJ 57092</p>
+                            <p class="text-[10px] sm:text-xs text-dark/60 font-medium">Cirurgiã-Dentista</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 pt-2 reveal reveal-delay-3 w-full sm:w-auto">
+                <a href="#contato" class="bg-dark text-white px-8 py-4 rounded-full font-medium text-center hover:bg-nude-700 transition-colors shadow-xl shadow-dark/30 hover-lift flex justify-center items-center gap-2">
+                    Iniciar Tratamento
+                    <i class="ph-bold ph-arrow-down text-xl text-nude-300"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="pt-24 pb-12 px-6 relative overflow-hidden bg-nude-50">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            
+            <div class="w-full lg:w-1/2 relative reveal">
+                <div class="absolute inset-0 bg-nude-200 rounded-[2.5rem] rotate-[-3deg] scale-105 transition-transform hover:rotate-0 duration-500"></div>
+                <img src="amanda7.png" alt="Dra. Amanda Perfil" class="relative z-10 w-full h-[600px] object-cover rounded-[2rem] shadow-2xl">
+            </div>
+
+            <div class="w-full lg:w-1/2 space-y-8 reveal reveal-delay-1">
+                <div>
+                    <span class="text-nude-600 uppercase tracking-widest text-sm font-semibold mb-2 block">Sobre sua dentista</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-light text-dark mb-6">
+                        Conheça a <span class="font-semibold text-nude-600">Dra. Amanda</span>
+                    </h2>
+                    <div class="space-y-4 text-dark/70 font-light text-lg leading-relaxed">
+                        <p>
+                            Dra. Amanda Araujo é cirurgiã-dentista com foco em estética e reabilitação oral, comprometida com resultados naturais e um atendimento sensível às necessidades de cada paciente.
+                        </p>
+                        <p>
+                            Formada em Odontologia, com atualização em Reabilitação Oral e Harmonização Orofacial, ela construiu seu próprio consultório em Campos dos Goytacazes, um espaço pensado para que cada paciente se sinta tratado de forma humana do início ao fim.
+                        </p>
+                        <p>
+                            Co-fundadora do Odonto360, evento de referência para dentistas na região, a Dra. Amanda acredita que o empreendedorismo é o caminho para uma odontologia mais livre, mais próspera e mais humana.
+                        </p>
+                        <p class="font-medium text-dark/90 italic mt-6">
+                            Para ela, sorrisos têm segunda chance. E cada tratamento é uma oportunidade de provar isso.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diferenciais" class="py-20 px-6 bg-nude-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-light text-dark">Por que me <span class="font-semibold italic text-nude-600">escolher?</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-3xl hover-lift reveal">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-nude-600 shadow-sm mb-6">
+                        <i class="ph-fill ph-heart text-2xl"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-medium text-dark mb-3">Atendimento Humanizado</h4>
+                    <p class="text-dark/70 font-light">Cuidado genuíno com as pessoas. Aqui você é ouvido e tratado com total dedicação e empatia.</p>
+                </div>
+
+                <div class="glass p-8 rounded-3xl hover-lift reveal reveal-delay-1">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-nude-600 shadow-sm mb-6">
+                        <i class="ph-fill ph-graduation-cap text-2xl"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-medium text-dark mb-3">Técnica e Atualização</h4>
+                    <p class="text-dark/70 font-light">Formação contínua e dedicação para trazer sempre as técnicas mais modernas.</p>
+                </div>
+
+                <div class="glass p-8 rounded-3xl hover-lift reveal reveal-delay-2">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-nude-600 shadow-sm mb-6">
+                        <i class="ph-fill ph-armchair text-2xl"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-medium text-dark mb-3">Consultório Acolhedor</h4>
+                    <p class="text-dark/70 font-light">Um espaço próprio pensado em cada detalhe para o seu conforto e relaxamento.</p>
+                </div>
+
+                <div class="glass p-8 rounded-3xl hover-lift reveal lg:col-start-2">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-nude-600 shadow-sm mb-6">
+                        <i class="ph-fill ph-eye text-2xl"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-medium text-dark mb-3">Transparência</h4>
+                    <p class="text-dark/70 font-light">Clareza em cada etapa do processo. Você sabe exatamente o que está sendo feito e por quê.</p>
+                </div>
+
+                <div class="glass p-8 rounded-3xl hover-lift reveal reveal-delay-1">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-nude-600 shadow-sm mb-6">
+                        <i class="ph-fill ph-leaf text-2xl"></i>
+                    </div>
+                    <h4 class="font-display text-xl font-medium text-dark mb-3">Resultados que respeitam você</h4>
+                    <p class="text-dark/70 font-light">Buscamos a harmonia perfeita, realçando sua beleza sem perder a sua essência natural.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tratamentos" class="py-24 px-6 bg-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-nude-900/20 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-nude-400 uppercase tracking-widest text-sm font-semibold mb-2 block">Procedimentos</span>
+                <h2 class="font-display text-4xl md:text-5xl font-light">Tratamentos <span class="font-semibold italic text-nude-300">Avançados</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal hover-lift cursor-pointer">
+                    <img src="amanda-trat1.png" alt="Limpeza e Prevenção" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-first-aid text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">Limpeza e Prevenção</h3>
+                        <p class="text-white/80 font-light text-sm leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            A limpeza profissional é o ponto de partida para uma boca saudável e para evitar tratamentos mais complexos no futuro. Simples, indolor e essencial.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal reveal-delay-1 hover-lift cursor-pointer">
+                    <img src="amanda-trat2.png" alt="Restauração" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-tooth text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">Restauração</h3>
+                        <p class="text-white/80 font-light text-sm leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            Devolvemos a forma, a função e a estética do seu dente de forma natural e duradoura. Ninguém vai notar que foi restaurado, e é exatamente esse o objetivo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal reveal-delay-2 hover-lift cursor-pointer">
+                    <img src="amanda-trat3.png" alt="Pino e Bloco/Coroa" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-cube text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">Pino e Bloco/Coroa</h3>
+                        <p class="text-white/80 font-light text-sm leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            Quando o dente precisa de estrutura para ser reconstruído, usamos técnicas seguras e precisas para garantir que ele recupere sua função com força e naturalidade.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal reveal-delay-3 hover-lift cursor-pointer">
+                    <img src="amanda-trat4.png" alt="Facetas em Resina" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-magic-wand text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">Facetas em Resina</h3>
+                        <p class="text-white/80 font-light text-sm leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            As facetas em resina corrigem cor, forma e imperfeições do sorriso, tudo em uma única sessão. Resultado imediato e natural para quem quer sorrir com mais confiança no dia a dia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal hover-lift cursor-pointer">
+                    <img src="amanda-trat5.png" alt="Facetas em Porcelana" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-diamonds-four text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">Facetas em Porcelana</h3>
+                        <p class="text-white/80 font-light text-sm leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            Para quem busca o mais alto padrão em estética dental. Reproduzindo a translucidez e o brilho natural dos dentes com uma durabilidade incomparável.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal reveal-delay-1 hover-lift cursor-pointer">
+                    <img src="amanda-trat6.png" alt="Próteses Dentárias" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-smiley text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">Próteses Dentárias</h3>
+                        <p class="text-white/80 font-light text-sm leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            Recupere sua mastigação, sua fala e o prazer de sorrir. As próteses são planejadas com cuidado para devolver função e estética, respeitando a sua anatomia e o seu rosto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal reveal-delay-2 hover-lift cursor-pointer">
+                    <img src="amanda-trat7.png" alt="Placa para Bruxismo" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-shield-check text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">Placa para Bruxismo</h3>
+                        <p class="text-white/80 font-light text-sm leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            Se você range ou aperta os dentes, a placa miorrelaxante protege seus dentes do desgaste e alivia a tensão na musculatura. Um pequeno hábito que faz grande diferença.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="group relative h-[380px] rounded-[2rem] overflow-hidden reveal reveal-delay-3 hover-lift cursor-pointer">
+                    <img src="amanda-trat8.png" alt="HOF" class="absolute inset-0 w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/90 to-dark/20 group-hover:bg-dark/80 transition-colors duration-500"></div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                        <i class="ph-thin ph-drop text-4xl text-nude-300 mb-4 group-hover:-translate-y-1 transition-transform"></i>
+                        <h3 class="font-display text-xl font-medium mb-3 group-hover:-translate-y-1 transition-transform">HOF</h3>
+                        <p class="text-white/80 font-light text-xs leading-relaxed group-hover:-translate-y-1 transition-transform mb-2">
+                            <strong class="text-white">Toxina botulínica:</strong> Usada para prevenir e suavizar linhas de expressão que declaram o envelhecimento.
+                        </p>
+                        <p class="text-white/80 font-light text-xs leading-relaxed group-hover:-translate-y-1 transition-transform">
+                            <strong class="text-white">Preenchimento Facial:</strong> Harmonizar e realçar o que há de melhor em você sem mudar quem você é.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white relative">
+        <div class="max-w-5xl mx-auto text-center glass p-10 md:p-14 rounded-[2.5rem] border border-nude-300/60 reveal hover-lift relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-nude-100/20 z-0"></div>
+            
+            <div class="relative z-10">
+                <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-6 text-nude-600">
+                    <i class="ph-thin ph-users-three text-4xl"></i>
+                </div>
+                <h3 class="font-display text-3xl md:text-4xl font-light text-dark mb-6">
+                    Nossos <span class="font-semibold italic text-nude-600">Especialistas</span>
+                </h3>
+                <p class="text-lg md:text-xl text-dark/70 font-light leading-relaxed max-w-3xl mx-auto mb-6">
+                    O seu cuidado não para na minha cadeira. O consultório conta com uma equipe de especialistas de confiança para que você encontre tudo o que precisa em um só lugar, sem perder o acolhimento que é a nossa marca.
+                </p>
+                <div class="inline-flex flex-wrap justify-center gap-3">
+                    <span class="bg-nude-100 text-nude-800 px-4 py-2 rounded-full text-sm font-medium">Ortodontia</span>
+                    <span class="bg-nude-100 text-nude-800 px-4 py-2 rounded-full text-sm font-medium">Periodontia</span>
+                    <span class="bg-nude-100 text-nude-800 px-4 py-2 rounded-full text-sm font-medium">Cirurgia Bucomaxilofacial</span>
+                    <span class="bg-nude-100 text-nude-800 px-4 py-2 rounded-full text-sm font-medium">Fisioterapia (Bruxismo)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resultados" class="py-24 px-6 relative bg-nude-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-nude-600 uppercase tracking-widest text-sm font-semibold mb-2 block">Antes e Depois</span>
+                <h2 class="font-display text-4xl md:text-5xl font-light text-dark">A arte de transformar <span class="font-semibold italic">sorrisos</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                <div class="ba-container relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl reveal glass">
+                    <img src="amanda12.png" alt="Antes" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute top-6 left-6 glass px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider text-dark bg-white/80 pointer-events-none">Antes</div>
+
+                    <div class="ba-after absolute inset-0 w-full h-full" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="amanda13.png" alt="Depois" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute top-6 right-6 bg-nude-600/90 text-white px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider backdrop-blur-md pointer-events-none">Depois</div>
+                    </div>
+
+                    <div class="ba-handle absolute top-0 bottom-0 w-1 bg-white left-1/2 -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)] pointer-events-none">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl text-nude-600">
+                            <i class="ph-bold ph-arrows-left-right text-xl"></i>
+                        </div>
+                    </div>
+
+                    <input type="range" min="0" max="100" value="50" class="ba-slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+                </div>
+
+                <div class="ba-container relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl reveal reveal-delay-1 glass">
+                    <img src="amanda20.png" alt="Antes" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute top-6 left-6 glass px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider text-dark bg-white/80 pointer-events-none">Antes</div>
+
+                    <div class="ba-after absolute inset-0 w-full h-full" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="amanda21.png" alt="Depois" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute top-6 right-6 bg-nude-600/90 text-white px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider backdrop-blur-md pointer-events-none">Depois</div>
+                    </div>
+
+                    <div class="ba-handle absolute top-0 bottom-0 w-1 bg-white left-1/2 -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)] pointer-events-none">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl text-nude-600">
+                            <i class="ph-bold ph-arrows-left-right text-xl"></i>
+                        </div>
+                    </div>
+
+                    <input type="range" min="0" max="100" value="50" class="ba-slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+                </div>
+
+                <div class="ba-container relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl reveal reveal-delay-2 glass">
+                    <img src="amanda22.png" alt="Antes" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute top-6 left-6 glass px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider text-dark bg-white/80 pointer-events-none">Antes</div>
+
+                    <div class="ba-after absolute inset-0 w-full h-full" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="amanda23.png" alt="Depois" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute top-6 right-6 bg-nude-600/90 text-white px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider backdrop-blur-md pointer-events-none">Depois</div>
+                    </div>
+
+                    <div class="ba-handle absolute top-0 bottom-0 w-1 bg-white left-1/2 -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)] pointer-events-none">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl text-nude-600">
+                            <i class="ph-bold ph-arrows-left-right text-xl"></i>
+                        </div>
+                    </div>
+
+                    <input type="range" min="0" max="100" value="50" class="ba-slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+                </div>
+
+                <div class="ba-container relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl reveal reveal-delay-3 glass">
+                    <img src="amanda24.png" alt="Antes" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute top-6 left-6 glass px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider text-dark bg-white/80 pointer-events-none">Antes</div>
+
+                    <div class="ba-after absolute inset-0 w-full h-full" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="amanda25.png" alt="Depois" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute top-6 right-6 bg-nude-600/90 text-white px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider backdrop-blur-md pointer-events-none">Depois</div>
+                    </div>
+
+                    <div class="ba-handle absolute top-0 bottom-0 w-1 bg-white left-1/2 -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)] pointer-events-none">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl text-nude-600">
+                            <i class="ph-bold ph-arrows-left-right text-xl"></i>
+                        </div>
+                    </div>
+
+                    <input type="range" min="0" max="100" value="50" class="ba-slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+                </div>
+
+                <div class="ba-container relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl reveal glass md:col-span-2 lg:col-span-1 lg:col-start-1 lg:translate-x-1/2">
+                    <img src="amanda26.png" alt="Antes" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute top-6 left-6 glass px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider text-dark bg-white/80 pointer-events-none">Antes</div>
+
+                    <div class="ba-after absolute inset-0 w-full h-full" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="amanda27.png" alt="Depois" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute top-6 right-6 bg-nude-600/90 text-white px-4 py-1.5 rounded-full z-10 text-xs font-bold uppercase tracking-wider backdrop-blur-md pointer-events-none">Depois</div>
+                    </div>
+
+                    <div class="ba-handle absolute top-0 bottom-0 w-1 bg-white left-1/2 -translate-x-1/2 z-20 shadow-[0_0_10px_rgba(0,0,0,0.3)] pointer-events-none">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl text-nude-600">
+                            <i class="ph-bold ph-arrows-left-right text-xl"></i>
+                        </div>
+                    </div>
+
+                    <input type="range" min="0" max="100" value="50" class="ba-slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+                </div>
+
+            </div>
+            
+            <p class="text-center text-dark/50 text-sm mt-10 flex items-center justify-center gap-2 reveal">
+                <i class="ph ph-hand-swipe-left"></i> Arraste para comparar
+            </p>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="py-24 px-6 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-nude-600 uppercase tracking-widest text-sm font-semibold mb-2 block">Depoimentos</span>
+                <h2 class="font-display text-4xl md:text-5xl font-light text-dark">O que dizem nossos <span class="font-semibold italic text-nude-600">pacientes</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div class="glass p-8 rounded-3xl hover-lift reveal relative">
+                    <i class="ph-fill ph-quotes text-5xl text-nude-200 absolute top-6 right-6 z-0"></i>
+                    <div class="flex gap-1 text-nude-500 mb-4 relative z-10">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-dark/80 font-light italic mb-6 relative z-10">
+                        "Amanda, está tão bonito… minha autoestima está melhor graças as suas mãos. Deus abençoe seu dom!!"
+                    </p>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-10 h-10 bg-nude-300 rounded-full flex items-center justify-center text-white font-bold shrink-0">J</div>
+                        <div>
+                            <h4 class="font-medium text-dark text-sm">Jéssica de Oliveira Viana P. D'auriol</h4>
+                            <span class="text-xs text-dark/50">Paciente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl hover-lift reveal reveal-delay-1 relative">
+                    <i class="ph-fill ph-quotes text-5xl text-nude-200 absolute top-6 right-6 z-0"></i>
+                    <div class="flex gap-1 text-nude-500 mb-4 relative z-10">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-dark/80 font-light italic mb-6 relative z-10">
+                        "Amanda é simplesmente sensacional! Uma profissional paciente, dedicada e gentil. Que sorte encontrá-la! 🥰🥰"
+                    </p>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-10 h-10 bg-nude-400 rounded-full flex items-center justify-center text-white font-bold shrink-0">A</div>
+                        <div>
+                            <h4 class="font-medium text-dark text-sm">Ana Beatriz Verneque</h4>
+                            <span class="text-xs text-dark/50">Paciente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl hover-lift reveal relative">
+                    <i class="ph-fill ph-quotes text-5xl text-nude-200 absolute top-6 right-6 z-0"></i>
+                    <div class="flex gap-1 text-nude-500 mb-4 relative z-10">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-dark/80 font-light italic mb-6 relative z-10">
+                        "Um excelente acolhimento com atendimento profissional de ótima qualidade. Dra. Amanda Araujo, demonstrou eficiência e me proporcionou um tratamento muito humano. Obrigada."
+                    </p>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-10 h-10 bg-nude-500 rounded-full flex items-center justify-center text-white font-bold shrink-0">V</div>
+                        <div>
+                            <h4 class="font-medium text-dark text-sm">Vera Lucia Pimentel</h4>
+                            <span class="text-xs text-dark/50">Paciente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-3xl hover-lift reveal reveal-delay-1 relative">
+                    <i class="ph-fill ph-quotes text-5xl text-nude-200 absolute top-6 right-6 z-0"></i>
+                    <div class="flex gap-1 text-nude-500 mb-4 relative z-10">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p class="text-dark/80 font-light italic mb-6 relative z-10">
+                        "Obrigado mais uma vez, Amanda! Ficou ótimo! Sem falar no atendimento excelente."
+                    </p>
+                    <div class="flex items-center gap-3 relative z-10">
+                        <div class="w-10 h-10 bg-nude-600 rounded-full flex items-center justify-center text-white font-bold shrink-0">M</div>
+                        <div>
+                            <h4 class="font-medium text-dark text-sm">Marcio Brito</h4>
+                            <span class="text-xs text-dark/50">Paciente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 px-6 bg-nude-50 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-nude-600 uppercase tracking-widest text-sm font-semibold mb-2 block">Dúvidas Frequentes</span>
+                <h2 class="font-display text-4xl md:text-5xl font-light text-dark">Perguntas <span class="font-semibold italic text-nude-600">Frequentes</span></h2>
+            </div>
+
+            <div class="space-y-4 reveal">
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none" onclick="toggleFaq(1)">
+                        <span class="font-display font-medium text-lg text-dark">Atende convênios?</span>
+                        <i class="ph-bold ph-caret-down text-nude-600 transition-transform duration-300" id="faq-icon-1"></i>
+                    </button>
+                    <div class="faq-content" id="faq-content-1">
+                        <div class="px-6 pb-5 text-dark/70 font-light">
+                            No momento, o consultório não trabalha com convênios. Mas não deixe isso ser um obstáculo, oferecemos condições de pagamento facilitadas para que você cuide do seu sorriso sem preocupação.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none" onclick="toggleFaq(2)">
+                        <span class="font-display font-medium text-lg text-dark">Como funciona o pagamento?</span>
+                        <i class="ph-bold ph-caret-down text-nude-600 transition-transform duration-300" id="faq-icon-2"></i>
+                    </button>
+                    <div class="faq-content" id="faq-content-2">
+                        <div class="px-6 pb-5 text-dark/70 font-light">
+                            Todos os procedimentos podem ser parcelados em até 12x no cartão de crédito. Após a sua consulta, apresentamos um plano de tratamento detalhado com os valores, para que você possa planejar com tranquilidade.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none" onclick="toggleFaq(3)">
+                        <span class="font-display font-medium text-lg text-dark">Como faço para agendar uma consulta?</span>
+                        <i class="ph-bold ph-caret-down text-nude-600 transition-transform duration-300" id="faq-icon-3"></i>
+                    </button>
+                    <div class="faq-content" id="faq-content-3">
+                        <div class="px-6 pb-5 text-dark/70 font-light">
+                            Basta clicar no botão de WhatsApp aqui no site ou usar nossa Assistente Virtual no canto da tela. Nossa equipe vai te responder rapidinho e encontrar o melhor horário para você.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none" onclick="toggleFaq(4)">
+                        <span class="font-display font-medium text-lg text-dark">Preciso sentir dor para ir ao dentista?</span>
+                        <i class="ph-bold ph-caret-down text-nude-600 transition-transform duration-300" id="faq-icon-4"></i>
+                    </button>
+                    <div class="faq-content" id="faq-content-4">
+                        <div class="px-6 pb-5 text-dark/70 font-light">
+                            Não! Essa é uma das ideias que mais nos preocupa. Consultas de rotina e limpezas regulares são exatamente o que evita que os problemas cheguem a dar dor. Quanto antes você vier, mais simples — e mais barato — é o tratamento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none" onclick="toggleFaq(5)">
+                        <span class="font-display font-medium text-lg text-dark">Quanto tempo dura uma consulta?</span>
+                        <i class="ph-bold ph-caret-down text-nude-600 transition-transform duration-300" id="faq-icon-5"></i>
+                    </button>
+                    <div class="faq-content" id="faq-content-5">
+                        <div class="px-6 pb-5 text-dark/70 font-light">
+                            Depende do procedimento. Uma consulta de avaliação com limpeza, por exemplo, dura em média 1 hora. Tratamentos mais complexos podem ser divididos em sessões para garantir conforto e qualidade. Tudo é planejado e comunicado com antecedência.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none" onclick="toggleFaq(6)">
+                        <span class="font-display font-medium text-lg text-dark">O consultório atende casos de bruxismo?</span>
+                        <i class="ph-bold ph-caret-down text-nude-600 transition-transform duration-300" id="faq-icon-6"></i>
+                    </button>
+                    <div class="faq-content" id="faq-content-6">
+                        <div class="px-6 pb-5 text-dark/70 font-light">
+                            Sim, e com um diferencial importante: além do tratamento odontológico com placa miorrelaxante, contamos com uma fisioterapeuta especializada no atendimento de pacientes com bruxismo. Um cuidado completo, do dente ao músculo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="consultorio" class="py-24 px-6 bg-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-nude-600 uppercase tracking-widest text-sm font-semibold mb-2 block">O Consultório</span>
+                <h2 class="font-display text-4xl md:text-5xl font-light text-dark">Conforto e <span class="font-semibold italic text-nude-600">Tecnologia</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
+                
+                <div class="group relative md:col-span-2 overflow-hidden rounded-3xl reveal">
+                    <img src="amanda3.png" alt="Recepção da Clínica" class="w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-dark/20 group-hover:bg-dark/40 transition-colors duration-500"></div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl reveal reveal-delay-1">
+                    <img src="amanda4.png" alt="Detalhe do Consultório" class="w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-dark/20 group-hover:bg-dark/40 transition-colors duration-500"></div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl reveal reveal-delay-2">
+                    <img src="amanda5.png" alt="Cadeira Odontológica" class="w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-dark/20 group-hover:bg-dark/40 transition-colors duration-500"></div>
+                </div>
+
+                <div class="group relative md:col-span-4 overflow-hidden rounded-3xl reveal reveal-delay-3">
+                    <div class="absolute inset-0 bg-nude-50 flex flex-col justify-center items-center text-center p-8 border border-nude-200/50">
+                        <i class="ph-thin ph-sparkle text-4xl text-nude-500 mb-4"></i>
+                        <h3 class="font-display text-2xl md:text-3xl font-light text-dark">Detalhes que fazem <span class="font-semibold italic text-nude-600">toda a diferença.</span></h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-nude-50 relative overflow-hidden border-t border-b border-nude-200/30">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="max-w-3xl mx-auto text-center reveal mb-16">
+                <a href="https://instagram.com/dra.amandaaraujo" target="_blank" class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-nude-400 to-nude-600 text-white shadow-xl shadow-nude-600/20 mb-6 hover-lift">
+                    <i class="ph-fill ph-instagram-logo text-3xl"></i>
+                </a>
+                <h3 class="font-display text-3xl md:text-4xl font-light text-dark mb-4">
+                    Mais do que sorrisos, <span class="font-semibold italic text-nude-600">uma rotina de cuidados.</span>
+                </h3>
+                <p class="text-dark/70 font-light text-lg">
+                    Acompanhe dicas exclusivas, os bastidores do nosso consultório e inspire-se com mais resultados reais todos os dias no nosso Instagram.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
+                
+                <a href="https://instagram.com/dra.amandaaraujo" target="_blank" class="group relative aspect-[9/16] rounded-[2rem] overflow-hidden reveal hover-lift shadow-xl shadow-dark/5">
+                    <img src="amanda-reel1.png" alt="Reel Instagram Dra. Amanda" class="w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:bg-white group-hover:text-nude-600 transition-colors shadow-lg">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <i class="ph-fill ph-instagram-logo absolute top-5 right-5 text-white text-2xl drop-shadow-md"></i>
+                </a>
+
+                <a href="https://instagram.com/dra.amandaaraujo" target="_blank" class="group relative aspect-[9/16] rounded-[2rem] overflow-hidden reveal reveal-delay-1 hover-lift shadow-xl shadow-dark/5 md:translate-y-8">
+                    <img src="amanda-reel2.png" alt="Reel Instagram Dra. Amanda" class="w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:bg-white group-hover:text-nude-600 transition-colors shadow-lg">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <i class="ph-fill ph-instagram-logo absolute top-5 right-5 text-white text-2xl drop-shadow-md"></i>
+                </a>
+
+                <a href="https://instagram.com/dra.amandaaraujo" target="_blank" class="group relative aspect-[9/16] rounded-[2rem] overflow-hidden reveal reveal-delay-2 hover-lift shadow-xl shadow-dark/5">
+                    <img src="amanda-reel3.png" alt="Reel Instagram Dra. Amanda" class="w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:bg-white group-hover:text-nude-600 transition-colors shadow-lg">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <i class="ph-fill ph-instagram-logo absolute top-5 right-5 text-white text-2xl drop-shadow-md"></i>
+                </a>
+
+                <a href="https://instagram.com/dra.amandaaraujo" target="_blank" class="group relative aspect-[9/16] rounded-[2rem] overflow-hidden reveal reveal-delay-3 hover-lift shadow-xl shadow-dark/5 md:translate-y-8">
+                    <img src="amanda-reel4.png" alt="Reel Instagram Dra. Amanda" class="w-full h-full object-cover img-zoom">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white group-hover:bg-white group-hover:text-nude-600 transition-colors shadow-lg">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <i class="ph-fill ph-instagram-logo absolute top-5 right-5 text-white text-2xl drop-shadow-md"></i>
+                </a>
+
+            </div>
+
+            <div class="text-center reveal">
+                <a href="https://instagram.com/dra.amandaaraujo" target="_blank" class="inline-flex items-center gap-2 sm:gap-3 bg-nude-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium text-base sm:text-lg whitespace-nowrap hover:bg-nude-700 transition-colors shadow-lg shadow-nude-600/30 hover-lift">
+                    <i class="ph-fill ph-instagram-logo text-lg sm:text-xl"></i>
+                    Acompanhar no Instagram
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contato" class="bg-white pt-24 pb-12 px-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-nude-300 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+            
+            <div class="reveal">
+                <div class="flex items-center mb-8">
+                    <img src="amanda1.png" alt="Logo Dra. Amanda" class="h-10 md:h-12 w-auto object-contain">
+                </div>
+                <h3 class="font-display text-4xl font-light mb-6">Pronto para viver o seu <br><span class="font-semibold italic text-nude-600">melhor sorriso?</span></h3>
+                <p class="text-dark/70 font-light mb-8 max-w-md">
+                    Agende sua avaliação e descubra como a odontologia estética de alto padrão pode transformar sua confiança.
+                </p>
+                <a href="https://wa.me/5522999258149?text=Ol%C3%A1%20Dra.%20Amanda!%20Vim%20do%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" class="inline-flex items-center gap-3 bg-dark text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-nude-700 transition-colors shadow-xl shadow-dark/20 hover-lift">
+                    <i class="ph-fill ph-whatsapp text-2xl"></i>
+                    Agendar pelo WhatsApp
+                </a>
+            </div>
+
+            <div class="flex flex-col gap-4 reveal reveal-delay-1">
+                <div class="glass p-6 rounded-3xl flex gap-4 items-start border border-nude-300/40 bg-white/50">
+                    <div class="bg-white p-3 rounded-full text-nude-600 shadow-sm shrink-0"><i class="ph ph-map-pin text-xl"></i></div>
+                    <div class="w-full">
+                        <h4 class="font-display font-medium text-dark mb-1">Localização Premium</h4>
+                        <p class="text-sm text-dark/70 font-light mb-4">Ed. Alexander Fleming<br>R. Conselheiro Otaviano, 84 - Centro<br>Campos dos Goytacazes - RJ, 28010-140</p>
+                        <iframe src="https://maps.google.com/maps?q=Ed.%20Alexander%20Fleming%20-%20R.%20Conselheiro%20Otaviano,%2084%20-%20Centro,%20Campos%20dos%20Goytacazes&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="160" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-2xl shadow-sm border border-nude-300/30 filter grayscale-[30%] hover:grayscale-0 transition-all duration-500"></iframe>
+                    </div>
+                </div>
+                <div class="glass p-6 rounded-3xl flex gap-4 items-start border border-nude-300/40 bg-white/50">
+                    <div class="bg-white p-3 rounded-full text-nude-600 shadow-sm"><i class="ph ph-clock text-xl"></i></div>
+                    <div>
+                        <h4 class="font-display font-medium text-dark mb-1">Atendimento com Hora Marcada</h4>
+                        <p class="text-sm text-dark/70 font-light">Segunda a Sexta: 09h às 19h<br>Sábados: 09h às 13h</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto text-center border-t border-nude-300/30 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-dark/60 font-light">
+            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+                <p>© 2026 Dra. Amanda Estética Dental.</p>
+                <span class="hidden md:inline text-nude-300">|</span>
+                <p>CRO-RJ 57092</p>
+            </div>
+            
+            <div class="flex gap-4 text-xl">
+                <a href="https://instagram.com/dra.amandaaraujo" target="_blank" class="hover:text-nude-600 transition-colors p-2 glass rounded-full"><i class="ph-fill ph-instagram-logo"></i></a>
+                <a href="https://wa.me/5522999258149?text=Ol%C3%A1%20Dra.%20Amanda!%20Vim%20do%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" class="hover:text-nude-600 transition-colors p-2 glass rounded-full"><i class="ph-fill ph-whatsapp-logo"></i></a>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-dark/10 flex flex-col items-center text-center mt-10">
+          <p class="text-[9px] font-bold tracking-widest uppercase text-dark/40 mb-2">
+            © 2026 DRA. AMANDA ESTÉTICA DENTAL
+          </p>
+          <p class="text-[8px] uppercase tracking-[0.3em] text-dark/40 flex items-center justify-center gap-1 font-normal">
+            CRIADO POR 
+            <a href="https://instagram.com/verticy.web" target="_blank" class="font-bold text-dark hover:text-nude-600 transition-colors relative after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:w-full after:h-px after:bg-dark/30 hover:after:bg-nude-600">
+              VERTICY.
+            </a>
+            <span class="opacity-70">PREMIUM SITE</span>
+          </p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 2. Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+                navbar.firstElementChild.classList.add('bg-white/80', 'shadow-sm');
+                navbar.firstElementChild.classList.remove('glass');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+                navbar.firstElementChild.classList.remove('bg-white/80', 'shadow-sm');
+                navbar.firstElementChild.classList.add('glass');
+            }
+        });
+
+        // 3. Before/After Slider Logic
+        const baContainers = document.querySelectorAll('.ba-container');
+
+        baContainers.forEach(container => {
+            const baSliderInput = container.querySelector('.ba-slider-input');
+            const baAfter = container.querySelector('.ba-after');
+            const baHandle = container.querySelector('.ba-handle');
+
+            if (baSliderInput && baAfter && baHandle) {
+                baSliderInput.addEventListener('input', (e) => {
+                    const percentage = e.target.value;
+                    baAfter.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
+                    baHandle.style.left = `${percentage}%`;
+                });
+            }
+        });
+
+        // 4. FAQ Logic
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            if (content.style.maxHeight) {
+                // Fechar
+                content.style.maxHeight = null;
+                icon.classList.remove('rotate-180');
+            } else {
+                // Fechar os outros abertos
+                document.querySelectorAll('.faq-content').forEach(el => el.style.maxHeight = null);
+                document.querySelectorAll('[id^="faq-icon-"]').forEach(el => el.classList.remove('rotate-180'));
+                
+                // Abrir o atual
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.classList.add('rotate-180');
+            }
+        }
+
+        // 5. Menu Mobile Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                mobileMenuIcon.classList.remove('ph-list');
+                mobileMenuIcon.classList.add('ph-x');
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileMenuIcon.classList.remove('ph-x');
+                mobileMenuIcon.classList.add('ph-list');
+                document.body.style.overflow = ''; 
+            }
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+        }
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu); 
+        });
+    </script>
+
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: 'SEU_PROJECT_ID_AQUI' }, // Substitua pelo ID do seu projeto
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'production',
+              autostart: true, 
+              theme: {
+                  primaryColor: '#c69874', 
+                  assistantImage: 'amanda1.png', 
+                  chatWindow: {
+                      backgroundColor: '#fdfbf9', 
+                  }
+              }
+            });
+          };
+          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+</body>
+</html>

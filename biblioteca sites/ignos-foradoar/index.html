@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ignoss Cross | A Sua Casinha Verde</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes Premium (Montserrat & Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            ignoss: {
+              dark: '#0a2a12',   /* Verde Floresta Profundo (Fundo) */
+              card: '#133b1c',   /* Verde Card Ligeiramente mais claro */
+              primary: '#10b981', /* Verde Esmeralda Vibrante */
+              accent: '#aeea00',  /* Verde Lima/Neon Alegre */
+              light: '#ecfdf5',   /* Off-white esverdeado para texto */
+            }
+          },
+          backgroundImage: {
+            'hero-pattern': "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')",
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Ocultar barra de rolagem */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Animações */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Efeito de Pulsar no Botão Principal */
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(174, 234, 0, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(174, 234, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(174, 234, 0, 0); }
+    }
+    .animate-pulse-green {
+      animation: pulse-green 2s infinite;
+    }
+
+    /* Gradiente de texto */
+    .text-gradient-ignoss {
+        background: linear-gradient(to right, #10b981, #aeea00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-ignoss-dark text-ignoss-light overflow-x-hidden selection:bg-ignoss-accent selection:text-ignoss-dark pb-24">
+
+  <!-- Mobile Container -->
+  <div class="max-w-md mx-auto bg-ignoss-dark min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-ignoss-primary/20">
+    
+    <!-- Elementos de Fundo (Luzes Verdes) -->
+    <div class="absolute top-0 left-0 w-full h-[60vh] bg-gradient-to-b from-ignoss-primary/20 to-transparent pointer-events-none mix-blend-overlay"></div>
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-ignoss-accent rounded-full filter blur-[120px] opacity-30 pointer-events-none"></div>
+    <div class="absolute top-[40%] -left-20 w-64 h-64 bg-ignoss-primary rounded-full filter blur-[100px] opacity-20 pointer-events-none"></div>
+
+    <!-- ==========================================
+         HERO SECTION: IGNOSS CROSS
+         ========================================== -->
+    <header class="relative w-full h-[80vh] overflow-hidden rounded-b-[3rem] border-b border-ignoss-accent/20">
+      
+      <!-- Logótipo no Topo -->
+      <div class="absolute top-10 left-0 w-full flex justify-center z-30 animate-float">
+        <img id="img-logo" src="logoignos.png" alt="Ignoss Cross Logo" class="h-24 object-contain drop-shadow-[0_0_25px_rgba(174,234,0,0.5)]" onerror="this.style.display='none'" />
+      </div>
+
+      <!-- Imagem de Fundo (Substitua pela foto principal do box) -->
+      <div class="absolute inset-0 w-full h-full">
+        <img id="img-hero" src="ignos1.png" alt="Capa Principal" class="w-full h-full object-cover grayscale-[20%]" loading="eager" />
+        <!-- Overlay Gradiente Verde Mais Escuro para destacar o texto -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#051509] via-ignoss-dark/80 to-ignoss-primary/20 mix-blend-multiply"></div>
+      </div>
+
+      <!-- Conteúdo Hero -->
+      <div class="absolute inset-0 flex flex-col justify-end p-8 pb-12 z-20 reveal active text-center">
+        
+        <h2 class="text-[11px] font-bold uppercase tracking-[0.3em] text-white mb-2 drop-shadow-md">Bem-vindo à</h2>
+        
+        <h1 class="font-display text-6xl font-black text-ignoss-accent leading-none mb-1 uppercase italic tracking-tighter drop-shadow-[0_0_15px_rgba(174,234,0,0.5)]">
+          IGNOSS
+        </h1>
+        <h1 class="font-display text-6xl font-black text-white leading-none mb-4 uppercase italic tracking-tighter drop-shadow-lg">
+          CROSS
+        </h1>
+        
+        <h3 class="text-sm font-bold text-ignoss-primary uppercase tracking-widest mb-4 bg-black/40 inline-block mx-auto px-4 py-1.5 rounded-full border border-ignoss-primary/30 backdrop-blur-sm">
+          A sua mais nova Casinha Verde
+        </h3>
+
+        <p class="text-[13px] text-ignoss-light/90 mb-8 max-w-xs mx-auto font-medium leading-relaxed drop-shadow-md">
+          Onde o suor encontra a alegria. Mais que um box de CrossFit, uma comunidade que vibra na mesma frequência.
+        </p>
+
+        <!-- Botão Principal de Agendamento -->
+        <button onclick="handleWhatsAppClick('Agendar Aula Experimental')" class="group relative w-full bg-ignoss-accent hover:bg-[#c0ff00] flex items-center justify-center py-4 px-6 rounded-xl font-black text-ignoss-dark uppercase tracking-widest transition-all active:scale-95 animate-pulse-green shadow-lg shadow-ignoss-accent/30">
+            <i data-lucide="calendar-check-2" class="w-5 h-5 mr-3"></i>
+            Agendar Aula Grátis
+        </button>
+      </div>
+    </header>
+
+    <!-- ==========================================
+         FAIXA GYMPASS / TOTALPASS
+         ========================================== -->
+    <div class="bg-[#1c1c1e] py-4 border-b border-ignoss-primary/20 flex justify-center items-center gap-6 shadow-inner relative z-20">
+       <span class="text-[10px] font-bold uppercase tracking-widest text-ignoss-light/70">Nós Aceitamos:</span>
+       <div class="flex items-center gap-2">
+         <div class="w-2 h-2 rounded-full bg-[#E52836]"></div>
+         <span class="font-black text-white italic tracking-tight">Gympass</span>
+       </div>
+       <div class="w-px h-4 bg-white/20"></div>
+       <div class="flex items-center gap-2">
+         <div class="w-2 h-2 rounded-full bg-[#00E5FF]"></div>
+         <span class="font-black text-white italic tracking-tight">TotalPass</span>
+       </div>
+    </div>
+
+    <!-- ==========================================
+         A VIBE DA CASINHA (Mais Visual com Fotos de Fundo)
+         ========================================== -->
+    <section class="px-6 py-12 reveal relative z-20">
+      <div class="flex items-center gap-3 mb-8">
+        <i data-lucide="zap" class="w-6 h-6 text-ignoss-accent fill-ignoss-accent"></i>
+        <h2 class="font-display text-2xl font-black uppercase tracking-wider text-white">A Nossa Vibe</h2>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Card 1: Comunidade Alegre (Com Foto) -->
+        <div class="bg-ignoss-card p-5 rounded-[2rem] border border-ignoss-primary/20 relative overflow-hidden group col-span-2 h-40 flex items-end shadow-lg">
+          <img id="img-vibe-1" src="ignos2.png" alt="Comunidade Alegre" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ignoss-dark via-ignoss-dark/80 to-transparent"></div>
+          <div class="relative z-10 flex items-end gap-4 w-full">
+             <div class="w-12 h-12 rounded-full bg-ignoss-accent/20 flex items-center justify-center text-ignoss-accent shrink-0 border border-ignoss-accent/30 backdrop-blur-md">
+                 <i data-lucide="smile" class="w-6 h-6"></i>
+             </div>
+             <div class="pb-1">
+               <h3 class="font-display text-xl font-bold text-white uppercase mb-1 leading-none">Energia Pura</h3>
+               <p class="text-xs text-ignoss-light/80 leading-snug">Aqui o treino é sério, mas a diversão também. Ambiente leve e acolhedor.</p>
+             </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Coaches -->
+        <div class="bg-ignoss-card p-5 rounded-[2rem] border border-ignoss-primary/20 relative overflow-hidden group shadow-md h-36 flex flex-col justify-end">
+          <img id="img-vibe-2" src="ignos3.png" alt="Coaches" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ignoss-dark to-transparent"></div>
+          <div class="relative z-10">
+            <i data-lucide="users" class="w-6 h-6 text-ignoss-primary mb-2"></i>
+            <h3 class="font-display text-base font-bold text-white uppercase mb-1 leading-none">Coaches Top</h3>
+            <p class="text-[10px] text-ignoss-light/70 leading-tight">Time certificado e focado na sua evolução.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Estrutura -->
+        <div class="bg-ignoss-card p-5 rounded-[2rem] border border-ignoss-primary/20 relative overflow-hidden group shadow-md h-36 flex flex-col justify-end">
+          <img id="img-vibe-3" src="ignos4.png" alt="Estrutura" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ignoss-dark to-transparent"></div>
+          <div class="relative z-10">
+            <i data-lucide="box" class="w-6 h-6 text-ignoss-accent mb-2"></i>
+            <h3 class="font-display text-base font-bold text-white uppercase mb-1 leading-none">Estrutura</h3>
+            <p class="text-[10px] text-ignoss-light/70 leading-tight">Espaço incrível com equipamentos de ponta.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         O NOSSO TREINO (Substitui Programas)
+         ========================================== -->
+    <section class="px-6 pb-12 reveal relative z-20">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="font-display text-2xl font-black uppercase tracking-wider text-white">O Nosso Treino</h2>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Destaque Principal: CrossFit -->
+        <div onclick="handleWhatsAppClick('Treino de CrossFit')" class="relative w-full h-48 rounded-[2rem] overflow-hidden group cursor-pointer border border-ignoss-primary/30 shadow-lg">
+           <img id="img-treino-1" src="ignos5.png" alt="Treino CrossFit" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity group-hover:scale-110 transition-transform duration-700" loading="lazy"/>
+           <div class="absolute inset-0 bg-gradient-to-r from-ignoss-dark via-ignoss-dark/80 to-transparent"></div>
+           <div class="absolute inset-0 p-6 flex flex-col justify-center">
+             <h3 class="font-display text-4xl font-black text-white uppercase italic tracking-tighter drop-shadow-md">CrossFit</h3>
+             <p class="text-[10px] text-ignoss-accent font-bold mt-1 tracking-widest uppercase">Constância • Força • Superação</p>
+             <p class="text-xs text-ignoss-light/70 mt-3 max-w-[85%] leading-tight">Um treino único por dia (WOD), preparado para desafiar os seus limites e entregar resultados reais.</p>
+           </div>
+           <div class="absolute right-5 bottom-5 w-12 h-12 bg-ignoss-accent rounded-full flex items-center justify-center text-ignoss-dark group-hover:bg-white transition-colors shadow-[0_0_15px_rgba(174,234,0,0.4)]">
+              <i data-lucide="arrow-right" class="w-6 h-6"></i>
+           </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+           <!-- Diferencial 1 -->
+           <div class="bg-ignoss-card p-4 rounded-[1.5rem] border border-white/5 shadow-md">
+              <i data-lucide="settings-2" class="w-6 h-6 text-ignoss-accent mb-2"></i>
+              <h4 class="font-display font-bold text-white text-xs uppercase mb-1">100% Adaptável</h4>
+              <p class="text-[10px] text-ignoss-light/60 leading-tight">Não existem turmas separadas. O treino é adaptado a si, do iniciante ao avançado.</p>
+           </div>
+           <!-- Diferencial 2 -->
+           <div class="bg-ignoss-card p-4 rounded-[1.5rem] border border-white/5 shadow-md">
+              <i data-lucide="timer" class="w-6 h-6 text-ignoss-primary mb-2"></i>
+              <h4 class="font-display font-bold text-white text-xs uppercase mb-1">Aulas de 1 Hora</h4>
+              <p class="text-[10px] text-ignoss-light/60 leading-tight">Aquecimento, técnica e o desafio final. Tudo otimizado para a sua rotina.</p>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         IMAGEM DIVISÓRIA GIGANTE
+         ========================================== -->
+    <div class="w-full h-64 relative reveal border-y border-ignoss-primary/20">
+      <img id="img-divisoria" src="ignos6.png" alt="Divisória" class="w-full h-full object-cover grayscale-[20%]" loading="lazy"/>
+      <div class="absolute inset-0 bg-ignoss-primary/20 mix-blend-multiply"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <p class="font-display text-4xl font-black text-white italic tracking-tighter uppercase opacity-80 mix-blend-overlay">Casinha Verde</p>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         GRADE DE HORÁRIOS (TABELA FIEL)
+         ========================================== -->
+    <section class="px-6 py-12 reveal relative z-20 bg-ignoss-dark">
+       <div class="flex items-center gap-3 mb-6">
+         <i data-lucide="clock" class="w-6 h-6 text-ignoss-accent"></i>
+         <h2 class="font-display text-2xl font-black uppercase tracking-wider text-white">Horários - Aulas</h2>
+       </div>
+       <p class="text-xs text-ignoss-light/70 mb-6">Deslize a tabela para o lado para ver todos os dias da semana.</p>
+
+       <div class="w-full overflow-x-auto hide-scrollbar rounded-[1.5rem] border border-ignoss-primary/30 shadow-2xl relative">
+         
+         <!-- Linha decorativa de fundo simulando o design da foto -->
+         <div class="absolute inset-0 pointer-events-none opacity-20 z-0">
+           <svg viewBox="0 0 500 300" preserveAspectRatio="none" class="w-full h-full text-ignoss-accent">
+             <path d="M-50,250 L150,150 L250,50 L350,150 L550,250" fill="none" stroke="currentColor" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+           </svg>
+         </div>
+
+         <!-- Tabela Fiel à Imagem -->
+         <table class="w-full min-w-[500px] text-center border-collapse bg-ignoss-card relative z-10">
+           <thead>
+             <tr class="bg-ignoss-dark text-white font-black uppercase tracking-widest text-[10px]">
+               <th class="py-4 px-2 border-b border-ignoss-primary/20 whitespace-nowrap">Segunda</th>
+               <th class="py-4 px-2 border-b border-ignoss-primary/20 whitespace-nowrap">Terça</th>
+               <th class="py-4 px-2 border-b border-ignoss-primary/20 whitespace-nowrap">Quarta</th>
+               <th class="py-4 px-2 border-b border-ignoss-primary/20 whitespace-nowrap">Quinta</th>
+               <th class="py-4 px-2 border-b border-ignoss-primary/20 whitespace-nowrap">Sexta</th>
+             </tr>
+           </thead>
+           <tbody class="text-ignoss-light font-bold text-sm tracking-widest">
+             <!-- 06:40 -->
+             <tr class="bg-white/5 border-b border-white/5">
+               <td class="py-3.5 px-2">06:40</td><td class="py-3.5 px-2">06:40</td><td class="py-3.5 px-2">06:40</td><td class="py-3.5 px-2">06:40</td><td class="py-3.5 px-2">06:40</td>
+             </tr>
+             <!-- 08:00 -->
+             <tr class="border-b border-white/5">
+               <td class="py-3.5 px-2">08:00</td><td class="py-3.5 px-2">08:00</td><td class="py-3.5 px-2">08:00</td><td class="py-3.5 px-2">08:00</td><td class="py-3.5 px-2">08:00</td>
+             </tr>
+             <!-- 09:00 -->
+             <tr class="bg-white/5 border-b border-white/5">
+               <td class="py-3.5 px-2">09:00</td><td class="py-3.5 px-2 text-white/20 font-normal">------</td><td class="py-3.5 px-2">09:00</td><td class="py-3.5 px-2 text-white/20 font-normal">------</td><td class="py-3.5 px-2">09:00</td>
+             </tr>
+             <!-- 16:00 -->
+             <tr class="border-b border-white/5">
+               <td class="py-3.5 px-2">16:00</td><td class="py-3.5 px-2 text-[#fbbf24] font-black">KIDS</td><td class="py-3.5 px-2">16:00</td><td class="py-3.5 px-2 text-[#fbbf24] font-black">KIDS</td><td class="py-3.5 px-2">16:00</td>
+             </tr>
+             <!-- 17:00 -->
+             <tr class="bg-white/5 border-b border-white/5">
+               <td class="py-3.5 px-2">17:00</td><td class="py-3.5 px-2">17:00</td><td class="py-3.5 px-2">17:00</td><td class="py-3.5 px-2">17:00</td><td class="py-3.5 px-2">17:00</td>
+             </tr>
+             <!-- 18:00 -->
+             <tr class="border-b border-white/5">
+               <td class="py-3.5 px-2">18:00</td><td class="py-3.5 px-2">18:00</td><td class="py-3.5 px-2">18:00</td><td class="py-3.5 px-2">18:00</td><td class="py-3.5 px-2">18:00</td>
+             </tr>
+             <!-- 19:00 -->
+             <tr class="bg-white/5 border-b border-white/5">
+               <td class="py-3.5 px-2">19:00</td><td class="py-3.5 px-2">19:00</td><td class="py-3.5 px-2">19:00</td><td class="py-3.5 px-2">19:00</td><td class="py-3.5 px-2">19:00</td>
+             </tr>
+             <!-- 20:00 -->
+             <tr>
+               <td class="py-3.5 px-2">20:00</td><td class="py-3.5 px-2">20:00</td><td class="py-3.5 px-2">20:00</td><td class="py-3.5 px-2">20:00</td><td class="py-3.5 px-2">20:00</td>
+             </tr>
+           </tbody>
+         </table>
+       </div>
+    </section>
+
+    <!-- ==========================================
+         CONTATO FINAL & MAPA
+         ========================================== -->
+    <section class="px-8 pt-16 pb-24 relative z-10 bg-ignoss-card text-white text-center reveal rounded-t-[3rem] border-t-2 border-ignoss-accent/20 shadow-[0_-20px_60px_rgba(16,185,129,0.1)]">
+      
+      <div class="w-12 h-1 bg-ignoss-accent mx-auto mb-8 rounded-full"></div>
+
+      <h2 class="text-sm font-bold uppercase tracking-[0.3em] text-ignoss-accent mb-4">Faça Parte</h2>
+      
+      <!-- Mapa Google Integrado -->
+      <div class="w-full h-56 rounded-[2rem] overflow-hidden border-2 border-ignoss-primary/20 mb-6 bg-ignoss-dark relative z-10 shadow-lg">
+        <iframe src="https://maps.google.com/maps?q=Av.%20Zuza%20Mota,%2084%20-%20Parque%20Calabouco,%20Campos%20dos%20Goytacazes&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(80deg) brightness(80%) contrast(120%);" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+      <div class="mb-10 p-6 bg-ignoss-dark/50 border border-ignoss-primary/20 rounded-[2rem] relative overflow-hidden group">
+        <div class="flex flex-col items-center gap-4 relative z-10">
+            <div class="w-14 h-14 bg-ignoss-accent/10 rounded-full flex items-center justify-center">
+                <i data-lucide="map-pin" class="w-7 h-7 text-ignoss-accent"></i>
+            </div>
+            <p class="text-sm leading-relaxed text-ignoss-light/90 font-medium">
+                Av. Zuza Mota, 84 - Parque Alvorada<br>
+                Campos dos Goytacazes - RJ, 28083-000
+            </p>
+        </div>
+      </div>
+
+      <div class="space-y-4 mb-12">
+        <!-- Botão WhatsApp Final -->
+        <button 
+          onclick="handleWhatsAppClick()"
+          class="w-full bg-ignoss-primary hover:bg-[#0e9f6e] text-white py-5 rounded-2xl font-black text-lg uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-lg shadow-ignoss-primary/20 active:scale-95"
+        >
+          <i data-lucide="message-circle" class="w-7 h-7"></i>
+          Chamar no WhatsApp
+        </button>
+
+        <!-- Instagram -->
+        <button 
+          onclick="window.open('https://instagram.com/ignosscross', '_blank')"
+          class="w-full bg-transparent border-2 border-ignoss-light/10 text-ignoss-light/70 py-4 rounded-2xl font-bold text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-2 mt-4 hover:bg-ignoss-light/5 hover:text-white hover:border-ignoss-accent"
+        >
+          <i data-lucide="instagram" class="w-5 h-5"></i>
+          @ignosscross
+        </button>
+      </div>
+
+      <!-- Assinatura -->
+      <div class="pt-8 border-t border-ignoss-light/10">
+        <p class="text-[9px] font-bold tracking-widest uppercase text-ignoss-light/30 mb-2">
+          © 2026 IGNOSS CROSS
+        </p>
+        <p class="text-[9px] uppercase tracking-[0.3em] text-ignoss-light/30 flex items-center justify-center gap-1">
+          CRIADO POR <strong class="text-ignoss-accent font-black tracking-widest">VERTICY.</strong> PREMIUM BIO
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // ⚙️ CONFIGURAÇÕES - IGNOSS CROSS
+    // ==========================================
+    const config = {
+      whatsapp: "5522999100726", // Atualizado
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      // Animações Reveal ao fazer Scroll
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target); 
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+
+    function handleWhatsAppClick(interesse = "") {
+      let text = "Olá! Vim pela Bio da Ignoss Cross e gostaria de mais informações.";
+      if (interesse) {
+        text = `Olá! Vim pela Bio e tenho interesse em: *${interesse}*. Como funciona?`;
+      }
+      const url = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

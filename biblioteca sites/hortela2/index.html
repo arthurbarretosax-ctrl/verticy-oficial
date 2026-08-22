@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Hortelã | Moda Feminina (Dark)</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes Premium -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Cores Oficiais da Hortelã (Dark Mode Premium) */
+    :root {
+      --cor-fundo: #050605;      /* Preto com nuance de verde floresta muito escuro */
+      --cor-texto: #FDFBF7;      /* Off-white para leitura elegante no escuro */
+      --cor-menta: #9AD4AA;      /* Verde Menta da Logo (Destaque) */
+      --cor-card: #0A0D0B;       /* Fundo dos cartões escuros */
+      --cor-card-light: #161A18; /* Fundo dos cartões intermédios */
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif { font-family: 'Playfair Display', serif; }
+
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* --- ANIMAÇÕES PREMIUM --- */
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .animate-ken-burns {
+      animation: kenBurns 20s ease-in-out infinite;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { 
+      animation: marquee 20s linear infinite; 
+      width: max-content;
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9) translateY(30px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-scale.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
+    .faq-content.open {
+      opacity: 1;
+    }
+
+    /* Efeito Noise Fino e Delicado (Dark) */
+    .bg-noise {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-[#9AD4AA] selection:text-[#050605] pb-0 bg-[#050605]">
+
+  <!-- Contentor Mobile (Dark Mode) -->
+  <div class="max-w-md mx-auto min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-[#050605] sm:border-x sm:border-white/5 overflow-hidden flex flex-col">
+    
+    <div class="bg-noise mix-blend-overlay"></div>
+
+    <!-- Elementos Decorativos de Fundo (Glows Menta) -->
+    <div class="absolute top-0 right-0 w-80 h-80 bg-[#9AD4AA] rounded-full mix-blend-overlay filter blur-[150px] opacity-20 pointer-events-none"></div>
+    <div class="absolute top-[40%] left-[-50px] w-96 h-96 bg-[#9AD4AA] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 pointer-events-none"></div>
+
+    <!-- ==========================================
+         CABEÇALHO FLUTUANTE
+         ========================================== -->
+    <header class="absolute top-0 left-0 w-full z-50 flex justify-start items-center px-6 py-6 text-white">
+      <span class="text-[9px] font-semibold uppercase tracking-[0.2em] bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 shadow-sm">Nova Coleção</span>
+    </header>
+
+    <!-- ==========================================
+         HERO SECTION (Estilo Revista de Moda Dark)
+         ========================================== -->
+    <section class="relative w-full h-[70vh] rounded-b-[3rem] overflow-hidden shadow-2xl reveal active group border-b border-white/5 bg-[#0A0D0B]">
+      <!-- Imagem com efeito de zoom lento -->
+      <div class="absolute inset-0 w-full h-[120%] -top-[10%]">
+        <img id="img-hortela1" src="" alt="Coleção Hortelã" class="w-full h-full object-cover object-center animate-ken-burns parallax-bg opacity-90" loading="eager" fetchpriority="high" />
+      </div>
+      
+      <!-- Gradientes (Escuros para a logo BRANCA sobressair) -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#050605]/60 via-transparent to-transparent"></div>
+      <div class="absolute bottom-0 left-0 w-full h-72 bg-gradient-to-t from-[#050605] via-[#050605]/80 to-transparent"></div>
+
+      <!-- Logo Sobreposta (Com Sombra para destacar no escuro) -->
+      <div class="absolute bottom-10 left-0 w-full flex justify-center px-6 transform transition-transform duration-700 group-hover:-translate-y-2">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black/50 via-transparent to-transparent blur-xl w-64 h-32 left-1/2 -translate-x-1/2 rounded-full pointer-events-none"></div>
+        <!-- Logo -->
+        <img id="img-logo-topo" src="" alt="Hortelã Logo" class="w-56 md:w-64 object-contain drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] relative z-10" />
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LETREIRO MARQUEE (Elegante)
+         ========================================== -->
+    <div class="w-full overflow-hidden border-b border-white/5 py-3 relative z-20 bg-black/50 backdrop-blur-md">
+      <div class="animate-marquee flex gap-8 items-center text-white/80">
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Moda Feminina</span>
+        <span class="text-[10px] text-[#9AD4AA]">✦</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] italic">Elegância</span>
+        <span class="text-[10px] text-[#9AD4AA]">✦</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Conforto</span>
+        <span class="text-[10px] text-[#9AD4AA]">✦</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] italic">Sofisticação</span>
+        <span class="text-[10px] text-[#9AD4AA]">✦</span>
+        <!-- Clone -->
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Moda Feminina</span>
+        <span class="text-[10px] text-[#9AD4AA]">✦</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] italic">Elegância</span>
+        <span class="text-[10px] text-[#9AD4AA]">✦</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Conforto</span>
+        <span class="text-[10px] text-[#9AD4AA]">✦</span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] italic">Sofisticação</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         BENTO BOX DE AÇÕES (Dark Glass)
+         ========================================== -->
+    <section class="px-5 mt-10 space-y-4 relative z-20">
+      
+      <!-- Cartão 1: Loja Pelinca (Verde Menta Destaque) -->
+      <div onclick="handleLink('whatsapp_pelinca')" class="w-full bg-[#9AD4AA] rounded-[2rem] h-40 flex overflow-hidden shadow-[0_10px_30px_rgba(154,212,170,0.15)] cursor-pointer group hover:shadow-xl transition-all duration-500 reveal active:scale-[0.98]">
+        <div class="w-[55%] p-6 flex flex-col justify-center relative">
+          <h3 class="font-serif text-2xl text-[#050605] mb-1.5 relative z-10 group-hover:text-white transition-colors">Pelinca</h3>
+          <p class="text-[10px] uppercase tracking-widest text-[#050605]/70 font-bold whitespace-nowrap truncate relative z-10">
+            Atendimento Loja 1
+          </p>
+          <div class="absolute bottom-5 right-5 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-2 transition-transform duration-500 border border-white/30 shadow-sm">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-[#050605]"></i>
+          </div>
+        </div>
+        <div class="w-[45%] h-full relative overflow-hidden bg-[#9AD4AA]">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#9AD4AA] via-[#9AD4AA]/60 to-transparent z-10"></div>
+          <img id="img-hortela2" src="" alt="Loja Pelinca" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700 mix-blend-multiply opacity-80" />
+        </div>
+      </div>
+
+      <!-- Cartão 2: Loja Goytacazes (Cinza Escuro) -->
+      <div onclick="handleLink('whatsapp_goytacazes')" class="w-full bg-[#161A18] rounded-[2rem] h-40 flex overflow-hidden shadow-lg cursor-pointer group hover:shadow-xl hover:border-[#9AD4AA]/30 border border-white/5 transition-all duration-500 reveal active:scale-[0.98] delay-100">
+        <div class="w-[45%] h-full relative overflow-hidden bg-[#161A18]">
+          <div class="absolute inset-0 bg-gradient-to-l from-[#161A18] via-[#161A18]/60 to-transparent z-10"></div>
+          <img id="img-hortela3" src="" alt="Loja Goytacazes" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700 opacity-60" />
+        </div>
+        <div class="w-[55%] p-6 flex flex-col justify-center items-end text-right relative">
+          <h3 class="font-serif text-2xl text-white mb-1.5 relative z-10 group-hover:text-[#9AD4AA] transition-colors">Goytacazes</h3>
+          <p class="text-[9.5px] uppercase tracking-widest text-white/50 font-bold whitespace-nowrap truncate relative z-10">
+            Atendimento Loja 2
+          </p>
+          <div class="absolute bottom-5 left-5 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:-translate-x-2 transition-transform duration-500 border border-white/10">
+            <i data-lucide="arrow-left" class="w-4 h-4 text-[#9AD4AA]"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cartão 3: Instagram (Preto/Vidro) -->
+      <div onclick="handleLink('instagram')" class="w-full bg-[#0A0D0B] border border-white/5 rounded-[2rem] h-40 flex overflow-hidden shadow-lg cursor-pointer group hover:shadow-xl hover:border-[#9AD4AA]/30 transition-all duration-500 reveal active:scale-[0.98] delay-200">
+        <div class="w-[55%] p-6 flex flex-col justify-center relative">
+          <h3 class="font-serif text-2xl text-white mb-1.5 relative z-10 group-hover:text-[#9AD4AA] transition-colors">Novidades</h3>
+          <p class="text-[10px] uppercase tracking-widest text-white/50 font-bold whitespace-nowrap truncate relative z-10">
+            Siga-nos no Insta
+          </p>
+          <div class="absolute bottom-5 right-5 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:translate-x-2 transition-transform duration-500 border border-white/10">
+            <i data-lucide="instagram" class="w-4 h-4 text-[#9AD4AA]"></i>
+          </div>
+        </div>
+        <div class="w-[45%] h-full relative overflow-hidden bg-[#0A0D0B]">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0A0D0B] via-[#0A0D0B]/60 to-transparent z-10"></div>
+          <img id="img-hortela4" src="" alt="Instagram Hortelã" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700 opacity-60" />
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         A ESSÊNCIA HORTELÃ (Editorial Dark)
+         ========================================== -->
+    <section class="px-8 mt-20 mb-12 reveal">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-12 h-[1px] bg-[#9AD4AA]"></div>
+        <h2 class="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50">A Essência</h2>
+      </div>
+      <h2 class="font-serif text-4xl text-white mb-8 leading-tight">Onde encontra o seu <br><span class="italic text-[#9AD4AA]">look perfeito.</span></h2>
+      <div class="space-y-4 text-[14px] text-white/70 font-medium leading-relaxed text-justify relative">
+        <i data-lucide="quote" class="absolute -top-4 -left-3 w-12 h-12 text-[#9AD4AA]/10 -z-10 rotate-180"></i>
+        <p>
+          Na <strong class="font-bold text-white">Hortelã</strong>, acreditamos que a moda é muito mais do que vestir: é sentir-se incrivelmente bem e confiante em todas as ocasiões.
+        </p>
+        <p>
+          Através de uma curadoria criteriosa, trazemos tecidos leves, cortes atemporais e muita elegância. A sua roupa deve ser um reflexo da sua verdadeira essência.
+        </p>
+      </div>
+    </section>
+
+    <!-- Foto Editorial Quadrada -->
+    <section class="px-5 mb-16 reveal-scale">
+      <div class="w-full aspect-square rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 relative group bg-[#0A0D0B]">
+        <img id="img-hortela5" src="" alt="Look Hortelã" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 opacity-90" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ==========================================
+         DETALHES QUE ENCANTAM (GALERIA)
+         ========================================== -->
+    <section class="py-10 relative z-10 border-t border-white/5 reveal bg-gradient-to-b from-[#050605] to-[#0A0D0B]">
+      <div class="px-8 mb-8 text-center">
+        <h2 class="text-3xl font-serif text-white mb-3">Nossas Peças</h2>
+        <p class="text-xs text-white/60 font-medium leading-relaxed max-w-[90%] mx-auto uppercase tracking-widest">
+          O toque que faz a diferença
+        </p>
+      </div>
+
+      <!-- Grid Cascata de 4 Fotos -->
+      <div class="grid grid-cols-2 gap-3 px-6 pb-8">
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-lg border border-white/10 relative group reveal-scale bg-[#0A0D0B]">
+          <img id="img-hortela6" src="" alt="Detalhe Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 hover:opacity-100" loading="lazy" />
+        </div>
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-lg border border-white/10 relative group reveal-scale delay-100 bg-[#0A0D0B]">
+          <img id="img-hortela7" src="" alt="Detalhe Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 hover:opacity-100" loading="lazy" />
+        </div>
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-lg border border-white/10 relative group reveal-scale delay-200 bg-[#0A0D0B]">
+          <img id="img-hortela8" src="" alt="Detalhe Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 hover:opacity-100" loading="lazy" />
+        </div>
+        <div class="aspect-square rounded-[1.5rem] overflow-hidden shadow-lg border border-white/10 relative group reveal-scale delay-300 bg-[#0A0D0B]">
+          <img id="img-hortela9" src="" alt="Detalhe Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 hover:opacity-100" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         NOSSAS LOJAS FÍSICAS
+         ========================================== -->
+    <section class="px-6 py-12 relative z-10 reveal">
+      <div class="flex items-center gap-3 mb-8 pl-1">
+        <div class="w-8 h-[2px] bg-[#9AD4AA]"></div>
+        <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-white">Nossas Lojas Físicas</h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- Loja Pelinca -->
+        <div class="bg-[#0A0D0B] p-6 rounded-[2rem] border border-white/5 shadow-lg flex flex-col gap-3 group hover:border-[#9AD4AA]/50 transition-colors relative overflow-hidden">
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-[#9AD4AA]/10 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="flex items-center gap-4 relative z-10">
+            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-[#9AD4AA] shrink-0 border border-white/10">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-bold text-white">Loja Pelinca</h3>
+              <p class="text-[10px] uppercase tracking-widest text-white/50 font-bold mt-1">Campos dos Goytacazes</p>
+            </div>
+          </div>
+          <p class="text-xs text-white/70 leading-relaxed pl-16 pt-3 border-t border-white/5 font-medium relative z-10">
+            Rua Conselheiro José Fernandes N. 485, Loja 2
+          </p>
+        </div>
+
+        <!-- Loja Goytacazes -->
+        <div class="bg-[#0A0D0B] p-6 rounded-[2rem] border border-white/5 shadow-lg flex flex-col gap-3 group hover:border-white/20 transition-colors relative overflow-hidden">
+          <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="flex items-center gap-4 relative z-10">
+            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white/70 shrink-0 border border-white/10">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-bold text-white">Loja Goytacazes</h3>
+              <p class="text-[10px] uppercase tracking-widest text-white/50 font-bold mt-1">Campos dos Goytacazes</p>
+            </div>
+          </div>
+          <p class="text-xs text-white/70 leading-relaxed pl-16 pt-3 border-t border-white/5 font-medium relative z-10">
+            Rua São Gonçalo N. 72
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ (DÚVIDAS COMUNS)
+         ========================================== -->
+    <section class="bg-[#0A0D0B] rounded-t-[3.5rem] pt-16 pb-8 px-6 reveal shadow-[0_-10px_40px_rgba(0,0,0,0.5)] relative border-t border-white/5 mt-4">
+      
+      <div class="absolute top-4 left-1/2 -translate-x-1/2 w-12 h-1 bg-white/10 rounded-full"></div>
+
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-3xl text-white mb-2">Informações</h2>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-[#9AD4AA] font-bold">Dúvidas Frequentes</p>
+      </div>
+
+      <div class="space-y-3">
+        <!-- FAQ 1 -->
+        <div class="faq-item border border-white/5 rounded-2xl bg-[#161A18] overflow-hidden transition-all duration-300 shadow-md">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="font-serif text-[15px] font-semibold text-white">Fazem envios para todo o Brasil?</span>
+            <div class="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+              <i data-lucide="chevron-down" class="w-3 h-3 text-[#9AD4AA] transition-transform duration-500 icon-arrow"></i>
+            </div>
+          </button>
+          <div class="faq-content px-5">
+            <p class="text-[12px] text-white/60 font-medium leading-relaxed pb-5 border-t border-white/5 pt-3">
+              Sim! Enviamos nossas peças com todo o carinho e segurança para qualquer lugar do Brasil. O frete é calculado diretamente pelo nosso WhatsApp.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item border border-white/5 rounded-2xl bg-[#161A18] overflow-hidden transition-all duration-300 shadow-md">
+          <button class="faq-button w-full px-5 py-4 flex items-center justify-between text-left">
+            <span class="font-serif text-[15px] font-semibold text-white">Onde ficam as lojas físicas?</span>
+            <div class="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+              <i data-lucide="chevron-down" class="w-3 h-3 text-[#9AD4AA] transition-transform duration-500 icon-arrow"></i>
+            </div>
+          </button>
+          <div class="faq-content px-5">
+            <p class="text-[12px] text-white/60 font-medium leading-relaxed pb-5 border-t border-white/5 pt-3">
+              Temos duas unidades prontas para te receber com muito afeto em Campos dos Goytacazes:<br><br>
+              📍 <strong class="text-white">Loja Pelinca:</strong> Rua Conselheiro José Fernandes N. 485, loja 2<br>
+              📍 <strong class="text-white">Loja Goytacazes:</strong> Rua São Gonçalo N. 72
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assinatura Rodapé -->
+      <div class="text-center pt-16 pb-6">
+        <!-- Ícone do Insta (SVG Nativo para não falhar) -->
+        <button onclick="handleLink('instagram')" class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#050605] mx-auto mb-6 hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </button>
+        
+        <p class="text-[9px] font-bold tracking-widest uppercase text-white/30 mb-2">
+          © 2026 LOJA HORTELÃ
+        </p>
+        <p class="text-[8px] uppercase tracking-[0.3em] text-white/20 flex items-center justify-center gap-1">
+          Criado por 
+          <a href="https://instagram.com/verticy.web" target="_blank" class="text-white font-black text-[10px] tracking-widest hover:text-[#9AD4AA] transition-colors">
+            VERTICY.
+          </a>
+        </p>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // ⚙️ CONFIGURAÇÕES - HORTELÃ MODA
+    // ==========================================
+    const config = {
+      whatsapp_pelinca: "5522998372461", 
+      whatsapp_goytacazes: "5522998372461", 
+      instagram: "https://instagram.com/moda.hortela",
+      
+      fotos: {
+        logo_topo: "hortela_logo.png", 
+        hortela1: "hortela1.png",      
+        hortela2: "hortela2.png",      
+        hortela3: "hortela3.png",      
+        hortela4: "hortela4.png",      
+        hortela5: "hortela5.png",      
+        hortela6: "hortela6.png",      
+        hortela7: "hortela7.png",      
+        hortela8: "hortela8.png",      
+        hortela9: "hortela9.png",      
+      }
+    };
+
+    function handleLink(tipo) {
+      if (tipo === 'whatsapp_pelinca') {
+        window.open(`https://wa.me/${config.whatsapp_pelinca}?text=${encodeURIComponent('Olá! Gostaria de falar com o atendimento da Loja Pelinca.')}`, '_blank');
+      } else if (tipo === 'whatsapp_goytacazes') {
+        window.open(`https://wa.me/${config.whatsapp_goytacazes}?text=${encodeURIComponent('Olá! Gostaria de falar com o atendimento da Loja Goytacazes.')}`, '_blank');
+      } else if (tipo === 'instagram') {
+        window.open(config.instagram, '_blank');
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      const imagensMap = {
+        'img-logo-topo': config.fotos.logo_topo,
+        'img-hortela1': config.fotos.hortela1,
+        'img-hortela2': config.fotos.hortela2,
+        'img-hortela3': config.fotos.hortela3,
+        'img-hortela4': config.fotos.hortela4,
+        'img-hortela5': config.fotos.hortela5,
+        'img-hortela6': config.fotos.hortela6,
+        'img-hortela7': config.fotos.hortela7,
+        'img-hortela8': config.fotos.hortela8,
+        'img-hortela9': config.fotos.hortela9,
+      };
+
+      for (const [id, url] of Object.entries(imagensMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target); 
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal, .reveal-scale').forEach(el => observer.observe(el));
+
+      const faqButtons = document.querySelectorAll('.faq-button');
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector('.icon-arrow');
+          
+          document.querySelectorAll('.faq-content').forEach(c => {
+            if (c !== content) {
+              c.style.maxHeight = null;
+              c.classList.remove('open');
+              c.previousElementSibling.querySelector('.icon-arrow').style.transform = 'rotate(0deg)';
+            }
+          });
+
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            content.classList.remove('open');
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add('open');
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        document.querySelectorAll('.parallax-bg').forEach(el => {
+          const speed = 0.15;
+          el.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

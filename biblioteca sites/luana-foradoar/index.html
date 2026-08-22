@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luana Pessanha | LP.VMAKER</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Fontes Cinematográficas -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            lens: {
+              black: '#09090b',
+              dark: '#18181b',
+              accent: '#f59e0b', /* Âmbar/Laranja quente inspirado na foto de perfil */
+              light: '#f4f4f5',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Ocultar barra de rolagem */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Efeitos Visuais Premium */
+    .glass-card {
+      background: rgba(24, 24, 27, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Animações */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Efeito de Foco de Câmera (Glow) */
+    .camera-focus {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, rgba(9,9,11,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body class="bg-lens-black text-lens-light overflow-x-hidden selection:bg-lens-accent selection:text-lens-black pb-20 min-h-screen">
+
+  <!-- Mobile Container -->
+  <div class="max-w-md mx-auto bg-lens-black min-h-screen relative shadow-2xl overflow-hidden sm:border-x sm:border-white/5">
+    
+    <!-- Luz de Fundo (Vibe Palco/Golden Hour) -->
+    <div class="camera-focus top-0 left-1/2 -translate-x-1/2"></div>
+
+    <!-- ==========================================
+         HERO SECTION: A VIDEOMAKER
+         ========================================== -->
+    <header class="relative pt-12 pb-6 px-6 text-center z-10 reveal active">
+      
+      <!-- Tag / Distintivo -->
+      <div class="inline-flex items-center gap-2 bg-lens-dark border border-white/5 px-3 py-1.5 rounded-full mb-6 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-lens-accent animate-pulse"></span>
+        <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-white/70">Videomaker & Fotógrafa</span>
+      </div>
+
+      <!-- Avatar (Foto de Perfil Redonda) -->
+      <div class="relative w-36 h-36 mx-auto mb-6">
+        <div class="absolute inset-0 rounded-full border-2 border-lens-accent/30 animate-[spin_10s_linear_infinite] border-t-lens-accent border-r-transparent border-b-transparent border-l-transparent"></div>
+        <div class="w-full h-full rounded-full overflow-hidden border-4 border-lens-black bg-lens-dark z-10 relative">
+          <!-- OTIMIZAÇÃO: Carregamento rápido -->
+          <img id="img-perfil" src="" alt="Luana Pessanha" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+        </div>
+      </div>
+
+      <!-- Títulos -->
+      <h1 class="font-display text-4xl font-black text-white tracking-tight mb-1">
+        Luana Pessanha
+      </h1>
+      <h2 class="text-xs font-bold text-lens-accent uppercase tracking-[0.3em] mb-4">
+        LP.VMAKER
+      </h2>
+
+      <p class="text-sm text-white/60 leading-relaxed max-w-xs mx-auto italic font-medium">
+        "Transformando momentos em imagens e histórias que conectam."
+      </p>
+    </header>
+
+    <!-- ==========================================
+         CARTA DE APRESENTAÇÃO (O Espaço Criativo)
+         ========================================== -->
+    <section class="px-5 py-6 relative z-10 reveal">
+      <div class="glass-card rounded-[2rem] p-6 shadow-xl border-t border-t-white/10 relative overflow-hidden">
+        <!-- Ícone decorativo marca d'água -->
+        <i data-lucide="camera" class="absolute -right-4 -bottom-4 w-32 h-32 text-white/[0.02] -rotate-12"></i>
+        
+        <h3 class="font-display text-xl font-bold text-white mb-3 flex items-center gap-2">
+          📸 Bem-vindo(a)!
+        </h3>
+        <p class="text-[13px] text-white/80 leading-relaxed mb-4 font-medium">
+          Aqui transformo momentos em imagens e histórias em vídeos que conectam pessoas e marcas.
+        </p>
+        <p class="text-[11px] text-white/50 leading-relaxed">
+          💡 Meu objetivo é registrar com autenticidade e entregar resultados que inspiram e comunicam.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SERVIÇOS PROFISSIONAIS
+         ========================================== -->
+    <section class="px-5 py-8 relative z-10 reveal">
+      <div class="flex items-center justify-between mb-6 ml-2">
+        <h2 class="font-display text-2xl font-bold text-white tracking-tight">O que eu faço</h2>
+      </div>
+
+      <div class="space-y-3">
+        
+        <!-- Serviço 1: Fotografia -->
+        <div onclick="handleWhatsApp('Fotografia Profissional')" class="glass-card p-5 rounded-[1.5rem] flex items-center gap-4 cursor-pointer group hover:border-lens-accent/50 hover:bg-white/5 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-lens-black border border-white/10 flex items-center justify-center group-hover:text-lens-accent transition-colors shadow-inner">
+            <i data-lucide="camera" class="w-6 h-6"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="text-sm font-bold text-white mb-1">Fotografia Profissional</h4>
+            <p class="text-[10px] text-white/50 leading-tight">Eventos, esportiva, ensaios e lifestyle.</p>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-lens-accent transition-transform group-hover:translate-x-1"></i>
+        </div>
+
+        <!-- Serviço 2: Vídeos -->
+        <div onclick="handleWhatsApp('Produção de Vídeos')" class="glass-card p-5 rounded-[1.5rem] flex items-center gap-4 cursor-pointer group hover:border-lens-accent/50 hover:bg-white/5 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-lens-black border border-white/10 flex items-center justify-center group-hover:text-lens-accent transition-colors shadow-inner">
+            <i data-lucide="video" class="w-6 h-6"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="text-sm font-bold text-white mb-1">Produção de Vídeos</h4>
+            <p class="text-[10px] text-white/50 leading-tight">Vídeos criativos e materiais institucionais.</p>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-lens-accent transition-transform group-hover:translate-x-1"></i>
+        </div>
+
+        <!-- Serviço 3: Redes Sociais -->
+        <div onclick="handleWhatsApp('Cobertura em Tempo Real')" class="glass-card p-5 rounded-[1.5rem] flex items-center gap-4 cursor-pointer group hover:border-lens-accent/50 hover:bg-white/5 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-lens-black border border-white/10 flex items-center justify-center group-hover:text-lens-accent transition-colors shadow-inner">
+            <i data-lucide="smartphone" class="w-6 h-6"></i>
+          </div>
+          <div class="flex-1">
+            <h4 class="text-sm font-bold text-white mb-1">Cobertura p/ Redes Sociais</h4>
+            <p class="text-[10px] text-white/50 leading-tight">Registros em tempo real focados em social media.</p>
+          </div>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-white/30 group-hover:text-lens-accent transition-transform group-hover:translate-x-1"></i>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PORTFÓLIO / GALERIA DE TRABALHOS
+         ========================================== -->
+    <section class="py-10 relative z-10 reveal bg-lens-dark border-y border-white/5">
+      <div class="px-7 mb-6 flex justify-between items-end">
+        <div>
+          <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-lens-accent mb-1 block">No Foco</span>
+          <h2 class="font-display text-2xl font-bold text-white tracking-tight">Portfólio</h2>
+        </div>
+        <button onclick="window.open('https://instagram.com/lp.vmaker', '_blank')" class="text-[10px] font-bold text-white/50 uppercase tracking-widest hover:text-white transition-colors border-b border-white/20 pb-0.5">
+          Ver Feed
+        </button>
+      </div>
+
+      <!-- Galeria Horizontal (Snap Scroll) -->
+      <div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar snap-x pb-4">
+        
+        <!-- Trabalho 1 (Show) -->
+        <div class="snap-center shrink-0 w-56 h-80 rounded-[2rem] overflow-hidden relative shadow-xl border border-white/5 group">
+          <img id="img-port-1" src="" alt="Fotografia de Show" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-lens-black via-transparent to-transparent flex flex-col justify-end p-5">
+            <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2">
+               <i data-lucide="music" class="w-4 h-4 text-white"></i>
+            </div>
+            <p class="text-sm font-bold text-white tracking-wide">Eventos & Shows</p>
+          </div>
+        </div>
+
+        <!-- Trabalho 2 (Esporte) -->
+        <div class="snap-center shrink-0 w-56 h-80 rounded-[2rem] overflow-hidden relative shadow-xl border border-white/5 group">
+          <img id="img-port-2" src="" alt="Fotografia Esportiva" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-lens-black via-transparent to-transparent flex flex-col justify-end p-5">
+            <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2">
+               <i data-lucide="activity" class="w-4 h-4 text-white"></i>
+            </div>
+            <p class="text-sm font-bold text-white tracking-wide">Esportiva</p>
+          </div>
+        </div>
+
+        <!-- Trabalho 3 (Lifestyle/Institucional) -->
+        <div class="snap-center shrink-0 w-56 h-80 rounded-[2rem] overflow-hidden relative shadow-xl border border-white/5 group">
+          <img id="img-port-3" src="" alt="Ensaios Lifestyle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-lens-black via-transparent to-transparent flex flex-col justify-end p-5">
+            <div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center mb-2">
+               <i data-lucide="user" class="w-4 h-4 text-white"></i>
+            </div>
+            <p class="text-sm font-bold text-white tracking-wide">Ensaios & Lifestyle</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LOCALIZAÇÃO E CONTATO (CTA FINAL)
+         ========================================== -->
+    <section class="px-6 pt-16 pb-24 relative z-10 reveal text-center">
+      
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-lens-dark border border-white/10 mb-6 shadow-lg">
+        <i data-lucide="map-pin" class="w-6 h-6 text-lens-accent"></i>
+      </div>
+
+      <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50 mb-2">Localização</h2>
+      <p class="font-display text-xl font-bold text-white mb-10">Campos dos Goytacazes e região.</p>
+
+      <div class="space-y-3">
+        <!-- WhatsApp -->
+        <button onclick="handleWhatsApp()" class="w-full bg-white hover:bg-white/90 text-lens-black py-5 rounded-2xl font-bold text-[13px] uppercase tracking-[0.1em] transition-all flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(255,255,255,0.1)] active:scale-95">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          Agendar no WhatsApp
+        </button>
+
+        <!-- E-mail -->
+        <button onclick="window.open('mailto:luanapessanha@email.com')" class="w-full bg-lens-dark border border-white/10 hover:bg-white/5 text-white py-5 rounded-2xl font-bold text-[13px] uppercase tracking-[0.1em] transition-all flex items-center justify-center gap-3 active:scale-95">
+          <i data-lucide="mail" class="w-5 h-5 text-white/50"></i>
+          Enviar E-mail
+        </button>
+
+        <!-- Instagram -->
+        <button onclick="window.open('https://instagram.com/lp.vmaker', '_blank')" class="w-full bg-transparent text-white/50 hover:text-white py-4 rounded-2xl font-bold text-[11px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 mt-2">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+          @lp.vmaker
+        </button>
+      </div>
+
+      <!-- Assinatura Verticy -->
+      <div class="mt-16 pt-8 border-t border-white/5">
+        <p class="text-[9px] uppercase tracking-[0.4em] text-white/30 mb-2">
+          © 2026 LP.VMAKER
+        </p>
+        <p class="text-[9px] uppercase tracking-[0.3em] text-white/30">
+          CRIADO POR <strong class="text-white tracking-[0.2em] font-bold">VERTICY.</strong> PREMIUM BIO
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // ⚙️ CONFIGURAÇÕES - LUANA (LP.VMAKER)
+    // ==========================================
+    const config = {
+      whatsapp: "5522996126897", // Atualizado com o número correto
+      
+      // 📸 GUIA DE IMAGENS: 
+      // Salve as imagens na mesma pasta deste arquivo com os nomes abaixo
+      fotos: {
+        perfil: "luana1.png", // Foto de perfil dela (Fundo da balada/laranja)
+        port_show: "luana2.png", // Uma foto do cantor de pagode ou evento noturno
+        port_esporte: "luana3.png", // A foto da mulher correndo (corrida de rua)
+        port_lifestyle: "luana4.png" // Foto de ensaio ou da credencial (Eventos)
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+
+      // Injeção Automática das Imagens
+      const imagensMap = {
+        'img-perfil': config.fotos.perfil,
+        'img-port-1': config.fotos.port_show,
+        'img-port-2': config.fotos.port_esporte,
+        'img-port-3': config.fotos.port_lifestyle,
+      };
+
+      for (const [id, url] of Object.entries(imagensMap)) {
+        const el = document.getElementById(id);
+        if (el) el.src = url;
+      }
+
+      // Animações Reveal ao fazer Scroll
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target); 
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+
+    function handleWhatsApp(servico = "") {
+      let text = "Olá Luana! Acessei seu link na bio e gostaria de fazer um orçamento.";
+      if (servico) {
+        text = `Olá Luana! Acessei seu link na bio e gostaria de saber mais sobre o serviço de *${servico}*. Podemos conversar?`;
+      }
+      window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+  </script>
+</body>
+</html>

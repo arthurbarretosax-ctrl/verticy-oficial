@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lavínia Morais | Psicologia de Elite</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            psi: {
+              black: '#050505',      
+              dark: '#0D0D0F',       
+              gold: '#C5A880',       
+              goldLight: '#E6D5B8',
+              silver: '#8E8E93',     
+              white: '#FDFBF7',      
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #050505; color: #FDFBF7; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    .animate-ken-burns { animation: kenBurns 20s ease-in-out infinite alternate; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .arch-frame { border-radius: 1000px 1000px 0 0; overflow: hidden; }
+
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { animation: marquee 20s linear infinite; width: max-content; }
+
+    .option-btn { transition: all 0.3s ease; }
+    .option-btn.selected {
+      background-color: #FDFBF7;
+      color: #050505;
+      border-color: #FDFBF7;
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden selection:bg-psi-gold selection:text-psi-black pb-0">
+
+  <div class="bg-noise"></div>
+
+  <div class="max-w-md mx-auto min-h-screen relative bg-psi-black shadow-2xl overflow-hidden sm:border-x sm:border-white/5 flex flex-col">
+    
+    <!-- HERO SECTION -->
+    <header class="relative w-full h-[88vh] overflow-hidden group">
+      <div class="absolute inset-0 z-10 px-8 pt-16 pb-20">
+        <div class="w-full h-full arch-frame shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/5 relative overflow-hidden">
+          <img id="img-capa" src="lavinia1.png" alt="Dra. Lavínia Morais" class="w-full h-full object-cover animate-ken-burns" loading="eager" />
+          <div class="absolute inset-0 bg-gradient-to-t from-psi-black via-transparent to-transparent opacity-90"></div>
+        </div>
+      </div>
+
+      <div class="absolute bottom-28 left-0 w-full text-center z-20 pointer-events-none px-6">
+        <h2 class="text-2xl font-serif italic text-psi-white tracking-[0.3em] uppercase opacity-70 mb-0">Lavínia</h2>
+        <h1 class="text-[4.5rem] font-serif font-bold text-white tracking-tighter drop-shadow-2xl leading-[0.8] mb-4">Morais</h1>
+        <div class="w-12 h-[1px] bg-psi-gold mx-auto mb-4 opacity-50"></div>
+        <p class="text-[9px] font-bold text-psi-gold uppercase tracking-[0.6em]">Psicóloga Clínica</p>
+      </div>
+
+      <div class="absolute bottom-6 left-0 w-full px-8 z-30 reveal active text-center">
+        <button onclick="handleLink('agendar')" class="w-full bg-white text-psi-black py-5 rounded-full font-bold text-[11px] uppercase tracking-[0.3em] shadow-2xl active:scale-95 transition-all">
+          Iniciar Atendimento
+        </button>
+      </div>
+    </header>
+
+    <!-- MARQUEE -->
+    <div class="w-full overflow-hidden border-y border-white/5 py-4 relative z-20 bg-psi-dark/80 backdrop-blur-md">
+      <div class="animate-marquee flex gap-10 items-center text-psi-white/30 italic">
+        <span class="text-[10px] font-bold uppercase tracking-[0.5em]">Escuta</span>
+        <span class="text-psi-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.5em]">Acolhimento</span>
+        <span class="text-psi-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.5em]">Transformação</span>
+        <span class="text-psi-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.5em]">Escuta</span>
+        <span class="text-psi-gold">•</span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.5em]">Acolhimento</span>
+        <span class="text-psi-gold">•</span>
+      </div>
+    </div>
+
+    <!-- TERMÔMETRO -->
+    <section class="px-6 py-20 reveal bg-psi-dark/20 border-b border-white/5">
+      <div class="text-center mb-12">
+        <i data-lucide="activity" class="w-8 h-8 text-psi-gold mx-auto mb-4 opacity-50"></i>
+        <h3 class="text-[10px] font-bold text-psi-gold uppercase tracking-[0.4em] mb-4 italic">Autoanálise</h3>
+        <h2 class="font-serif text-4xl text-white italic">Termômetro de<br><span class="text-psi-gold not-italic">Bem-Estar</span></h2>
+        <p class="text-[12px] text-psi-silver mt-6 px-4 leading-relaxed font-medium">
+          Mapeie o seu estado emocional agora. Responda em 1 minuto e veja o seu indicador.
+        </p>
+      </div>
+
+      <div id="quiz-container" class="glass-card p-8 rounded-[3rem] relative min-h-[400px] flex flex-col justify-between overflow-hidden">
+        <div id="quiz-start" class="text-center py-10">
+          <p class="text-sm text-psi-silver mb-8 leading-relaxed italic">"O primeiro passo para o cuidado é a percepção do próprio estado."</p>
+          <button onclick="startQuiz()" class="w-full border border-psi-gold text-psi-gold py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.3em] hover:bg-psi-gold hover:text-black transition-all">
+            Analisar meu Momento Atual
+          </button>
+        </div>
+
+        <div id="quiz-steps" class="hidden flex-col h-full">
+          <div class="mb-8">
+            <span id="quiz-progress" class="text-[10px] font-black text-psi-gold uppercase tracking-widest">Questão 1 de 5</span>
+            <div class="w-full h-1 bg-white/5 rounded-full mt-2 overflow-hidden">
+              <div id="quiz-bar" class="w-[20%] h-full bg-psi-gold transition-all duration-500"></div>
+            </div>
+          </div>
+          <h4 id="quiz-question" class="font-serif text-2xl text-white mb-10 leading-tight">Você tem sentido dificuldade em relaxar ou descansar a mente?</h4>
+          <div class="space-y-3" id="quiz-options">
+            <button onclick="nextQuestion(0)" class="option-btn w-full border border-white/10 p-4 rounded-2xl text-[12px] font-medium text-left flex items-center justify-between group">Quase nunca <span>0</span></button>
+            <button onclick="nextQuestion(1)" class="option-btn w-full border border-white/10 p-4 rounded-2xl text-[12px] font-medium text-left flex items-center justify-between">Algumas vezes <span>1</span></button>
+            <button onclick="nextQuestion(2)" class="option-btn w-full border border-white/10 p-4 rounded-2xl text-[12px] font-medium text-left flex items-center justify-between">Frequentemente <span>2</span></button>
+            <button onclick="nextQuestion(3)" class="option-btn w-full border border-white/10 p-4 rounded-2xl text-[12px] font-medium text-left flex items-center justify-between">Quase todo o tempo <span>3</span></button>
+          </div>
+        </div>
+
+        <div id="quiz-result" class="hidden text-center py-6">
+          <div id="result-icon" class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 bg-psi-gold/10">
+            <i data-lucide="alert-circle" class="w-10 h-10 text-psi-gold"></i>
+          </div>
+          <h3 id="result-title" class="font-serif text-3xl text-white mb-4">Nível de Estresse: Alerta</h3>
+          <p id="result-desc" class="text-sm text-psi-silver leading-relaxed mb-10 font-medium">Notei que você está passando por um momento de alta carga emocional. É importante dar o próximo passo para o seu cuidado.</p>
+          <div class="space-y-4">
+             <button onclick="handleLink('agendar_triagem')" class="w-full bg-white text-psi-black py-5 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all border border-white">Agendar Triagem de Acolhimento</button>
+             <p class="text-[10px] text-white/30 uppercase tracking-widest italic">Inicie sua jornada de cuidado com foco total.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIO SECTION -->
+    <section class="px-8 py-20 reveal">
+      <div class="flex items-center gap-4 mb-10">
+        <div class="w-12 h-[1px] bg-psi-gold"></div>
+        <h2 class="text-[10px] font-bold uppercase tracking-[0.4em] text-psi-gold">O Cuidado</h2>
+      </div>
+      <h2 class="font-serif text-5xl text-white mb-10 leading-[0.9] italic tracking-tighter">Um espaço para o<br><span class="text-psi-gold not-italic">seu sentir.</span></h2>
+      <div class="glass-card p-10 rounded-[3rem] relative overflow-hidden group">
+        <i data-lucide="sparkles" class="absolute -top-4 -right-4 w-24 h-24 text-white/[0.03] rotate-12"></i>
+        <div class="space-y-6 text-[15px] text-psi-silver leading-relaxed font-medium">
+          <p>Nesse espaço, busco oferecer um encontro genuíno com a sua própria essência.</p>
+          <p>Através da abordagem <strong class="text-white italic font-serif text-lg">fenomenológica existencial</strong>, caminhamos juntos para compreender os caminhos para a sua saúde emocional.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESPECIALIDADES & ATUAÇÃO -->
+    <section class="px-6 py-12 bg-psi-dark/30 border-y border-white/5 reveal">
+      <div class="text-center mb-12">
+        <h3 class="text-[10px] font-bold text-psi-gold uppercase tracking-[0.4em] mb-4 italic">Trajetória Profissional</h3>
+        <h2 class="font-serif text-3xl text-white uppercase tracking-tighter leading-none">Especialidades<br>& Atuação</h2>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div class="glass-card p-8 rounded-[2.5rem] col-span-2 flex flex-col items-center text-center border-t-2 border-t-psi-gold/30">
+          <div class="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 border border-white/10">
+            <i data-lucide="book-open" class="w-8 h-8 text-psi-gold"></i>
+          </div>
+          <h4 class="text-xs font-bold text-psi-gold uppercase tracking-widest mb-3">Foco Terapêutico</h4>
+          <p class="text-[13px] text-white font-semibold leading-relaxed">Sexualidade Humana &<br>Terapia Sistêmica</p>
+        </div>
+        <div class="glass-card p-6 rounded-[2rem] flex flex-col justify-between h-44">
+           <i data-lucide="building-2" class="w-6 h-6 text-psi-gold opacity-50"></i>
+           <div>
+             <h4 class="text-[10px] font-bold text-psi-gold uppercase mb-1">Localização</h4>
+             <h4 class="text-xs font-bold text-white uppercase mb-1">Clínica Fata</h4>
+             <p class="text-[9px] text-psi-silver italic leading-tight">Medicina Plástica.</p>
+           </div>
+        </div>
+        <div class="glass-card p-6 rounded-[2rem] flex flex-col justify-between h-44">
+           <i data-lucide="heart-pulse" class="w-6 h-6 text-psi-gold opacity-50"></i>
+           <div>
+             <h4 class="text-[10px] font-bold text-psi-gold uppercase mb-1">Voluntariado</h4>
+             <h4 class="text-xs font-bold text-white uppercase mb-1">Inst. Tonelia</h4>
+             <p class="text-[9px] text-psi-silver italic leading-tight">Suporte Oncológico.</p>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODALIDADES -->
+    <section class="py-20 reveal">
+      <div class="px-8 mb-12">
+          <h2 class="font-serif text-4xl text-white italic leading-none">Psicoterapia</h2>
+          <p class="text-[10px] font-bold text-psi-gold uppercase tracking-[0.3em] mt-3">Modalidades</p>
+      </div>
+      <div class="flex overflow-x-auto gap-5 px-8 hide-scrollbar snap-x pb-4">
+        <div class="snap-center shrink-0 w-72 glass-card p-10 rounded-[3rem] text-center border-b-4 border-b-psi-gold/20">
+          <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-8 border border-white/10"><i data-lucide="globe" class="w-8 h-8 text-psi-gold"></i></div>
+          <h3 class="font-serif text-2xl font-bold text-white mb-4">On-line</h3>
+          <p class="text-xs text-psi-silver leading-relaxed">Acolhimento sem fronteiras, no conforto do seu lar.</p>
+        </div>
+        <div class="snap-center shrink-0 w-72 glass-card p-10 rounded-[3rem] text-center border-b-4 border-b-white/20">
+          <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-8 border border-white/10"><i data-lucide="map-pin" class="w-8 h-8 text-white"></i></div>
+          <h3 class="font-serif text-2xl font-bold text-white mb-4">Presencial</h3>
+          <p class="text-xs text-psi-silver leading-relaxed">Consultório localizado em Campos/RJ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="px-8 pt-16 pb-24 relative z-10 text-center bg-[#030303] rounded-t-[4rem] border-t border-white/5 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div class="w-16 h-1.5 bg-white/10 rounded-full mx-auto mb-12"></div>
+      <div class="mb-16">
+        <h2 class="text-[10px] font-bold text-psi-gold uppercase tracking-[0.5em] mb-4 italic">Contato Direto</h2>
+        <h3 class="font-serif text-4xl text-white mb-12 leading-tight">Será um prazer te receber nesse processo.</h3>
+        <div class="space-y-4">
+          <button onclick="handleLink('agendar')" class="w-full bg-white text-psi-black py-5 rounded-2xl font-bold text-[12px] uppercase tracking-[0.2em] shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3">
+            <i data-lucide="message-circle" class="w-5 h-5"></i> Agendar Atendimento
+          </button>
+          <button onclick="window.open('https://instagram.com/laviniamorais.psi', '_blank')" class="w-full border border-white/10 bg-white/5 text-white/70 py-5 rounded-2xl font-bold text-[11px] uppercase tracking-[0.2em] flex items-center justify-center gap-3 active:scale-95 hover:text-white transition-all">
+            <i data-lucide="instagram" class="w-5 h-5"></i> @laviniamorais.psi
+          </button>
+        </div>
+      </div>
+      <div class="pt-10 border-t border-white/5 opacity-30 text-center">
+        <p class="text-[9px] uppercase tracking-[0.4em] flex items-center justify-center gap-1 font-semibold">
+          © 2026 DRA. LAVÍNIA MORAIS • <strong class="text-white tracking-[0.2em] font-black uppercase">VERTICY.</strong>
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    const config = {
+      whatsapp: "5522997017308", 
+      fotos: { capa: "lavinia1.png" }
+    };
+
+    const quizData = [
+      "Você tem sentido dificuldade em relaxar ou descansar a mente?",
+      "Com que frequência você se sente 'no limite' ou irritado?",
+      "Você tem sentido preocupações excessivas com o futuro?",
+      "Tem percebido alterações no seu sono ou apetite recentemente?",
+      "Você sente que a carga emocional do dia a dia está pesada demais?"
+    ];
+
+    let currentStep = 0; let score = 0;
+    function startQuiz() { document.getElementById('quiz-start').classList.add('hidden'); document.getElementById('quiz-steps').classList.remove('hidden'); document.getElementById('quiz-steps').classList.add('flex'); }
+    function nextQuestion(points) { score += points; currentStep++; if (currentStep < quizData.length) { document.getElementById('quiz-progress').innerText = `Questão ${currentStep + 1} de 5`; document.getElementById('quiz-bar').style.width = `${(currentStep + 1) * 20}%`; document.getElementById('quiz-question').innerText = quizData[currentStep]; } else { showResult(); } }
+    function showResult() { document.getElementById('quiz-steps').classList.add('hidden'); document.getElementById('quiz-steps').classList.remove('flex'); document.getElementById('quiz-result').classList.remove('hidden'); const title = document.getElementById('result-title'); const desc = document.getElementById('result-desc'); const icon = document.getElementById('result-icon'); if (score <= 5) { title.innerText = "Nível: Equilibrado"; desc.innerText = "Seu indicador mostra um bom equilíbrio emocional no momento. Manter o cuidado preventivo é o caminho para preservar sua saúde."; icon.innerHTML = '<i data-lucide="smile" class="w-10 h-10 text-green-400"></i>'; } else if (score <= 10) { title.innerText = "Nível: Alerta"; desc.innerText = "Notei que você está lidando com uma carga de estresse considerável. Suas defesas emocionais estão sendo exigidas acima do normal."; icon.innerHTML = '<i data-lucide="alert-circle" class="w-10 h-10 text-psi-gold"></i>'; } else { title.innerText = "Nível: Crítico"; desc.innerText = "Atenção: seus indicadores sugerem uma exaustão emocional severa. É o momento de priorizar o seu acolhimento profissional."; icon.innerHTML = '<i data-lucide="flame" class="w-10 h-10 text-red-500"></i>'; } lucide.createIcons(); }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+      const elCapa = document.getElementById('img-capa');
+      if (elCapa) elCapa.src = config.fotos.capa;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+
+    function handleLink(tipo) {
+      let texto = "Olá Dra. Lavínia! Acessei o seu site e gostaria de conversar.";
+      if (tipo === 'agendar_triagem') { texto = `Olá Dra. Lavínia! Concluí o Termômetro de Bem-Estar no seu site com o resultado [${document.getElementById('result-title').innerText}]. Gostaria de agendar uma triagem para entender como iniciar meu processo terapêutico.`; }
+      window.open(`https://wa.me/${config.whatsapp}?text=${encodeURIComponent(texto)}`, '_blank');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Mirella Chagas | Odontopediatria e Ortodontia em Macaé</title>
+    <meta name="description" content="Experiência e acolhimento em Macaé. Dra. Mirella Chagas: 15 anos transformando sorrisos com amor e alta tecnologia.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        display: ['Quicksand', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            pearl: '#FDFAFA',
+                            'pearl-dark': '#F5F0F0',
+                            lavender: '#E9E1FA',
+                            'lavender-dark': '#A389D4',
+                            rose: '#FFCAD4',
+                            'rose-dark': '#F497AD',
+                            blue: '#DDEFFF', // Azul muito mais leve
+                            'blue-dark': '#A5C9E1',
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 15px 40px -12px rgba(163, 137, 212, 0.12)',
+                        'float': '0 25px 50px -12px rgba(244, 151, 173, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #FDFAFA; cursor: none; }
+        @media (pointer: fine) {
+            .custom-cursor { position: fixed; top: 0; left: 0; width: 18px; height: 18px; border-radius: 50%; background: rgba(163, 137, 212, 0.2); border: 1px solid rgba(163, 137, 212, 0.4); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.1s ease-out; mix-blend-mode: multiply; }
+            .custom-cursor.hover { transform: translate(-50%, -50%) scale(2.5); background: rgba(244, 151, 173, 0.1); }
+            .cursor-dot { position: fixed; top: 0; left: 0; width: 4px; height: 4px; background-color: #A389D4; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
+        }
+        @media (pointer: coarse) { body { cursor: auto; } .custom-cursor, .cursor-dot { display: none; } }
+        
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        .glass-nav { background: rgba(253, 250, 250, 0.85); backdrop-filter: blur(15px); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Corações Mágicos Flutuantes */
+        @keyframes float-heart {
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+        .magic-heart { position: absolute; animation: float-heart linear infinite; will-change: transform, opacity; z-index: 0; pointer-events: none; }
+        
+        @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .animate-bob { animation: bob 4s ease-in-out infinite; }
+    </style>
+</head>
+<body class="text-slate-600 antialiased relative overflow-x-hidden">
+
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
+    <!-- Loader de Segurança -->
+    <div id="loader" class="fixed inset-0 bg-brand-pearl z-50 flex flex-col items-center justify-center transition-opacity duration-700">
+        <i class="ph-fill ph-heart text-4xl text-brand-rose-dark animate-pulse"></i>
+        <p class="mt-4 font-display font-bold text-brand-lavender-dark tracking-widest uppercase text-[10px]">Acolhendo sua família...</p>
+    </div>
+
+    <!-- Navegação -->
+    <nav class="fixed w-full z-40 top-0 glass-nav border-b border-brand-lavender/10" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                <!-- Logo Própria -->
+                <img src="logo.png" alt="Logo Dra. Mirella Chagas" class="h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex'">
+                <div id="logo-fallback" class="hidden items-center gap-2">
+                    <div class="bg-brand-lavender text-brand-lavender-dark p-2 rounded-xl"><i class="ph-fill ph-sparkle text-xl"></i></div>
+                    <h1 class="font-display font-bold text-lg text-slate-800 leading-tight">Dra. Mirella Chagas</h1>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8 font-bold text-sm text-slate-500">
+                <a href="#sobre" class="hover:text-brand-lavender-dark transition-colors">A Doutora</a>
+                <a href="#especialidades" class="hover:text-brand-lavender-dark transition-colors">Especialidades</a>
+                <a href="#momentos" class="hover:text-brand-lavender-dark transition-colors">Momentos</a>
+                <a href="https://bit.ly/dramirellachagas" target="_blank" class="bg-brand-lavender-dark text-white px-6 py-2 rounded-full hover:bg-brand-rose-dark transition-all shadow-md">Agendar</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-24 px-6 min-h-[90vh] flex items-center overflow-hidden">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center reveal-on-scroll is-visible relative z-10">
+            <div class="text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full text-brand-lavender-dark font-bold text-xs mb-8 shadow-sm border border-brand-lavender/30">
+                    <i class="ph-fill ph-medal"></i> 15 anos criando experiências positivas
+                </div>
+                <h1 class="font-display font-extrabold text-5xl lg:text-7xl text-slate-800 leading-[1.1] tracking-tight">
+                    Cuidado que <span class="text-brand-lavender-dark relative inline-block">acolhe<svg class="absolute w-full h-3 -bottom-2 left-0 text-brand-rose opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"/></svg></span>, sorriso que brilha.
+                </h1>
+                <p class="mt-8 text-lg text-slate-500 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    Dra. Mirella Chagas oferece um atendimento humanizado em Macaé, unindo a <strong>Odontopediatria e a Ortodontia</strong> com foco na tranquilidade das mães.
+                </p>
+                <div class="mt-10">
+                    <a href="https://bit.ly/dramirellachagas" target="_blank" class="bg-[#25D366] text-white px-10 py-4 rounded-full font-bold text-lg shadow-float hover:-translate-y-1 transition-all inline-flex items-center gap-3">
+                        <i class="ph-fill ph-whatsapp-logo text-2xl"></i> Agendar pelo WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="bg-brand-blue rounded-[3rem] absolute inset-0 rotate-3 -z-10 opacity-30 blur-2xl animate-pulse-soft"></div>
+                <div class="bg-white p-3 rounded-[3rem] shadow-premium overflow-hidden transform hover:-rotate-2 transition-transform duration-700">
+                    <!-- FOTO HERO: mirella1.png -->
+                    <img src="mirella1.png" alt="Dra. Mirella Chagas" class="w-full aspect-square object-cover rounded-[2.5rem]" onerror="this.src='https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="py-24 px-6 bg-brand-pearl-dark/50 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center reveal-on-scroll">
+            <div class="relative order-2 md:order-1">
+                <div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden border-[10px] border-white shadow-premium relative group">
+                    <!-- FOTO PERFIL: mirella2.png -->
+                    <img src="mirella2.png" alt="Perfil Mirella" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80&w=800'">
+                </div>
+                <div class="absolute -bottom-6 -right-6 bg-brand-lavender w-20 h-20 rounded-3xl flex items-center justify-center shadow-float animate-bob">
+                    <i class="ph-fill ph-heart text-white text-4xl"></i>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-800 mb-8 italic">Muito prazer, sou a Mirella! 💖</h2>
+                <div class="space-y-6 text-lg text-slate-500 leading-relaxed">
+                    <p>Mãe e Odontopediatra, acredito que a odontologia infantil vai muito além de tratar dentes: é sobre acolher corações e construir confiança.</p>
+                    <p>Com 15 anos de experiência, meu propósito em Macaé é garantir que cada consulta seja leve, lúdica e totalmente livre de medos.</p>
+                    <div class="p-6 bg-white rounded-3xl border-l-8 border-brand-lavender-dark shadow-sm">
+                        <p class="text-slate-700 font-bold italic">"Trabalho para que o sorriso saudável seja a lembrança mais feliz da infância do seu filho."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especialidades -->
+    <section id="especialidades" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto text-center mb-16 reveal-on-scroll">
+            <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-800 mb-4">Tratamentos com Afeto ✨</h2>
+            <p class="text-lg text-slate-400">Tecnologia e sensibilidade para todas as fases.</p>
+        </div>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-8 rounded-[2rem] shadow-premium hover:-translate-y-2 transition-all border-b-4 border-brand-lavender reveal-on-scroll">
+                <div class="w-14 h-14 bg-brand-lavender-light rounded-2xl flex items-center justify-center text-3xl mb-6 text-brand-lavender-dark">
+                    <i class="ph ph-baby"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-slate-800 mb-3">Odonto Bebês</h3>
+                <p class="text-sm">Prevenção e acompanhamento desde os primeiros meses de vida.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] shadow-premium hover:-translate-y-2 transition-all border-b-4 border-brand-rose-dark reveal-on-scroll" style="transition-delay: 0.1s">
+                <div class="w-14 h-14 bg-brand-rose-light rounded-2xl flex items-center justify-center text-3xl mb-6 text-brand-rose-dark">
+                    <i class="ph ph-tooth"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-slate-800 mb-3">Ortodontia</h3>
+                <p class="text-sm">Alinhadores modernos e ortopedia para guiar o crescimento correto.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] shadow-premium hover:-translate-y-2 transition-all border-b-4 border-brand-blue-dark reveal-on-scroll" style="transition-delay: 0.2s">
+                <div class="w-14 h-14 bg-brand-blue-light rounded-2xl flex items-center justify-center text-3xl mb-6 text-brand-blue-dark">
+                    <i class="ph ph-lightning"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-slate-800 mb-3">Laserterapia</h3>
+                <p class="text-sm">Tratamentos indolores e cicatrização acelerada para os pequenos.</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] shadow-premium hover:-translate-y-2 transition-all border-b-4 border-brand-lavender-dark reveal-on-scroll" style="transition-delay: 0.3s">
+                <div class="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-3xl mb-6 text-slate-400">
+                    <i class="ph ph-rainbow"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-slate-800 mb-3">Lúdico</h3>
+                <p class="text-sm">Técnicas de diversão que transformam o medo em coragem.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Momentos -->
+    <section id="momentos" class="py-24 px-6 bg-brand-lavender-light/30">
+        <div class="max-w-6xl mx-auto text-center mb-16 reveal-on-scroll">
+            <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-800 mb-4">Nossos Pequenos Sorrisos 🌈</h2>
+            <p class="text-lg text-slate-400">Paciência, diversão e alegria em cada detalhe.</p>
+        </div>
+        <div class="flex overflow-x-auto gap-8 px-6 pb-12 snap-x no-scrollbar reveal-on-scroll">
+            <!-- FOTOS PACIENTES: mirella3, mirella4, mirella5 -->
+            <div class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white p-4 rounded-[2.5rem] shadow-premium transform -rotate-1">
+                <img src="mirella3.png" alt="Alegria" class="w-full aspect-[3/4] object-cover rounded-[2rem] mb-4" onerror="this.src='https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=600'">
+                <p class="text-center font-bold text-brand-lavender-dark">Pura diversão! 🎨</p>
+            </div>
+            <div class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white p-4 rounded-[2.5rem] shadow-premium transform rotate-2">
+                <img src="mirella4.png" alt="Diversão" class="w-full aspect-[3/4] object-cover rounded-[2rem] mb-4" onerror="this.src='https://images.unsplash.com/photo-1471333055470-67a4ed30a00d?auto=format&fit=crop&q=80&w=600'">
+                <p class="text-center font-bold text-brand-rose-dark">Amor que acalma 💖</p>
+            </div>
+            <div class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white p-4 rounded-[2.5rem] shadow-premium transform -rotate-2">
+                <img src="mirella5.png" alt="Paciência" class="w-full aspect-[3/4] object-cover rounded-[2rem] mb-4" onerror="this.src='https://images.unsplash.com/photo-1502781259889-3893a5214468?auto=format&fit=crop&q=80&w=600'">
+                <p class="text-center font-bold text-brand-blue-dark">Paciência infinita ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto bg-slate-800 text-white rounded-[3rem] p-10 md:p-20 text-center shadow-float reveal-on-scroll relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-lavender-dark opacity-10 blur-3xl"></div>
+            <h2 class="font-display font-extrabold text-3xl md:text-5xl mb-10 relative z-10">Vamos transformar a ida ao dentista do seu filho? 🚀</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 text-left mb-12 relative z-10">
+                <div class="bg-white/10 p-6 rounded-2xl border border-white/10">
+                    <p class="font-bold mb-2 uppercase text-[10px] tracking-widest text-brand-lavender">Localização</p>
+                    <p class="text-white font-bold">Edifício Tropical Plaza - Sala 610</p>
+                    <p class="text-xs text-white/60">Macaé, RJ</p>
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl border border-white/10">
+                    <p class="font-bold mb-2 uppercase text-[10px] tracking-widest text-brand-lavender">Contato</p>
+                    <p class="text-white font-bold">Via WhatsApp</p>
+                    <p class="text-xs text-white/60">Atendimento Humanizado</p>
+                </div>
+            </div>
+
+            <a href="https://bit.ly/dramirellachagas" target="_blank" class="bg-white text-slate-800 px-12 py-5 rounded-full font-bold text-xl shadow-premium hover:scale-105 transition-all inline-flex items-center gap-4 group">
+                <i class="ph-fill ph-whatsapp-logo text-3xl text-[#25D366] group-hover:rotate-12 transition-transform"></i>
+                Chamar no WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 text-center text-slate-400 text-sm bg-white border-t border-slate-50">
+        <p class="font-bold text-slate-800 mb-2 uppercase text-[10px] tracking-widest">Dra. Mirella Chagas © 2026</p>
+        <p>Especialista em Macaé • Odontopediatria & Ortodontia</p>
+    </footer>
+
+    <!-- Scripts de Magia -->
+    <script>
+        // Loader Failsafe
+        const hideLoader = () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 700);
+            }
+        };
+        setTimeout(hideLoader, 2000); 
+        window.addEventListener('load', hideLoader);
+
+        // Revelação ao Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Cursor
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursor = document.getElementById('custom-cursor'), dot = document.getElementById('cursor-dot');
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+                dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+            });
+            document.querySelectorAll('a, button, .cursor-pointer, .snap-center').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+
+        // Corações Mágicos (Identidade Mirella)
+        function createMagicHearts() {
+            const container = document.createElement('div');
+            container.className = 'fixed inset-0 pointer-events-none z-[0] overflow-hidden';
+            document.body.appendChild(container);
+            const colors = ['text-brand-lavender', 'text-brand-rose', 'text-brand-blue'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('i');
+                heart.className = `ph-fill ph-heart ${colors[Math.floor(Math.random() * 3)]} magic-heart opacity-0`;
+                heart.style.fontSize = `${Math.random() * 12 + 10}px`;
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDuration = `${Math.random() * 15 + 15}s`;
+                heart.style.animationDelay = `-${Math.random() * 30}s`;
+                container.appendChild(heart);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', createMagicHearts);
+    </script>
+</body>
+</html>
