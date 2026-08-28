@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com');
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -833,6 +835,10 @@ video {
   overflow-x: auto;
 }
 
+.template-dra.raisabastos .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-dra.raisabastos .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1198,6 +1204,11 @@ video {
 .template-dra.raisabastos .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-dra.raisabastos .antialiased{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .template-dra.raisabastos .opacity-50{

@@ -3,7 +3,8 @@ import "@/assets/css/laviniapsi.css";
 
 export default function LaviniaPsi({ content }: { content: any }) {
   return (
-    <div className="lavinia.psi-wrapper template-lavinia psi overflow-x-hidden selection:bg-psi-gold selection:text-psi-black pb-0">
+    <div className="laviniapsi-wrapper template-lavinia psi">
+      <div className="relative overflow-x-hidden overflow-x-hidden selection:bg-psi-gold selection:text-psi-black pb-0">
       
 
   
@@ -189,6 +190,7 @@ export default function LaviniaPsi({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

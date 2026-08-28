@@ -3,7 +3,8 @@ import "@/assets/css/duo.css";
 
 export default function Duo({ content }: { content: any }) {
   return (
-    <div className="duo-wrapper template-duo overflow-x-hidden selection:bg-[#9E9EA0] selection:text-[#050505] pb-0 bg-[#050505]">
+    <div className="duo-wrapper template-duo">
+      <div className="relative overflow-x-hidden overflow-x-hidden selection:bg-[#9E9EA0] selection:text-[#050505] pb-0 bg-[#050505]">
       
 
   
@@ -269,6 +270,7 @@ export default function Duo({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

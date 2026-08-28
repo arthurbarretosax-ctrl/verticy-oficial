@@ -3,7 +3,8 @@ import "@/assets/css/hortela.css";
 
 export default function Hortela({ content }: { content: any }) {
   return (
-    <div className="hortela-wrapper template-hortela overflow-x-hidden selection:bg-[#9AD4AA] selection:text-[#1C2621] pb-0 bg-[#FDFBF7]">
+    <div className="hortela-wrapper template-hortela">
+      <div className="relative overflow-x-hidden overflow-x-hidden selection:bg-[#9AD4AA] selection:text-[#1C2621] pb-0 bg-[#FDFBF7]">
       
 
   
@@ -262,6 +263,7 @@ export default function Hortela({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

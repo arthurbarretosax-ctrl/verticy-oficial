@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -863,6 +864,10 @@ video {
   overflow-x: auto;
 }
 
+.template-lavinia.psi .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-lavinia.psi .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1070,6 +1075,10 @@ video {
 .template-lavinia.psi .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.template-lavinia.psi .pb-0{
+  padding-bottom: 0px;
 }
 
 .template-lavinia.psi .pb-20{
@@ -1431,6 +1440,46 @@ body {
   color: #050505;
   border-color: #FDFBF7;
   transform: scale(1.02);
+}
+
+.template-lavinia.psi :is(.selection\:bg-psi-gold *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(197 168 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-lavinia.psi :is(.selection\:bg-psi-gold *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(197 168 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-lavinia.psi :is(.selection\:text-psi-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-lavinia.psi :is(.selection\:text-psi-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-lavinia.psi .selection\:bg-psi-gold::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(197 168 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-lavinia.psi .selection\:bg-psi-gold::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(197 168 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-lavinia.psi .selection\:text-psi-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-lavinia.psi .selection\:text-psi-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
 }
 
 .template-lavinia.psi .hover\:bg-psi-gold:hover{

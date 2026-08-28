@@ -3,7 +3,8 @@ import "@/assets/css/draandrezza.css";
 
 export default function DraAndrezza({ content }: { content: any }) {
   return (
-    <div className="dra.andrezza-wrapper template-dra andrezza text-slate-700 antialiased relative">
+    <div className="draandrezza-wrapper template-dra andrezza">
+      <div className="relative overflow-x-hidden text-slate-700 antialiased relative">
       
 
     
@@ -183,6 +184,7 @@ export default function DraAndrezza({ content }: { content: any }) {
 
     
 
+    </div>
     </div>
   );
 }

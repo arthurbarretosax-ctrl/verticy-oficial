@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -948,6 +949,10 @@ video {
   overflow: hidden;
 }
 
+.template-zisa .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-zisa .truncate{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1276,6 +1281,10 @@ video {
 .template-zisa .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.template-zisa .pb-0{
+  padding-bottom: 0px;
 }
 
 .template-zisa .pb-2{
@@ -1775,6 +1784,46 @@ body {
   pointer-events: none;
   z-index: 50;
   opacity: 0.4;
+}
+
+.template-zisa :is(.selection\:bg-\[\#B8B0C8\] *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(184 176 200 / var(--tw-bg-opacity, 1));
+}
+
+.template-zisa :is(.selection\:bg-\[\#B8B0C8\] *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(184 176 200 / var(--tw-bg-opacity, 1));
+}
+
+.template-zisa :is(.selection\:text-\[\#050507\] *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 7 / var(--tw-text-opacity, 1));
+}
+
+.template-zisa :is(.selection\:text-\[\#050507\] *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 7 / var(--tw-text-opacity, 1));
+}
+
+.template-zisa .selection\:bg-\[\#B8B0C8\]::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(184 176 200 / var(--tw-bg-opacity, 1));
+}
+
+.template-zisa .selection\:bg-\[\#B8B0C8\]::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(184 176 200 / var(--tw-bg-opacity, 1));
+}
+
+.template-zisa .selection\:text-\[\#050507\]::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 7 / var(--tw-text-opacity, 1));
+}
+
+.template-zisa .selection\:text-\[\#050507\]::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 7 / var(--tw-text-opacity, 1));
 }
 
 .template-zisa .after\:absolute::after{

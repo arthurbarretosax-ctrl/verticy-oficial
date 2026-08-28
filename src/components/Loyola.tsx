@@ -3,7 +3,8 @@ import "@/assets/css/loyola.css";
 
 export default function Loyola({ content }: { content: any }) {
   return (
-    <div className="loyola-wrapper template-loyola selection:bg-loyola-gold selection:text-black pb-10">
+    <div className="loyola-wrapper template-loyola">
+      <div className="relative overflow-x-hidden selection:bg-loyola-gold selection:text-black pb-10">
       
 
   
@@ -318,6 +319,7 @@ export default function Loyola({ content }: { content: any }) {
   </div>
     
 
+    </div>
     </div>
   );
 }

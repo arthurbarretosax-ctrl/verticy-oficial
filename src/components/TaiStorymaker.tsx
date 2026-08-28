@@ -3,7 +3,8 @@ import "@/assets/css/taistorymaker.css";
 
 export default function TaiStorymaker({ content }: { content: any }) {
   return (
-    <div className="tai.storymaker-wrapper template-tai storymaker selection:bg-tai-brown selection:text-white pb-0">
+    <div className="taistorymaker-wrapper template-tai storymaker">
+      <div className="relative overflow-x-hidden selection:bg-tai-brown selection:text-white pb-0">
       
 
   
@@ -183,6 +184,7 @@ export default function TaiStorymaker({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

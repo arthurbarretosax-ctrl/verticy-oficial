@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -846,6 +847,10 @@ video {
   overflow-x: auto;
 }
 
+.template-franciane-furohumanizado2 .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-franciane-furohumanizado2 .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1082,6 +1087,10 @@ video {
 .template-franciane-furohumanizado2 .py-5{
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.template-franciane-furohumanizado2 .pb-10{
+  padding-bottom: 2.5rem;
 }
 
 .template-franciane-furohumanizado2 .pb-24{
@@ -1397,6 +1406,46 @@ body {
   pointer-events: none;
   z-index: 0;
   opacity: 0.5;
+}
+
+.template-franciane-furohumanizado2 :is(.selection\:bg-furo-pink *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 70 239 / var(--tw-bg-opacity, 1));
+}
+
+.template-franciane-furohumanizado2 :is(.selection\:bg-furo-pink *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 70 239 / var(--tw-bg-opacity, 1));
+}
+
+.template-franciane-furohumanizado2 :is(.selection\:text-white *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-franciane-furohumanizado2 :is(.selection\:text-white *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-franciane-furohumanizado2 .selection\:bg-furo-pink::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 70 239 / var(--tw-bg-opacity, 1));
+}
+
+.template-franciane-furohumanizado2 .selection\:bg-furo-pink::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 70 239 / var(--tw-bg-opacity, 1));
+}
+
+.template-franciane-furohumanizado2 .selection\:text-white::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-franciane-furohumanizado2 .selection\:text-white::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .template-franciane-furohumanizado2 .active\:scale-95:active{

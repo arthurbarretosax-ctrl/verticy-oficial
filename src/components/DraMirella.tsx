@@ -3,7 +3,8 @@ import "@/assets/css/dramirella.css";
 
 export default function DraMirella({ content }: { content: any }) {
   return (
-    <div className="dra.mirella-wrapper template-dra mirella text-slate-600 antialiased relative overflow-x-hidden">
+    <div className="dramirella-wrapper template-dra mirella">
+      <div className="relative overflow-x-hidden text-slate-600 antialiased relative overflow-x-hidden">
       
 
     
@@ -182,6 +183,7 @@ export default function DraMirella({ content }: { content: any }) {
     
     
 
+    </div>
     </div>
   );
 }

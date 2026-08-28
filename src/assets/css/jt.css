@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,400;1,700;1,900&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -880,6 +881,10 @@ video {
   overflow-x: auto;
 }
 
+.template-jt .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-jt .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1147,6 +1152,10 @@ video {
 .template-jt .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.template-jt .pb-10{
+  padding-bottom: 2.5rem;
 }
 
 .template-jt .pb-16{
@@ -1508,6 +1517,46 @@ body {
 
 .animate-pulse-gold {
   animation: pulse-gold 2s infinite;
+}
+
+.template-jt :is(.selection\:bg-jt-gold *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-jt :is(.selection\:bg-jt-gold *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-jt :is(.selection\:text-jt-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-jt :is(.selection\:text-jt-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-jt .selection\:bg-jt-gold::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-jt .selection\:bg-jt-gold::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-jt .selection\:text-jt-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-jt .selection\:text-jt-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
 }
 
 .template-jt .hover\:bg-jt-gold:hover{

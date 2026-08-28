@@ -3,7 +3,8 @@ import "@/assets/css/cristianapsi.css";
 
 export default function CristianaPsi({ content }: { content: any }) {
   return (
-    <div className="cristiana.psi-wrapper template-cristiana psi selection:bg-psi-accent selection:text-white pb-0">
+    <div className="cristianapsi-wrapper template-cristiana psi">
+      <div className="relative overflow-x-hidden selection:bg-psi-accent selection:text-white pb-0">
       
 
   
@@ -196,6 +197,7 @@ export default function CristianaPsi({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

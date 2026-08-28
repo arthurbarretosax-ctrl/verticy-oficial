@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -841,6 +842,10 @@ video {
   overflow-x: auto;
 }
 
+.template-yaveh .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-yaveh .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1092,6 +1097,10 @@ video {
 .template-yaveh .py-5{
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.template-yaveh .pb-10{
+  padding-bottom: 2.5rem;
 }
 
 .template-yaveh .pb-16{
@@ -1441,6 +1450,46 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
+}
+
+.template-yaveh :is(.selection\:bg-yaveh-gold *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 197 178 / var(--tw-bg-opacity, 1));
+}
+
+.template-yaveh :is(.selection\:bg-yaveh-gold *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 197 178 / var(--tw-bg-opacity, 1));
+}
+
+.template-yaveh :is(.selection\:text-yaveh-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(20 18 16 / var(--tw-text-opacity, 1));
+}
+
+.template-yaveh :is(.selection\:text-yaveh-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(20 18 16 / var(--tw-text-opacity, 1));
+}
+
+.template-yaveh .selection\:bg-yaveh-gold::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 197 178 / var(--tw-bg-opacity, 1));
+}
+
+.template-yaveh .selection\:bg-yaveh-gold::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 197 178 / var(--tw-bg-opacity, 1));
+}
+
+.template-yaveh .selection\:text-yaveh-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(20 18 16 / var(--tw-text-opacity, 1));
+}
+
+.template-yaveh .selection\:text-yaveh-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(20 18 16 / var(--tw-text-opacity, 1));
 }
 
 .template-yaveh .hover\:bg-white\/5:hover{

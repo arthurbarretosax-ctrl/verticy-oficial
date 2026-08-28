@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -844,6 +845,10 @@ video {
   overflow-x: auto;
 }
 
+.template-tai.storymaker .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-tai.storymaker .rounded-\[2rem\]{
   border-radius: 2rem;
 }
@@ -1019,6 +1024,10 @@ video {
 .template-tai.storymaker .py-5{
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.template-tai.storymaker .pb-0{
+  padding-bottom: 0px;
 }
 
 .template-tai.storymaker .pb-16{
@@ -1342,6 +1351,46 @@ body {
 .btn-elegant:hover, .btn-elegant:active {
   background-color: #7A4B3A;
   transform: scale(0.98);
+}
+
+.template-tai.storymaker :is(.selection\:bg-tai-brown *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 75 58 / var(--tw-bg-opacity, 1));
+}
+
+.template-tai.storymaker :is(.selection\:bg-tai-brown *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 75 58 / var(--tw-bg-opacity, 1));
+}
+
+.template-tai.storymaker :is(.selection\:text-white *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-tai.storymaker :is(.selection\:text-white *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-tai.storymaker .selection\:bg-tai-brown::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 75 58 / var(--tw-bg-opacity, 1));
+}
+
+.template-tai.storymaker .selection\:bg-tai-brown::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 75 58 / var(--tw-bg-opacity, 1));
+}
+
+.template-tai.storymaker .selection\:text-white::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-tai.storymaker .selection\:text-white::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .template-tai.storymaker .hover\:scale-110:hover{

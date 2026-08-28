@@ -3,7 +3,8 @@ import "@/assets/css/ilgner.css";
 
 export default function Ilgner({ content }: { content: any }) {
   return (
-    <div className="ilgner-wrapper template-ilgner overflow-x-hidden selection:bg-icn-green selection:text-icn-black pb-4">
+    <div className="ilgner-wrapper template-ilgner">
+      <div className="relative overflow-x-hidden overflow-x-hidden selection:bg-icn-green selection:text-icn-black pb-4">
       
 
   
@@ -200,6 +201,7 @@ export default function Ilgner({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -730,6 +731,10 @@ video {
   overflow-x: auto;
 }
 
+.template-ilgner2 .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-ilgner2 .rounded-2xl{
   border-radius: 1rem;
 }
@@ -925,6 +930,10 @@ video {
 
 .template-ilgner2 .pb-4{
   padding-bottom: 1rem;
+}
+
+.template-ilgner2 .pb-6{
+  padding-bottom: 1.5rem;
 }
 
 .template-ilgner2 .pt-10{
@@ -1235,6 +1244,46 @@ body {
 
 .animate-pulse-green {
   animation: pulse-green 2s infinite;
+}
+
+.template-ilgner2 :is(.selection\:bg-icn-green *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-ilgner2 :is(.selection\:bg-icn-green *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-ilgner2 :is(.selection\:text-icn-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-ilgner2 :is(.selection\:text-icn-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-ilgner2 .selection\:bg-icn-green::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-ilgner2 .selection\:bg-icn-green::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity, 1));
+}
+
+.template-ilgner2 .selection\:text-icn-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-ilgner2 .selection\:text-icn-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
 }
 
 .template-ilgner2 .hover\:scale-105:hover{

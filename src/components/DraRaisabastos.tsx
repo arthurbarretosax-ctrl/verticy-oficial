@@ -3,7 +3,8 @@ import "@/assets/css/draraisabastos.css";
 
 export default function DraRaisabastos({ content }: { content: any }) {
   return (
-    <div className="dra.raisabastos-wrapper template-dra raisabastos text-slate-700 antialiased relative overflow-x-hidden">
+    <div className="draraisabastos-wrapper template-dra raisabastos">
+      <div className="relative overflow-x-hidden text-slate-700 antialiased relative overflow-x-hidden">
       
 
     
@@ -178,6 +179,7 @@ export default function DraRaisabastos({ content }: { content: any }) {
 
     
 
+    </div>
     </div>
   );
 }

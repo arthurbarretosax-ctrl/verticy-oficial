@@ -3,7 +3,8 @@ import "@/assets/css/manuel.css";
 
 export default function Manuel({ content }: { content: any }) {
   return (
-    <div className="manuel-wrapper template-manuel selection:bg-manuel-blue selection:text-white pb-20">
+    <div className="manuel-wrapper template-manuel">
+      <div className="relative overflow-x-hidden selection:bg-manuel-blue selection:text-white pb-20">
       
 
   
@@ -198,6 +199,7 @@ export default function Manuel({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

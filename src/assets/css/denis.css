@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -874,6 +875,10 @@ video {
   overflow-x: auto;
 }
 
+.template-denis .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-denis .rounded-\[2\.5rem\]{
   border-radius: 2.5rem;
 }
@@ -1494,6 +1499,46 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
+}
+
+.template-denis :is(.selection\:bg-denis-gold *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-denis :is(.selection\:bg-denis-gold *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-denis :is(.selection\:text-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-denis :is(.selection\:text-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-denis .selection\:bg-denis-gold::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-denis .selection\:bg-denis-gold::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-denis .selection\:text-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-denis .selection\:text-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
 .template-denis .hover\:bg-denis-yellow:hover{

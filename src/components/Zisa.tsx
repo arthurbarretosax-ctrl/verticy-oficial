@@ -3,7 +3,8 @@ import "@/assets/css/zisa.css";
 
 export default function Zisa({ content }: { content: any }) {
   return (
-    <div className="zisa-wrapper template-zisa overflow-x-hidden selection:bg-[#B8B0C8] selection:text-[#050507] pb-0 bg-[#050507]">
+    <div className="zisa-wrapper template-zisa">
+      <div className="relative overflow-x-hidden overflow-x-hidden selection:bg-[#B8B0C8] selection:text-[#050507] pb-0 bg-[#050507]">
       
 
   
@@ -277,6 +278,7 @@ export default function Zisa({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

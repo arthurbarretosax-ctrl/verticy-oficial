@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -782,6 +783,10 @@ video {
   overflow: hidden;
 }
 
+.template-layla.psi .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-layla.psi .rounded-2xl{
   border-radius: 1rem;
 }
@@ -971,6 +976,10 @@ video {
 .template-layla.psi .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.template-layla.psi .pb-10{
+  padding-bottom: 2.5rem;
 }
 
 .template-layla.psi .pb-20{
@@ -1263,6 +1272,46 @@ body {
   100% {
     box-shadow: 0 0 0 0 rgba(74, 67, 62, 0);
   }
+}
+
+.template-layla.psi :is(.selection\:bg-layla-accent *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 199 189 / var(--tw-bg-opacity, 1));
+}
+
+.template-layla.psi :is(.selection\:bg-layla-accent *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 199 189 / var(--tw-bg-opacity, 1));
+}
+
+.template-layla.psi :is(.selection\:text-layla-text *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(74 67 62 / var(--tw-text-opacity, 1));
+}
+
+.template-layla.psi :is(.selection\:text-layla-text *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(74 67 62 / var(--tw-text-opacity, 1));
+}
+
+.template-layla.psi .selection\:bg-layla-accent::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 199 189 / var(--tw-bg-opacity, 1));
+}
+
+.template-layla.psi .selection\:bg-layla-accent::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 199 189 / var(--tw-bg-opacity, 1));
+}
+
+.template-layla.psi .selection\:text-layla-text::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(74 67 62 / var(--tw-text-opacity, 1));
+}
+
+.template-layla.psi .selection\:text-layla-text::selection{
+  --tw-text-opacity: 1;
+  color: rgb(74 67 62 / var(--tw-text-opacity, 1));
 }
 
 .template-layla.psi .hover\:bg-layla-text\/5:hover{

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -956,6 +957,10 @@ video {
   overflow: hidden;
 }
 
+.template-duo .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-duo .truncate{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1238,6 +1243,10 @@ video {
 .template-duo .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.template-duo .pb-0{
+  padding-bottom: 0px;
 }
 
 .template-duo .pb-2{
@@ -1724,6 +1733,46 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
+}
+
+.template-duo :is(.selection\:bg-\[\#9E9EA0\] *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 158 160 / var(--tw-bg-opacity, 1));
+}
+
+.template-duo :is(.selection\:bg-\[\#9E9EA0\] *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 158 160 / var(--tw-bg-opacity, 1));
+}
+
+.template-duo :is(.selection\:text-\[\#050505\] *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-duo :is(.selection\:text-\[\#050505\] *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-duo .selection\:bg-\[\#9E9EA0\]::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 158 160 / var(--tw-bg-opacity, 1));
+}
+
+.template-duo .selection\:bg-\[\#9E9EA0\]::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(158 158 160 / var(--tw-bg-opacity, 1));
+}
+
+.template-duo .selection\:text-\[\#050505\]::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
+}
+
+.template-duo .selection\:text-\[\#050505\]::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 5 5 / var(--tw-text-opacity, 1));
 }
 
 .template-duo .after\:absolute::after{

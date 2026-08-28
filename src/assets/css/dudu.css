@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -846,6 +847,10 @@ video {
   overflow-x: auto;
 }
 
+.template-dudu .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-dudu .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1034,6 +1039,10 @@ video {
   padding-bottom: 3rem;
 }
 
+.template-dudu .pb-20{
+  padding-bottom: 5rem;
+}
+
 .template-dudu .pb-4{
   padding-bottom: 1rem;
 }
@@ -1148,6 +1157,11 @@ video {
 .template-dudu .text-brand-yellow{
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity, 1));
+}
+
+.template-dudu .text-gray-200{
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity, 1));
 }
 
 .template-dudu .text-gray-300{
@@ -1270,6 +1284,46 @@ video {
   -webkit-backdrop-filter: blur(12px);
           backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.template-dudu :is(.selection\:bg-brand-orange *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-dudu :is(.selection\:bg-brand-orange *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-dudu :is(.selection\:text-white *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-dudu :is(.selection\:text-white *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-dudu .selection\:bg-brand-orange::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-dudu .selection\:bg-brand-orange::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-dudu .selection\:text-white::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-dudu .selection\:text-white::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .template-dudu .hover\:scale-110:hover{

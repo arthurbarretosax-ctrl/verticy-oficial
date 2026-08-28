@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -840,6 +841,10 @@ video {
   overflow-x: auto;
 }
 
+.template-luana-foradoar .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-luana-foradoar .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1041,6 +1046,10 @@ video {
   padding-bottom: 0.125rem;
 }
 
+.template-luana-foradoar .pb-20{
+  padding-bottom: 5rem;
+}
+
 .template-luana-foradoar .pb-24{
   padding-bottom: 6rem;
 }
@@ -1180,6 +1189,11 @@ video {
   color: rgb(9 9 11 / var(--tw-text-opacity, 1));
 }
 
+.template-luana-foradoar .text-lens-light{
+  --tw-text-opacity: 1;
+  color: rgb(244 244 245 / var(--tw-text-opacity, 1));
+}
+
 .template-luana-foradoar .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
@@ -1316,6 +1330,46 @@ video {
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
+}
+
+.template-luana-foradoar :is(.selection\:bg-lens-accent *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 158 11 / var(--tw-bg-opacity, 1));
+}
+
+.template-luana-foradoar :is(.selection\:bg-lens-accent *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 158 11 / var(--tw-bg-opacity, 1));
+}
+
+.template-luana-foradoar :is(.selection\:text-lens-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(9 9 11 / var(--tw-text-opacity, 1));
+}
+
+.template-luana-foradoar :is(.selection\:text-lens-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(9 9 11 / var(--tw-text-opacity, 1));
+}
+
+.template-luana-foradoar .selection\:bg-lens-accent::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 158 11 / var(--tw-bg-opacity, 1));
+}
+
+.template-luana-foradoar .selection\:bg-lens-accent::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 158 11 / var(--tw-bg-opacity, 1));
+}
+
+.template-luana-foradoar .selection\:text-lens-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(9 9 11 / var(--tw-text-opacity, 1));
+}
+
+.template-luana-foradoar .selection\:text-lens-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(9 9 11 / var(--tw-text-opacity, 1));
 }
 
 .template-luana-foradoar .hover\:border-lens-accent\/50:hover{

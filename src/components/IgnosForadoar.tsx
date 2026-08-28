@@ -3,7 +3,8 @@ import "@/assets/css/ignosforadoar.css";
 
 export default function IgnosForadoar({ content }: { content: any }) {
   return (
-    <div className="ignos-foradoar-wrapper template-ignos-foradoar bg-ignoss-dark text-ignoss-light overflow-x-hidden selection:bg-ignoss-accent selection:text-ignoss-dark pb-24">
+    <div className="ignosforadoar-wrapper template-ignos foradoar">
+      <div className="relative overflow-x-hidden bg-ignoss-dark text-ignoss-light overflow-x-hidden selection:bg-ignoss-accent selection:text-ignoss-dark pb-24">
       
 
   
@@ -267,6 +268,7 @@ export default function IgnosForadoar({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@300;400;500;700;800&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -893,6 +894,10 @@ video {
   overflow-x: auto;
 }
 
+.template-star .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-star .truncate{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1435,6 +1440,46 @@ body {
 
 .parallax-image {
   transition: transform 0.5s ease-out;
+}
+
+.template-star :is(.selection\:bg-star-gold *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-star :is(.selection\:bg-star-gold *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-star :is(.selection\:text-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-star :is(.selection\:text-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-star .selection\:bg-star-gold::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-star .selection\:bg-star-gold::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-star .selection\:text-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-star .selection\:text-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
 .template-star .hover\:scale-110:hover{

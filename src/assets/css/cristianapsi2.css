@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -911,6 +912,10 @@ video {
   overflow: hidden;
 }
 
+.template-cristiana.psi2 .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-cristiana.psi2 .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1154,6 +1159,10 @@ video {
 .template-cristiana.psi2 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.template-cristiana.psi2 .pb-0{
+  padding-bottom: 0px;
 }
 
 .template-cristiana.psi2 .pb-24{
@@ -1519,6 +1528,46 @@ body {
 
 .animate-logo {
   animation: logoPulse 4s ease-in-out infinite;
+}
+
+.template-cristiana.psi2 :is(.selection\:bg-psi-accent *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+}
+
+.template-cristiana.psi2 :is(.selection\:bg-psi-accent *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+}
+
+.template-cristiana.psi2 :is(.selection\:text-white *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-cristiana.psi2 :is(.selection\:text-white *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-cristiana.psi2 .selection\:bg-psi-accent::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+}
+
+.template-cristiana.psi2 .selection\:bg-psi-accent::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
+}
+
+.template-cristiana.psi2 .selection\:text-white::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-cristiana.psi2 .selection\:text-white::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .template-cristiana.psi2 .hover\:bg-psi-accent:hover{

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -959,6 +960,10 @@ video {
   overflow-x: auto;
 }
 
+.template-loyola .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-loyola .rounded{
   border-radius: 0.25rem;
 }
@@ -1239,6 +1244,10 @@ video {
 .template-loyola .py-8{
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.template-loyola .pb-10{
+  padding-bottom: 2.5rem;
 }
 
 .template-loyola .pb-16{
@@ -1591,6 +1600,46 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.template-loyola :is(.selection\:bg-loyola-gold *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-loyola :is(.selection\:bg-loyola-gold *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-loyola :is(.selection\:text-black *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-loyola :is(.selection\:text-black *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-loyola .selection\:bg-loyola-gold::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-loyola .selection\:bg-loyola-gold::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 175 55 / var(--tw-bg-opacity, 1));
+}
+
+.template-loyola .selection\:text-black::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.template-loyola .selection\:text-black::selection{
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
 }
 
 .template-loyola .hover\:border-\[\#005CA9\]\/50:hover{

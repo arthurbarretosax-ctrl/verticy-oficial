@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -890,6 +891,10 @@ video {
   overflow-x: auto;
 }
 
+.template-ignos-foradoar .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-ignos-foradoar .whitespace-nowrap{
   white-space: nowrap;
 }
@@ -1558,6 +1563,46 @@ video {
   background: linear-gradient(to right, #10b981, #aeea00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.template-ignos-foradoar :is(.selection\:bg-ignoss-accent *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(174 234 0 / var(--tw-bg-opacity, 1));
+}
+
+.template-ignos-foradoar :is(.selection\:bg-ignoss-accent *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(174 234 0 / var(--tw-bg-opacity, 1));
+}
+
+.template-ignos-foradoar :is(.selection\:text-ignoss-dark *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(10 42 18 / var(--tw-text-opacity, 1));
+}
+
+.template-ignos-foradoar :is(.selection\:text-ignoss-dark *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(10 42 18 / var(--tw-text-opacity, 1));
+}
+
+.template-ignos-foradoar .selection\:bg-ignoss-accent::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(174 234 0 / var(--tw-bg-opacity, 1));
+}
+
+.template-ignos-foradoar .selection\:bg-ignoss-accent::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(174 234 0 / var(--tw-bg-opacity, 1));
+}
+
+.template-ignos-foradoar .selection\:text-ignoss-dark::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(10 42 18 / var(--tw-text-opacity, 1));
+}
+
+.template-ignos-foradoar .selection\:text-ignoss-dark::selection{
+  --tw-text-opacity: 1;
+  color: rgb(10 42 18 / var(--tw-text-opacity, 1));
 }
 
 .template-ignos-foradoar .hover\:border-ignoss-accent:hover{

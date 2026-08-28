@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -978,6 +979,10 @@ video {
   overflow-x: auto;
 }
 
+.template-wilian .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-wilian .whitespace-nowrap{
   white-space: nowrap;
 }
@@ -1202,6 +1207,10 @@ video {
   padding-bottom: 1.5rem;
 }
 
+.template-wilian .pb-20{
+  padding-bottom: 5rem;
+}
+
 .template-wilian .pb-24{
   padding-bottom: 6rem;
 }
@@ -1228,6 +1237,10 @@ video {
 
 .template-wilian .text-center{
   text-align: center;
+}
+
+.template-wilian .font-sans{
+  font-family: Plus Jakarta Sans, sans-serif;
 }
 
 .template-wilian .font-serif{
@@ -1600,6 +1613,46 @@ video {
 .polaroid.active-pop {
   z-index: 50 !important;
   transform: rotate(0deg) scale(1.05) !important;
+}
+
+.template-wilian :is(.selection\:bg-wilian-orange *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian :is(.selection\:bg-wilian-orange *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian :is(.selection\:text-white *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian :is(.selection\:text-white *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .selection\:bg-wilian-orange::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .selection\:bg-wilian-orange::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
+}
+
+.template-wilian .selection\:text-white::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-wilian .selection\:text-white::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .template-wilian .hover\:z-40:hover{

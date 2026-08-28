@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -915,6 +916,10 @@ video {
   overflow-x: auto;
 }
 
+.template-gabi1 .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-gabi1 .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1163,6 +1168,10 @@ video {
 .template-gabi1 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.template-gabi1 .pb-20{
+  padding-bottom: 5rem;
 }
 
 .template-gabi1 .pb-24{
@@ -1563,6 +1572,46 @@ body {
 
 .animate-zoom {
   animation: slowZoom 20s ease-in-out infinite;
+}
+
+.template-gabi1 :is(.selection\:bg-\[\#C6A87C\] *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(198 168 124 / var(--tw-bg-opacity, 1));
+}
+
+.template-gabi1 :is(.selection\:bg-\[\#C6A87C\] *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(198 168 124 / var(--tw-bg-opacity, 1));
+}
+
+.template-gabi1 :is(.selection\:text-white *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-gabi1 :is(.selection\:text-white *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-gabi1 .selection\:bg-\[\#C6A87C\]::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(198 168 124 / var(--tw-bg-opacity, 1));
+}
+
+.template-gabi1 .selection\:bg-\[\#C6A87C\]::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(198 168 124 / var(--tw-bg-opacity, 1));
+}
+
+.template-gabi1 .selection\:text-white::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-gabi1 .selection\:text-white::selection{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .template-gabi1 .after\:absolute::after{

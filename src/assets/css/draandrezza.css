@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com');
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -941,6 +943,10 @@ video {
   overflow-x: auto;
 }
 
+.template-dra.andrezza .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-dra.andrezza .rounded-2xl{
   border-radius: 1rem;
 }
@@ -1308,6 +1314,11 @@ video {
   color: rgb(71 85 105 / var(--tw-text-opacity, 1));
 }
 
+.template-dra.andrezza .text-slate-700{
+  --tw-text-opacity: 1;
+  color: rgb(51 65 85 / var(--tw-text-opacity, 1));
+}
+
 .template-dra.andrezza .text-slate-800{
   --tw-text-opacity: 1;
   color: rgb(30 41 59 / var(--tw-text-opacity, 1));
@@ -1316,6 +1327,11 @@ video {
 .template-dra.andrezza .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.template-dra.andrezza .antialiased{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .template-dra.andrezza .opacity-20{

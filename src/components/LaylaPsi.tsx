@@ -3,7 +3,8 @@ import "@/assets/css/laylapsi.css";
 
 export default function LaylaPsi({ content }: { content: any }) {
   return (
-    <div className="layla.psi-wrapper template-layla psi selection:bg-layla-accent selection:text-layla-text pb-10">
+    <div className="laylapsi-wrapper template-layla psi">
+      <div className="relative overflow-x-hidden selection:bg-layla-accent selection:text-layla-text pb-10">
       
 
   
@@ -174,6 +175,7 @@ export default function LaylaPsi({ content }: { content: any }) {
 
   
 
+    </div>
     </div>
   );
 }

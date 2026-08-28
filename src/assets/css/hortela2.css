@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
@@ -950,6 +951,10 @@ video {
   overflow: hidden;
 }
 
+.template-hortela2 .overflow-x-hidden{
+  overflow-x: hidden;
+}
+
 .template-hortela2 .truncate{
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1224,6 +1229,10 @@ video {
 .template-hortela2 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.template-hortela2 .pb-0{
+  padding-bottom: 0px;
 }
 
 .template-hortela2 .pb-5{
@@ -1700,6 +1709,46 @@ body {
   pointer-events: none;
   z-index: 50;
   opacity: 0.8;
+}
+
+.template-hortela2 :is(.selection\:bg-\[\#9AD4AA\] *)::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(154 212 170 / var(--tw-bg-opacity, 1));
+}
+
+.template-hortela2 :is(.selection\:bg-\[\#9AD4AA\] *)::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(154 212 170 / var(--tw-bg-opacity, 1));
+}
+
+.template-hortela2 :is(.selection\:text-\[\#050605\] *)::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 6 5 / var(--tw-text-opacity, 1));
+}
+
+.template-hortela2 :is(.selection\:text-\[\#050605\] *)::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 6 5 / var(--tw-text-opacity, 1));
+}
+
+.template-hortela2 .selection\:bg-\[\#9AD4AA\]::-moz-selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(154 212 170 / var(--tw-bg-opacity, 1));
+}
+
+.template-hortela2 .selection\:bg-\[\#9AD4AA\]::selection{
+  --tw-bg-opacity: 1;
+  background-color: rgb(154 212 170 / var(--tw-bg-opacity, 1));
+}
+
+.template-hortela2 .selection\:text-\[\#050605\]::-moz-selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 6 5 / var(--tw-text-opacity, 1));
+}
+
+.template-hortela2 .selection\:text-\[\#050605\]::selection{
+  --tw-text-opacity: 1;
+  color: rgb(5 6 5 / var(--tw-text-opacity, 1));
 }
 
 .template-hortela2 .hover\:scale-110:hover{
