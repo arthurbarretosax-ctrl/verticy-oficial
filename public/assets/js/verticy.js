@@ -105,6 +105,8 @@ export const TEMPLATES = [
   { id: "barbearia01", cat: "beleza", name: "Barbearia Clássica", desc: "Barbearias, salões e estética", badge: "Premium", img: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" },
   { id: "restaurante01", cat: "alimentacao", name: "Restaurante & Lanchonete", desc: "Restaurantes, pizzarias e bistrôs", badge: "Premium", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" },
   { id: "personal01", cat: "fitness", name: "Personal Trainer Elite", desc: "Consultoria fitness e treinos", badge: "Premium", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800" },
+  { id: "personal02", cat: "fitness", name: "Cross & Performance", desc: "Alta intensidade e Crossfit", badge: "Premium", img: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800" },
+  { id: "personal03", cat: "fitness", name: "Saúde & Emagrecimento", desc: "Consultoria feminina e bem-estar", badge: "Premium", img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800" },
   { id: "corretor01", cat: "imoveis", name: "Corretor Premium", desc: "Imóveis de alto padrão e luxo", badge: "Premium", img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800" },
   { id: "arquiteto01", cat: "imoveis", name: "Arquitetura Premium", desc: "Escritórios e design de interiores", badge: "Premium", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800" },
   { id: "advogado01", cat: "advocacia", name: "Advocacia Humanizada", desc: "Direito de Família e Sucessões", badge: "Premium", img: "https://images.unsplash.com/photo-1714974528737-3e6c7e4d11af?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGF3eWVyJTIwbWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D" },
@@ -112,6 +114,7 @@ export const TEMPLATES = [
   { id: "medico01", cat: "saude", name: "Clínica Médica", desc: "Médicos e especialistas", badge: "Premium", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" },
   { id: "confeitaria01", cat: "alimentacao", name: "Confeitaria Doce", desc: "Doces e bolos", badge: "Premium", img: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&q=80&w=800" },
   { id: "creator01", cat: "creators", name: "Creator Portfolio", desc: "Mídia kit e links", badge: "Premium", img: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?auto=format&fit=crop&q=80&w=800" },
+  { id: "sandi", cat: "creators", name: "Sandi - Mídia Kit", desc: "Portfólio para modelos e criadores", badge: "Novo", img: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?auto=format&fit=crop&q=80&w=800" },
   { id: "luanaforadoar", cat: "novos", name: "Luanaforadoar", desc: "Novo template", badge: "Novo", img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80" },
   { id: "draandrezza", cat: "novos", name: "Draandrezza", desc: "Novo template", badge: "Novo", img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80" },
   { id: "duo", cat: "novos", name: "Duo", desc: "Novo template", badge: "Novo", img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80" },
@@ -146,3 +149,4 @@ export const TEMPLATES = [
 
 ];
 export { DENTISTA01_DEFAULTS } from "./dentista01-defaults.js";
+export { SANDI_DEFAULTS } from "./sandi-defaults.js";
