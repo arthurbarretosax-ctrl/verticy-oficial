@@ -73,7 +73,7 @@
 
   <script type="module">
     import { supabase, requireProfile, toast, uploadSiteImage } from "/assets/js/verticy.js";
-    import {{ SANDI_DEFAULTS }} from "/assets/js/sandi-defaults.js";
+    import { SANDI_DEFAULTS } from "/assets/js/sandi-defaults.js";
 
     const ctx = await requireProfile();
     if (!ctx) throw new Error("no session");
